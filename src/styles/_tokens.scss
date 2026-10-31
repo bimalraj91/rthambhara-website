@@ -1,0 +1,42 @@
+$cream: #f5f0e7;
+$cream-light: #faf7f1;
+$ink: #172939;
+$ink-deep: #25251f;
+$body: #59616a;
+$muted: #6f6b61;
+$gold: #9a7844;
+$gold-light: #d8be8d;
+$gold-bright: #c99a3b;
+$maroon: #681722;
+$red: #b73522;
+$red-deep: #8c351f;
+$navy: #112430;
+$cool: #bbc2ca;
+$line: #cfc4b1;
+
+$ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+:root {
+  --color-cream: #{$cream};
+  --color-cream-light: #{$cream-light};
+  --color-ink: #{$ink};
+  --color-ink-deep: #{$ink-deep};
+  --color-body: #{$body};
+  --color-muted: #{$muted};
+  --color-gold: #{$gold};
+  --color-gold-light: #{$gold-light};
+  --color-gold-bright: #{$gold-bright};
+  --color-maroon: #{$maroon};
+  --color-red: #{$red};
+  --color-red-deep: #{$red-deep};
+  --color-navy: #{$navy};
+  --color-cool: #{$cool};
+  --color-line: #{$line};
+
+  --page-max: 1440px;
+  --shadow-button: 0 2px 4px rgba(40, 41, 61, 0.04),
+    0 8px 16px rgba(96, 97, 112, 0.16);
+  --ease-out: #{$ease-out};
+  --ease-soft: #{$ease-soft};
+}
