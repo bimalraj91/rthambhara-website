@@ -1,0 +1,338 @@
+@use "../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 840px;
+  overflow: hidden;
+  background: #1b090a;
+  color: var(--color-cream);
+}
+
+.background {
+  object-fit: cover;
+  object-position: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 2, 3, 0.58) 0%,
+      rgba(18, 4, 6, 0.24) 30%,
+      rgba(18, 4, 6, 0.3) 68%,
+      rgba(16, 3, 5, 0.7) 100%
+    ),
+    linear-gradient(90deg, rgba(22, 3, 5, 0.35) 0%, rgba(22, 3, 5, 0) 58%);
+}
+
+.word {
+  position: absolute;
+  z-index: 2;
+  top: 232px;
+  left: 134px;
+  width: 754px;
+  height: 216px;
+  pointer-events: none;
+}
+
+.letter {
+  position: absolute;
+  display: block;
+  max-width: none;
+}
+
+.letter1 {
+  top: 3.28px;
+  left: 687.6px;
+  width: 66.215px;
+  height: 204.098px;
+}
+
+.letter2 {
+  top: 3.28px;
+  left: 588.36px;
+  width: 102.839px;
+  height: 208.035px;
+}
+
+.letter3 {
+  top: 0;
+  left: 428.98px;
+  width: 162.747px;
+  height: 207.379px;
+}
+
+.letter4 {
+  top: 3.28px;
+  left: 345.1px;
+  width: 121.03px;
+  height: 154.55px;
+}
+
+.letter5 {
+  top: 3.28px;
+  left: 206.78px;
+  width: 141.646px;
+  height: 208.692px;
+}
+
+.letter6 {
+  top: 0;
+  left: 0;
+  width: 210.286px;
+  height: 215.91px;
+}
+
+.frame {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: var(--page-max);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.card {
+  position: absolute;
+  top: 219px;
+  left: 19.44%;
+  width: 57.57%;
+  max-width: 829px;
+  height: 402px;
+  padding: 38px 54px 0;
+  border: 1px solid rgba(201, 154, 59, 0.48);
+  border-radius: 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(66, 16, 20, 0.24) 0%,
+    rgba(45, 9, 13, 0.1) 52%,
+    rgba(34, 7, 10, 0.22) 100%
+  );
+  backdrop-filter: blur(0.5px);
+}
+
+.marker {
+  margin-left: 6px;
+  color: var(--color-gold-light);
+
+  span:last-child {
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+}
+
+.title {
+  margin-top: 16px;
+  color: #f4eadc;
+
+  @include serif(400);
+  font-size: clamp(48px, 4.86vw, 70px);
+  line-height: 0.93;
+  letter-spacing: -0.01em;
+
+  span {
+    display: block;
+  }
+}
+
+.titleUpper {
+  margin-top: 2px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.chapter {
+  position: absolute;
+  z-index: 4;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 88px;
+  border-top: 1px solid rgba(216, 190, 141, 0.27);
+  background: linear-gradient(
+    180deg,
+    rgba(22, 5, 7, 0.28) 0%,
+    rgba(22, 5, 7, 0.6) 100%
+  );
+}
+
+.chapterInner {
+  position: relative;
+  width: 100%;
+  max-width: var(--page-max);
+  height: 100%;
+  margin: 0 auto;
+}
+
+.chapterIntro {
+  position: absolute;
+  top: 50%;
+  left: clamp(24px, 7.85vw, 113px);
+  transform: translateY(-50%);
+  color: var(--color-gold-light);
+
+  @include serif(500);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.chapters {
+  position: absolute;
+  top: 50%;
+  left: 39.4%;
+  display: flex;
+  gap: clamp(50px, 16.5vw, 238px);
+  transform: translateY(-50%);
+
+  a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 7px;
+    color: #eee1cf;
+    white-space: nowrap;
+
+    @include sans(400);
+    font-size: 12px;
+    line-height: 1.3;
+
+    @include focus-ring(var(--color-gold-light));
+
+    transition: color 0.25s var(--ease-out);
+
+    &:hover {
+      color: var(--color-gold-light);
+    }
+
+    span {
+      color: var(--color-gold-light);
+
+      @include sans(500);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+    }
+  }
+}
+
+@include below(1180px) {
+  .card {
+    left: 16%;
+    width: 68%;
+  }
+
+  .title {
+    font-size: clamp(48px, 5.5vw, 64px);
+  }
+
+  .titleUpper {
+    white-space: normal;
+  }
+
+  .word {
+    left: 7%;
+    transform: scale(0.9);
+    transform-origin: left top;
+  }
+}
+
+@include below($bp-tablet) {
+  .hero {
+    height: auto;
+    min-height: 720px;
+    padding-top: 140px;
+  }
+
+  .card {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: auto;
+    max-width: none;
+    height: auto;
+    margin: 0 24px;
+    padding: 34px 34px 40px;
+  }
+
+  .title {
+    margin-top: 18px;
+    font-size: clamp(44px, 8.2vw, 60px);
+    line-height: 1.02;
+  }
+
+  .word {
+    display: none;
+  }
+
+  .chapter {
+    position: relative;
+    height: auto;
+    margin-top: 52px;
+  }
+
+  .chapterInner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 24px;
+  }
+
+  .chapterIntro,
+  .chapters {
+    position: static;
+    transform: none;
+  }
+
+  .chapters {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+}
+
+@include below($bp-mobile) {
+  .hero {
+    min-height: 640px;
+    padding-top: 118px;
+  }
+
+  .card {
+    margin-inline: 18px;
+    padding: 28px 24px 32px;
+    border-radius: 18px;
+  }
+
+  .marker {
+    margin-left: 0;
+
+    span:last-child {
+      font-size: 9px;
+    }
+  }
+
+  .title {
+    font-size: clamp(36px, 10.4vw, 48px);
+    line-height: 1.06;
+  }
+
+  .chapterIntro {
+    font-size: 18px;
+  }
+
+  .chapterInner {
+    padding: 22px 20px;
+  }
+
+  .chapters {
+    flex-direction: column;
+    gap: 10px;
+
+    a {
+      font-size: 11px;
+    }
+  }
+}

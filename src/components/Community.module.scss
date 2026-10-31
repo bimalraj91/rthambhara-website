@@ -1,0 +1,295 @@
+@use "../styles/mixins" as *;
+
+.community {
+  padding: 59px 0 138px;
+  overflow: hidden;
+  background: var(--color-cream);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: 700px minmax(0, 1fr);
+  gap: 100px;
+  align-items: start;
+  width: calc(100% - 2 * clamp(20px, 9.31vw, 134px));
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.heading {
+  h2 {
+    margin-top: 24px;
+    color: var(--color-ink);
+
+    @include serif(500);
+    font-size: clamp(48px, 4.86vw, 70px);
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+}
+
+.invitation {
+  padding-top: 36px;
+
+  p {
+    color: var(--color-body);
+
+    @include sans(400);
+    font-size: 17px;
+    font-variation-settings: "opsz" 17;
+    line-height: 1.7;
+  }
+}
+
+.viewMore {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  min-height: 56px;
+  margin-top: 26px;
+  padding: 20px 25px;
+  border-radius: 8px;
+  background: var(--color-maroon);
+  box-shadow: var(--shadow-button);
+  color: #fff;
+  text-transform: uppercase;
+
+  @include sans(400);
+  font-size: 15px;
+  line-height: 16px;
+
+  transition: background 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+
+  img {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  @include focus-ring(var(--color-gold));
+
+  &:hover {
+    background: #7a1b29;
+
+    img {
+      transform: translateX(3px);
+    }
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  height: 874px;
+  margin: 43px auto 0;
+}
+
+.collage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 11px;
+  width: 722px;
+  margin-left: clamp(24px, 10.14vw, 146px);
+}
+
+.column {
+  display: flex;
+  flex: 0 0 233px;
+  flex-direction: column;
+  gap: 11px;
+  width: 233px;
+
+  &:first-child {
+    flex-basis: 234px;
+    width: 234px;
+  }
+}
+
+.offsetMiddle {
+  margin-top: 36px;
+}
+
+.offsetRight {
+  margin-top: 204px;
+}
+
+.tile {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 234 / 284;
+  overflow: hidden;
+  background: #2b2019;
+}
+
+.tileImage {
+  object-fit: cover;
+  object-position: 12% center;
+  transition: transform 0.8s var(--ease-out);
+
+  .tile:hover & {
+    transform: scale(1.03);
+  }
+}
+
+.offsetMiddle .tile:last-child {
+  aspect-ratio: 233 / 250;
+}
+
+.hand {
+  position: absolute;
+  z-index: 0;
+  top: 7px;
+  left: 61.53%;
+  display: flex;
+  width: 44.79%;
+  aspect-ratio: 645 / 579;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.handInner {
+  position: relative;
+  width: 69.3%;
+  aspect-ratio: 447 / 543;
+  transform: rotate(-105.89deg);
+}
+
+.handImage {
+  object-fit: cover;
+  object-position: bottom center;
+}
+
+@include below(1280px) {
+  .intro {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 64px;
+  }
+
+  .hand {
+    left: auto;
+    right: -110px;
+    width: 560px;
+  }
+}
+
+@include below(1100px) {
+  .community {
+    padding-bottom: 110px;
+  }
+
+  .collage {
+    margin-left: 64px;
+  }
+
+  .hand {
+    display: none;
+  }
+}
+
+@include below($bp-tablet) {
+  .community {
+    padding: 52px 0 86px;
+  }
+
+  .intro {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    width: calc(100% - 48px);
+  }
+
+  .invitation {
+    max-width: 560px;
+    padding-top: 0;
+  }
+
+  .stage {
+    height: auto;
+    margin-top: 42px;
+  }
+
+  .collage {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: calc(100% - 48px);
+    margin-inline: auto;
+  }
+
+  .column {
+    display: contents;
+  }
+
+  .offsetMiddle,
+  .offsetRight {
+    margin-top: 0;
+  }
+
+  .tile,
+  .offsetMiddle .tile:last-child {
+    width: 100%;
+    aspect-ratio: 1 / 1.2;
+  }
+
+  .hand {
+    position: relative;
+    top: auto;
+    right: auto;
+    display: flex;
+    width: min(72%, 500px);
+    margin: 34px 0 0 auto;
+  }
+}
+
+@include below($bp-mobile) {
+  .community {
+    padding: 46px 0 74px;
+  }
+
+  .intro {
+    width: calc(100% - 40px);
+  }
+
+  .heading {
+    h2 {
+      margin-top: 18px;
+      font-size: clamp(38px, 10.5vw, 48px);
+      line-height: 1.06;
+    }
+  }
+
+  .invitation {
+    p {
+      font-size: 16px;
+      line-height: 1.68;
+    }
+  }
+
+  .viewMore {
+    gap: 42px;
+    min-height: 52px;
+    margin-top: 22px;
+    padding: 18px 22px;
+    font-size: 14px;
+  }
+
+  .stage {
+    margin-top: 34px;
+  }
+
+  .collage {
+    width: calc(100% - 40px);
+  }
+
+  .hand {
+    width: 82%;
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,304 @@
+@use "../styles/mixins" as *;
+
+.contact {
+  position: relative;
+  overflow: clip;
+  background: var(--color-cream);
+}
+
+.inner {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 1002px;
+  margin: 0 auto;
+  padding: 114px 129px 60px 180px;
+}
+
+.decor {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 160px;
+  display: grid;
+  width: 576.84px;
+  height: 502.27px;
+  place-items: center;
+  pointer-events: none;
+}
+
+.swordCrop {
+  position: relative;
+  width: 482px;
+  height: 348px;
+  overflow: hidden;
+  transform: rotate(21.83deg);
+}
+
+.swordImage {
+  position: absolute;
+  top: -21.37%;
+  left: -10.31%;
+  width: 120.46%;
+  height: 298.98%;
+  max-width: none;
+  object-fit: cover;
+}
+
+.layout {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 644px;
+  align-items: start;
+}
+
+.details {
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+  padding-top: 215px;
+}
+
+.direct {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.direct a {
+  transition: color 0.3s var(--ease-out);
+
+  @include focus-ring(var(--color-gold));
+}
+
+.direct a:first-child {
+  color: var(--color-maroon);
+
+  @include serif(400);
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.direct a:last-child {
+  margin-top: 4px;
+  color: var(--color-muted);
+
+  @include sans(400);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.direct a:hover {
+  color: var(--color-gold);
+}
+
+.address {
+  margin-top: 32px;
+  color: var(--color-muted);
+
+  @include sans(400);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.addressLabel {
+  margin-bottom: 2px;
+  color: var(--color-red-deep);
+
+  @include eyebrow(12px, 0);
+
+  line-height: 1.6;
+}
+
+.address p + p {
+  margin-top: 14px;
+}
+
+.quote {
+  width: 350px;
+  margin-top: 48px;
+  color: var(--color-ink-deep);
+
+  @include sans(400);
+  font-size: 24px;
+  line-height: 1.8;
+}
+
+.panel {
+  position: relative;
+  z-index: 3;
+  min-height: 828px;
+  padding: 30px 49px 51px;
+  border: 1px solid rgba(154, 120, 68, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(2px);
+}
+
+.eyebrow {
+  color: var(--color-muted);
+
+  @include sans(500);
+  font-size: 13px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.panel h2 {
+  margin-top: 17px;
+  color: var(--color-ink-deep);
+
+  @include serif(400);
+  font-size: 76px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+@include below($bp-wide) {
+  .inner {
+    padding: 100px 64px 56px 100px;
+  }
+
+  .decor {
+    left: 74px;
+    width: min(480px, 45vw);
+    height: auto;
+    aspect-ratio: 576.84 / 502.27;
+  }
+
+  .swordCrop {
+    width: 83.56%;
+    height: auto;
+    aspect-ratio: 482 / 348;
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr) min(560px, 50vw);
+  }
+
+  .details {
+    padding-top: 195px;
+  }
+
+  .panel {
+    min-height: 0;
+    padding: 30px 38px 45px;
+  }
+
+  .panel h2 {
+    font-size: clamp(62px, 5.3vw, 76px);
+  }
+
+  .quote {
+    max-width: 320px;
+  }
+}
+
+@include below($bp-desktop) {
+  .inner {
+    padding: 88px 40px 52px;
+  }
+
+  .decor {
+    left: 22px;
+    width: min(440px, 48vw);
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr) min(520px, 52vw);
+  }
+
+  .details {
+    padding-top: 170px;
+  }
+
+  .direct a:first-child {
+    font-size: 29px;
+  }
+
+  .quote {
+    max-width: 290px;
+    font-size: 22px;
+  }
+
+  .panel {
+    padding-inline: 32px;
+  }
+}
+
+@include below($bp-tablet) {
+  .inner {
+    min-height: 0;
+    padding: 32px 24px 56px;
+  }
+
+  .decor {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(74vw, 440px);
+    margin: 0 auto;
+  }
+
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .details {
+    padding-top: 0;
+  }
+
+  .direct {
+    margin-top: -12px;
+  }
+
+  .panel {
+    width: 100%;
+    margin-top: 46px;
+    padding: 32px 34px 42px;
+  }
+
+  .quote {
+    max-width: 430px;
+  }
+}
+
+@include below($bp-mobile) {
+  .inner {
+    padding: 24px 20px 48px;
+  }
+
+  .decor {
+    width: min(88vw, 390px);
+  }
+
+  .direct a:first-child {
+    font-size: 28px;
+  }
+
+  .address {
+    margin-top: 26px;
+  }
+
+  .quote {
+    width: 100%;
+    margin-top: 32px;
+    font-size: 21px;
+  }
+
+  .panel {
+    margin-top: 36px;
+    padding: 28px 20px 32px;
+  }
+
+  .panel h2 {
+    margin-top: 14px;
+    font-size: clamp(48px, 13vw, 64px);
+  }
+}
+
+@include below($bp-small) {
+  .panel h2 {
+    font-size: 47px;
+  }
+}

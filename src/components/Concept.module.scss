@@ -1,0 +1,246 @@
+@use "../styles/mixins" as *;
+
+.concept {
+  position: relative;
+  min-height: 699px;
+  padding: 88px clamp(24px, 5.56vw, 80px) 78px;
+  overflow: hidden;
+  background-color: #4b0d13;
+  background-image: url("/assets/images/concept-paisley-background.webp");
+  background-repeat: repeat;
+  background-position: top left;
+  background-size: 698.429px 386.058px;
+  color: var(--color-cream);
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    background: rgba(57, 8, 14, 0.12);
+    content: "";
+    pointer-events: none;
+  }
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 36px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.introduction {
+  display: flex;
+  gap: 70px;
+  align-items: center;
+  width: 100%;
+}
+
+.rtam {
+  flex: 0 0 390px;
+  color: var(--color-gold-light);
+
+  @include serif(400);
+  font-size: clamp(94px, 8.75vw, 126px);
+  font-style: italic;
+  line-height: 1;
+}
+
+.narrative {
+  width: min(640px, 100%);
+
+  h2 {
+    color: var(--color-cream);
+
+    @include serif(500);
+    font-size: clamp(34px, 3.05vw, 44px);
+    line-height: 1.04;
+    letter-spacing: 0;
+  }
+
+  p {
+    max-width: 620px;
+    margin-top: 16px;
+    color: var(--color-cool);
+
+    @include sans(400);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}
+
+.cycle {
+  position: relative;
+  width: 100%;
+  height: 272px;
+}
+
+.thread {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.threadImage {
+  object-fit: fill;
+}
+
+.principles {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.principle {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+
+.top {
+  padding-top: 22px;
+}
+
+.low {
+  padding-top: 80px;
+}
+
+.bead {
+  display: block;
+  width: 7px;
+  height: 7px;
+
+  img {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+.principle h3 {
+  color: var(--color-cream);
+
+  @include serif(400);
+  font-size: 40px;
+  line-height: 1.1;
+}
+
+.label {
+  color: var(--color-gold-light);
+
+  @include sans(400);
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.copy {
+  color: var(--color-cool);
+
+  @include sans(400);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+@include below(1180px) {
+  .concept {
+    padding-top: 74px;
+    padding-bottom: 68px;
+  }
+
+  .introduction {
+    gap: 40px;
+  }
+
+  .rtam {
+    flex-basis: 300px;
+  }
+
+  .principles {
+    gap: 32px;
+  }
+}
+
+@include below($bp-tablet) {
+  .concept {
+    min-height: 0;
+    padding: 62px 24px;
+  }
+
+  .introduction {
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  .rtam {
+    flex-basis: auto;
+    font-size: 96px;
+  }
+
+  .narrative {
+    width: 100%;
+  }
+
+  .cycle {
+    height: auto;
+  }
+
+  .thread {
+    display: none;
+  }
+
+  .principles {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 28px;
+  }
+
+  .top,
+  .low {
+    padding-top: 0;
+  }
+
+  .principle h3 {
+    font-size: 34px;
+  }
+}
+
+@include below($bp-mobile) {
+  .concept {
+    padding: 54px 20px 58px;
+  }
+
+  .rtam {
+    font-size: 82px;
+  }
+
+  .narrative {
+    h2 {
+      font-size: clamp(31px, 8.4vw, 39px);
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .principles {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}

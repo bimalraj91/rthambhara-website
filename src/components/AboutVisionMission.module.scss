@@ -1,0 +1,758 @@
+@use "../styles/mixins" as *;
+
+.section {
+  position: relative;
+  height: 2525px;
+  overflow: clip;
+  background: var(--color-cream);
+}
+
+.visionMandala {
+  position: absolute;
+  z-index: 0;
+  top: -70px;
+  right: -160px;
+  width: 660px;
+  height: auto;
+  max-width: none;
+  opacity: 0.32;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.feet {
+  position: absolute;
+  z-index: 0;
+  top: 760px;
+  left: 285px;
+  width: 680px;
+  height: auto;
+  max-width: none;
+  opacity: 0.09;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.portrait {
+  position: absolute;
+  z-index: 1;
+  top: -48px;
+  left: -507px;
+  width: 949px;
+  height: 871px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #d9c6ae;
+}
+
+.portraitImage {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.visionCopy {
+  position: absolute;
+  z-index: 2;
+  top: 80px;
+  left: 40.55%;
+  width: 616px;
+}
+
+.visionTitle {
+  margin-top: 22px;
+  color: #2b2824;
+
+  @include serif(400);
+  font-size: 66px;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+
+  span {
+    color: var(--color-maroon);
+  }
+}
+
+.visionCards {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  margin-top: 29px;
+}
+
+.visionCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 24px;
+
+  h3 {
+    color: var(--color-maroon);
+
+    font-family: var(--font-cinzel), Georgia, serif;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  p {
+    margin-top: 9px;
+    color: #8e6b42;
+
+    @include sans(500);
+    font-size: 10px;
+    line-height: 1.2;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+}
+
+.light {
+  width: 179px;
+  height: 213px;
+  padding: 22px 12px;
+  border: 1px solid rgba(201, 154, 59, 0.42);
+  background: rgba(255, 251, 244, 0.94);
+  box-shadow: 0 12px 28px rgba(104, 23, 34, 0.045);
+}
+
+.dark {
+  width: 224px;
+  height: 251px;
+  padding: 24px 16px;
+  border: 2px solid #c99a3b;
+  background: #450009;
+  box-shadow: 0 17px 34px rgba(69, 0, 9, 0.16);
+
+  h3 {
+    color: #dfb873;
+    font-size: 26px;
+  }
+
+  p {
+    color: #c9a669;
+    font-size: 11px;
+  }
+}
+
+.visionIcon {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  margin-bottom: 14px;
+  place-items: center;
+}
+
+.visionIconImage {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+.dark .visionIcon {
+  width: 88px;
+  height: 88px;
+  margin-top: -5px;
+  margin-bottom: 11px;
+  border: 1px solid rgba(201, 154, 59, 0.28);
+  border-radius: 50%;
+  background: rgba(26, 5, 9, 0.38);
+}
+
+.dark .visionIconImage {
+  width: 58px;
+  height: 58px;
+}
+
+.visionBody {
+  width: 607px;
+  margin-top: 79px;
+  color: var(--color-muted);
+
+  @include sans(400);
+  font-size: 18px;
+  line-height: 1.72;
+  text-align: justify;
+
+  p + p {
+    margin-top: 20px;
+  }
+}
+
+.visionLower {
+  position: absolute;
+  z-index: 2;
+  top: 926px;
+  left: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 58px;
+}
+
+.photoLeft {
+  flex: 0 0 371px;
+  width: 371px;
+  margin-right: 39px;
+}
+
+.photoRight {
+  flex: 0 0 327px;
+  width: 327px;
+}
+
+.photoFrame {
+  position: relative;
+  width: 100%;
+  height: 452px;
+  overflow: hidden;
+  background: #d8c8b4;
+}
+
+.cropTradition,
+.cropContemporary {
+  position: absolute;
+  top: 0;
+  max-width: none;
+}
+
+.cropTradition {
+  left: -164.42%;
+  width: 414.02%;
+  height: 226.55%;
+}
+
+.cropContemporary {
+  left: -250.25%;
+  width: 382.09%;
+  height: 226.55%;
+}
+
+.caption {
+  margin-top: 18px;
+  text-align: center;
+
+  h3 {
+    color: var(--color-maroon);
+
+    @include serif(500);
+    font-size: 26px;
+    font-style: italic;
+    line-height: 1.2;
+  }
+
+  p {
+    margin-top: 5px;
+    color: var(--color-muted);
+
+    @include sans(400);
+    font-size: 11px;
+    line-height: 1.4;
+    letter-spacing: 0.19em;
+    text-transform: uppercase;
+  }
+}
+
+.visionNarrative {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 544px;
+  width: 544px;
+  margin-top: 28px;
+  margin-right: 38px;
+  color: var(--color-muted);
+
+  @include sans(400);
+  font-size: 18px;
+  line-height: 1.72;
+
+  p + p {
+    margin-top: 20px;
+  }
+}
+
+.arrowLeft,
+.arrowRight {
+  position: absolute;
+  top: 2px;
+  color: #b69a65;
+
+  @include serif(400);
+  font-size: 38px;
+  line-height: 1;
+}
+
+.arrowLeft {
+  left: -58px;
+}
+
+.arrowRight {
+  right: -43px;
+}
+
+.mission {
+  position: absolute;
+  z-index: 2;
+  top: 1499px;
+  right: 0;
+  left: 0;
+  height: 1026px;
+}
+
+.missionRight {
+  position: absolute;
+  top: 0;
+  left: 48.4%;
+  width: 41.4%;
+}
+
+.missionTitle {
+  color: #2b2824;
+
+  @include serif(400);
+  font-size: 66px;
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+
+  span {
+    color: var(--color-maroon);
+  }
+}
+
+.missionBody {
+  width: 596px;
+  max-width: 100%;
+  margin-top: 31px;
+  color: var(--color-muted);
+
+  @include sans(400);
+  font-size: 18px;
+  line-height: 1.72;
+  text-align: justify;
+
+  p + p {
+    margin-top: 20px;
+  }
+}
+
+.missionHand {
+  position: absolute;
+  z-index: 3;
+  top: -8px;
+  left: -6px;
+  width: 481px;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+}
+
+.missionHandRight {
+  position: absolute;
+  z-index: 1;
+  top: 562px;
+  right: 0;
+  width: 450px;
+  height: auto;
+  max-width: none;
+  pointer-events: none;
+}
+
+.missionBelief {
+  position: absolute;
+  z-index: 3;
+  top: 253px;
+  left: 280px;
+  width: 400px;
+  color: var(--color-maroon);
+
+  @include serif(500);
+  font-size: 36px;
+  font-style: italic;
+  line-height: 1.32;
+}
+
+.missionBottom {
+  position: absolute;
+  z-index: 3;
+  top: 619px;
+  left: 143px;
+  width: 606px;
+  color: var(--color-muted);
+
+  @include sans(400);
+  font-size: 18px;
+  line-height: 1.74;
+  text-align: justify;
+
+  p + p {
+    margin-top: 20px;
+  }
+}
+
+.missionLotusLeft {
+  position: absolute;
+  z-index: 0;
+  top: 160px;
+  left: 0;
+  width: 340px;
+  height: auto;
+  max-width: none;
+  opacity: 0.13;
+}
+
+.missionLotusRight {
+  position: absolute;
+  z-index: 0;
+  top: 70px;
+  right: 234px;
+  width: 360px;
+  height: auto;
+  max-width: none;
+  opacity: 0.1;
+}
+
+@include below(1200px) {
+  .section {
+    height: auto;
+    padding: 96px 0 0;
+  }
+
+  .portrait {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: min(430px, 76vw);
+    height: min(394px, 70vw);
+    margin: 48px auto 0;
+  }
+
+  .visionCopy {
+    position: static;
+    width: min(616px, calc(100% - 48px));
+    margin: 56px auto 0;
+  }
+
+  .visionTitle {
+    font-size: clamp(50px, 6.4vw, 62px);
+  }
+
+  .visionBody {
+    width: 100%;
+  }
+
+  .visionLower {
+    position: static;
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 56px;
+    margin-top: 74px;
+    padding: 0 24px;
+  }
+
+  .photoLeft,
+  .photoRight {
+    width: min(420px, 100%);
+    margin-right: 0;
+  }
+
+  .photoLeft .photoFrame {
+    height: auto;
+    aspect-ratio: 371 / 452;
+  }
+
+  .photoRight .photoFrame {
+    height: auto;
+    aspect-ratio: 327 / 452;
+  }
+
+  .visionNarrative {
+    width: min(640px, 100%);
+    margin: 0;
+    font-size: 17px;
+  }
+
+  .arrowLeft,
+  .arrowRight {
+    display: none;
+  }
+
+  .feet {
+    top: 790px;
+    left: 50%;
+    width: 620px;
+    transform: translateX(-50%);
+  }
+
+  .visionMandala {
+    right: -280px;
+    width: 520px;
+  }
+
+  .mission {
+    position: relative;
+    top: auto;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-top: 90px;
+    padding: 0 24px 96px;
+  }
+
+  .missionHand {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 1;
+    width: min(330px, 72vw);
+    margin: 0 auto 34px;
+  }
+
+  .missionRight {
+    position: static;
+    order: 2;
+    width: min(596px, 100%);
+    margin: 0 auto;
+  }
+
+  .missionTitle {
+    font-size: clamp(48px, 6.2vw, 62px);
+  }
+
+  .missionBody {
+    width: 100%;
+  }
+
+  .missionBelief {
+    position: static;
+    order: 3;
+    width: min(430px, 100%);
+    margin: 48px auto 0;
+    text-align: center;
+  }
+
+  .missionBottom {
+    position: static;
+    order: 4;
+    width: min(606px, 100%);
+    margin: 42px auto 0;
+  }
+
+  .missionHandRight {
+    position: relative;
+    top: auto;
+    right: auto;
+    order: 5;
+    width: min(450px, 100%);
+    margin: 44px auto 0;
+  }
+
+  .missionLotusLeft,
+  .missionLotusRight {
+    display: none;
+  }
+}
+
+@include below($bp-tablet) {
+  .section {
+    padding-top: 80px;
+  }
+
+  .visionCopy {
+    margin-top: 46px;
+  }
+
+  .visionTitle {
+    font-size: clamp(44px, 7.4vw, 56px);
+  }
+
+  .visionCards {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .visionCard {
+    flex: 1 1 140px;
+    width: auto;
+    max-width: 200px;
+  }
+
+  .dark {
+    flex-grow: 1.2;
+    max-width: 224px;
+  }
+
+  .visionBody {
+    margin-top: 48px;
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .visionLower {
+    margin-top: 62px;
+    gap: 48px;
+  }
+
+  .caption h3 {
+    font-size: 23px;
+  }
+
+  .feet {
+    top: 720px;
+    width: 500px;
+  }
+
+  .mission {
+    margin-top: 76px;
+    padding-bottom: 80px;
+  }
+
+  .missionTitle {
+    font-size: clamp(44px, 7.4vw, 56px);
+  }
+
+  .missionBody,
+  .missionBottom {
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .missionBelief {
+    font-size: 32px;
+  }
+}
+
+@include below($bp-mobile) {
+  .section {
+    padding-top: 66px;
+  }
+
+  .portrait {
+    width: min(320px, 76vw);
+    height: min(294px, 70vw);
+    margin-top: 38px;
+  }
+
+  .visionCopy {
+    width: calc(100% - 48px);
+    margin-top: 38px;
+  }
+
+  .visionTitle {
+    font-size: clamp(38px, 10vw, 48px);
+  }
+
+  .visionCards {
+    gap: 9px;
+    margin-top: 24px;
+  }
+
+  .visionCard {
+    flex: 1 1 108px;
+    min-width: 0;
+    height: 188px;
+    padding: 16px 8px;
+    border-radius: 18px;
+
+    h3 {
+      font-size: 17px;
+    }
+
+    p {
+      font-size: 8px;
+      letter-spacing: 0.12em;
+    }
+  }
+
+  .dark {
+    height: 210px;
+
+    h3 {
+      font-size: 21px;
+    }
+  }
+
+  .visionIcon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 9px;
+  }
+
+  .visionIconImage {
+    width: 43px;
+    height: 43px;
+  }
+
+  .dark .visionIcon {
+    width: 66px;
+    height: 66px;
+    margin-bottom: 8px;
+  }
+
+  .dark .visionIconImage {
+    width: 46px;
+    height: 46px;
+  }
+
+  .visionBody {
+    margin-top: 40px;
+    font-size: 16px;
+    line-height: 1.72;
+    text-align: left;
+  }
+
+  .visionLower {
+    margin-top: 52px;
+    gap: 40px;
+  }
+
+  .photoLeft,
+  .photoRight {
+    width: 100%;
+  }
+
+  .visionNarrative {
+    font-size: 16px;
+    line-height: 1.72;
+  }
+
+  .feet {
+    display: none;
+  }
+
+  .missionHand {
+    width: min(280px, 72vw);
+    margin-bottom: 28px;
+  }
+
+  .missionTitle {
+    font-size: clamp(38px, 10vw, 48px);
+  }
+
+  .missionBody {
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 1.72;
+    text-align: left;
+  }
+
+  .missionBelief {
+    margin-top: 40px;
+    font-size: 29px;
+  }
+
+  .missionBottom {
+    margin-top: 36px;
+    font-size: 16px;
+    line-height: 1.72;
+    text-align: left;
+  }
+
+  .missionHandRight {
+    width: 100%;
+    margin-top: 36px;
+  }
+}

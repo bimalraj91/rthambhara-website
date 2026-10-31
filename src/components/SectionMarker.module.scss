@@ -1,0 +1,60 @@
+@use "../styles/mixins" as *;
+
+.marker {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--color-gold);
+
+  &.centered {
+    justify-content: center;
+  }
+}
+
+.line {
+  display: block;
+  flex: 0 0 var(--marker-width);
+  width: var(--marker-width);
+  height: 1px;
+  background: currentColor;
+}
+
+.text {
+  @include eyebrow(13px, 0.02em);
+  white-space: nowrap;
+}
+
+.gold {
+  color: var(--color-gold);
+}
+
+.red {
+  color: var(--color-red);
+}
+
+.light {
+  color: var(--color-gold-light);
+}
+
+.muted {
+  color: var(--color-cool);
+}
+
+.slate {
+  color: var(--color-body);
+}
+
+@include below($bp-mobile) {
+  .marker {
+    gap: 12px;
+  }
+
+  .line {
+    flex-basis: min(var(--marker-width), 48px);
+    width: min(var(--marker-width), 48px);
+  }
+
+  .text {
+    font-size: 11px;
+  }
+}

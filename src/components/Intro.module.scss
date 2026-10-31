@@ -1,0 +1,115 @@
+@use "../styles/mixins" as *;
+
+.intro {
+  padding: 105px 0 0;
+  background: var(--color-cream);
+}
+
+.inner {
+  width: calc(100% - 2 * clamp(24px, 9.31vw, 134px));
+  max-width: 1172px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 701px) minmax(280px, 1fr);
+  gap: clamp(40px, 5.55vw, 80px);
+  align-items: start;
+  margin-top: 22px;
+}
+
+.title {
+  color: var(--color-ink);
+
+  @include serif(400);
+  font-size: clamp(40px, 3.96vw, 57px);
+  line-height: 1.12;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+
+  span {
+    display: block;
+  }
+}
+
+.gold {
+  color: var(--color-gold) !important;
+}
+
+.copy {
+  padding-top: 8px;
+  color: var(--color-body);
+
+  @include sans(400);
+  font-size: 18px;
+  font-variation-settings: "opsz" 18;
+  line-height: 1.7;
+
+  p + p {
+    margin-top: 24px;
+  }
+}
+
+@include below(1080px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 35%);
+    gap: 44px;
+  }
+
+  .title {
+    font-size: clamp(40px, 4.9vw, 55px);
+    letter-spacing: 2px;
+  }
+}
+
+@include below($bp-tablet) {
+  .intro {
+    padding: 76px 0 70px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .title {
+    max-width: 720px;
+    font-size: clamp(40px, 6.2vw, 54px);
+  }
+
+  .copy {
+    max-width: 560px;
+    padding-top: 0;
+    font-size: 17px;
+  }
+}
+
+@include below($bp-mobile) {
+  .intro {
+    padding: 62px 0 58px;
+  }
+
+  .inner {
+    width: calc(100% - 40px);
+  }
+
+  .title {
+    font-size: clamp(31px, 8.7vw, 42px);
+    line-height: 1.15;
+    letter-spacing: 1.5px;
+
+    span {
+      display: inline;
+    }
+
+    span + span {
+      margin-left: 0.18em;
+    }
+  }
+
+  .copy {
+    font-size: 16px;
+    line-height: 1.68;
+  }
+}
