@@ -1,4 +1,3 @@
-import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import Vision from "@/components/Vision";
@@ -9,28 +8,20 @@ import Journal from "@/components/Journal";
 import Community from "@/components/Community";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
-      <Header />
-
-      <main id="main">
-        <Hero />
-        <Intro />
-        <Vision />
-        <Concept />
-        <Specialties />
-         ̰
-        <News />
-        <Journal />
-        <Community />
-        <Team />
-        <Contact />
-      </main>
-
-      <Footer />
-    </>
+    <main id="main">
+      <Hero />
+      <Intro />
+      <Vision />
+      <Concept />
+      <Specialties />
+      <News />
+      <Journal />
+      <Community />
+      <Team />
+      <Contact />
+    </main>
   );
 }

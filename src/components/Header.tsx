@@ -9,6 +9,7 @@ import styles from "./Header.module.scss";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const pathname = usePathname();
   const activeHref = pathname.startsWith("/about-us")
@@ -16,6 +17,15 @@ export default function Header() {
     : pathname === "/"
       ? "/"
       : "";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   useEffect(() => {
     const dialog = dialogRef.current;
@@ -37,10 +47,12 @@ export default function Header() {
 
   return (
     <>
-      <header className={styles.header}>
+      <header
+        className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
+      >
         <div className={styles.inner}>
           <Link href="/" className={styles.brand} aria-label="Rtambhara Academy home">
-            <span className={styles.emblem}>
+            <span className={styles.emblem} aria-hidden="true">
               <Image
                 src="/assets/brand/rtambhara-emblem.png"
                 alt=""
@@ -48,7 +60,9 @@ export default function Header() {
                 height={44}
                 priority
                 sizes="44px"
+                className={styles.emblemImage}
               />
+              <span className={styles.emblemMark}>R</span>
             </span>
             <span className={styles.wordmark}>
               <span className={styles.name}>Rtambhara</span>

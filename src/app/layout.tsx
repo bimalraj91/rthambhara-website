@@ -9,6 +9,8 @@ import {
 } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.scss";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
 import ScrollProgress from "@/components/motion/ScrollProgress";
 
 const cormorant = Cormorant_Garamond({
@@ -158,7 +160,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a className="skip-link" href="#main">
           Skip to content
         </a>
+        <Header />
         {children}
+        <Footer />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}

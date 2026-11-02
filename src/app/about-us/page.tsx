@@ -3,8 +3,6 @@ import AboutHero from "@/components/AboutHero";
 import AboutStory from "@/components/AboutStory";
 import AboutVisionMission from "@/components/AboutVisionMission";
 import AboutWhy from "@/components/AboutWhy";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
 
 const title = "About Us";
 const description =
@@ -23,15 +21,11 @@ export const metadata: Metadata = {
 
 export default function AboutUsPage() {
   return (
-    <>
-      <Header />
-      <main id="main">
-        <AboutHero />
-        <AboutStory />
-        <AboutVisionMission />
-        <AboutWhy />
-      </main>
-      <Footer />
-    </>
+    <main id="main">
+      <AboutHero />
+      <AboutStory />
+      <AboutVisionMission />
+      <AboutWhy />
+    </main>
   );
 }
