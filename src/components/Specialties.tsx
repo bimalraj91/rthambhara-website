@@ -1,13 +1,16 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import { programs } from "@/data/home";
 import SectionMarker from "./SectionMarker";
+import Parallax from "./motion/Parallax";
+import Reveal from "./motion/Reveal";
+import { StaggerGroup, StaggerItem } from "./motion/Stagger";
+import SplitText from "./motion/SplitText";
 import styles from "./Specialties.module.scss";
 
 export default function Specialties() {
   return (
     <section id="programs" className={styles.specialties} aria-labelledby="programs-title">
-      <div className={styles.faint} aria-hidden="true">
+      <Parallax className={styles.faint} strength={45}>
         <Image
           src="/assets/images/specialties-faint-background.webp"
           alt=""
@@ -15,28 +18,32 @@ export default function Specialties() {
           sizes="414px"
           className={styles.faintImage}
         />
-      </div>
+      </Parallax>
 
       <div className={styles.header}>
         <SectionMarker tone="slate" lineWidth={24} centered>
           04 / Our Specialties
         </SectionMarker>
-        <h2 id="programs-title" data-reveal>
-          Find Your Rhythm
-        </h2>
-        <div className={styles.subtitle}>
+        <SplitText
+          id="programs-title"
+          as="h2"
+          lines={["Find Your Rhythm"]}
+          delay={0.1}
+        />
+        <Reveal className={styles.subtitle} delay={0.2} y={24}>
           <p>Ongoing Programs</p>
           <p>Dance/Movement Classes - Community as well as Professional Training</p>
-        </div>
+        </Reveal>
       </div>
 
-      <div className={styles.cards}>
+      <StaggerGroup className={styles.cards} stagger={0.14} amount={0.15}>
         {programs.map((program, index) => (
-          <article
+          <StaggerItem
             key={program.title}
+            as="article"
             className={`${styles.card} ${index === 0 ? styles.featured : ""}`}
-            data-reveal
-            style={{ "--reveal-delay": `${index * 100}ms` } as CSSProperties}
+            y={48}
+            scale={0.97}
           >
             <Image
               src={program.image}
@@ -55,9 +62,9 @@ export default function Specialties() {
               <h3>{program.title}</h3>
               <p>{program.description}</p>
             </div>
-          </article>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerGroup>
     </section>
   );
 }

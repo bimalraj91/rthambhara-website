@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "./motion/Reveal";
 import styles from "./Footer.module.scss";
 
 const quickLinks = [
@@ -42,7 +43,7 @@ export default function Footer() {
         </div>
 
         <div className={styles.inner}>
-          <div className={styles.columnsBox}>
+          <Reveal as="div" className={styles.columnsBox} delay={0.05} y={36}>
             <div className={styles.columns}>
               <div className={styles.brandCol}>
                 <div className={styles.brand}>
@@ -112,9 +113,9 @@ export default function Footer() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
 
-          <div className={styles.bottom}>
+          <Reveal as="div" className={styles.bottom} delay={0.14} y={20}>
             <p className={styles.copyright}>
               © 2026 Rtambhara Academy for Performing & Visual Arts. All
               rights reserved.
@@ -126,7 +127,7 @@ export default function Footer() {
                 </a>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </footer>

@@ -9,6 +9,7 @@ import {
 } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.scss";
+import ScrollProgress from "@/components/motion/ScrollProgress";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -153,6 +154,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${dmSans.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${liberationMono.variable}`}
     >
       <body>
+        <ScrollProgress />
         <a className="skip-link" href="#main">
           Skip to content
         </a>

@@ -116,6 +116,11 @@
 
   .active {
     color: var(--color-gold-bright);
+
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
   }
 }
 

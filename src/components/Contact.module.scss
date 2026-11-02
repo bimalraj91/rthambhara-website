@@ -66,9 +66,14 @@
 }
 
 .direct a {
-  transition: color 0.3s var(--ease-out);
+  display: inline-block;
+  transition: color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
 
   @include focus-ring(var(--color-gold));
+
+  &:hover {
+    transform: translateX(4px);
+  }
 }
 
 .direct a:first-child {

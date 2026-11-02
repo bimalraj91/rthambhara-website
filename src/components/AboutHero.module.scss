@@ -9,6 +9,11 @@
   color: var(--color-cream);
 }
 
+.backgroundWrap {
+  position: absolute;
+  inset: -5% 0;
+}
+
 .background {
   object-fit: cover;
   object-position: center;
@@ -42,6 +47,13 @@
   position: absolute;
   display: block;
   max-width: none;
+  will-change: transform, opacity;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 .letter1 {
@@ -136,6 +148,11 @@
   span {
     display: block;
   }
+}
+
+.title span.titleUpper {
+  margin-top: 2px;
+  white-space: nowrap;
 }
 
 .titleUpper {

@@ -16,27 +16,19 @@ export default function Home() {
     <>
       <Header />
 
-      <section id="top" className="relative">
+      <main id="main">
         <Hero />
-      </section>
-
-      <Intro />
-
-      <Vision />
-
-      <Concept />
-
-      <Specialties />
-
-      <News />
-
-      <Journal />
-
-      <Community />
-
-      <Team />
-
-      <Contact />
+        <Intro />
+        <Vision />
+        <Concept />
+        <Specialties />
+         ̰
+        <News />
+        <Journal />
+        <Community />
+        <Team />
+        <Contact />
+      </main>
 
       <Footer />
     </>

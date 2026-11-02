@@ -151,6 +151,8 @@
 }
 
 .linkList a {
+  position: relative;
+  display: inline-block;
   font-family: var(--font-jakarta), "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -158,8 +160,26 @@
   color: #9ca3af;
   transition: color 0.25s var(--ease-out);
 
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: -3px;
+    left: 0;
+    height: 1px;
+    transform: scaleX(0);
+    transform-origin: right;
+    background: #e4c489;
+    content: "";
+    transition: transform 0.35s var(--ease-out);
+  }
+
   &:hover {
     color: #e4c489;
+
+    &::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
   }
 
   &:focus-visible {

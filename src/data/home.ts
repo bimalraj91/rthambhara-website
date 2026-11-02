@@ -8,6 +8,45 @@ export const navLinks = [
   { label: "Contact us", href: "/#contact" },
 ] as const;
 
+export const heroSlides = [
+  {
+    image: "/assets/images/hero-rhythm-of-creation.webp",
+    alt: "A Bharatanatyam dancer in a red-toned fresco setting, framed by a peacock and temple arches",
+    imagePosition: "center",
+    marker: "Tripunithura · Established 2012",
+    lines: ["Celebrating Tradition", "Inspiring Generations."],
+    aside: ["Ritambhara", "Academy for Performing & Visual Arts"],
+    label: "Celebrating tradition, inspiring generations",
+  },
+  {
+    image: "/assets/about/hero-about.webp",
+    alt: "A dancer in a red-toned temple setting",
+    imagePosition: "center 42%",
+    marker: "Bharatanatyam · Kalakshetra Legacy",
+    lines: ["Rooted in Ritual", "Alive in Motion."],
+    aside: ["Classical technique,", "carried by a living voice"],
+    label: "Rooted in ritual, alive in motion",
+  },
+  {
+    image: "/assets/about/why-dancer.webp",
+    alt: "A dancer mid-movement in warm stage light",
+    imagePosition: "center 38%",
+    marker: "Bharatanatyam · Kalaripayattu · Yoga",
+    lines: ["Strength in Stillness", "Fire in Motion."],
+    aside: ["The body as archive,", "the breath as guide"],
+    label: "Strength in stillness, fire in motion",
+  },
+  {
+    image: "/assets/about/vision-dancer.webp",
+    alt: "A dancer framed by a golden circle",
+    imagePosition: "center 44%",
+    marker: "Performance · Community · Culture",
+    lines: ["A Home for the Arts", "A Place to Belong."],
+    aside: ["Learn. Practise. Perform.", "Belong."],
+    label: "A home for the arts, a place to belong",
+  },
+] as const;
+
 export const programs = [
   {
     title: "Bharatanatyam",

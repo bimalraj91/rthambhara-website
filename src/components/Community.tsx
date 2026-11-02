@@ -1,10 +1,19 @@
 import Image from "next/image";
 import SectionMarker from "./SectionMarker";
+import Reveal from "./motion/Reveal";
+import { StaggerGroup, StaggerItem } from "./motion/Stagger";
+import SplitText from "./motion/SplitText";
 import styles from "./Community.module.scss";
 
 function GalleryTile({ index }: { index: number }) {
   return (
-    <div className={styles.tile}>
+    <StaggerItem
+      as="div"
+      className={styles.tile}
+      y={28}
+      scale={0.96}
+      blur={6}
+    >
       <Image
         src="/assets/images/abhinaya-study.webp"
         alt={`Bharatanatyam abhinaya study ${index + 1}`}
@@ -12,7 +21,7 @@ function GalleryTile({ index }: { index: number }) {
         sizes="(max-width: 760px) 45vw, 234px"
         className={styles.tileImage}
       />
-    </div>
+    </StaggerItem>
   );
 }
 
@@ -27,14 +36,15 @@ export default function Community() {
           <SectionMarker tone="slate" lineWidth={24}>
             07 / Performances &amp; Community
           </SectionMarker>
-          <h2 id="community-title" data-reveal>
-            From practice
-            <br />
-            to shared experience.
-          </h2>
+          <SplitText
+            id="community-title"
+            as="h2"
+            lines={["From practice", "to shared experience."]}
+            delay={0.1}
+          />
         </div>
 
-        <div className={styles.invitation}>
+        <Reveal className={styles.invitation} delay={0.2} y={30}>
           <p>
             The stage extends the classroom. Performances, artistic
             collaborations and mentorship give students space to grow — and
@@ -49,30 +59,42 @@ export default function Community() {
               height={14}
             />
           </a>
-        </div>
+        </Reveal>
       </div>
 
       <div className={styles.stage}>
         <div id="gallery" className={styles.collage} aria-label="Performance gallery">
-          <div className={styles.column}>
+          <StaggerGroup as="div" className={styles.column} stagger={0.07} amount={0.1}>
             <GalleryTile index={0} />
             <GalleryTile index={1} />
             <GalleryTile index={2} />
-          </div>
+          </StaggerGroup>
 
-          <div className={`${styles.column} ${styles.offsetMiddle}`}>
+          <StaggerGroup
+            as="div"
+            className={`${styles.column} ${styles.offsetMiddle}`}
+            stagger={0.07}
+            amount={0.1}
+            delay={0.08}
+          >
             <GalleryTile index={3} />
             <GalleryTile index={4} />
             <GalleryTile index={5} />
-          </div>
+          </StaggerGroup>
 
-          <div className={`${styles.column} ${styles.offsetRight}`}>
+          <StaggerGroup
+            as="div"
+            className={`${styles.column} ${styles.offsetRight}`}
+            stagger={0.07}
+            amount={0.1}
+            delay={0.16}
+          >
             <GalleryTile index={6} />
             <GalleryTile index={7} />
-          </div>
+          </StaggerGroup>
         </div>
 
-        <div className={styles.hand} aria-hidden="true">
+        <Reveal as="div" className={styles.hand} delay={0.1} y={60} blur={4}>
           <div className={styles.handInner}>
             <Image
               src="/assets/images/eternal-mudra-hand.webp"
@@ -82,7 +104,7 @@ export default function Community() {
               className={styles.handImage}
             />
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

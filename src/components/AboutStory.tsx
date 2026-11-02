@@ -1,5 +1,8 @@
 import Image from "next/image";
 import SectionMarker from "./SectionMarker";
+import Reveal from "./motion/Reveal";
+import { StaggerGroup, StaggerItem } from "./motion/Stagger";
+import SplitText from "./motion/SplitText";
 import styles from "./AboutStory.module.scss";
 
 export default function AboutStory() {
@@ -34,29 +37,35 @@ export default function AboutStory() {
             01 / Who we are
           </SectionMarker>
 
-          <h2 id="story-title" className={styles.title}>
-            More than an art form.
-            <span>A way of belonging.</span>
-          </h2>
+          <SplitText
+            id="story-title"
+            as="h2"
+            className={styles.title}
+            delay={0.1}
+            lines={[
+              "More than an art form.",
+              { words: ["A way of belonging."], className: styles.accent },
+            ]}
+          />
 
-          <p className={styles.lede}>
+          <Reveal as="p" className={styles.lede} delay={0.16} y={26}>
             Some traditions are too beautiful to be left in the past. They
             deserve to be lived, loved, and passed from one generation to the
             next. At Rtambhara, we have spent the last ten years giving that
             belief a home. A home where the sound of anklets is familiar, where
             every movement carries a meaning, and where the wisdom of
             generations finds its way into young, eager hearts.
-          </p>
+          </Reveal>
 
-          <div className={styles.belief}>
+          <Reveal as="div" className={styles.belief} delay={0.2} y={24}>
             <p>
               We learn the art.
               <br />
               We carry its spirit.
             </p>
-          </div>
+          </Reveal>
 
-          <div className={styles.panel}>
+          <Reveal as="div" className={styles.panel} delay={0.1} y={34}>
             <p className={styles.panelText}>
               Rooted in the classical heritage of Bharatanatyam, our learning
               embraces its mythology, philosophy, aesthetics, and the deeper
@@ -73,27 +82,27 @@ export default function AboutStory() {
               older with strength and grace.
             </p>
             <p className={styles.panelQuote}>Culture, carried forward.</p>
-          </div>
+          </Reveal>
         </div>
 
-        <div className={styles.body}>
-          <p>
+        <StaggerGroup as="div" className={styles.body} stagger={0.09} amount={0.08}>
+          <StaggerItem as="p" y={28}>
             Our story begins with Smt. Girija Ravindranath, whose life has been
             devoted to the art of Bharatanatyam. For over 23 years, she has
             carried forward the teachings of her guru and mentor, the legendary
             Smt. Rukmini Devi Arundale, founder of Kalakshetra, Chennai. Her
             teaching holds close the discipline, grace, spiritual depth, and
             exquisite nuances of a tradition she has cherished all her life.
-          </p>
-          <p>
+          </StaggerItem>
+          <StaggerItem as="p" y={28}>
             We believe there is something deeply intimate about learning an art
             that has travelled through centuries. A gesture once taught by a
             guru finds expression in another pair of hands. An ancient story
             discovers a new voice. And somewhere between rhythm, expression, and
             stillness, a student begins to understand something about
             themselves. This is the spirit in which we teach.
-          </p>
-          <p>
+          </StaggerItem>
+          <StaggerItem as="p" y={28}>
             For our younger students, dance becomes a gentle companion in
             growing up. Rhythm sharpens their attention, movement nurtures
             coordination, and every opportunity to perform helps them find
@@ -106,8 +115,8 @@ export default function AboutStory() {
             learn, practise, and simply enjoy being part of the arts. As a
             BSS-certified institution, we remain committed to nurturing learning
             with care, discipline, and artistic integrity.
-          </p>
-          <p>
+          </StaggerItem>
+          <StaggerItem as="p" y={28}>
             Ten years have passed since Rtambhara first opened its doors. In
             that time, we have watched children grow, friendships form, artists
             find their voices, and countless stories unfold through dance. And
@@ -115,8 +124,8 @@ export default function AboutStory() {
             us continues to find a place in so many lives. At Rtambhara, we hope
             that long after the music ends, something of the dance remains
             within you..
-          </p>
-        </div>
+          </StaggerItem>
+        </StaggerGroup>
       </div>
 
       <Image

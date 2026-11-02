@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState, type FormEvent } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import styles from "./ContactForm.module.scss";
 
 const disciplines = [
@@ -13,6 +14,7 @@ const disciplines = [
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -107,7 +109,13 @@ export default function ContactForm() {
       </div>
 
       <div className={styles.submitRow}>
-        <button type="submit" className={styles.submit}>
+        <motion.button
+          type="submit"
+          className={styles.submit}
+          whileHover={shouldReduceMotion ? undefined : { scale: 1.02 }}
+          whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 380, damping: 24 }}
+        >
           Contact us
           <Image
             src="/assets/icons/arrow-right-circle.svg"
@@ -116,15 +124,26 @@ export default function ContactForm() {
             height={14}
             aria-hidden="true"
           />
-        </button>
+        </motion.button>
         <span className={styles.required}>* Required fields</span>
       </div>
 
-      <p className={styles.status} role="status" aria-live="polite">
-        {submitted
-          ? "Thank you for reaching out. This demo form does not send messages yet — please call or email us directly."
-          : ""}
-      </p>
+      <div className={styles.status} role="status" aria-live="polite">
+        <AnimatePresence mode="wait">
+          {submitted ? (
+            <motion.p
+              key="sent"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Thank you for reaching out. This demo form does not send messages
+              yet — please call or email us directly.
+            </motion.p>
+          ) : null}
+        </AnimatePresence>
+      </div>
     </form>
   );
 }

@@ -1,5 +1,7 @@
 import Image from "next/image";
 import SectionMarker from "./SectionMarker";
+import Reveal from "./motion/Reveal";
+import SplitText from "./motion/SplitText";
 import styles from "./Vision.module.scss";
 
 export default function Vision() {
@@ -21,35 +23,48 @@ export default function Vision() {
             02 / Vision &amp; Mission
           </SectionMarker>
 
-          <h2 id="vision-title" className={styles.title} data-reveal>
-            <span>Tradition is our</span>
-            <span>beginning.</span>
-            <span>Not our boundary.</span>
-          </h2>
+          <SplitText
+            id="vision-title"
+            as="h2"
+            className={styles.title}
+            delay={0.1}
+            lines={[
+              "Tradition is our",
+              "beginning.",
+              "Not our boundary.",
+            ]}
+          />
 
-          <p className={styles.lead} data-reveal>
+          <Reveal as="p" className={styles.lead} delay={0.2} y={28}>
             With Bharatanatyam at its core, Ritambhara preserves the integrity
             of classical arts while making room for new perspectives and
             creative expression.
-          </p>
+          </Reveal>
 
-          <div className={styles.divider} aria-hidden="true" />
+          <Reveal
+            as="div"
+            className={styles.divider}
+            y={0}
+            blur={0}
+            duration={1.2}
+            delay={0.1}
+          />
 
-          <div className={styles.row}>
+          <Reveal as="div" className={styles.row} delay={0.1} y={24}>
             <p className={styles.label}>Our vision</p>
             <p>
               To keep classical arts alive, meaningful and accessible to a new
               generation.
             </p>
-          </div>
+          </Reveal>
 
-          <div className={styles.row}>
+          <Reveal as="div" className={styles.row} delay={0.2} y={24}>
             <p className={styles.label}>Our mission</p>
             <p>
               To nurture disciplined practice, cultural awareness and the
               freedom to create.
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

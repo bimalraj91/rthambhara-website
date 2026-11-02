@@ -1,5 +1,6 @@
-import type { CSSProperties } from "react";
 import SectionMarker from "./SectionMarker";
+import Reveal from "./motion/Reveal";
+import SplitText from "./motion/SplitText";
 import styles from "./Intro.module.scss";
 
 export default function Intro() {
@@ -11,18 +12,21 @@ export default function Intro() {
         </SectionMarker>
 
         <div className={styles.grid}>
-          <h2 id="intro-title" className={styles.title} data-reveal>
-            <span>Art is not only</span>
-            <span>Something</span>
-            <span>We learn. It is a way</span>
-            <span className={styles.gold}>We come to belong.</span>
-          </h2>
+          <SplitText
+            id="intro-title"
+            as="h2"
+            className={styles.title}
+            delay={0.1}
+            stagger={0.07}
+            lines={[
+              "Art is not only",
+              "Something",
+              "We learn. It is a way",
+              { words: ["We come to belong."], className: styles.gold },
+            ]}
+          />
 
-          <div
-            className={styles.copy}
-            data-reveal
-            style={{ "--reveal-delay": "120ms" } as CSSProperties}
-          >
+          <Reveal className={styles.copy} delay={0.25} y={30}>
             <p>
               Ritambhara is a cultural forum dedicated to the promotion of
               performing and visual arts, nurturing cultural awareness among the
@@ -32,7 +36,7 @@ export default function Intro() {
               Through education, shared practice and creative exploration, we
               bring art, culture and values into everyday life.
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

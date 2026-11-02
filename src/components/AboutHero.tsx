@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import SectionMarker from "./SectionMarker";
+import SplitText from "./motion/SplitText";
 import styles from "./AboutHero.module.scss";
 
 const chapters = [
@@ -18,35 +22,79 @@ const letters = [
   { src: "/assets/about/hero-letter-1.svg", className: styles.letter1 },
 ];
 
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
+const letterGroup: Variants = {
+  hidden: {},
+  visible: {
+    transition: { delayChildren: 0.45, staggerChildren: 0.075 },
+  },
+};
+
+const letterItem: Variants = {
+  hidden: { opacity: 0, y: 70, rotate: 5 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    rotate: 0,
+    transition: { duration: 1.1, ease: EASE },
+  },
+};
+
 export default function AboutHero() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section id="top" className={styles.hero} aria-labelledby="about-hero-title">
-      <Image
-        src="/assets/about/hero-about.webp"
-        alt="Four Bharatanatyam dancers in a dimly lit temple hall, framed by carved stone and brass lamps"
-        fill
-        priority
-        sizes="100vw"
-        className={styles.background}
-      />
-      <div className={styles.overlay} aria-hidden="true" />
+      <motion.div
+        className={styles.backgroundWrap}
+        initial={shouldReduceMotion ? false : { scale: 1.12 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 2.2, ease: EASE }}
+      >
+        <Image
+          src="/assets/about/hero-about.webp"
+          alt="Four Bharatanatyam dancers in a dimly lit temple hall, framed by carved stone and brass lamps"
+          fill
+          priority
+          sizes="100vw"
+          className={styles.background}
+        />
+      </motion.div>
 
-      <div className={styles.word} aria-hidden="true">
+      <motion.div
+        className={styles.overlay}
+        aria-hidden="true"
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5, ease: EASE, delay: 0.2 }}
+      />
+
+      <motion.div
+        className={styles.word}
+        aria-hidden="true"
+        variants={shouldReduceMotion ? undefined : letterGroup}
+        initial={shouldReduceMotion ? false : "hidden"}
+        animate="visible"
+      >
         {letters.map((letter) => (
-          <Image
+          <motion.div
             key={letter.src}
-            src={letter.src}
-            alt=""
-            width={210}
-            height={215}
-            unoptimized
             className={`${styles.letter} ${letter.className}`}
-          />
+            variants={shouldReduceMotion ? undefined : letterItem}
+          >
+            <Image src={letter.src} alt="" fill sizes="210px" unoptimized />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       <div className={styles.frame}>
-        <div className={styles.card}>
+        <motion.div
+          className={styles.card}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 44, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
+        >
           <SectionMarker
             tone="light"
             lineWidth={24}
@@ -55,28 +103,53 @@ export default function AboutHero() {
             About Rtambhara
           </SectionMarker>
 
-          <h1 id="about-hero-title" className={styles.title}>
-            <span>Every Movement Holds</span>
-            <span>A Memory.</span>
-            <span>Every Expression,</span>
-            <span className={styles.titleUpper}>A World of Its Own.</span>
-          </h1>
-        </div>
+          <SplitText
+            id="about-hero-title"
+            as="h1"
+            className={styles.title}
+            lines={[
+              "Every Movement Holds",
+              "A Memory.",
+              "Every Expression,",
+              { words: ["A World of Its Own."], className: styles.titleUpper },
+            ]}
+            mount
+            delay={0.75}
+            stagger={0.07}
+            duration={1}
+          />
+        </motion.div>
       </div>
 
-      <div className={styles.chapter}>
+      <motion.div
+        className={styles.chapter}
+        initial={shouldReduceMotion ? false : { y: 88, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: EASE, delay: 1.15 }}
+      >
         <div className={styles.chapterInner}>
           <p className={styles.chapterIntro}>An introduction to our world</p>
           <nav className={styles.chapters} aria-label="About page sections">
-            {chapters.map((chapter) => (
-              <Link key={chapter.number} href={chapter.href}>
-                <span>{chapter.number}</span>
-                {chapter.label}
-              </Link>
+            {chapters.map((chapter, index) => (
+              <motion.span
+                key={chapter.number}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.6,
+                  ease: EASE,
+                  delay: 1.35 + index * 0.08,
+                }}
+              >
+                <Link href={chapter.href}>
+                  <span>{chapter.number}</span>
+                  {chapter.label}
+                </Link>
+              </motion.span>
             ))}
           </nav>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

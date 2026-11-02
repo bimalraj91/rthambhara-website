@@ -67,9 +67,10 @@
   line-height: 1.04;
   letter-spacing: -0.012em;
 
-  span {
-    color: var(--color-maroon);
-  }
+}
+
+.accent {
+  color: var(--color-maroon);
 }
 
 .visionCards {
@@ -316,9 +317,6 @@
   line-height: 1.04;
   letter-spacing: -0.012em;
 
-  span {
-    color: var(--color-maroon);
-  }
 }
 
 .missionBody {

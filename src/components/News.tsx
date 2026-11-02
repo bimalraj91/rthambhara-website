@@ -2,15 +2,20 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { news } from "@/data/home";
 import SectionMarker from "./SectionMarker";
+import SplitText from "./motion/SplitText";
 import styles from "./News.module.scss";
 
 const [feature, creamOne, creamTwo, narrowOne, narrowTwo] = news;
 
+const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
+
 export default function News() {
   const railRef = useRef<HTMLDivElement>(null);
   const [canScroll, setCanScroll] = useState({ prev: false, next: false });
+  const shouldReduceMotion = useReducedMotion();
 
   const updateScrollState = useCallback(() => {
     const rail = railRef.current;
@@ -56,10 +61,22 @@ export default function News() {
             <SectionMarker tone="red" lineWidth={24}>
               05 / The Academy News
             </SectionMarker>
-            <h2 id="news-title">Art, beyond the classroom.</h2>
+            <SplitText
+              id="news-title"
+              as="h2"
+              lines={["Art, beyond the classroom."]}
+              delay={0.1}
+            />
           </div>
 
-          <div className={styles.controls} aria-label="News carousel controls">
+          <motion.div
+            className={styles.controls}
+            aria-label="News carousel controls"
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: EASE, delay: 0.25 }}
+          >
             <button
               type="button"
               onClick={() => scrollRail(-1)}
@@ -87,7 +104,7 @@ export default function News() {
                 height={16}
               />
             </button>
-          </div>
+          </motion.div>
         </div>
 
         <div className={styles.railWrap}>
@@ -99,7 +116,13 @@ export default function News() {
             aria-roledescription="carousel"
             aria-label="Academy news"
           >
-            <article className={styles.feature}>
+            <motion.article
+              className={styles.feature}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 46, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.9, ease: EASE }}
+            >
               <Image
                 src={feature.image}
                 alt={feature.alt}
@@ -118,11 +141,18 @@ export default function News() {
                   <span aria-hidden="true">→</span>
                 </a>
               </div>
-            </article>
+            </motion.article>
 
             <div className={styles.middle}>
               {[creamOne, creamTwo].map((item, index) => (
-                <article className={styles.creamCard} key={`${item.image}-${index}`}>
+                <motion.article
+                  className={styles.creamCard}
+                  key={`${item.image}-${index}`}
+                  initial={shouldReduceMotion ? false : { opacity: 0, x: 34 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.8, ease: EASE, delay: 0.12 + index * 0.12 }}
+                >
                   <div className={styles.creamImage}>
                     <Image
                       src={item.image}
@@ -142,13 +172,20 @@ export default function News() {
                       <span aria-hidden="true">→</span>
                     </a>
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
 
             <div className={styles.side}>
               {[narrowOne, narrowTwo].map((item, index) => (
-                <article className={styles.sideCard} key={`${item.image}-${index}`}>
+                <motion.article
+                  className={styles.sideCard}
+                  key={`${item.image}-${index}`}
+                  initial={shouldReduceMotion ? false : { opacity: 0, x: 34 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.15 }}
+                  transition={{ duration: 0.8, ease: EASE, delay: 0.24 + index * 0.12 }}
+                >
                   <div className={styles.sideImage}>
                     <Image
                       src={item.image}
@@ -159,7 +196,7 @@ export default function News() {
                       style={{ objectPosition: item.imagePosition }}
                     />
                   </div>
-                </article>
+                </motion.article>
               ))}
             </div>
           </div>

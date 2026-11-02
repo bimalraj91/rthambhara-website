@@ -1,5 +1,7 @@
 import Image from "next/image";
 import SectionMarker from "./SectionMarker";
+import Reveal from "./motion/Reveal";
+import SplitText from "./motion/SplitText";
 import styles from "./AboutWhy.module.scss";
 
 type Feature = "portrait" | "lamp" | "arch";
@@ -107,16 +109,28 @@ export default function AboutWhy() {
           <SectionMarker tone="red" lineWidth={28}>
             03 / Why Rtambhara
           </SectionMarker>
-          <h2 id="why-title" className={styles.title}>
-            Why <span>Rtambhara?</span>
-          </h2>
+          <SplitText
+            id="why-title"
+            as="h2"
+            className={styles.title}
+            delay={0.1}
+            lines={[
+              {
+                words: ["Why", { text: "Rtambhara?", className: styles.accent }],
+              },
+            ]}
+          />
         </header>
 
         <div className={styles.stage}>
-          {pillars.map((pillar) => (
-            <article
+          {pillars.map((pillar, index) => (
+            <Reveal
+              as="article"
               key={pillar.number}
               className={`${styles.card} ${styles[pillar.position]}`}
+              delay={(index % 3) * 0.08}
+              y={36}
+              amount={0.2}
             >
               {pillar.feature === "portrait" && (
                 <>
@@ -179,7 +193,7 @@ export default function AboutWhy() {
                   <span>{pillar.caption.role}</span>
                 </div>
               )}
-            </article>
+            </Reveal>
           ))}
 
           <Image
@@ -198,7 +212,7 @@ export default function AboutWhy() {
             className={styles.traveler}
           />
 
-          <figure className={styles.dancer}>
+          <Reveal as="figure" className={styles.dancer} delay={0.05} y={30}>
             <Image
               src="/assets/about/why-dancer.webp"
               alt="A Bharatanatyam dancer in a red and gold costume"
@@ -206,7 +220,7 @@ export default function AboutWhy() {
               height={1024}
               className={styles.dancerImage}
             />
-          </figure>
+          </Reveal>
 
           <Image
             src="/assets/about/thread.svg"

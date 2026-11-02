@@ -1,6 +1,8 @@
 import Image from "next/image";
-import type { CSSProperties } from "react";
 import SectionMarker from "./SectionMarker";
+import Reveal from "./motion/Reveal";
+import { StaggerGroup, StaggerItem } from "./motion/Stagger";
+import SplitText from "./motion/SplitText";
 import styles from "./Concept.module.scss";
 
 const principles = [
@@ -39,20 +41,29 @@ export default function Concept() {
         </SectionMarker>
 
         <div className={styles.introduction}>
-          <p className={styles.rtam} data-reveal>
-            Rtam.
-          </p>
+          <SplitText
+            as="p"
+            className={styles.rtam}
+            lines={["Rtam."]}
+            delay={0}
+            stagger={0.08}
+            duration={1.2}
+          />
 
           <div className={styles.narrative}>
-            <h2 id="concept-title">
-              An underlying harmony.
-              <br />
-              A living cycle of art.
-            </h2>
-            <p>
+            <SplitText
+              id="concept-title"
+              as="h2"
+              lines={[
+                "An underlying harmony.",
+                "A living cycle of art.",
+              ]}
+              delay={0.1}
+            />
+            <Reveal as="p" delay={0.2} y={24}>
               Our approach connects creation, preservation, dissolution and
               expression — each part giving meaning to the whole.
-            </p>
+            </Reveal>
           </div>
         </div>
 
@@ -67,15 +78,17 @@ export default function Concept() {
             />
           </div>
 
-          <div className={styles.principles}>
-            {principles.map((principle, index) => (
-              <article
+          <StaggerGroup
+            className={styles.principles}
+            stagger={0.14}
+            amount={0.2}
+          >
+            {principles.map((principle) => (
+              <StaggerItem
                 key={principle.name}
+                as="article"
                 className={`${styles.principle} ${styles[principle.offset]}`}
-                data-reveal
-                style={
-                  { "--reveal-delay": `${index * 90}ms` } as CSSProperties
-                }
+                y={40}
               >
                 <span className={styles.bead} aria-hidden="true">
                   <Image
@@ -88,9 +101,9 @@ export default function Concept() {
                 <h3>{principle.name}</h3>
                 <p className={styles.label}>{principle.label}</p>
                 <p className={styles.copy}>{principle.copy}</p>
-              </article>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerGroup>
         </div>
       </div>
     </section>

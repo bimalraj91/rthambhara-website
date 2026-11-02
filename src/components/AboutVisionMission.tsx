@@ -1,5 +1,8 @@
 import Image from "next/image";
 import SectionMarker from "./SectionMarker";
+import Reveal from "./motion/Reveal";
+import { StaggerGroup, StaggerItem } from "./motion/Stagger";
+import SplitText from "./motion/SplitText";
 import styles from "./AboutVisionMission.module.scss";
 
 const visionCards = [
@@ -60,15 +63,26 @@ export default function AboutVisionMission() {
           02 / Vision &amp; mission
         </SectionMarker>
 
-        <h2 id="vision-title" className={styles.visionTitle}>
-          Our <span>Vision</span>
-        </h2>
+        <SplitText
+          id="vision-title"
+          as="h2"
+          className={styles.visionTitle}
+          delay={0.1}
+          lines={[
+            {
+              words: ["Our", { text: "Vision", className: styles.accent }],
+            },
+          ]}
+        />
 
-        <div className={styles.visionCards}>
+        <StaggerGroup className={styles.visionCards} stagger={0.12} amount={0.2}>
           {visionCards.map((card) => (
-            <article
+            <StaggerItem
+              as="article"
               key={card.title}
               className={`${styles.visionCard} ${styles[card.variant]}`}
+              y={30}
+              scale={0.96}
             >
               <span className={styles.visionIcon}>
                 <Image
@@ -81,11 +95,11 @@ export default function AboutVisionMission() {
               </span>
               <h3>{card.title}</h3>
               <p>{card.subtitle}</p>
-            </article>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerGroup>
 
-        <div className={styles.visionBody}>
+        <Reveal as="div" className={styles.visionBody} delay={0.12} y={26}>
           <p>
             There is a beautiful wisdom in the way the universe moves. In all
             that is born, all that is lovingly preserved, and all that must
@@ -98,11 +112,11 @@ export default function AboutVisionMission() {
             arts, we hope to awaken an enduring love for culture and the freedom
             of artistic expression.
           </p>
-        </div>
+        </Reveal>
       </div>
 
       <div className={styles.visionLower}>
-        <figure className={styles.photoLeft}>
+        <Reveal as="figure" className={styles.photoLeft} delay={0.05} y={34}>
           <div className={styles.photoFrame}>
             <Image
               src="/assets/about/tradition-bharatanatyam.webp"
@@ -116,9 +130,9 @@ export default function AboutVisionMission() {
             <h3>Rooted in Tradition</h3>
             <p>Bharatanatyam</p>
           </figcaption>
-        </figure>
+        </Reveal>
 
-        <div className={styles.visionNarrative}>
+        <Reveal as="div" className={styles.visionNarrative} delay={0.12} y={26}>
           <span className={styles.arrowLeft} aria-hidden="true">
             ‹
           </span>
@@ -140,9 +154,9 @@ export default function AboutVisionMission() {
           <span className={styles.arrowRight} aria-hidden="true">
             ›
           </span>
-        </div>
+        </Reveal>
 
-        <figure className={styles.photoRight}>
+        <Reveal as="figure" className={styles.photoRight} delay={0.08} y={34}>
           <div className={styles.photoFrame}>
             <Image
               src="/assets/about/tradition-contemporary.webp"
@@ -156,7 +170,7 @@ export default function AboutVisionMission() {
             <h3>Inspired by Tomorrow</h3>
             <p>Contemporary</p>
           </figcaption>
-        </figure>
+        </Reveal>
       </div>
 
       <div className={styles.mission}>
@@ -190,10 +204,17 @@ export default function AboutVisionMission() {
         />
 
         <div className={styles.missionRight}>
-          <h2 className={styles.missionTitle}>
-            Our <span>Mission</span>
-          </h2>
-          <div className={styles.missionBody}>
+          <SplitText
+            as="h2"
+            className={styles.missionTitle}
+            delay={0.05}
+            lines={[
+              {
+                words: ["Our", { text: "Mission", className: styles.accent }],
+              },
+            ]}
+          />
+          <Reveal as="div" className={styles.missionBody} delay={0.12} y={26}>
             <p>
               We wish to see the beauty of our traditions find a home in every
               generation. To place the wisdom of centuries into young hands, and
@@ -211,16 +232,16 @@ export default function AboutVisionMission() {
               artistic expression, we seek to cultivate patience, awareness,
               creativity, and a lifelong affection for the arts.
             </p>
-          </div>
+          </Reveal>
         </div>
 
-        <p className={styles.missionBelief}>
+        <Reveal as="p" className={styles.missionBelief} delay={0.1} y={24}>
           To nurture the art,
           <br />
           and the hearts that carry it.
-        </p>
+        </Reveal>
 
-        <div className={styles.missionBottom}>
+        <Reveal as="div" className={styles.missionBottom} delay={0.14} y={26}>
           <p>
             We also wish to make movement a cherished part of life at every age.
             A place where children discover their abilities, young artists find
@@ -235,7 +256,7 @@ export default function AboutVisionMission() {
             art feels like home, and all that we have shared continues to live
             through them..
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   );
