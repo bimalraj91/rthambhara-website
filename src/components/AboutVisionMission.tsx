@@ -1,30 +1,19 @@
-import Image from "next/image";
-import SectionMarker from "./SectionMarker";
 import Reveal from "./motion/Reveal";
-import { StaggerGroup, StaggerItem } from "./motion/Stagger";
 import SplitText from "./motion/SplitText";
+import Crop from "./about/Crop";
 import styles from "./AboutVisionMission.module.scss";
 
-const visionCards = [
-  {
-    title: "Srishti",
-    subtitle: "Creation",
-    icon: "/assets/about/lotus-icon.webp",
-    variant: "light",
-  },
-  {
-    title: "Sthiti",
-    subtitle: "Preservation",
-    icon: "/assets/about/lotus-bud-icon.webp",
-    variant: "dark",
-  },
-  {
-    title: "Laya",
-    subtitle: "Dissolution",
-    icon: "/assets/about/lotus-icon.webp",
-    variant: "light",
-  },
-] as const;
+const A = "/assets/about/figma";
+
+const missionTop = [
+  "We wish to see the beauty of our traditions find a home in every generation. To place the wisdom of centuries into young hands, and watch it unfold in ways even we may never have imagined.",
+  "At Rtambhara, we carry this wish into every lesson, every rehearsal, and every moment spent with our students. We hope to nurture artists who understand the stories behind their movements, who find meaning in the smallest gestures, and who come to love the discipline and devotion that give an art its depth. We want our children to grow with the confidence to express themselves, the curiosity to explore, and the sensitivity to appreciate the world around them. Through Bharatanatyam and other forms of artistic expression, we seek to cultivate patience, awareness, creativity, and a lifelong affection for the arts.",
+];
+
+const missionBottom = [
+  "We also wish to make movement a cherished part of life at every age. A place where children discover their abilities, young artists find their voices, and older generations continue to experience the pleasure of rhythm, togetherness, and well being.",
+  "Above all, we hope to preserve the precious relationship between a teacher, a student, and an art that has been lovingly entrusted from one generation to another. For every student who learns with us, we hope there will come a day when the rhythm feels like their own, the art feels like home, and all that we have shared continues to live through them.",
+];
 
 export default function AboutVisionMission() {
   return (
@@ -33,207 +22,176 @@ export default function AboutVisionMission() {
       className={styles.section}
       aria-labelledby="vision-title"
     >
-      <Image
-        src="/assets/about/ornament-sheet-9.webp"
-        alt=""
-        width={1024}
-        height={683}
-        className={styles.visionMandala}
-      />
-      <Image
-        src="/assets/about/vision-circle.webp"
-        alt=""
-        width={1024}
-        height={1536}
-        className={styles.feet}
-      />
+      <div className={styles.canvas}>
+        <div className={`${styles.deco} ${styles.circle}`} aria-hidden="true">
+          <div className={styles.circleTile}>
+            <div className={styles.circleHalf}>
+              <Crop src={`${A}/ellipse20.webp`} sizes="880px" />
+            </div>
+          </div>
+        </div>
 
-      <div className={styles.portrait} aria-hidden="true">
-        <Image
-          src="/assets/about/vision-portrait.webp"
-          alt=""
-          fill
-          sizes="949px"
-          className={styles.portraitImage}
-        />
-      </div>
+        <div className={`${styles.deco} ${styles.sheetLeft}`} aria-hidden="true">
+          <Crop
+            src={`${A}/sheet1.webp`}
+            sizes="1080px"
+            box={{ height: "267.96%", left: "-197.47%", top: "-94.17%", width: "388.86%" }}
+          />
+        </div>
 
-      <div className={styles.visionCopy}>
-        <SectionMarker tone="red" lineWidth={28}>
-          02 / Vision &amp; mission
-        </SectionMarker>
+        <div className={`${styles.deco} ${styles.sheetRight}`} aria-hidden="true">
+          <div className={styles.sheetRightTile}>
+            <Crop
+              src={`${A}/sheet10.webp`}
+              sizes="620px"
+              box={{ height: "314.1%", left: "-378.6%", top: "-24.53%", width: "478.6%" }}
+            />
+          </div>
+        </div>
 
-        <SplitText
-          id="vision-title"
-          as="h2"
-          className={styles.visionTitle}
-          delay={0.1}
-          lines={[
-            {
-              words: ["Our", { text: "Vision", className: styles.accent }],
-            },
-          ]}
-        />
+        <div className={styles.forum}>
+          <p className={styles.cue}>02 / VISION &amp; MISSION</p>
+          <SplitText
+            id="vision-title"
+            as="h2"
+            className={styles.title}
+            delay={0.1}
+            lines={[{ words: ["Our", { text: "Vision", className: styles.accent }] }]}
+          />
+        </div>
 
-        <StaggerGroup className={styles.visionCards} stagger={0.12} amount={0.2}>
-          {visionCards.map((card) => (
-            <StaggerItem
-              as="article"
-              key={card.title}
-              className={`${styles.visionCard} ${styles[card.variant]}`}
-              y={30}
-              scale={0.96}
-            >
-              <span className={styles.visionIcon}>
-                <Image
-                  src={card.icon}
-                  alt=""
-                  width={86}
-                  height={86}
-                  className={styles.visionIconImage}
+        <div className={styles.cards}>
+          <Reveal as="article" className={`${styles.card} ${styles.srishti}`} delay={0} y={30}>
+            <div className={styles.cardInner}>
+              <span className={styles.badge}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`${A}/ellipse21.svg`} alt="" className={styles.badgeRing} />
+                <span className={styles.badgeGold} aria-hidden="true">
+                  <Crop src={`${A}/sheet5.webp`} sizes="100px" cover />
+                </span>
+              </span>
+              <h3 className={styles.cardName}>Srishti</h3>
+              <p className={styles.cardMeaning}>Creation</p>
+            </div>
+          </Reveal>
+
+          <Reveal as="article" className={`${styles.card} ${styles.sthiti}`} delay={0.12} y={30}>
+            <span className={styles.sthitiBadge}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`${A}/ellipse22.svg`} alt="" className={styles.badgeRing} />
+              <span className={styles.sthitiGold} aria-hidden="true">
+                <Crop
+                  src={`${A}/sheet6.webp`}
+                  sizes="100px"
+                  box={{ height: "151.72%", left: "-6.41%", top: "-33.09%", width: "249.72%" }}
                 />
               </span>
-              <h3>{card.title}</h3>
-              <p>{card.subtitle}</p>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+            </span>
+            <div className={styles.sthitiText}>
+              <h3 className={styles.sthitiName}>Sthiti</h3>
+              <p className={styles.sthitiMeaning}>PRESERVATION</p>
+            </div>
+          </Reveal>
 
-        <Reveal as="div" className={styles.visionBody} delay={0.12} y={26}>
-          <p>
-            There is a beautiful wisdom in the way the universe moves. In all
-            that is born, all that is lovingly preserved, and all that must
-            eventually make way for something new.
-          </p>
-          <p>
-            With Bharatanatyam at our heart, we nurture a space where tradition
-            is cherished and creativity is given room to flourish. Through
-            contemporary dance and the many languages of performing and visual
-            arts, we hope to awaken an enduring love for culture and the freedom
-            of artistic expression.
-          </p>
-        </Reveal>
-      </div>
-
-      <div className={styles.visionLower}>
-        <Reveal as="figure" className={styles.photoLeft} delay={0.05} y={34}>
-          <div className={styles.photoFrame}>
-            <Image
-              src="/assets/about/tradition-bharatanatyam.webp"
-              alt="A Bharatanatyam dancer in a red costume holding a classical pose"
-              width={1536}
-              height={1024}
-              className={styles.cropTradition}
-            />
-          </div>
-          <figcaption className={styles.caption}>
-            <h3>Rooted in Tradition</h3>
-            <p>Bharatanatyam</p>
-          </figcaption>
-        </Reveal>
-
-        <Reveal as="div" className={styles.visionNarrative} delay={0.12} y={26}>
-          <span className={styles.arrowLeft} aria-hidden="true">
-            ‹
-          </span>
-          <div>
-            <p>
-              We wish for every young artist who walks through our doors to
-              carry a little of this awareness into the world. To understand
-              where their art comes from, to discover what it means to them, and
-              to find their own place within this continuing story.
-            </p>
-            <p>
-              For we believe that culture lives in the people who remember it,
-              practise it, question it, and pass it on with love. And if,
-              through Rtambhara, even one young heart learns to cherish an art
-              that might otherwise have faded from their world, a beautiful part
-              of our vision has found its meaning...
-            </p>
-          </div>
-          <span className={styles.arrowRight} aria-hidden="true">
-            ›
-          </span>
-        </Reveal>
-
-        <Reveal as="figure" className={styles.photoRight} delay={0.08} y={34}>
-          <div className={styles.photoFrame}>
-            <Image
-              src="/assets/about/tradition-contemporary.webp"
-              alt="A contemporary dancer moving with a flowing red fabric"
-              width={1536}
-              height={1024}
-              className={styles.cropContemporary}
-            />
-          </div>
-          <figcaption className={styles.caption}>
-            <h3>Inspired by Tomorrow</h3>
-            <p>Contemporary</p>
-          </figcaption>
-        </Reveal>
-      </div>
-
-      <div className={styles.mission}>
-        <Image
-          src="/assets/about/lotus-line.webp"
-          alt=""
-          width={407}
-          height={615}
-          className={styles.missionLotusLeft}
-        />
-        <Image
-          src="/assets/about/lotus-line.webp"
-          alt=""
-          width={407}
-          height={615}
-          className={styles.missionLotusRight}
-        />
-        <Image
-          src="/assets/about/hand-mudra.webp"
-          alt=""
-          width={736}
-          height={1034}
-          className={styles.missionHand}
-        />
-        <Image
-          src="/assets/about/mission-screenshot.webp"
-          alt=""
-          width={640}
-          height={280}
-          className={styles.missionHandRight}
-        />
-
-        <div className={styles.missionRight}>
-          <SplitText
-            as="h2"
-            className={styles.missionTitle}
-            delay={0.05}
-            lines={[
-              {
-                words: ["Our", { text: "Mission", className: styles.accent }],
-              },
-            ]}
-          />
-          <Reveal as="div" className={styles.missionBody} delay={0.12} y={26}>
-            <p>
-              We wish to see the beauty of our traditions find a home in every
-              generation. To place the wisdom of centuries into young hands, and
-              watch it unfold in ways we may never have imagined.
-            </p>
-            <p>
-              At Rtambhara, we carry this wish into every lesson, every
-              rehearsal, and every moment spent with our students. We hope to
-              nurture artists who understand the stories behind their movements,
-              who find meaning in the smallest gestures, and who come to love
-              the discipline and devotion that give an art its depth. We want
-              our children to grow with the confidence to express themselves,
-              the curiosity to explore, and the sensitivity to appreciate the
-              world around them. Through Bharatanatyam and other forms of
-              artistic expression, we seek to cultivate patience, awareness,
-              creativity, and a lifelong affection for the arts.
-            </p>
+          <Reveal as="article" className={`${styles.card} ${styles.laya}`} delay={0.24} y={30}>
+            <div className={styles.cardInner}>
+              <span className={styles.badge}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={`${A}/ellipse21.svg`} alt="" className={styles.badgeRing} />
+                <span className={styles.badgeGold} aria-hidden="true">
+                  <Crop src={`${A}/sheet7.webp`} sizes="100px" cover />
+                </span>
+              </span>
+              <h3 className={styles.cardName}>laya</h3>
+              <p className={`${styles.cardMeaning} ${styles.cardMeaningSans}`}>Dissolution</p>
+            </div>
           </Reveal>
         </div>
+
+        <Reveal as="p" className={styles.visionOne} delay={0.1} y={26}>
+          There is a beautiful wisdom in the way the universe moves. In all that
+          is born, all that is lovingly preserved, and all that must eventually
+          make way for something new.
+        </Reveal>
+        <Reveal as="p" className={styles.visionTwo} delay={0.14} y={26}>
+          With Bharatanatyam at our heart, we nurture a space where tradition is
+          cherished and creativity is given room to flourish. Through
+          contemporary dance and the many languages of performing and visual
+          arts, we hope to awaken an enduring love for culture and the freedom
+          of artistic expression.
+        </Reveal>
+
+        <div className={`${styles.deco} ${styles.moon}`} aria-hidden="true">
+          <Crop
+            src={`${A}/whatsapp.webp`}
+            sizes="800px"
+            box={{ height: "164.61%", left: "0", top: "-48.46%", width: "100%" }}
+          />
+        </div>
+
+        <figure className={styles.figure}>
+          <div className={`${styles.frame} ${styles.frameLeft}`} aria-hidden="true" />
+          <div className={`${styles.portrait} ${styles.portraitLeft}`}>
+            <Crop
+              src={`${A}/tradition-left.webp`}
+              sizes="324px"
+              box={{ height: "123.67%", left: "0", top: "-1.79%", width: "100%" }}
+            />
+          </div>
+          <figcaption className={styles.captionBlock}>
+            <span className={`${styles.caption} ${styles.captionLeft}`}>Rooted in Tradition</span>
+            <span className={`${styles.captionSmall} ${styles.captionSmallLeft}`}>Bharatanatyam</span>
+          </figcaption>
+        </figure>
+
+        <figure className={styles.figure}>
+          <div className={`${styles.frame} ${styles.frameRight}`} aria-hidden="true" />
+          <div className={`${styles.portrait} ${styles.portraitRight}`}>
+            <Crop src={`${A}/tradition-right.webp`} sizes="318px" cover />
+          </div>
+          <figcaption className={styles.captionBlock}>
+            <span className={`${styles.caption} ${styles.captionRight}`}>Inspired by Tomorrow</span>
+            <span className={`${styles.captionSmall} ${styles.captionSmallRight}`}>Contemporary</span>
+          </figcaption>
+        </figure>
+
+        <Reveal as="p" className={styles.narrativeOne} delay={0.1} y={26}>
+          We wish for every young artist who walks through our doors to carry a
+          little of this awareness into the world. To understand where their art
+          comes from, to discover what it means to them, and to find their own
+          place within its continuing story.
+        </Reveal>
+        <Reveal as="p" className={styles.narrativeTwo} delay={0.14} y={26}>
+          For we believe that culture lives in the people who remember it,
+          practise it, question it, and pass it on with love. And if, through
+          Rtambhara, even one young heart learns to cherish an art that might
+          otherwise have faded from their world, a beautiful part of our vision
+          has found its meaning…
+        </Reveal>
+
+        <div className={`${styles.deco} ${styles.sheetNine}`} aria-hidden="true">
+          <Crop src={`${A}/sheet9.webp`} sizes="760px" cover className={styles.bottomAligned} />
+        </div>
+        <div className={`${styles.deco} ${styles.handLeft}`} aria-hidden="true">
+          <Crop src={`${A}/download3.webp`} sizes="480px" cover />
+        </div>
+        <span className={`${styles.deco} ${styles.glow}`} aria-hidden="true" />
+
+        <div className={styles.missionTitleWrap}>
+          <SplitText
+            as="h2"
+            className={styles.title}
+            delay={0.05}
+            lines={[{ words: ["Our", { text: "Mission", className: styles.accent }] }]}
+          />
+        </div>
+
+        <Reveal as="p" className={styles.missionOne} delay={0.1} y={26}>
+          {missionTop[0]}
+        </Reveal>
+        <Reveal as="p" className={styles.missionTwo} delay={0.14} y={26}>
+          {missionTop[1]}
+        </Reveal>
 
         <Reveal as="p" className={styles.missionBelief} delay={0.1} y={24}>
           To nurture the art,
@@ -241,21 +199,22 @@ export default function AboutVisionMission() {
           and the hearts that carry it.
         </Reveal>
 
-        <Reveal as="div" className={styles.missionBottom} delay={0.14} y={26}>
-          <p>
-            We also wish to make movement a cherished part of life at every age.
-            A place where children discover their abilities, young artists find
-            their voices, and older generations continue to experience the
-            pleasure of rhythm, togetherness, and well being.
-          </p>
-          <p>
-            Above all, we hope to preserve the precious relationship between a
-            teacher, a student, and an art that has been lovingly entrusted from
-            one generation to another. For every student who learns with us, we
-            hope there will come a day when the rhythm feels like their own, the
-            art feels like home, and all that we have shared continues to live
-            through them..
-          </p>
+        <div className={`${styles.deco} ${styles.lotus}`} aria-hidden="true">
+          <Crop src={`${A}/lotus-line.webp`} sizes="380px" cover />
+        </div>
+        <div className={`${styles.deco} ${styles.handRight}`} aria-hidden="true">
+          <Crop
+            src={`${A}/hand-right.webp`}
+            sizes="480px"
+            box={{ height: "100%", left: "-39.83%", top: "0", width: "139.83%" }}
+          />
+        </div>
+
+        <Reveal as="p" className={styles.missionThree} delay={0.1} y={26}>
+          {missionBottom[0]}
+        </Reveal>
+        <Reveal as="p" className={styles.missionFour} delay={0.14} y={26}>
+          {missionBottom[1]}
         </Reveal>
       </div>
     </section>

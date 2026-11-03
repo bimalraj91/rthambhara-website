@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import SectionMarker from "./SectionMarker";
 import SplitText from "./motion/SplitText";
 import styles from "./AboutHero.module.scss";
 
@@ -63,14 +62,6 @@ export default function AboutHero() {
       </motion.div>
 
       <motion.div
-        className={styles.overlay}
-        aria-hidden="true"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, ease: EASE, delay: 0.2 }}
-      />
-
-      <motion.div
         className={styles.word}
         aria-hidden="true"
         variants={shouldReduceMotion ? undefined : letterGroup}
@@ -91,34 +82,34 @@ export default function AboutHero() {
       <div className={styles.frame}>
         <motion.div
           className={styles.card}
+          aria-hidden="true"
           initial={shouldReduceMotion ? false : { opacity: 0, y: 44, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
-        >
-          <SectionMarker
-            tone="light"
-            lineWidth={24}
-            className={styles.marker}
-          >
-            About Rtambhara
-          </SectionMarker>
+        />
 
-          <SplitText
-            id="about-hero-title"
-            as="h1"
-            className={styles.title}
-            lines={[
-              "Every Movement Holds",
-              "A Memory.",
-              "Every Expression,",
-              { words: ["A World of Its Own."], className: styles.titleUpper },
-            ]}
-            mount
-            delay={0.75}
-            stagger={0.07}
-            duration={1}
-          />
-        </motion.div>
+        <motion.p
+          className={styles.cue}
+          initial={shouldReduceMotion ? false : { opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
+        >
+          TRIPUNITHURA · ESTABLISHED 2012
+        </motion.p>
+
+        <SplitText
+          id="about-hero-title"
+          as="h1"
+          className={styles.title}
+          lines={[
+            "Every body has its own poetry. Sometimes,",
+            "all it needs is the freedom to discover.",
+          ]}
+          mount
+          delay={0.75}
+          stagger={0.07}
+          duration={1}
+        />
       </div>
 
       <motion.div
@@ -127,28 +118,17 @@ export default function AboutHero() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.9, ease: EASE, delay: 1.15 }}
       >
-        <div className={styles.chapterInner}>
-          <p className={styles.chapterIntro}>An introduction to our world</p>
-          <nav className={styles.chapters} aria-label="About page sections">
-            {chapters.map((chapter, index) => (
-              <motion.span
-                key={chapter.number}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  ease: EASE,
-                  delay: 1.35 + index * 0.08,
-                }}
-              >
-                <Link href={chapter.href}>
-                  <span>{chapter.number}</span>
-                  {chapter.label}
-                </Link>
-              </motion.span>
-            ))}
-          </nav>
-        </div>
+        <p className={styles.chapterIntro}>An introduction to our world</p>
+        {chapters.map((chapter, index) => (
+          <motion.span
+            key={chapter.number}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: EASE, delay: 1.35 + index * 0.08 }}
+          >
+            <Link href={chapter.href}>{`${chapter.number}  ${chapter.label}`}</Link>
+          </motion.span>
+        ))}
       </motion.div>
     </section>
   );

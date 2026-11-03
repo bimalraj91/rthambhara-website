@@ -1,0 +1,51 @@
+// Helpers for sections laid out on the 1440px Figma canvas.
+
+// Absolute box at Figma coordinates (relative to the section's own top).
+@mixin at($left, $top, $width: null, $height: null) {
+  position: absolute;
+  left: #{$left}px;
+  top: #{$top}px;
+
+  @if $width {
+    width: #{$width}px;
+  }
+
+  @if $height {
+    height: #{$height}px;
+  }
+}
+
+// Section chapter cue: a short rule followed by an uppercase label.
+@mixin cue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #681722;
+
+  font-family: var(--font-dm-sans), "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 14;
+  line-height: normal;
+  white-space: nowrap;
+
+  &::before {
+    width: 28px;
+    height: 1px;
+    flex: none;
+    background: #681722;
+    content: "";
+  }
+}
+
+// Body copy used across the About sections.
+@mixin copy {
+  margin: 0;
+  color: #6f6b61;
+
+  font-family: var(--font-dm-sans), "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  font-variation-settings: "opsz" 14;
+  line-height: 1.8;
+}

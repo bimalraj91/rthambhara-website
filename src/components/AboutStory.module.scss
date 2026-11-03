@@ -1,352 +1,338 @@
 @use "../styles/mixins" as *;
+@use "../styles/canvas" as *;
+
+// Figma page y of this section's top edge.
+$top: 840;
 
 .story {
   position: relative;
-  padding: 135px 0 0;
-  overflow: clip;
-  background: var(--color-cream);
+  z-index: 1;
+  height: 1660px;
+  overflow-x: clip;
+
+  // Extra room left of the centred 1440px canvas on wide screens (+16px covers
+  // the scrollbar, which 100vw includes).
+  --bleed: calc(max(0px, (100vw - 1440px) / 2) + 16px);
 }
 
-.topLotus,
-.bottomLotus,
-.sideWord {
-  position: absolute;
-  z-index: 0;
-  max-width: none;
-  pointer-events: none;
-}
-
-.topLotus {
-  top: -100px;
-  left: -260px;
-  width: 820px;
-  height: auto;
-  opacity: 0.22;
-  mix-blend-mode: multiply;
-}
-
-.bottomLotus {
-  bottom: -240px;
-  left: -280px;
-  width: 860px;
-  height: auto;
-  opacity: 0.18;
-  mix-blend-mode: multiply;
-}
-
-.sideWord {
-  top: 760px;
-  left: 1330px;
-  width: 950px;
-  height: auto;
-  transform: rotate(90deg);
-  transform-origin: top left;
-  opacity: 0.55;
-}
-
-.inner {
+.canvas {
   position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 514px 591px;
-  column-gap: 41px;
-  width: min(1146px, calc(100% - 96px));
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
 }
 
-.intro {
-  min-width: 0;
+.deco {
+  pointer-events: none;
+}
+
+.sheet {
+  @include at(-87, 947 - $top, 726.178, 734.182);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheetTile {
+  position: relative;
+  width: 616.874px;
+  height: 627.025px;
+  overflow: hidden;
+  border-radius: 53px;
+  opacity: 0.1;
+  transform: rotate(11.11deg);
+}
+
+.handTop {
+  @include at(1152, 802 - $top, 289, 564);
+  z-index: 3;
+  overflow: hidden;
+}
+
+.ghungroo {
+  @include at(705, 875 - $top, 490.914, 449.53);
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ghungrooTile {
+  position: relative;
+  flex: none;
+  width: 332.768px;
+  height: 401.697px;
+  overflow: hidden;
+  transform: rotate(70.12deg);
+}
+
+.handFlip {
+  @include at(979, 1614 - $top, 463, 538);
+  transform: scaleX(-1);
+}
+
+.word {
+  @include at(1091, 1528 - $top, 263.648, 847.457);
+}
+
+.wordTile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 847.457px;
+  height: 263.648px;
+  transform: translate(-50%, -50%) rotate(90deg);
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.cue {
+  @include cue;
+  @include at(144, 1082 - $top);
+  z-index: 2;
 }
 
 .title {
-  width: 660px;
-  margin-top: 40px;
-  color: #2b2824;
+  @include at(144, 1128 - $top, 639, 157);
+  z-index: 2;
+  color: #25251f;
 
   @include serif(400);
   font-size: 68px;
   line-height: 1.05;
-  letter-spacing: -0.012em;
-
 }
 
 .accent {
-  color: var(--color-maroon);
+  color: #681722;
 }
 
-.lede {
-  width: 514px;
-  margin-top: 30px;
-  color: var(--color-muted);
+.copyLeft,
+.copyRight,
+.copyBelieve,
+.decade,
+.younger {
+  @include copy;
+  z-index: 2;
+}
 
-  @include sans(400);
-  font-size: 18px;
-  line-height: 1.68;
+.copyLeft {
+  @include at(156, 1314 - $top, 514);
   text-align: justify;
+}
+
+.copyRight {
+  @include at(708, 1314 - $top, 591);
+  text-align: justify;
+}
+
+.rule {
+  @include at(156, 1557 - $top, 514, 1);
+  z-index: 2;
+  background: #d5cabb;
 }
 
 .belief {
-  margin-top: 34px;
-  padding-top: 47px;
-  border-top: 1px solid #d5c8b5;
-  text-align: center;
-
-  p {
-    color: var(--color-maroon);
-
-    @include serif(500);
-    font-size: 36px;
-    font-style: italic;
-    line-height: 1.32;
-  }
-}
-
-.panel {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: 683px;
-  height: 700px;
-  margin-top: 32px;
-  margin-left: -159px;
-  padding: 86px 100px 62px;
-  overflow: hidden;
-  border-radius: 2px;
-  background: var(--color-maroon);
-  box-shadow: 0 18px 46px rgba(72, 14, 22, 0.14);
-
-  &::before {
-    position: absolute;
-    inset: 0;
-    background: url("/assets/about/panel-textile.webp") top left / 698px 386px
-      repeat;
-    content: "";
-    opacity: 0.36;
-  }
-}
-
-.panelText,
-.panelQuote {
-  position: relative;
-  z-index: 1;
-}
-
-.panelText {
-  max-width: 468px;
-  color: #dccabd;
-
-  @include sans(400);
-  font-size: 16px;
-  line-height: 1.62;
-  text-align: justify;
-}
-
-.panelQuote {
-  margin-top: auto;
-  padding-top: 36px;
-  border-top: 1px solid rgba(216, 190, 141, 0.32);
-  color: #c9a669;
+  @include at(156, 1592 - $top, 514);
+  z-index: 2;
+  margin: 0;
+  color: #681722;
   text-align: center;
 
   @include serif(500);
+  font-size: 36px;
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.copyBelieve {
+  @include at(708, 1518 - $top, 591);
+  text-align: justify;
+}
+
+.younger {
+  @include at(707, 1740 - $top, 441);
+
+  p {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+}
+
+.decade {
+  @include at(708, 2258 - $top, 586);
+  text-align: justify;
+}
+
+.vision {
+  @include at(-12, 1740 - $top, 683, 700);
+  z-index: 1;
+  background: #681722;
+}
+
+.visionTextile {
+  position: absolute;
+  inset: 0 0 5px;
+  background: url("/assets/about/figma/textile.webp") top left / 698.472px
+    386.082px repeat;
+  opacity: 0.4;
+}
+
+// Continues the panel to the viewport edge on screens wider than the canvas.
+.visionBleed {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  bottom: 0;
+  width: var(--bleed);
+  background: #681722;
+}
+
+.visionEdge {
+  position: absolute;
+  bottom: 0;
+  left: 3px;
+  width: 680px;
+  height: 5px;
+  background: #d9d9d9;
+}
+
+.visionCopy {
+  @include copy;
+  position: absolute;
+  top: 76px;
+  left: 112px;
+  width: 495px;
+  color: #dccabd;
+  text-align: justify;
+}
+
+.visionRule {
+  position: absolute;
+  top: 556px;
+  left: 112px;
+  width: 495px;
+  height: 1px;
+  background: #b69a65;
+  opacity: 0.5;
+}
+
+.visionQuote {
+  position: absolute;
+  top: 604px;
+  left: 197px;
+  width: 362px;
+  margin: 0;
+  color: #b69a65;
+
+  @include serif(400);
   font-size: 40px;
   font-style: italic;
-  line-height: 1.2;
+  line-height: normal;
 }
 
-.body {
-  min-width: 0;
-  padding-top: 325px;
-  padding-right: 24px;
-  color: var(--color-muted);
-
-  @include sans(400);
-  font-size: 18px;
-  line-height: 1.7;
-  text-align: justify;
-
-  p + p {
-    margin-top: 21px;
-  }
-}
-
-.ghungroo {
-  position: absolute;
-  z-index: 3;
-  top: 48px;
-  left: 55.6%;
-  width: 300px;
-  height: auto;
-  max-width: none;
-  pointer-events: none;
-}
-
-.hands {
-  position: absolute;
-  z-index: 3;
-  top: 28px;
-  right: -50px;
-  width: 270px;
-  height: auto;
-  max-width: none;
-  pointer-events: none;
-}
-
-@include below(1200px) {
+// Below the design width the canvas reflows into a single column.
+@include below($bp-wide) {
   .story {
-    padding-top: 100px;
-  }
-
-  .inner {
-    display: block;
-    width: min(720px, calc(100% - 72px));
-  }
-
-  .title {
-    width: min(660px, 100%);
-    font-size: clamp(48px, 6.6vw, 64px);
-  }
-
-  .lede {
-    width: 100%;
-  }
-
-  .body {
-    padding-top: 56px;
-    padding-right: 0;
-  }
-
-  .panel {
-    width: 100%;
     height: auto;
-    margin-top: 54px;
-    margin-left: 0;
-    padding: 64px 72px;
   }
 
-  .panelQuote {
-    margin-top: 48px;
+  .canvas {
+    display: flex;
+    width: auto;
+    flex-direction: column;
+    gap: 28px;
+    padding: 96px 48px 80px;
   }
 
-  .ghungroo {
-    left: auto;
-    right: 4%;
-    width: 240px;
-  }
-
-  .hands,
-  .sideWord {
+  .deco {
     display: none;
   }
-}
 
-@include below($bp-tablet) {
-  .story {
-    padding-top: 84px;
-  }
-
-  .inner {
-    width: calc(100% - 48px);
+  .cue,
+  .title,
+  .copyLeft,
+  .copyRight,
+  .rule,
+  .belief,
+  .copyBelieve,
+  .younger,
+  .decade,
+  .vision {
+    position: static;
+    width: auto;
+    max-width: 720px;
   }
 
   .title {
-    margin-top: 30px;
-    font-size: clamp(42px, 8vw, 56px);
+    height: auto;
+    font-size: clamp(44px, 7vw, 64px);
   }
 
-  .lede {
-    margin-top: 26px;
-    font-size: 17px;
-    line-height: 1.7;
+  .rule {
+    width: 100%;
   }
 
   .belief {
-    margin-top: 30px;
-    padding-top: 36px;
-
-    p {
-      font-size: 32px;
-    }
+    padding-block: 12px;
   }
 
-  .panel {
-    margin-top: 44px;
-    padding: 48px 40px;
+  .vision {
+    height: auto;
+    overflow: hidden;
+    padding: 56px 40px 48px;
   }
 
-  .panelText {
-    font-size: 15.5px;
+  .visionTextile,
+  .visionBleed,
+  .visionEdge {
+    display: none;
   }
 
-  .panelQuote {
-    font-size: 34px;
+  .visionCopy,
+  .visionRule,
+  .visionQuote {
+    position: relative;
+    inset: auto;
+    width: auto;
   }
 
-  .body {
-    padding-top: 44px;
-    font-size: 17px;
-    line-height: 1.75;
+  .visionRule {
+    margin: 36px 0 28px;
   }
 
-  .ghungroo {
-    top: 34px;
-    right: -30px;
-    width: 190px;
-    opacity: 0.5;
-  }
-
-  .topLotus {
-    left: -380px;
+  .visionQuote {
+    text-align: center;
   }
 }
 
 @include below($bp-mobile) {
-  .story {
-    padding-top: 72px;
+  .canvas {
+    padding: 72px 20px 60px;
   }
 
   .title {
-    font-size: clamp(36px, 10vw, 46px);
-    line-height: 1.1;
+    font-size: clamp(34px, 9.2vw, 44px);
   }
 
-  .lede {
+  .copyLeft,
+  .copyRight,
+  .copyBelieve,
+  .decade,
+  .younger,
+  .visionCopy {
     font-size: 16px;
     text-align: left;
   }
 
   .belief {
-    p {
-      font-size: 29px;
-    }
+    font-size: 30px;
   }
 
-  .panel {
-    padding: 40px 26px;
-  }
-
-  .panelText {
-    font-size: 15px;
-    text-align: left;
-  }
-
-  .panelQuote {
-    padding-top: 28px;
-    font-size: 29px;
-  }
-
-  .body {
-    font-size: 16px;
-    line-height: 1.75;
-    text-align: left;
-  }
-
-  .ghungroo {
-    display: none;
-  }
-
-  .topLotus,
-  .bottomLotus {
-    opacity: 0.07;
+  .visionQuote {
+    font-size: 32px;
   }
 }

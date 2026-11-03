@@ -1,0 +1,40 @@
+- generic [ref=f9e1]:
+  - generic [active]:
+    - generic [ref=f9e4]:
+      - generic [ref=f9e5]:
+        - navigation [ref=f9e7]:
+          - button [disabled] [ref=f9e8]:
+            - img "previous" [ref=f9e9]
+          - generic [ref=f9e11]:
+            - generic [ref=f9e12]: 1/
+            - generic [ref=f9e13]: "1"
+          - button [disabled] [ref=f9e14]:
+            - img "next" [ref=f9e15]
+        - link "Next.js 16.4.3 (stale) Turbopack" [ref=f9e18] [cursor=pointer]:
+          - /url: https://nextjs.org/docs/messages/version-staleness
+          - generic "There is a newer version (16.4.4) available, upgrade recommended!" [ref=f9e21]: Next.js 16.4.3 (stale)
+          - generic [ref=f9e22]: Turbopack
+      - dialog "Runtime Error" [ref=f9e24]:
+        - generic [ref=f9e29]:
+          - generic [ref=f9e30]:
+            - generic [ref=f9e31]: Runtime Error
+            - generic [ref=f9e33]:
+              - button "Copy Error Info" [ref=f9e34] [cursor=pointer]
+              - button "No related documentation found" [disabled] [ref=f9e37]
+              - button "Attach Node.js inspector" [ref=f9e40] [cursor=pointer]
+          - generic [ref=f9e49]: Image with src "/assets/about/figma/sheet10.webp" has both "fill" and "style.width" properties. Images with "fill" always use width 100% - it cannot be modified.
+    - generic [ref=f9e56] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=f9e57]
+      - generic [ref=f9e61]:
+        - button "Open issues overlay" [ref=f9e62]:
+          - generic [ref=f9e63]:
+            - generic [aria-hidden] [ref=f9e64]: "0"
+            - generic [ref=f9e65]: "1"
+          - generic [ref=f9e66]: Issue
+        - button "Collapse issues badge" [ref=f9e67]
+  - generic [ref=f9e71]:
+    - heading "This page couldn’t load" [level=1] [ref=f9e74]
+    - paragraph [ref=f9e75]: Reload to try again, or go back.
+    - generic [ref=f9e76]:
+      - button "Reload" [ref=f9e78] [cursor=pointer]
+      - button "Back" [ref=f9e79] [cursor=pointer]

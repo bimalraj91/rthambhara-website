@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import Reveal from "./motion/Reveal";
 import styles from "./Footer.module.scss";
 
@@ -29,22 +32,27 @@ const socials = [
 ];
 
 export default function Footer() {
+  // The About page uses a darker footer without the gold ornament strip.
+  const isAbout = usePathname().startsWith("/about-us");
+
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} ${isAbout ? styles.about : ""}`}>
       <div className={styles.frame}>
-        <div className={styles.ornaments} aria-hidden="true">
-          {[1, 2, 3].map((n) => (
-            <Image
-              key={n}
-              src={`/assets/home/footer-ornament-${n}.png`}
-              alt=""
-              width={502}
-              height={253}
-              className={styles.ornament}
-              style={{ width: "auto" }}
-            />
-          ))}
-        </div>
+        {!isAbout && (
+          <div className={styles.ornaments} aria-hidden="true">
+            {[1, 2, 3].map((n) => (
+              <Image
+                key={n}
+                src={`/assets/home/footer-ornament-${n}.png`}
+                alt=""
+                width={502}
+                height={253}
+                className={styles.ornament}
+                style={{ width: "auto" }}
+              />
+            ))}
+          </div>
+        )}
 
         <div className={styles.motif} aria-hidden="true">
           <Image
