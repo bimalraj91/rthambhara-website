@@ -301,31 +301,49 @@ $top: 4920;
   }
 }
 
-// Below the design width the canvas reflows into a single column.
+// Tablet and mobile: a connected timeline of pillars on a soft backdrop.
 @include below($bp-wide) {
   .section {
     height: auto;
+    --gutter: clamp(20px, 5.5vw, 56px);
   }
 
   .canvas {
     display: flex;
     width: auto;
     flex-direction: column;
-    gap: 24px;
-    padding: 96px 48px 96px;
+    gap: 22px;
+    padding: 84px var(--gutter) 90px;
   }
 
   .deco {
     display: none;
   }
 
+  // The giant ritual word stays as a watermark behind the heading.
+  .word {
+    position: absolute;
+    top: 36px;
+    left: 50%;
+    display: block;
+    width: min(150%, 900px);
+    height: auto;
+    aspect-ratio: 1198 / 232;
+    opacity: 0.9;
+    transform: translateX(-50%);
+  }
+
   .header {
-    position: static;
+    position: relative;
+    inset: auto;
     width: auto;
+    align-items: center;
+    margin-bottom: 18px;
+    text-align: center;
   }
 
   .title {
-    font-size: clamp(44px, 7vw, 64px);
+    font-size: clamp(40px, 8vw, 62px);
   }
 
   .card,
@@ -335,13 +353,14 @@ $top: 4920;
     inset: auto;
     display: flex;
     width: auto;
-    max-width: 720px;
     height: auto;
     flex-direction: row;
     align-items: flex-start;
     gap: 18px;
-    padding: 28px 28px 32px;
+    padding: 26px 26px 30px;
     overflow: hidden;
+    background: rgba(255, 255, 255, 0.62);
+    box-shadow: 0 18px 40px -26px rgba(72, 14, 22, 0.45);
   }
 
   .photo {
@@ -352,9 +371,9 @@ $top: 4920;
   .portrait {
     position: relative;
     inset: auto;
-    width: calc(100% + 56px);
-    height: 360px;
-    margin: 12px -28px 0;
+    width: calc(100% + 52px);
+    height: 340px;
+    margin: 12px -26px 0;
     order: 3;
   }
 
@@ -368,6 +387,7 @@ $top: 4920;
     flex: none;
     width: 44px;
     height: 44px;
+    box-shadow: 0 8px 18px -8px rgba(104, 23, 34, 0.7);
   }
 
   .text {
@@ -386,29 +406,52 @@ $top: 4920;
 
   .headline {
     white-space: normal;
-    font-size: 34px;
+    font-size: clamp(28px, 5vw, 36px);
     line-height: 1.05;
   }
 
   .body {
-    margin-top: 12px;
+    margin-top: 10px;
+    font-size: 16.5px;
   }
 
   .signature,
   .stat {
-    margin-top: 18px;
+    margin-top: 16px;
+  }
+
+  .stat {
+    white-space: normal;
   }
 }
 
+// Phones keep a single column joined by a dotted thread between the badges.
 @include below($bp-mobile) {
   .canvas {
-    padding: 72px 20px 72px;
+    padding-top: 72px;
+
+    &::before {
+      position: absolute;
+      top: 220px;
+      bottom: 150px;
+      left: calc(var(--gutter) + 26px + 22px - 1px);
+      border-left: 2px dashed rgba(154, 120, 68, 0.45);
+      content: "";
+    }
   }
 
   .card,
   .clear,
   .wide {
-    padding: 22px 20px 26px;
+    position: relative;
+    z-index: 2;
+    padding: 22px 18px 26px;
+  }
+
+  .portrait {
+    width: calc(100% + 36px);
+    margin-inline: -18px;
+    height: 300px;
   }
 
   .headline {
@@ -417,5 +460,50 @@ $top: 4920;
 
   .body {
     font-size: 16px;
+  }
+}
+
+// Tablets lay the pillars out in two columns.
+@include below($bp-wide) {
+  @include above($bp-mobile) {
+    .canvas {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .header,
+    .photo,
+    .clear,
+    .wide {
+      grid-column: 1 / -1;
+    }
+
+    // First pillar: copy on the left, portrait on the right.
+    .photo {
+      flex-wrap: nowrap;
+      padding-bottom: 30px;
+    }
+
+    .photo .portrait {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 38%;
+      height: auto;
+      margin: 0;
+      order: 0;
+    }
+
+    // Reserve the portrait's column so copy never runs underneath it.
+    .photo .text {
+      flex: 1;
+      padding-right: 38%;
+    }
+
+    .photo .portrait + .badge {
+      order: 0;
+    }
   }
 }

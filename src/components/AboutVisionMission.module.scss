@@ -470,23 +470,42 @@ $top: 2500;
   left: 1171px;
 }
 
-// Below the design width the canvas reflows into a single column.
+// Tablet and mobile: a fluid editorial layout with a swipeable vision row.
 @include below($bp-wide) {
   .section {
     height: auto;
+    --gutter: clamp(20px, 5.5vw, 56px);
   }
 
   .canvas {
-    display: flex;
+    display: grid;
     width: auto;
-    flex-direction: column;
-    gap: 28px;
-    padding: 96px 48px 80px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 26px 20px;
+    padding: 84px var(--gutter) 80px;
+  }
+
+  .canvas > * {
+    grid-column: 1 / -1;
   }
 
   .deco,
   .frame {
     display: none;
+  }
+
+  // The mission hands become a framed banner above the closing copy.
+  .handRight {
+    position: relative;
+    inset: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 520px;
+    aspect-ratio: 477 / 374;
+    justify-self: end;
+    border-radius: 28px;
+    box-shadow: 0 24px 50px -28px rgba(72, 14, 22, 0.55);
   }
 
   .forum,
@@ -501,20 +520,46 @@ $top: 2500;
   .missionFour,
   .missionBelief {
     position: static;
+    inset: auto;
     width: auto;
-    max-width: 720px;
+    max-width: none;
     height: auto;
   }
 
-  .title {
-    font-size: clamp(44px, 7vw, 64px);
+  .visionOne,
+  .visionTwo,
+  .narrativeOne,
+  .narrativeTwo,
+  .missionOne,
+  .missionTwo,
+  .missionThree,
+  .missionFour {
+    font-size: 17px;
+    line-height: 1.75;
+    text-align: left;
   }
 
+  .title {
+    font-size: clamp(40px, 8vw, 62px);
+  }
+
+  .missionTitleWrap {
+    margin-top: 28px;
+  }
+
+  // The three principles slide sideways and snap into place.
   .cards {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 20px;
+    gap: 16px;
+    margin: 0 calc(var(--gutter) * -1);
+    padding: 18px var(--gutter) 30px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   .srishti,
@@ -522,37 +567,84 @@ $top: 2500;
   .laya {
     position: relative;
     inset: auto;
+    flex: none;
+    scroll-snap-align: center;
+  }
+
+  .sthiti {
+    margin-top: -8px;
   }
 
   .figure {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    grid-column: auto;
   }
 
   .captionBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-
-  .portrait,
-  .caption,
-  .captionSmall {
-    position: relative;
-    inset: auto;
+    gap: 2px;
   }
 
   .portrait {
-    width: 324px;
-    height: 350px;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    aspect-ratio: 324 / 350;
+    border: 3px solid #d4af37;
+    box-shadow: 0 22px 44px -22px rgba(0, 0, 0, 0.6);
+  }
+
+  .caption,
+  .captionSmall {
+    position: static;
+    inset: auto;
+  }
+
+  .caption {
+    font-size: 22px;
+  }
+
+  .missionBelief {
+    padding: 22px 0;
+    border-block: 1px solid rgba(201, 166, 105, 0.6);
+    font-size: clamp(28px, 5.4vw, 36px);
+    white-space: normal;
+  }
+}
+
+@include below($bp-wide) {
+  @include above($bp-mobile) {
+    .canvas {
+      column-gap: 44px;
+    }
+
+    .visionOne,
+    .visionTwo,
+    .missionOne,
+    .missionTwo,
+    .missionThree,
+    .missionFour {
+      grid-column: auto;
+    }
+
+    .cards {
+      justify-content: center;
+      overflow: visible;
+    }
   }
 }
 
 @include below($bp-mobile) {
   .canvas {
-    padding: 72px 20px 60px;
+    padding-top: 72px;
+    gap: 22px 14px;
   }
 
   .visionOne,
@@ -564,11 +656,13 @@ $top: 2500;
   .missionThree,
   .missionFour {
     font-size: 16px;
-    text-align: left;
   }
 
-  .missionBelief {
-    font-size: 30px;
-    white-space: normal;
+  .caption {
+    font-size: 18px;
+  }
+
+  .captionSmall {
+    font-size: 14px;
   }
 }

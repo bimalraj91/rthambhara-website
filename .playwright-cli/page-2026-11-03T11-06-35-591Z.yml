@@ -1,0 +1,231 @@
+- generic [active] [ref=f2e1]:
+  - link "Skip to content" [ref=f2e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=f2e3]:
+    - generic [ref=f2e4]:
+      - link "Rtambhara Academy home" [ref=f2e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f2e7]: rtambhara
+      - button "Open menu" [ref=f2e9] [cursor=pointer]
+  - main [ref=f2e13]:
+    - region [ref=f2e14]:
+      - img "Four Bharatanatyam dancers in a dimly lit temple hall, framed by carved stone and brass lamps" [ref=f2e16]
+      - generic [ref=f2e17]:
+        - paragraph [ref=f2e18]: TRIPUNITHURA · ESTABLISHED 2012
+        - heading "Every body has its own poetry. Sometimes, all it needs is the freedom to discover." [level=1] [ref=f2e19]:
+          - generic [aria-hidden] [ref=f2e20]:
+            - generic [ref=f2e21]: Every
+            - generic [ref=f2e23]: body
+            - generic [ref=f2e25]: has
+            - generic [ref=f2e27]: its
+            - generic [ref=f2e29]: own
+            - generic [ref=f2e31]: poetry.
+            - generic [ref=f2e33]: Sometimes,
+          - generic [aria-hidden] [ref=f2e35]:
+            - generic [ref=f2e36]: all
+            - generic [ref=f2e38]: it
+            - generic [ref=f2e40]: needs
+            - generic [ref=f2e42]: is
+            - generic [ref=f2e44]: the
+            - generic [ref=f2e46]: freedom
+            - generic [ref=f2e48]: to
+            - generic [ref=f2e50]: discover.
+      - generic [ref=f2e52]:
+        - paragraph [ref=f2e53]: An introduction to our world
+        - link "01 Who we are" [ref=f2e55] [cursor=pointer]:
+          - /url: "#who-we-are"
+        - link "02 Vision & mission" [ref=f2e57] [cursor=pointer]:
+          - /url: "#vision-mission"
+        - link "03 Why Rtambhara" [ref=f2e59] [cursor=pointer]:
+          - /url: "#why-rtambhara"
+    - region [ref=f2e60]:
+      - generic [ref=f2e61]:
+        - paragraph [ref=f2e62]: 01 / WHO WE ARE
+        - heading "More than an art form. A way of belonging." [level=2] [ref=f2e63]:
+          - generic [aria-hidden] [ref=f2e64]:
+            - generic [ref=f2e65]: More
+            - generic [ref=f2e67]: than
+            - generic [ref=f2e69]: an
+            - generic [ref=f2e71]: art
+            - generic [ref=f2e73]: form.
+          - generic [aria-hidden] [ref=f2e75]:
+            - generic [ref=f2e76]: A
+            - generic [ref=f2e78]: way
+            - generic [ref=f2e80]: of
+            - generic [ref=f2e82]: belonging.
+        - paragraph [ref=f2e84]: Some traditions are too beautiful to be left in the past. They deserve to be lived, loved, and passed from one generation to the next. At Rtambhara, we have spent the last ten years giving that belief a home. A home where the sound of anklets is familiar, where every movement carries a meaning, and where the wisdom of generations finds its way into young, eager hearts.
+        - paragraph [ref=f2e85]: Our story begins with Smt. Girija Ravindranath, whose life has been devoted to the art of Bharatanatyam. For over 23 years, she has carried forward the teachings of her guru and mentor, the legendary Smt. Rukmini Devi Arundale, founder of Kalakshetra, Chennai. Her teaching holds close the discipline, grace, spiritual depth, and exquisite nuances of a tradition she has cherished all her life.
+        - paragraph [ref=f2e87]: We learn the art.We carry its spirit.
+        - paragraph [ref=f2e88]: We believe there is something deeply intimate about learning an art that has travelled through centuries. A gesture once taught by a guru finds expression in another pair of hands. An ancient story discovers a new voice. And somewhere between rhythm, expression, and stillness, a student begins to understand something about themselves. This is the spirit in which we teach.
+        - generic [ref=f2e89]:
+          - paragraph [ref=f2e90]: For our younger students, dance becomes a gentle companion in growing up. Rhythm sharpens their attention, movement nurtures coordination, and every opportunity to perform helps them find confidence in themselves. We take particular joy
+          - paragraph [ref=f2e91]: in watching hesitant little feet grow certain of their steps, and in seeing our students take their learning beyond the classroom and onto the stage. Even the space we call home reflects what we hold dear.
+          - paragraph [ref=f2e92]: Built with a love for traditional architecture and its quiet elegance, Rtambhara offers spacious,
+          - paragraph [ref=f2e93]: beautiful surroundings where students can
+          - paragraph [ref=f2e94]: learn, practise, and simply enjoy being
+          - paragraph [ref=f2e95]: part of the arts. As a BSS-certified institution,
+          - paragraph [ref=f2e96]: we remain committed to nurturing learning with
+          - paragraph [ref=f2e97]: care, discipline, and artistic integrity.
+        - paragraph [ref=f2e98]: Ten years have passed since Rtambhara first opened its doors. In that time, we have watched children grow, friendships form, artists find their voices, and countless stories unfold through dance. And perhaps that is what we cherish most. That a tradition entrusted to us continues to find a place in so many lives. At Rtambhara, we hope that long after the music ends, something of the dance remains within you.
+        - generic [ref=f2e99]:
+          - paragraph [ref=f2e101]: Rooted in the classical heritage of Bharatanatyam, our learning embraces its mythology, philosophy, aesthetics, and the deeper consciousness that art can awaken. We want our students to feel the stories they tell, understand the emotions they express, and grow into artists who carry their learning with sincerity. Alongside this cherished tradition, Satyajith Ravindranath brings his own artistic sensibility through contemporary dance, allowing another language of movement to find its place within Rtambhara. Our doors also welcome those discovering dance at different seasons of life. Through Thiruvathira and yoga, including thoughtfully guided sessions for adults above 50, we celebrate the joy of movement, physical well-being, and the beauty of growing older with strength and grace.
+          - paragraph [ref=f2e102]: Culture, carried forward.
+    - region [ref=f2e103]:
+      - generic [ref=f2e104]:
+        - generic [ref=f2e105]:
+          - paragraph [ref=f2e106]: 02 / VISION & MISSION
+          - heading "Our Vision" [level=2] [ref=f2e107]:
+            - generic [aria-hidden] [ref=f2e108]:
+              - generic [ref=f2e109]: Our
+              - generic [ref=f2e111]: Vision
+        - generic [ref=f2e113]:
+          - article [ref=f2e114]:
+            - generic [ref=f2e115]:
+              - heading "Srishti" [level=3] [ref=f2e118]
+              - paragraph [ref=f2e119]: Creation
+          - article [ref=f2e120]:
+            - generic [ref=f2e123]:
+              - heading "Sthiti" [level=3] [ref=f2e124]
+              - paragraph [ref=f2e125]: PRESERVATION
+          - article [ref=f2e126]:
+            - generic [ref=f2e127]:
+              - heading "laya" [level=3] [ref=f2e130]
+              - paragraph [ref=f2e131]: Dissolution
+        - paragraph [ref=f2e132]: There is a beautiful wisdom in the way the universe moves. In all that is born, all that is lovingly preserved, and all that must eventually make way for something new.
+        - paragraph [ref=f2e133]: With Bharatanatyam at our heart, we nurture a space where tradition is cherished and creativity is given room to flourish. Through contemporary dance and the many languages of performing and visual arts, we hope to awaken an enduring love for culture and the freedom of artistic expression.
+        - figure "Rooted in Tradition Bharatanatyam" [ref=f2e134]:
+          - generic [ref=f2e136]:
+            - generic [ref=f2e137]: Rooted in Tradition
+            - generic [ref=f2e138]: Bharatanatyam
+        - figure "Inspired by Tomorrow Contemporary" [ref=f2e139]:
+          - generic [ref=f2e141]:
+            - generic [ref=f2e142]: Inspired by Tomorrow
+            - generic [ref=f2e143]: Contemporary
+        - paragraph [ref=f2e144]: We wish for every young artist who walks through our doors to carry a little of this awareness into the world. To understand where their art comes from, to discover what it means to them, and to find their own place within its continuing story.
+        - paragraph [ref=f2e145]: For we believe that culture lives in the people who remember it, practise it, question it, and pass it on with love. And if, through Rtambhara, even one young heart learns to cherish an art that might otherwise have faded from their world, a beautiful part of our vision has found its meaning…
+        - heading "Our Mission" [level=2] [ref=f2e147]:
+          - generic [aria-hidden] [ref=f2e148]:
+            - generic [ref=f2e149]: Our
+            - generic [ref=f2e151]: Mission
+        - paragraph [ref=f2e153]: We wish to see the beauty of our traditions find a home in every generation. To place the wisdom of centuries into young hands, and watch it unfold in ways even we may never have imagined.
+        - paragraph [ref=f2e154]: At Rtambhara, we carry this wish into every lesson, every rehearsal, and every moment spent with our students. We hope to nurture artists who understand the stories behind their movements, who find meaning in the smallest gestures, and who come to love the discipline and devotion that give an art its depth. We want our children to grow with the confidence to express themselves, the curiosity to explore, and the sensitivity to appreciate the world around them. Through Bharatanatyam and other forms of artistic expression, we seek to cultivate patience, awareness, creativity, and a lifelong affection for the arts.
+        - paragraph [ref=f2e155]: To nurture the art,and the hearts that carry it.
+        - paragraph [ref=f2e156]: We also wish to make movement a cherished part of life at every age. A place where children discover their abilities, young artists find their voices, and older generations continue to experience the pleasure of rhythm, togetherness, and well being.
+        - paragraph [ref=f2e157]: Above all, we hope to preserve the precious relationship between a teacher, a student, and an art that has been lovingly entrusted from one generation to another. For every student who learns with us, we hope there will come a day when the rhythm feels like their own, the art feels like home, and all that we have shared continues to live through them.
+    - region [ref=f2e158]:
+      - generic [ref=f2e159]:
+        - generic [ref=f2e160]:
+          - paragraph [ref=f2e161]: 03 / WHY CHOOSE US
+          - heading "Why rtambhara?" [level=2] [ref=f2e162]:
+            - generic [aria-hidden] [ref=f2e163]:
+              - generic [ref=f2e164]: Why
+              - generic [ref=f2e166]: rtambhara?
+        - article [ref=f2e168]:
+          - generic [ref=f2e170]: "01"
+          - generic [ref=f2e171]:
+            - heading "A legacy to cherish" [level=3] [ref=f2e172]
+            - paragraph [ref=f2e173]: Guided by Smt. Girija and the wisdom of her mentor, Smt. Rukmini Devi Arundale, we carry the grace and philosophy of Kalakshetra into every lesson.
+            - paragraph [ref=f2e174]:
+              - generic [ref=f2e175]: Smt. Girija Ravindranath
+              - generic [ref=f2e176]: A living teaching tradition
+        - article [ref=f2e177]:
+          - generic [ref=f2e178]: "02"
+          - generic [ref=f2e179]:
+            - heading "Learning with purpose" [level=3] [ref=f2e180]
+            - paragraph [ref=f2e181]: A thoughtfully structured, Kalakshetra-inspired curriculum, enriched by 23 years of teaching experience and the recognition of BSS certification.
+            - paragraph [ref=f2e182]:
+              - generic [ref=f2e183]: "23"
+              - generic [ref=f2e184]:
+                - generic [ref=f2e185]: years of teaching experience
+                - generic [ref=f2e186]: Kalakshetra-inspired curriculum · BSS-certified
+        - article [ref=f2e187]:
+          - generic [ref=f2e188]: "03"
+          - generic [ref=f2e189]:
+            - heading "Wisdom beyond our walls" [level=3] [ref=f2e190]
+            - paragraph [ref=f2e191]: Workshops and intimate learning sessions with renowned artists, where a lifetime of experience finds its way into eager young hearts.
+        - article [ref=f2e192]:
+          - generic [ref=f2e193]: "04"
+          - generic [ref=f2e194]:
+            - heading "The joy of the stage" [level=3] [ref=f2e195]
+            - paragraph [ref=f2e196]: Our own productions and performances give every student the beautiful experience of bringing their learning to life before an audience.
+        - article [ref=f2e197]:
+          - generic [ref=f2e198]: "05"
+          - generic [ref=f2e199]:
+            - heading "Art that travels" [level=3] [ref=f2e200]
+            - paragraph [ref=f2e201]: Through collaborations with like-minded institutions, we open doors to new perspectives, shared traditions, and the wider world of art.
+        - article [ref=f2e202]:
+          - generic [ref=f2e203]: "06"
+          - generic [ref=f2e204]:
+            - heading "Dreams beyond borders" [level=3] [ref=f2e205]
+            - paragraph [ref=f2e206]: We aspire to take our students to national and international stages, where their years of devotion can find new audiences and possibilities.
+        - article [ref=f2e207]:
+          - generic [ref=f2e208]: "07"
+          - generic [ref=f2e209]:
+            - heading "A bond beyond Arangettam" [level=3] [ref=f2e210]
+            - paragraph [ref=f2e211]: The relationship we share with our students continues long after their Arangettam. There is always a place to return to, an art to revisit, and a family that remembers.
+        - article [ref=f2e212]:
+          - generic [ref=f2e213]: "08"
+          - generic [ref=f2e214]:
+            - heading "A home steeped in tradition" [level=3] [ref=f2e215]
+            - paragraph [ref=f2e216]: Beautiful traditional architecture, spacious surroundings, and an atmosphere that invites the mind to settle and the artist to flourish.
+        - article [ref=f2e217]:
+          - generic [ref=f2e218]: "09"
+          - generic [ref=f2e219]:
+            - heading "The beauty of every age" [level=3] [ref=f2e220]
+            - paragraph [ref=f2e221]: From little feet discovering their first rhythm to graceful years enriched by Thiruvathira and yoga, we celebrate movement through every season of life. At Rtambhara, we hope every student leaves with something beautiful to carry, and a reason to return.
+  - contentinfo [ref=f2e222]:
+    - generic [ref=f2e224]:
+      - generic [ref=f2e226]:
+        - generic [ref=f2e227]:
+          - generic [ref=f2e230]:
+            - generic [ref=f2e231]: rtambhara
+            - generic [ref=f2e232]: Academy of Arts
+          - paragraph [ref=f2e233]: Preserving classical Indian dance, ancient martial arts of Kalaripayattu, and contemporary visual arts since 2012.
+        - navigation "Footer quick links" [ref=f2e235]:
+          - heading "Quick Links" [level=3] [ref=f2e236]
+          - list [ref=f2e237]:
+            - listitem [ref=f2e238]:
+              - link "Home" [ref=f2e239] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=f2e240]:
+              - link "About Academy" [ref=f2e241] [cursor=pointer]:
+                - /url: /about-us
+            - listitem [ref=f2e242]:
+              - link "Training Programs" [ref=f2e243] [cursor=pointer]:
+                - /url: /#programs
+            - listitem [ref=f2e244]:
+              - link "News & Events" [ref=f2e245] [cursor=pointer]:
+                - /url: /#news
+            - listitem [ref=f2e246]:
+              - link "Photo Gallery" [ref=f2e247] [cursor=pointer]:
+                - /url: /#gallery
+        - navigation "Footer disciplines" [ref=f2e248]:
+          - heading "Disciplines" [level=3] [ref=f2e249]
+          - list [ref=f2e250]:
+            - listitem [ref=f2e251]:
+              - link "Bharatanatyam Masterclasses" [ref=f2e252] [cursor=pointer]:
+                - /url: /#programs
+            - listitem [ref=f2e253]:
+              - link "Contemporary Kalaripayattu" [ref=f2e254] [cursor=pointer]:
+                - /url: /#programs
+            - listitem [ref=f2e255]:
+              - link "Yoga Sadhana" [ref=f2e256] [cursor=pointer]:
+                - /url: /#programs
+        - generic [ref=f2e257]:
+          - heading "Studio Location" [level=3] [ref=f2e258]
+          - paragraph [ref=f2e259]: TRRA 66, Mahalakshmi, Thevarakkavu Road, Tripunithura
+          - generic [ref=f2e260]:
+            - 'link "Email: mail@rtambhara.com" [ref=f2e261] [cursor=pointer]':
+              - /url: mailto:mail@rtambhara.com
+            - 'link "Phone: +91 99612 60009" [ref=f2e262] [cursor=pointer]':
+              - /url: tel:+919961260009
+      - generic [ref=f2e263]:
+        - paragraph [ref=f2e264]: © 2026 rtambhara Academy for Performing & Visual Arts. All rights reserved.
+        - generic [ref=f2e265]:
+          - link "Privacy Policy" [ref=f2e266] [cursor=pointer]:
+            - /url: /#contact
+          - link "Terms of Heritage" [ref=f2e267] [cursor=pointer]:
+            - /url: /#contact
+          - link "Join Community" [ref=f2e268] [cursor=pointer]:
+            - /url: /#contact
+  - button "Open Next.js Dev Tools" [ref=f2e274] [cursor=pointer]

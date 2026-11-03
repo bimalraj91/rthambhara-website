@@ -239,22 +239,39 @@ $top: 840;
   line-height: normal;
 }
 
-// Below the design width the canvas reflows into a single column.
+// Tablet and mobile: the canvas becomes a fluid editorial layout.
 @include below($bp-wide) {
   .story {
     height: auto;
+    --gutter: clamp(20px, 5.5vw, 56px);
   }
 
   .canvas {
-    display: flex;
+    display: grid;
     width: auto;
-    flex-direction: column;
-    gap: 28px;
-    padding: 96px 48px 80px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+    padding: 84px var(--gutter) 72px;
   }
 
+  // Keep one jewel of the artwork as an accent beside the heading.
   .deco {
     display: none;
+  }
+
+  .handTop {
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    left: auto;
+    display: block;
+    width: min(30vw, 210px);
+    height: auto;
+    aspect-ratio: 289 / 564;
+    opacity: 0.9;
+    // Only the raised fingers stay, so the copy below is never covered.
+    clip-path: inset(0 0 56% 0);
   }
 
   .cue,
@@ -269,29 +286,74 @@ $top: 840;
   .vision {
     position: static;
     width: auto;
-    max-width: 720px;
+    max-width: none;
   }
 
   .title {
     height: auto;
-    font-size: clamp(44px, 7vw, 64px);
+    max-width: 78%;
+    font-size: clamp(38px, 7.6vw, 62px);
+  }
+
+  .copyLeft,
+  .copyRight,
+  .copyBelieve,
+  .decade,
+  .younger {
+    font-size: 17px;
+    line-height: 1.75;
+    text-align: left;
   }
 
   .rule {
-    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, #c9a669, rgba(201, 166, 105, 0));
   }
 
+  // The belief becomes a centred pull-quote framed by gold ornaments.
   .belief {
-    padding-block: 12px;
+    padding: 8px 0 4px;
+    font-size: clamp(30px, 6vw, 40px);
+
+    &::before,
+    &::after {
+      display: block;
+      width: 56px;
+      height: 1px;
+      margin: 0 auto 18px;
+      background: #c9a669;
+      content: "";
+    }
+
+    &::after {
+      margin: 18px auto 0;
+    }
+  }
+
+  // Let the design's forced breaks flow as one paragraph on narrow screens.
+  .younger p {
+    display: inline;
+    white-space: normal;
+
+    &::after {
+      content: " ";
+    }
   }
 
   .vision {
+    position: relative;
+    inset: auto;
     height: auto;
     overflow: hidden;
-    padding: 56px 40px 48px;
+    padding: 52px clamp(24px, 6vw, 56px) 44px;
+    border-radius: 28px;
+    box-shadow: 0 24px 50px -24px rgba(72, 14, 22, 0.55);
   }
 
-  .visionTextile,
+  .visionTextile {
+    inset: 0;
+  }
+
   .visionBleed,
   .visionEdge {
     display: none;
@@ -305,21 +367,51 @@ $top: 840;
     width: auto;
   }
 
+  .visionCopy {
+    font-size: 16.5px;
+    line-height: 1.75;
+    text-align: left;
+  }
+
   .visionRule {
-    margin: 36px 0 28px;
+    margin: 32px 0 26px;
   }
 
   .visionQuote {
+    font-size: clamp(32px, 6vw, 40px);
     text-align: center;
+  }
+}
+
+@include below($bp-wide) {
+  @include above($bp-mobile) {
+    .canvas {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 30px 44px;
+    }
+
+    .cue,
+    .title,
+    .rule,
+    .belief,
+    .decade,
+    .vision {
+      grid-column: 1 / -1;
+    }
+
+    .decade {
+      max-width: 640px;
+    }
   }
 }
 
 @include below($bp-mobile) {
   .canvas {
-    padding: 72px 20px 60px;
+    padding-top: 72px;
   }
 
   .title {
+    max-width: 70%;
     font-size: clamp(34px, 9.2vw, 44px);
   }
 
@@ -327,17 +419,11 @@ $top: 840;
   .copyRight,
   .copyBelieve,
   .decade,
-  .younger,
-  .visionCopy {
+  .younger {
     font-size: 16px;
-    text-align: left;
   }
 
-  .belief {
-    font-size: 30px;
-  }
-
-  .visionQuote {
-    font-size: 32px;
+  .handTop {
+    width: 34vw;
   }
 }
