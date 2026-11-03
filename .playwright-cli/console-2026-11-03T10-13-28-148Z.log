@@ -19,3 +19,104 @@
 [  765073ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
 [  765105ms] [LOG] [Fast Refresh] done in 2ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
 [  765369ms] [LOG] [Fast Refresh] done in 2ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  946278ms] [LOG] [Fast Refresh] done in 2ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  947763ms] [LOG] [Fast Refresh] done in 2ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  947827ms] [LOG] [Fast Refresh] done in 2ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[  953340ms] [LOG] [Fast Refresh] done in 2ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1265042ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1265127ms] [LOG] [Fast Refresh] done in 156ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1281015ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1281051ms] [LOG] [Fast Refresh] done in 3ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1319811ms] [LOG] [Fast Refresh] done in 3ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1320025ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1320139ms] [LOG] [Fast Refresh] done in 218ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1362001ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1362135ms] [LOG] [Fast Refresh] done in 249ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1362346ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1362594ms] [LOG] [Fast Refresh] done in 350ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1495372ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1496047ms] [ERROR] ./src/components/Contact.module.scss
+Error: Error evaluating Node.js code
+Error: expected "{".
+   ╷
+48 │  font-f;
+   │        ^
+   ╵
+  src\components\Contact.module.scss 48:8  root stylesheet
+  (from C:\Projects\Next Js\rtambhara\rtambhara\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js, C:\Projects\Next Js\rtambhara\rtambhara\node_modules\next\dist\compiled\sass-loader\cjs.js)
+Caused by: Error: expected "{".
+   ╷
+48 │  font-f;
+   │        ^
+   ╵
+  src\components\Contact.module.scss 48:8  root stylesheet
+    [at Object.wrapException (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:2353:47)]
+    [at SpanScanner.error$3$length$position (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90185:15)]
+    [at SpanScanner._fail$1 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90328:12)]
+    [at SpanScanner.expectChar$2$name (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90266:12)]
+    [at SpanScanner.expectChar$1 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90269:19)]
+    [at ScssParser0.children$1 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:122703:10)]
+    [at ScssParser0._stylesheet0$_withChildren$1$3 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:132571:39)]
+    [at ScssParser0._stylesheet0$_withChildren$3 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:132576:19)]
+    [at ScssParser0._stylesheet0$_withStyleRuleChildren$1$3 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:127665:20)]
+    [at ScssParser0._stylesheet0$_styleRule$2 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:127655:22)]
+
+Import trace:
+  Server Component:
+    ./src/components/Contact.module.scss
+    ./src/components/Contact.tsx
+    ./src/app/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[ 1496291ms] [ERROR] ./src/components/Contact.module.scss
+Error: Error evaluating Node.js code
+Error: expected "{".
+   ╷
+48 │  font-f;
+   │        ^
+   ╵
+  src\components\Contact.module.scss 48:8  root stylesheet
+  (from C:\Projects\Next Js\rtambhara\rtambhara\node_modules\next\dist\build\webpack\loaders\resolve-url-loader\index.js, C:\Projects\Next Js\rtambhara\rtambhara\node_modules\next\dist\compiled\sass-loader\cjs.js)
+Caused by: Error: expected "{".
+   ╷
+48 │  font-f;
+   │        ^
+   ╵
+  src\components\Contact.module.scss 48:8  root stylesheet
+    [at Object.wrapException (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:2353:47)]
+    [at SpanScanner.error$3$length$position (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90185:15)]
+    [at SpanScanner._fail$1 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90328:12)]
+    [at SpanScanner.expectChar$2$name (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90266:12)]
+    [at SpanScanner.expectChar$1 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:90269:19)]
+    [at ScssParser0.children$1 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:122703:10)]
+    [at ScssParser0._stylesheet0$_withChildren$1$3 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:132571:39)]
+    [at ScssParser0._stylesheet0$_withChildren$3 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:132576:19)]
+    [at ScssParser0._stylesheet0$_withStyleRuleChildren$1$3 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:127665:20)]
+    [at ScssParser0._stylesheet0$_styleRule$2 (C:\Projects\Next Js\rtambhara\rtambhara\node_modules\sass\sass.dart.js:127655:22)]
+
+Import trace:
+  Server Component:
+    ./src/components/Contact.module.scss
+    ./src/components/Contact.tsx
+    ./src/app/page.tsx @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:995
+[ 1496344ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1496567ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1499697ms] [LOG] [Fast Refresh] done in 3205ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1499779ms] [LOG] [Fast Refresh] done in 3205ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1503256ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1503595ms] [LOG] [Fast Refresh] done in 445ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1510288ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1510575ms] [LOG] [Fast Refresh] done in 393ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1520961ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1520988ms] [LOG] [Fast Refresh] done in 82ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1535937ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1535947ms] [LOG] [Fast Refresh] done in 23ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1536355ms] [LOG] [Fast Refresh] done in 23ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1536746ms] [LOG] [Fast Refresh] done in 23ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1544729ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1544739ms] [LOG] [Fast Refresh] done in 14ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1551984ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1552004ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1586471ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1586590ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1588287ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1589110ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719
+[ 1616023ms] [LOG] [Fast Refresh] done in 19ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_1bjkg68unqmjx._.js:719

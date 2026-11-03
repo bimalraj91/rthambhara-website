@@ -45,7 +45,8 @@
 .phone {
   display: inline-block;
 
-  @include serif(400);
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-weight: 400;
   font-size: 32px;
   line-height: 43px;
   color: var(--color-red);
@@ -124,8 +125,11 @@
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.52);
   border-radius: 12px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.44) 0%, rgba(255, 255, 255, 0.13) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.44) 0%,
+    rgba(255, 255, 255, 0.13) 100%
+  );
   box-shadow: 0 8px 30px rgba(59, 31, 18, 0.05);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -206,7 +210,8 @@
     top: auto;
     left: auto;
     width: 100%;
-    padding-top: 280px;
+    // Clears the warrior picture above the contact details (ratio 379:505).
+    padding-top: calc(min(379px, 34vw) * 1.333 - 16px);
   }
 
   .title,
@@ -253,12 +258,12 @@
   .warrior {
     top: 24px;
     left: 4%;
-    width: min(48vw, 330px);
+    width: min(34vw, 260px);
     opacity: 0.78;
   }
 
   .details {
-    padding-top: 300px;
+    padding-top: calc(min(34vw, 260px) * 1.333 + 16px);
   }
 
   .panel {
@@ -283,13 +288,13 @@
 
   .warrior {
     top: 0;
-    left: -4%;
-    width: 58vw;
-    opacity: 0.62;
+    left: 0;
+    width: 40vw;
+    opacity: 0.7;
   }
 
   .details {
-    padding-top: 220px;
+    padding-top: calc(40vw * 1.333 + 12px);
   }
 
   .phone {

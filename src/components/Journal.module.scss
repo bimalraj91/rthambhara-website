@@ -143,7 +143,9 @@
   .journal {
     height: auto;
     min-height: 0;
-    padding: 118px 48px 82px;
+    // The torn paper edges scale with the section height, so keep the
+    // content well inside them.
+    padding: 180px 48px 150px;
   }
 
   .background {
@@ -177,7 +179,7 @@
 
 @include below($bp-tablet) {
   .journal {
-    padding: 94px 24px 64px;
+    padding: 172px 24px 140px;
   }
 
   .inner {
@@ -203,7 +205,7 @@
 
 @include below($bp-mobile) {
   .journal {
-    padding: 84px 18px 54px;
+    padding: 160px 18px 170px;
   }
 
   .eventGrid {

@@ -176,8 +176,10 @@
     gap: 36px;
   }
 
+  // Leave room for the torn maroon strip that hangs below the photo.
   .visual {
     width: min(100%, 680px);
+    margin-bottom: 96px;
     justify-self: center;
   }
 

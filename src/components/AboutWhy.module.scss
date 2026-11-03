@@ -80,7 +80,7 @@ $top: 4920;
 
 .spotlight {
   @include at(126, 6523 - $top, 427.194, 426.116);
-  z-index: 3;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +91,7 @@ $top: 4920;
   flex: none;
   width: 284.392px;
   height: 319.134px;
-  opacity: 0.25;
+  // The exported beam already carries the design's 25% opacity.
   transform: rotate(46.26deg);
 }
 

@@ -193,9 +193,15 @@
     padding: 150px 0 82px;
   }
 
+  // Let the content set the section height; the backdrop still anchors to
+  // the section itself.
   .panel {
-    position: absolute;
-    inset: 0;
+    display: contents;
+  }
+
+  .corner {
+    top: auto;
+    bottom: 0;
   }
 
   .inner {
