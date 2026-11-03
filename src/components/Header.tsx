@@ -62,7 +62,14 @@ export default function Header() {
                 sizes="44px"
                 className={styles.emblemImage}
               />
-              <span className={styles.emblemMark}>R</span>
+              <Image
+                src="/assets/home/emblem-white.jpg"
+                alt=""
+                width={44}
+                height={44}
+                sizes="44px"
+                className={styles.emblemMark}
+              />
             </span>
             <span className={styles.wordmark}>
               <span className={styles.name}>rtambhara</span>

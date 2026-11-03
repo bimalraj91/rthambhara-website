@@ -3,16 +3,38 @@
 .news {
   position: relative;
   height: 776px;
-  overflow: hidden;
+  overflow-x: clip;
+  overflow-y: visible;
   background: var(--color-cream);
   color: var(--color-ink-deep);
+}
+
+.dancer {
+  position: absolute;
+  z-index: 1;
+  top: -135px;
+  left: 296px;
+  width: 770px;
+  height: 1358px;
+  overflow: hidden;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.dancerImage {
+  position: absolute;
+  top: 0;
+  left: -319px;
+  width: 1358px;
+  height: 1358px;
+  max-width: none;
 }
 
 .mandala {
   position: absolute;
   z-index: 0;
   top: 22px;
-  left: 46px;
+  left: 0;
   width: 414px;
   height: 582px;
   opacity: 0.72;
@@ -389,7 +411,8 @@
   }
 
   .fade,
-  .mandala {
+  .mandala,
+  .dancer {
     display: none;
   }
 }

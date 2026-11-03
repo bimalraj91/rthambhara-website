@@ -147,30 +147,42 @@ export const team = [
 ] as const;
 
 export const story = {
-  quote:
-    "A journey that began with curiosity transformed into a beautiful expression of discipline, dedication and artistic excellence.",
-  name: "Ananya Menon",
-  role: "Classical Dance Artist",
-  video: {
-    image: "/assets/home/story-video.png",
-    alt: "A Bharatanatyam recital on an ornate temple stage",
-  },
-  gallery: [
+  slides: [
     {
       image: "/assets/home/gallery-1.jpg",
+      feature: "/assets/home/story-video.png",
       alt: "An ensemble Bharatanatyam performance on stage",
+      quote:
+        "A journey that began with curiosity transformed into a beautiful expression of discipline, dedication and artistic excellence.",
+      name: "Ananya Menon",
+      role: "Classical Dance Artist",
     },
     {
       image: "/assets/home/gallery-2.jpg",
+      feature: "/assets/home/gallery-2.jpg",
       alt: "Expressive footwork adorned with traditional ghungroo bells",
+      quote:
+        "Every rhythm I learned here taught me patience first, and then the joy of letting the body speak without hurry.",
+      name: "Meera Krishnan",
+      role: "Bharatanatyam Student",
     },
     {
       image: "/assets/home/gallery-3.png",
+      feature: "/assets/home/gallery-3.png",
       alt: "A dancer silhouetted against a full moon and sacred temples",
+      quote:
+        "The studio felt like a temple courtyard. I arrived as a spectator and left as a performer carrying a living tradition.",
+      name: "Divya Nair",
+      role: "Mohiniyattam Artist",
     },
     {
       image: "/assets/home/gallery-4.jpg",
+      feature: "/assets/home/gallery-4.jpg",
       alt: "Kathakali artists in traditional costumes",
+      quote:
+        "Watching the masters rehearse changed how I see stories. Art here is handed down with care, one gesture at a time.",
+      name: "Arjun Varma",
+      role: "Kathakali Enthusiast",
     },
   ],
 } as const;

@@ -1,0 +1,407 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - generic [ref=e4]:
+      - link "Rtambhara Academy home" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: R
+        - generic [ref=e8]:
+          - generic [ref=e9]: rtambhara
+          - generic [ref=e10]: Performing & Visual Arts
+      - navigation "Primary navigation" [ref=e11]:
+        - link "Home" [ref=e12] [cursor=pointer]:
+          - /url: /
+        - link "About us" [ref=e13] [cursor=pointer]:
+          - /url: /about-us
+        - link "Programs" [ref=e14] [cursor=pointer]:
+          - /url: /#programs
+        - link "News & Events" [ref=e15] [cursor=pointer]:
+          - /url: /#news
+        - link "Gurus" [ref=e16] [cursor=pointer]:
+          - /url: /#team
+        - link "Blogs" [ref=e17] [cursor=pointer]:
+          - /url: /#journal
+        - link "Gallery" [ref=e18] [cursor=pointer]:
+          - /url: /#gallery
+        - link "Contact us" [ref=e19] [cursor=pointer]:
+          - /url: /#contact
+  - main [ref=e21]:
+    - generic [aria-hidden]:
+      - generic:
+        - generic: rtambhara
+        - generic: Performing & Visual Arts
+    - region [ref=e22]:
+      - generic [ref=e29]:
+        - generic [ref=e30]:
+          - generic [ref=e31]: Tripunithura · Established 2012
+          - heading "Every movement holds a memory. Every expression, a world of its own." [level=1] [ref=e34]:
+            - generic [aria-hidden] [ref=e35]:
+              - generic [ref=e36]: Every
+              - generic [ref=e38]: movement
+              - generic [ref=e40]: holds
+            - generic [aria-hidden] [ref=e42]:
+              - generic [ref=e43]: a
+              - generic [ref=e45]: memory.
+            - generic [aria-hidden] [ref=e47]:
+              - generic [ref=e48]: Every
+              - generic [ref=e50]: expression,
+            - generic [aria-hidden] [ref=e52]:
+              - generic [ref=e53]: a
+              - generic [ref=e55]: world
+              - generic [ref=e57]: of
+              - generic [ref=e59]: its
+              - generic [ref=e61]: own.
+        - generic [ref=e63]:
+          - paragraph [aria-hidden] [ref=e64]:
+            - strong [ref=e65]: "01"
+            - generic [ref=e67]: "03"
+          - group "Hero slides" [ref=e68]:
+            - button "Previous slide" [ref=e69] [cursor=pointer]
+            - button "Next slide" [ref=e70] [cursor=pointer]
+        - paragraph [ref=e71]: "Slide 1 of 3: Every movement holds a memory"
+    - region [ref=e72]:
+      - generic [ref=e75]:
+        - generic [ref=e76]: 01 / Our story
+        - heading "rtambhara. A rhythm centuries in the making." [level=2] [ref=e78]:
+          - generic [ref=e80]: rtambhara.
+          - generic [aria-hidden] [ref=e82]:
+            - generic [ref=e83]: A
+            - generic [ref=e85]: rhythm
+            - generic [ref=e87]: centuries
+            - generic [ref=e89]: in
+          - generic [aria-hidden] [ref=e91]:
+            - generic [ref=e92]: the
+            - generic [ref=e94]: making.
+        - generic [ref=e96]:
+          - paragraph [ref=e97]: There is an intimacy to the way art travels through generations. In the patient hands of a teacher, the eager footsteps of a child, and the years of devotion that make every movement meaningful.
+          - paragraph [ref=e98]: Born from Smt. Girija’s 23 years of dedication to classical dance, rtambhara has grown into a cherished home for Bharatanatyam, contemporary dance, Thiruvathira, yoga and artistic exploration through workshops and performances.
+          - paragraph [ref=e99]: For a decade, we have held close the discipline of tradition, the beauty of expression, and the simple, profound joy of seeing another generation fall in love with the arts.
+        - link "Read More" [ref=e101] [cursor=pointer]:
+          - /url: /about-us
+    - region [ref=e104]:
+      - generic [ref=e108]:
+        - generic [ref=e109]: 02/ Our concept
+        - paragraph [ref=e112]: Rtam.
+        - generic [ref=e113]:
+          - heading "An underlying harmony. A living cycle of art." [level=2] [ref=e114]:
+            - generic [aria-hidden] [ref=e115]:
+              - generic [ref=e116]: An
+              - generic [ref=e118]: underlying
+              - generic [ref=e120]: harmony.
+            - generic [aria-hidden] [ref=e122]:
+              - generic [ref=e123]: A
+              - generic [ref=e125]: living
+              - generic [ref=e127]: cycle
+              - generic [ref=e129]: of
+              - generic [ref=e131]: art.
+          - paragraph [ref=e134]: Our approach connects creation, preservation, dissolution and expression — each part giving meaning to the whole.
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - paragraph [ref=e140]: Srishti
+            - paragraph [ref=e141]: Creation
+            - paragraph [ref=e142]: The impulse to imagine, explore and bring something new into being.
+          - generic [ref=e143]:
+            - paragraph [ref=e145]: Sthiti
+            - paragraph [ref=e146]: Preservation
+            - paragraph [ref=e147]: The care and continuity that keep a living tradition grounded.
+          - generic [ref=e148]:
+            - paragraph [ref=e150]: Laya
+            - paragraph [ref=e151]: Dissolution
+            - paragraph [ref=e152]: The release of one form, making space for renewal and transformation.
+    - region [ref=e153]:
+      - generic [ref=e155]:
+        - generic [ref=e156]: 03 / Our offerings
+        - heading "The many ways a body remembers joy." [level=2] [ref=e158]:
+          - generic [aria-hidden] [ref=e159]:
+            - generic [ref=e160]: The
+            - generic [ref=e162]: many
+            - generic [ref=e164]: ways
+            - generic [ref=e166]: a
+            - generic [ref=e168]: body
+          - generic [aria-hidden] [ref=e170]:
+            - generic [ref=e171]: remembers
+            - generic [ref=e173]: joy.
+        - paragraph [ref=e176]: There is a certain happiness in finding a movement that feels like your own. In the discipline of practice, the warmth of dancing together, and the quiet pleasure of discovering what your body can do. At rtambhara, we cherish each of these experiences.
+        - link "Explore" [ref=e178] [cursor=pointer]:
+          - /url: /about-us
+        - generic [ref=e181]:
+          - generic [ref=e182]:
+            - img "A Bharatanatyam dancer holding a classical pose" [ref=e184]
+            - generic [ref=e185]:
+              - paragraph [ref=e186]: Bharatanatyam
+              - paragraph [ref=e187]: The poetry of ancient traditions, preserved in every gesture, expression and measured step.
+          - generic [ref=e188]:
+            - img "A contemporary dancer in motion" [ref=e190]
+            - generic [ref=e191]:
+              - paragraph [ref=e192]: Contemporary dance
+              - paragraph [ref=e193]: The fierce spirit of Kalari, finding new meaning through the freedom of contemporary movement.
+          - generic [ref=e194]:
+            - img "Dancers moving together in a Thiruvathira circle" [ref=e196]
+            - generic [ref=e197]:
+              - paragraph [ref=e198]: Thiruvathira
+              - paragraph [ref=e199]: Familiar songs, graceful circles, and the beautiful togetherness of a tradition we grew up loving.
+          - generic [ref=e200]:
+            - img "A yoga practitioner in a calm seated pose" [ref=e202]
+            - generic [ref=e203]:
+              - paragraph [ref=e204]: Yoga
+              - paragraph [ref=e205]: The gentle art of listening to your body, caring for its strength and growing gracefully with time.
+    - region [ref=e206]:
+      - generic [ref=e207]:
+        - img "The candlelit interior of a Kerala temple, its wooden pillars carved with stories" [ref=e211]
+        - generic [ref=e212]:
+          - generic [ref=e213]: 04 / The Rtambhara experience
+          - heading "Even the walls seem to know the rhythm." [level=2] [ref=e215]:
+            - generic [aria-hidden] [ref=e216]:
+              - generic [ref=e217]: Even
+              - generic [ref=e219]: the
+              - generic [ref=e221]: walls
+              - generic [ref=e223]: seem
+              - generic [ref=e225]: to
+            - generic [aria-hidden] [ref=e227]:
+              - generic [ref=e228]: know
+              - generic [ref=e230]: the
+              - generic [ref=e232]: rhythm.
+          - generic [ref=e234]:
+            - paragraph [ref=e235]: There is an intimacy to the way art travels through generations. In the patient hands of a teacher, the eager footsteps of a child, and the years of devotion that make every movement meaningful.
+            - paragraph [ref=e236]: Born from Smt. Girija’s 23 years of dedication to classical dance, rtambhara has grown into a cherished home for Bharatanatyam, contemporary dance, Thiruvathira, yoga and artistic exploration through workshops and performances.
+            - paragraph [ref=e237]: For a decade, we have held close the discipline of tradition, the beauty of expression, and the simple, profound joy of seeing another generation fall in love with the arts.
+          - blockquote [ref=e240]: A place to arrive with curiosity, linger with joy, and leave carrying a little of its peace within you.
+    - region [ref=e241]:
+      - generic [ref=e243]:
+        - generic [ref=e244]:
+          - generic [ref=e245]: 05 / The Academy Journal
+          - heading "Art, beyond the classroom." [level=2] [ref=e247]:
+            - generic [aria-hidden] [ref=e248]:
+              - generic [ref=e249]: Art,
+              - generic [ref=e251]: beyond
+              - generic [ref=e253]: the
+            - generic [ref=e256]: classroom.
+        - generic [ref=e260]:
+          - generic [ref=e261]:
+            - paragraph [ref=e262]: "13"
+            - paragraph [ref=e263]: AUG 2026
+          - generic [ref=e264]:
+            - paragraph [ref=e265]: PERFORMANCE · PAST EVENT
+            - heading "Raghaveeyam" [level=3] [ref=e266]
+            - paragraph [ref=e267]: An observance of Ramayana Month. Bhagavatpadham Bharathanatyam at Sreepoornathrayeesa Temple, Tripunithura.
+    - region [ref=e268]:
+      - generic [ref=e269]:
+        - generic [ref=e270]: 05 / Academy News
+        - heading "Art, beyond the classroom." [level=2] [ref=e272]:
+          - generic [aria-hidden] [ref=e273]:
+            - generic [ref=e274]: Art,
+            - generic [ref=e276]: beyond
+            - generic [ref=e278]: the
+            - generic [ref=e280]: classroom.
+        - link "Explore" [ref=e283] [cursor=pointer]:
+          - /url: /about-us#news
+        - generic [ref=e286]:
+          - generic [ref=e287]:
+            - img "A dancer performing beneath warm temple lights" [ref=e288]
+            - generic [ref=e290]:
+              - paragraph [ref=e291]: Classical heritage
+              - heading "Raghaveeyam" [level=3] [ref=e292]
+              - paragraph [ref=e293]: "rtambhara Academy for Performing and Visual Arts presents: \"RAGHAVEEYAM – Observance of Ramayana Month, Bhagavatpadham Bharathanatyam\" at Sreepoornathrayeesa Temple, Tripunithura on 13th August 2026."
+              - link "Read full story" [ref=e294] [cursor=pointer]:
+                - /url: /about-us#news
+                - generic [aria-hidden] [ref=e296]: →
+          - generic [ref=e297]:
+            - generic [ref=e298]:
+              - img "A classical dance performance on stage" [ref=e300]
+              - generic [ref=e301]:
+                - paragraph [ref=e302]: Classical heritage
+                - heading "Raghaveeyam" [level=3] [ref=e303]
+                - paragraph [ref=e304]: "rtambhara Academy for Performing and Visual Arts presents: \"RAGHAVEEYAM –\""
+                - link "Read full story" [ref=e305] [cursor=pointer]:
+                  - /url: /about-us#news
+                  - generic [aria-hidden] [ref=e307]: →
+            - generic [ref=e308]:
+              - img "A Bharatanatyam recital in progress" [ref=e310]
+              - generic [ref=e311]:
+                - paragraph [ref=e312]: Classical heritage
+                - heading "Raghaveeyam" [level=3] [ref=e313]
+                - paragraph [ref=e314]: "rtambhara Academy for Performing and Visual Arts presents: \"RAGHAVEEYAM –\""
+                - link "Read full story" [ref=e315] [cursor=pointer]:
+                  - /url: /about-us#news
+                  - generic [aria-hidden] [ref=e317]: →
+          - generic [ref=e318]:
+            - img "Students practising yoga together" [ref=e320]
+            - img "A Kalaripayattu practitioner mid-movement" [ref=e322]
+    - region [ref=e323]:
+      - generic [ref=e326]:
+        - generic [ref=e327]: 07 / Our team
+        - heading "The hands that nurture the art, the hearts that keep it alive." [level=2] [ref=e329]:
+          - generic [aria-hidden] [ref=e330]:
+            - generic [ref=e331]: The
+            - generic [ref=e333]: hands
+            - generic [ref=e335]: that
+            - generic [ref=e337]: nurture
+            - generic [ref=e339]: the
+            - generic [ref=e341]: art,
+          - generic [aria-hidden] [ref=e343]:
+            - generic [ref=e344]: the
+            - generic [ref=e346]: hearts
+            - generic [ref=e348]: that
+            - generic [ref=e350]: keep
+            - generic [ref=e352]: it
+            - generic [ref=e354]: alive.
+        - link "Explore" [ref=e357] [cursor=pointer]:
+          - /url: /about-us#team
+        - generic [ref=e360]:
+          - generic [ref=e361]:
+            - img "Portrait of Girija Ravindranath" [ref=e363]
+            - heading "Girija Ravindranath" [level=3] [ref=e364]
+            - paragraph [ref=e365]: Music & Dance
+          - generic [ref=e366]:
+            - img "Portrait of Satyajit Ravindranath" [ref=e368]
+            - heading "Satyajit Ravindranath" [level=3] [ref=e369]
+            - paragraph [ref=e370]: Contemporary Dance
+    - region [ref=e371]:
+      - generic [ref=e372]:
+        - generic:
+          - img "A Kalaripayattu practitioner holding a urumi sword"
+        - generic [ref=e373]:
+          - link "+91 99612 60009" [ref=e374] [cursor=pointer]:
+            - /url: tel:+919961260009
+          - link "mail@rtambhara.com" [ref=e375] [cursor=pointer]:
+            - /url: mailto:mail@rtambhara.com
+          - generic [ref=e376]:
+            - paragraph [ref=e377]: Find us in Tripunithura
+            - paragraph [ref=e378]: TRRA 66, Mahalakshmi, Thevarakkavu Road,Tripunithura, Kerala
+            - paragraph [ref=e379]: Regular Bharatanatyam classes for young students:Ladies Club Hall, Tripunithura.
+          - paragraph [ref=e380]: For trial classes, admissions or a little guidance, leave us a note. We'd love to hear from you.
+        - generic [ref=e381]:
+          - paragraph [ref=e382]: 08 / Let's begin a conversation
+          - heading "Your art is waiting for you." [level=2] [ref=e383]:
+            - generic [aria-hidden] [ref=e384]:
+              - generic [ref=e385]: Your
+              - generic [ref=e387]: art
+              - generic [ref=e389]: is
+            - generic [aria-hidden] [ref=e391]:
+              - generic [ref=e392]: waiting
+              - generic [ref=e394]: for
+              - generic [ref=e396]: you.
+          - generic [ref=e398]:
+            - generic [ref=e399]:
+              - generic [ref=e400]:
+                - generic [ref=e401]: Your name *
+                - textbox "Your name *" [ref=e402]:
+                  - /placeholder: Full name
+              - generic [ref=e403]:
+                - generic [ref=e404]: Phone number *
+                - textbox "Phone number *" [ref=e405]:
+                  - /placeholder: "+91"
+            - generic [ref=e406]:
+              - generic [ref=e407]:
+                - generic [ref=e408]: Email address
+                - textbox "Email address" [ref=e409]:
+                  - /placeholder: you@example.com
+              - generic [ref=e410]:
+                - generic [ref=e411]: Interested discipline *
+                - combobox "Interested discipline *" [ref=e412] [cursor=pointer]:
+                  - option "Select an art form" [disabled] [selected]
+                  - option "Bharatanatyam"
+                  - option "Contemporary Kalaripayattu"
+                  - option "Training Programs"
+                  - option "Yoga Sadhana"
+            - generic [ref=e413]:
+              - generic [ref=e414]: Anything you'd like us to know?
+              - textbox "Anything you'd like us to know?" [ref=e415]:
+                - /placeholder: Tell us a little about your interests or experience…
+            - generic [ref=e416]:
+              - checkbox "I agree to be contacted by RTAMBHARA about this enquiry." [ref=e417] [cursor=pointer]
+              - generic [ref=e418] [cursor=pointer]: I agree to be contacted by RTAMBHARA about this enquiry.
+            - generic [ref=e419]:
+              - button "Contact us" [ref=e420] [cursor=pointer]
+              - generic [ref=e423]: "* Required fields"
+    - region [ref=e424]:
+      - generic [ref=e427]:
+        - generic [ref=e428]: 09 / Success stories
+        - heading "Stories that Inspire the Generations" [level=2] [ref=e430]:
+          - generic [aria-hidden] [ref=e431]:
+            - generic [ref=e432]: Stories
+            - generic [ref=e434]: that
+          - generic [aria-hidden] [ref=e436]:
+            - generic [ref=e437]: Inspire
+            - generic [ref=e439]: the
+            - generic [ref=e441]: Generations
+        - generic [ref=e444]:
+          - img "An ensemble Bharatanatyam performance on stage" [ref=e446]
+          - generic [ref=e448]: 0:00 / 2:15
+        - generic [ref=e453]:
+          - figure [ref=e454]:
+            - generic [ref=e455]:
+              - blockquote [ref=e456]:
+                - paragraph [ref=e457]: A journey that began with curiosity transformed into a beautiful expression of discipline, dedication and artistic excellence.
+              - generic [ref=e458]:
+                - generic [ref=e459]: Ananya Menon
+                - generic [ref=e460]: Classical Dance Artist
+          - generic [ref=e461]:
+            - button "Previous story" [ref=e462] [cursor=pointer]
+            - button "Next story" [ref=e463] [cursor=pointer]
+        - list [ref=e465]:
+          - listitem [ref=e466]:
+            - button "Show story by Arjun Varma" [ref=e467] [cursor=pointer]
+          - listitem [ref=e468]:
+            - button "Show story by Ananya Menon" [ref=e469] [cursor=pointer]
+          - listitem [ref=e470]:
+            - button "Show story by Meera Krishnan" [ref=e471] [cursor=pointer]
+          - listitem [ref=e472]:
+            - button "Show story by Divya Nair" [ref=e473] [cursor=pointer]
+  - contentinfo [ref=e474]:
+    - generic [ref=e476]:
+      - generic [ref=e478]:
+        - generic [ref=e479]:
+          - generic [ref=e482]:
+            - generic [ref=e483]: rtambhara
+            - generic [ref=e484]: Academy of Arts
+          - paragraph [ref=e485]: Preserving classical Indian dance, ancient martial arts of Kalaripayattu, and contemporary visual arts since 2012.
+        - navigation "Footer quick links" [ref=e487]:
+          - heading "Quick Links" [level=3] [ref=e488]
+          - list [ref=e489]:
+            - listitem [ref=e490]:
+              - link "Home" [ref=e491] [cursor=pointer]:
+                - /url: /
+            - listitem [ref=e492]:
+              - link "About Academy" [ref=e493] [cursor=pointer]:
+                - /url: /about-us
+            - listitem [ref=e494]:
+              - link "Training Programs" [ref=e495] [cursor=pointer]:
+                - /url: /#programs
+            - listitem [ref=e496]:
+              - link "News & Events" [ref=e497] [cursor=pointer]:
+                - /url: /#news
+            - listitem [ref=e498]:
+              - link "Photo Gallery" [ref=e499] [cursor=pointer]:
+                - /url: /#gallery
+        - navigation "Footer disciplines" [ref=e500]:
+          - heading "Disciplines" [level=3] [ref=e501]
+          - list [ref=e502]:
+            - listitem [ref=e503]:
+              - link "Bharatanatyam Masterclasses" [ref=e504] [cursor=pointer]:
+                - /url: /#programs
+            - listitem [ref=e505]:
+              - link "Contemporary Kalaripayattu" [ref=e506] [cursor=pointer]:
+                - /url: /#programs
+            - listitem [ref=e507]:
+              - link "Yoga Sadhana" [ref=e508] [cursor=pointer]:
+                - /url: /#programs
+        - generic [ref=e509]:
+          - heading "Studio Location" [level=3] [ref=e510]
+          - paragraph [ref=e511]: TRRA 66, Mahalakshmi, Thevarakkavu Road, Tripunithura
+          - generic [ref=e512]:
+            - 'link "Email: mail@rtambhara.com" [ref=e513] [cursor=pointer]':
+              - /url: mailto:mail@rtambhara.com
+            - 'link "Phone: +91 99612 60009" [ref=e514] [cursor=pointer]':
+              - /url: tel:+919961260009
+      - generic [ref=e515]:
+        - paragraph [ref=e516]: © 2026 rtambhara Academy for Performing & Visual Arts. All rights reserved.
+        - generic [ref=e517]:
+          - link "Privacy Policy" [ref=e518] [cursor=pointer]:
+            - /url: /#contact
+          - link "Terms of Heritage" [ref=e519] [cursor=pointer]:
+            - /url: /#contact
+          - link "Join Community" [ref=e520] [cursor=pointer]:
+            - /url: /#contact
+  - button "Open Next.js Dev Tools" [ref=e526] [cursor=pointer]

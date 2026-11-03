@@ -4,7 +4,8 @@
   border-top: 1px solid rgba(197, 157, 95, 0.15);
   background: linear-gradient(111deg, #2e0a0f 0%, #4b0d12 100%);
   color: #9ca3af;
-  overflow: clip;
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .frame {
@@ -22,7 +23,6 @@
   display: flex;
   height: 253px;
   overflow: hidden;
-  opacity: 0.4;
   pointer-events: none;
 }
 

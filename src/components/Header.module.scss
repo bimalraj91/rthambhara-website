@@ -167,17 +167,14 @@
 .emblemMark {
   position: absolute;
   inset: 0;
-  display: grid;
-  border: 1px solid rgba(154, 120, 68, 0.55);
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  place-items: center;
-  color: var(--color-gold);
+  object-fit: contain;
+  // The JPG has a white backdrop; multiply lets the header colour show through.
+  mix-blend-mode: multiply;
   opacity: 0;
   transform: scale(0.6) rotate(-18deg);
-
-  @include serif(500);
-  font-size: 21px;
-  line-height: 1;
   transition:
     opacity 0.4s ease,
     transform 0.6s var(--ease-out);

@@ -96,6 +96,11 @@
   background: #140303;
 }
 
+.videoSlide {
+  position: absolute;
+  inset: 0;
+}
+
 .videoImage {
   object-fit: cover;
 }
@@ -223,30 +228,46 @@
   position: absolute;
   top: 801px;
   left: 136px;
+  width: 1184px;
+  height: 213px;
+}
+
+.track {
   display: flex;
   gap: 16px;
-  width: 1184px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slot {
+  flex: 0 0 280px;
   height: 213px;
 }
 
 .tile {
   position: relative;
-  width: 280px;
-  height: 213px;
-  flex: 0 0 280px;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
   overflow: hidden;
   border: 1px solid rgba(217, 180, 100, 0.2);
   border-radius: 12px;
   background: #3a1313;
   opacity: 0.8;
+  cursor: pointer;
   transition:
     opacity 0.4s var(--ease-out),
-    transform 0.4s var(--ease-out);
+    border-color 0.4s var(--ease-out),
+    background 0.4s var(--ease-out);
 
   &:hover {
     opacity: 1;
-    transform: translateY(-4px);
   }
+
+  @include focus-ring(#d9b464);
 }
 
 .tileActive {
@@ -301,6 +322,10 @@
     padding: 8px 4px;
   }
 
+  .track {
+    width: max-content;
+  }
+
   .nav {
     position: static;
     margin-top: 24px;
@@ -332,9 +357,8 @@
     line-height: 1.4;
   }
 
-  .tile {
-    width: 220px;
-    height: 168px;
+  .slot {
     flex-basis: 220px;
+    height: 168px;
   }
 }
