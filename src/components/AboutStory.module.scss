@@ -17,6 +17,7 @@ $top: 840;
 
 .canvas {
   position: relative;
+  // width: 1440px;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -43,8 +44,11 @@ $top: 840;
   transform: rotate(11.11deg);
 }
 
+// Pictures on the right edge follow the viewport edge on screens wider than
+// the canvas; the text stays where it is.
 .handTop {
   @include at(1152, 802 - $top, 289, 564);
+  left: calc(1152px + var(--bleed));
   z-index: 3;
   overflow: hidden;
 }
@@ -68,6 +72,7 @@ $top: 840;
 
 .handFlip {
   @include at(979, 1614 - $top, 463, 538);
+  left: calc(979px + var(--bleed));
   transform: scaleX(-1);
 }
 
@@ -197,7 +202,7 @@ $top: 840;
   left: 3px;
   width: 680px;
   height: 5px;
-  background: #d9d9d9;
+  // background: #d9d9d9;
 }
 
 .visionCopy {

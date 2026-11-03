@@ -9,6 +9,11 @@ $top: 2500;
   z-index: 1;
   height: 2420px;
   overflow-x: clip;
+
+  // Extra room beside the centred 1440px canvas on wide screens (+16px covers
+  // the scrollbar, which 100vw includes). Pictures on either edge move out by
+  // this much so they stay flush with the screen edge; text stays put.
+  --bleed: calc(max(0px, (100vw - 1440px) / 2) + 16px);
 }
 
 .canvas {
@@ -30,12 +35,13 @@ $top: 2500;
 
 .circle {
   @include at(-504, 2427.88 - $top, 949.452, 871.179);
+  left: calc(-504px - var(--bleed));
 }
 
 .circleTile {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 47%;
   width: 871.179px;
   height: 949.452px;
   transform: translate(-50%, -50%) rotate(-90deg);
@@ -48,6 +54,7 @@ $top: 2500;
 
 .sheetLeft {
   @include at(-496.406, 2389 - $top, 1080.406, 1045.694);
+  left: calc(-496.406px - var(--bleed));
   overflow: hidden;
   opacity: 0.1;
 }
@@ -78,6 +85,7 @@ $top: 2500;
 
 .sheetNine {
   @include at(-294, 3819 - $top, 753, 827);
+  left: calc(-294px - var(--bleed));
   opacity: 0.38;
 }
 
@@ -87,6 +95,7 @@ $top: 2500;
 
 .handLeft {
   @include at(-7, 3942 - $top, 481, 641);
+  left: calc(-7px - var(--bleed));
 }
 
 .glow {
@@ -109,6 +118,7 @@ $top: 2500;
 
 .handRight {
   @include at(963, 4483 - $top, 477, 374);
+  left: calc(963px + var(--bleed));
   overflow: hidden;
 }
 

@@ -35,7 +35,7 @@ export default function AboutStory() {
           <Crop
             src={`${A}/download2.webp`}
             sizes="380px"
-            box={{ height: "100%", left: "-40.05%", top: "0", width: "130.09%" }}
+            box={{ height: "100%", left: "-30.05%", top: "0", width: "130.09%" }}
           />
         </div>
 
