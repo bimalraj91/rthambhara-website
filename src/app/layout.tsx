@@ -10,6 +10,7 @@ import {
 import localFont from "next/font/local";
 import "./globals.scss";
 import Footer from "@/components/Footer";
+import IntroCurtain from "@/components/IntroCurtain";
 import Header from "@/components/Header";
 import ScrollProgress from "@/components/motion/ScrollProgress";
 
@@ -156,6 +157,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${cormorant.variable} ${dmSans.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${liberationMono.variable}`}
     >
       <body>
+        <IntroCurtain />
         <ScrollProgress />
         <a className="skip-link" href="#main">
           Skip to content

@@ -8,12 +8,10 @@ import News from "@/components/News";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
 import Stories from "@/components/Stories";
-import IntroCurtain from "@/components/IntroCurtain";
 
 export default function Home() {
   return (
     <main id="main">
-      <IntroCurtain />
       <Hero />
       <Intro />
       <Concept />
