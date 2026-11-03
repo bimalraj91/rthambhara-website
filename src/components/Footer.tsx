@@ -32,9 +32,23 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.frame}>
+        <div className={styles.ornaments} aria-hidden="true">
+          {[1, 2, 3].map((n) => (
+            <Image
+              key={n}
+              src={`/assets/home/footer-ornament-${n}.png`}
+              alt=""
+              width={502}
+              height={253}
+              className={styles.ornament}
+              style={{ width: "auto" }}
+            />
+          ))}
+        </div>
+
         <div className={styles.motif} aria-hidden="true">
           <Image
-            src="/assets/images/footer-motif-background.webp"
+            src="/assets/home/footer-lineart.png"
             alt=""
             fill
             sizes="552px"
@@ -49,7 +63,7 @@ export default function Footer() {
                 <div className={styles.brand}>
                   <span className={styles.emblem}>
                     <Image
-                      src="/assets/brand/rtambhara-emblem.png"
+                      src="/assets/home/emblem.png"
                       alt=""
                       width={50}
                       height={50}
@@ -57,7 +71,7 @@ export default function Footer() {
                     />
                   </span>
                   <span className={styles.wordmark}>
-                    <span className={styles.name}>RTAMBHARA</span>
+                    <span className={styles.name}>rtambhara</span>
                     <span className={styles.tagline}>Academy of Arts</span>
                   </span>
                 </div>
@@ -117,7 +131,7 @@ export default function Footer() {
 
           <Reveal as="div" className={styles.bottom} delay={0.14} y={20}>
             <p className={styles.copyright}>
-              © 2026 Rtambhara Academy for Performing & Visual Arts. All
+              © 2026 rtambhara Academy for Performing & Visual Arts. All
               rights reserved.
             </p>
             <div className={styles.bottomLinks}>

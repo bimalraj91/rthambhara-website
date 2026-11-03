@@ -54,7 +54,7 @@ export default function Header() {
           <Link href="/" className={styles.brand} aria-label="Rtambhara Academy home">
             <span className={styles.emblem} aria-hidden="true">
               <Image
-                src="/assets/brand/rtambhara-emblem.png"
+                src="/assets/home/emblem.png"
                 alt=""
                 width={44}
                 height={44}
@@ -65,7 +65,7 @@ export default function Header() {
               <span className={styles.emblemMark}>R</span>
             </span>
             <span className={styles.wordmark}>
-              <span className={styles.name}>Rtambhara</span>
+              <span className={styles.name}>rtambhara</span>
               <span className={styles.tagline}>Performing &amp; Visual Arts</span>
             </span>
           </Link>

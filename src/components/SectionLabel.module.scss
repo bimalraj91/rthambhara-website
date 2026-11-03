@@ -1,0 +1,74 @@
+@use "../styles/mixins" as *;
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-maroon);
+  white-space: nowrap;
+}
+
+.line {
+  display: block;
+  flex: 0 0 var(--label-line);
+  width: var(--label-line);
+  height: 1px;
+  background: currentColor;
+}
+
+.text {
+  @include sans(400);
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.compact .text {
+  @include sans(600);
+  font-size: 13px;
+  line-height: 17px;
+}
+
+.strong .text {
+  @include sans(500);
+}
+
+.maroon {
+  color: var(--color-maroon);
+}
+
+.red {
+  color: var(--color-red);
+}
+
+.white {
+  color: #fff;
+}
+
+.gold {
+  color: var(--color-gold-light);
+}
+
+.dark {
+  color: var(--color-ink-deep);
+}
+
+.muted {
+  color: var(--color-muted);
+}
+
+@include below($bp-mobile) {
+  .label {
+    gap: 10px;
+  }
+
+  .text {
+    font-size: 11px;
+    line-height: 15px;
+  }
+
+  .compact .text {
+    font-size: 11px;
+  }
+}

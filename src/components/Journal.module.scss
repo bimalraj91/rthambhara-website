@@ -2,88 +2,72 @@
 
 .journal {
   position: relative;
-  min-height: 630px;
+  height: 690px;
   overflow: hidden;
-  background: #5b1118;
-  color: var(--color-gold-light);
+  background: var(--color-cream);
+  color: #f7f1e6;
 }
 
 .background {
-  object-fit: cover;
-  object-position: center;
-}
-
-.veil {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(68, 8, 14, 0.24) 0%,
-    rgba(68, 8, 14, 0.05) 55%,
-    rgba(68, 8, 14, 0.2) 100%
-  );
+  top: 0;
+  left: 50%;
+  width: 1456px;
+  height: 637px;
+  max-width: none;
+  transform: translateX(-50%);
+  object-fit: cover;
 }
 
 .inner {
   position: relative;
   z-index: 1;
-  display: grid;
-  grid-template-columns: 398px 600px;
-  gap: 69px;
-  align-items: start;
   width: 100%;
   max-width: 1440px;
+  height: 100%;
   margin: 0 auto;
-  padding: 213px clamp(24px, 9.3vw, 134px) 48px clamp(24px, 6.32vw, 91px);
 }
 
 .heading {
-  width: 398px;
+  position: absolute;
+  top: 216px;
+  left: 91px;
+  width: 430px;
 }
 
-.eyebrow {
-  color: #f2ede3;
-
-  font-family: var(--font-inter), Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 500;
-  line-height: 1.3;
-  text-transform: uppercase;
-}
-
-.heading h2 {
-  margin-top: 22px;
-  color: #f7f1e6;
+.title {
+  margin-top: 18px;
 
   @include serif(400);
-  font-size: clamp(44px, 4.17vw, 60px);
-  line-height: 1;
-  letter-spacing: 0;
+  font-size: 60px;
+  font-variation-settings: "opsz" 60;
+  line-height: 60px;
+  letter-spacing: -0.5px;
+  color: #f7f1e6;
 }
 
 .event {
+  position: absolute;
+  top: 215px;
+  left: 558px;
   width: 600px;
-  max-width: 100%;
-  padding-top: 2px;
 }
 
 .rule {
   width: 100%;
   height: 1px;
   background: #c9c1b3;
-  opacity: 0.72;
 }
 
-.eventContent {
-  display: flex;
+.eventGrid {
+  display: grid;
+  grid-template-columns: 80px 1fr;
   gap: 32px;
-  align-items: flex-start;
-  margin-top: 24px;
+  padding-top: 24px;
 }
 
 .date {
-  flex: 0 0 80px;
-  width: 80px;
+  color: #d8be8d;
 }
 
 .day {
@@ -94,126 +78,150 @@
 
 .month {
   margin-top: 14px;
-  font-family: var(--font-inter), Arial, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
   font-size: 13px;
-  line-height: 1.3;
-  text-transform: uppercase;
+  line-height: normal;
+  color: #d8be8d;
 }
 
-.narrative {
-  min-width: 0;
-  flex: 1;
-}
-
-.type {
+.category {
   @include sans(400);
   font-size: 18px;
-  line-height: 1.5;
-  text-transform: uppercase;
+  line-height: 23px;
+  color: #d8be8d;
 }
 
-.narrative h3 {
+.eventTitle {
   margin-top: 16px;
+  text-transform: uppercase;
 
   @include serif(400);
-  font-size: clamp(38px, 3.33vw, 48px);
+  font-size: 48px;
+  font-variation-settings: "opsz" 48;
   line-height: 1.1;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  color: #d8be8d;
 }
 
 .copy {
-  max-width: 488px;
   margin-top: 16px;
+  color: #d8be8d;
 
   @include sans(300);
   font-size: 18px;
   line-height: 1.7;
 }
 
-@include below(1180px) {
-  .inner {
-    grid-template-columns: 33% 1fr;
-    gap: 48px;
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 18px;
+
+  @include sans(500);
+  font-size: 13px;
+  line-height: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f7f1e6;
+  transition: color 0.3s var(--ease-out);
+
+  img {
+    width: 24px;
+    height: 24px;
   }
 
-  .heading {
-    width: auto;
+  &:hover {
+    color: var(--color-gold-light);
+  }
+
+  @include focus-ring(var(--color-gold-light));
+}
+
+@include below(1280px) {
+  .journal {
+    height: auto;
+    min-height: 0;
+    padding: 118px 48px 82px;
+  }
+
+  .background {
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 64px;
+    height: auto;
+  }
+
+  .heading,
+  .event {
+    position: static;
+    width: 100%;
+  }
+
+  .title {
+    font-size: clamp(48px, 5.6vw, 60px);
+    line-height: 1.04;
   }
 
   .event {
-    width: auto;
+    padding-top: 4px;
   }
 }
 
 @include below($bp-tablet) {
   .journal {
-    min-height: 720px;
+    padding: 94px 24px 64px;
   }
 
   .inner {
     grid-template-columns: 1fr;
     gap: 38px;
-    padding: 118px 24px 64px;
   }
 
-  .heading h2 {
-    font-size: clamp(42px, 6.6vw, 56px);
+  .title {
+    margin-top: 14px;
+    font-size: clamp(42px, 8.2vw, 56px);
   }
 
-  .event {
-    max-width: 600px;
+  .eventGrid {
+    grid-template-columns: 76px 1fr;
+    gap: 16px;
+  }
+
+  .copy {
+    font-size: 16px;
+    line-height: 1.75;
   }
 }
 
 @include below($bp-mobile) {
   .journal {
-    min-height: 740px;
+    padding: 84px 18px 54px;
   }
 
-  .inner {
-    gap: 32px;
-    padding: 80px 20px 56px;
-  }
-
-  .heading h2 {
-    margin-top: 16px;
-    font-size: clamp(36px, 10.4vw, 46px);
-    line-height: 1.04;
-  }
-
-  .eventContent {
-    gap: 22px;
-    margin-top: 18px;
+  .eventGrid {
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .date {
-    flex-basis: 60px;
-    width: 60px;
-  }
-
-  .day {
-    font-size: 46px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
   }
 
   .month {
-    margin-top: 8px;
-    font-size: 11px;
+    margin-top: 0;
   }
 
-  .type {
-    font-size: 13px;
-    line-height: 1.45;
-  }
-
-  .narrative h3 {
-    margin-top: 10px;
-    font-size: 34px;
-  }
-
-  .copy {
-    margin-top: 12px;
-    font-size: 15px;
-    line-height: 1.65;
+  .eventTitle {
+    font-size: 40px;
+    line-height: 1.1;
   }
 }

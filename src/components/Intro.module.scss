@@ -1,115 +1,300 @@
 @use "../styles/mixins" as *;
 
 .intro {
-  padding: 105px 0 0;
+  position: relative;
+  height: 839px;
+  overflow: hidden;
   background: var(--color-cream);
+  color: var(--color-ink-deep);
 }
 
 .inner {
-  width: calc(100% - 2 * clamp(24px, 9.31vw, 134px));
-  max-width: 1172px;
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
   margin: 0 auto;
+  padding-top: 40px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: minmax(0, 701px) minmax(280px, 1fr);
-  gap: clamp(40px, 5.55vw, 80px);
-  align-items: start;
-  margin-top: 22px;
+.dancer {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -3%;
+  width: 531px;
+  height: 713px;
+}
+
+.dancerImage {
+  width: 531px;
+  height: 713px;
+  object-fit: contain;
+  object-position: top left;
+}
+
+.ornamentLeft {
+  position: absolute;
+  z-index: 0;
+  top: -59px;
+  left: -86px;
+  width: 726px;
+  height: 734px;
+  opacity: 0.8;
+  // filter: grayscale(1) brightness(1.3);
+  transform: rotate(0.194rad);
+  pointer-events: none;
+}
+
+.ornamentRight {
+  position: absolute;
+  z-index: 0;
+  top: -80px;
+  left: 747px;
+  width: 753px;
+  height: 827px;
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.goldCollage {
+  position: absolute;
+  z-index: 1;
+  top: 545px;
+  left: -54px;
+  width: 400px;
+  height: 285px;
+  transform: rotate(180deg);
+  pointer-events: none;
+}
+
+.lotus {
+  position: absolute;
+  z-index: 3;
+  top: 589px;
+  left: 331px;
+  width: 162px;
+  height: 125px;
+  pointer-events: none;
+}
+
+.content {
+  position: absolute;
+  z-index: 2;
+  top: 131px;
+  left: 630px;
+  width: 625px;
 }
 
 .title {
-  color: var(--color-ink);
+  width: 617px;
+  margin-top: 11px;
 
   @include serif(400);
-  font-size: clamp(40px, 3.96vw, 57px);
-  line-height: 1.12;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-
-  span {
-    display: block;
-  }
+  font-size: 68px;
+  font-variation-settings: "opsz" 68;
+  line-height: 71.4px;
+  letter-spacing: -0.5px;
 }
 
-.gold {
-  color: var(--color-gold) !important;
+.titleDark {
+  color: var(--color-ink-deep);
+}
+
+.titleMaroon {
+  color: var(--color-maroon);
 }
 
 .copy {
-  padding-top: 8px;
-  color: var(--color-body);
+  width: 634px;
+  margin-top: 25px;
+  color: #6f6b61;
 
   @include sans(400);
   font-size: 18px;
-  font-variation-settings: "opsz" 18;
-  line-height: 1.7;
+  font-variation-settings: "opsz" 14;
+  line-height: 1.8;
+  text-align: justify;
+  text-justify: inter-word;
 
-  p + p {
-    margin-top: 24px;
-  }
 }
 
-@include below(1080px) {
-  .grid {
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 35%);
-    gap: 44px;
+.action {
+  margin-top: 24px;
+}
+
+@include below(1280px) {
+  .inner {
+    padding-left: 20px;
+  }
+
+  .dancer {
+    left: -2%;
+    width: 45vw;
+    height: auto;
+  }
+
+  .dancerImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    right: 56px;
+    left: auto;
+    width: min(625px, 54vw);
+  }
+
+  .title,
+  .copy {
+    width: 100%;
   }
 
   .title {
-    font-size: clamp(40px, 4.9vw, 55px);
-    letter-spacing: 2px;
+    font-size: clamp(52px, 5.3vw, 68px);
+    line-height: 1.05;
+  }
+
+  .ornamentRight {
+    left: auto;
+    right: -12%;
+    width: 62vw;
+    height: auto;
+  }
+
+  .goldCollage {
+    top: 56%;
+    width: min(400px, 32vw);
+    height: auto;
+  }
+
+  .lotus {
+    left: 31%;
+    width: 140px;
+    height: auto;
   }
 }
 
 @include below($bp-tablet) {
   .intro {
-    padding: 76px 0 70px;
+    height: auto;
+    min-height: 0;
+    padding: 28px 24px 76px;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
+  .inner {
+    height: auto;
+    padding: 0;
+  }
+
+  .dancer {
+    position: relative;
+    top: auto;
+    left: -5%;
+    width: min(62vw, 440px);
+    height: auto;
+  }
+
+  .dancerImage {
+    width: 100%;
+    height: auto;
+  }
+
+  .content {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    width: 100%;
+    max-width: 640px;
+    margin: -34px 0 0 auto;
   }
 
   .title {
-    max-width: 720px;
-    font-size: clamp(40px, 6.2vw, 54px);
+    margin-top: 20px;
+    font-size: clamp(45px, 8.2vw, 64px);
+    line-height: 1.02;
   }
 
   .copy {
-    max-width: 560px;
-    padding-top: 0;
+    margin-top: 28px;
     font-size: 17px;
+    line-height: 1.8;
+    text-align: left;
+  }
+
+  .ornamentLeft {
+    top: -30px;
+    left: -40%;
+    width: 88vw;
+    height: auto;
+    opacity: 0.08;
+  }
+
+  .ornamentRight {
+    top: 8%;
+    right: -34%;
+    width: 90vw;
+    left: auto;
+    height: auto;
+    opacity: 0.22;
+  }
+
+  .goldCollage {
+    top: 22%;
+    left: -16%;
+    width: 48vw;
+    height: auto;
+    opacity: 0.9;
+  }
+
+  .lotus {
+    top: auto;
+    bottom: 26px;
+    left: auto;
+    right: 7%;
+    width: 118px;
+    height: auto;
   }
 }
 
 @include below($bp-mobile) {
   .intro {
-    padding: 62px 0 58px;
+    padding: 18px 18px 66px;
   }
 
-  .inner {
-    width: calc(100% - 40px);
+  .dancer {
+    left: -10%;
+    width: 72vw;
+  }
+
+  .content {
+    margin-top: -10px;
   }
 
   .title {
-    font-size: clamp(31px, 8.7vw, 42px);
-    line-height: 1.15;
-    letter-spacing: 1.5px;
-
-    span {
-      display: inline;
-    }
-
-    span + span {
-      margin-left: 0.18em;
-    }
+    font-size: clamp(38px, 11.4vw, 52px);
   }
 
   .copy {
     font-size: 16px;
-    line-height: 1.68;
+    line-height: 1.75;
   }
+
+  .goldCollage {
+    top: 30%;
+    left: -28%;
+    width: 64vw;
+    opacity: 0.55;
+  }
+
+  .lotus {
+    display: none;
+  }
+}
+
+.fill {
+  display: block;
+  width: 100%;
+  height: 100%;
 }

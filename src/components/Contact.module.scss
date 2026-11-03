@@ -2,308 +2,312 @@
 
 .contact {
   position: relative;
-  overflow: clip;
+  z-index: 2;
+  height: 902px;
   background: var(--color-cream);
+  color: var(--color-ink-deep);
 }
 
 .inner {
   position: relative;
   width: 100%;
   max-width: 1440px;
-  min-height: 1002px;
+  height: 100%;
   margin: 0 auto;
-  padding: 114px 129px 60px 180px;
 }
 
-.decor {
+.warrior {
   position: absolute;
   z-index: 1;
-  top: 0;
-  left: 160px;
-  display: grid;
-  width: 576.84px;
-  height: 502.27px;
-  place-items: center;
+  top: -65px;
+  left: 272px;
+  width: 379px;
+  height: 505px;
   pointer-events: none;
 }
 
-.swordCrop {
-  position: relative;
-  width: 482px;
-  height: 348px;
-  overflow: hidden;
-  transform: rotate(21.83deg);
-}
-
-.swordImage {
-  position: absolute;
-  top: -21.37%;
-  left: -10.31%;
-  width: 120.46%;
-  height: 298.98%;
-  max-width: none;
-  object-fit: cover;
-}
-
-.layout {
-  position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 644px;
-  align-items: start;
+.warriorImage {
+  width: 379px;
+  height: 505px;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 24px 32px rgba(53, 13, 12, 0.22));
 }
 
 .details {
-  position: relative;
+  position: absolute;
   z-index: 2;
-  min-width: 0;
-  padding-top: 215px;
+  top: 365px;
+  left: 153px;
+  width: 380px;
 }
 
-.direct {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-.direct a {
+.phone {
   display: inline-block;
-  transition: color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
-
-  @include focus-ring(var(--color-gold));
-
-  &:hover {
-    transform: translateX(4px);
-  }
-}
-
-.direct a:first-child {
-  color: var(--color-maroon);
 
   @include serif(400);
   font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  line-height: 43px;
+  color: var(--color-red);
+  transition: color 0.3s var(--ease-out);
+
+  &:hover {
+    color: var(--color-maroon);
+  }
+
+  @include focus-ring(var(--color-maroon));
 }
 
-.direct a:last-child {
-  margin-top: 4px;
-  color: var(--color-muted);
+.email {
+  display: block;
+  width: fit-content;
+  margin-top: 3px;
 
   @include sans(400);
   font-size: 14px;
-  line-height: 1.8;
-}
+  line-height: 18px;
+  color: #4e4a42;
 
-.direct a:hover {
-  color: var(--color-gold);
+  &:hover {
+    color: var(--color-maroon);
+  }
+
+  @include focus-ring(var(--color-maroon));
 }
 
 .address {
-  margin-top: 32px;
-  color: var(--color-muted);
+  margin-top: 48px;
 
-  @include sans(400);
-  font-size: 14px;
-  line-height: 1.8;
+  @include sans(300);
+
+  p {
+    color: #555047;
+    font-size: 15px;
+    line-height: 27px;
+  }
+
+  p + p {
+    margin-top: 18px;
+  }
 }
 
 .addressLabel {
-  margin-bottom: 2px;
-  color: var(--color-red-deep);
+  margin-bottom: 4px;
 
-  @include eyebrow(12px, 0);
-
-  line-height: 1.6;
+  @include sans(500);
+  font-size: 12px !important;
+  line-height: 18px !important;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--color-red) !important;
 }
 
-.address p + p {
-  margin-top: 14px;
-}
+.note {
+  width: 360px;
+  margin-top: 46px;
 
-.quote {
-  width: 350px;
-  margin-top: 48px;
-  color: var(--color-ink-deep);
-
-  @include sans(400);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 400;
   font-size: 24px;
-  line-height: 1.8;
+  font-style: italic;
+  line-height: 43px;
+  color: var(--color-maroon);
 }
 
 .panel {
-  position: relative;
+  position: absolute;
   z-index: 3;
-  min-height: 828px;
-  padding: 30px 49px 51px;
-  border: 1px solid rgba(154, 120, 68, 0.12);
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(2px);
+  top: 0;
+  left: 646px;
+  width: 644px;
+  height: 828px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 12px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.44) 0%, rgba(255, 255, 255, 0.13) 100%);
+  box-shadow: 0 8px 30px rgba(59, 31, 18, 0.05);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.panel :global(form) {
+  position: absolute;
+  top: 281px;
+  left: 55px;
+  width: 545px;
+  margin-top: 0;
 }
 
 .eyebrow {
-  color: var(--color-muted);
+  position: absolute;
+  top: 32px;
+  left: 52px;
 
-  @include sans(500);
+  @include sans(600);
   font-size: 13px;
-  line-height: 1.2;
+  line-height: 17px;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  color: var(--color-maroon);
 }
 
-.panel h2 {
-  margin-top: 17px;
-  color: var(--color-ink-deep);
+.title {
+  position: absolute;
+  top: 63px;
+  left: 49px;
+  width: 545px;
 
   @include serif(400);
   font-size: 76px;
-  line-height: 1;
-  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 76;
+  line-height: 76px;
+  letter-spacing: -0.8px;
 }
 
-@include below($bp-wide) {
-  .inner {
-    padding: 100px 64px 56px 100px;
-  }
+.titleDark {
+  color: var(--color-ink-deep);
+}
 
-  .decor {
-    left: 74px;
-    width: min(480px, 45vw);
+.titleMaroon {
+  color: var(--color-maroon);
+}
+
+@include below(1280px) {
+  .contact {
     height: auto;
-    aspect-ratio: 576.84 / 502.27;
-  }
-
-  .swordCrop {
-    width: 83.56%;
-    height: auto;
-    aspect-ratio: 482 / 348;
-  }
-
-  .layout {
-    grid-template-columns: minmax(0, 1fr) min(560px, 50vw);
-  }
-
-  .details {
-    padding-top: 195px;
-  }
-
-  .panel {
     min-height: 0;
-    padding: 30px 38px 45px;
+    padding: 76px 48px 92px;
   }
 
-  .panel h2 {
-    font-size: clamp(62px, 5.3vw, 76px);
-  }
-
-  .quote {
-    max-width: 320px;
-  }
-}
-
-@include below($bp-desktop) {
   .inner {
-    padding: 88px 40px 52px;
+    display: grid;
+    grid-template-columns: minmax(280px, 0.78fr) minmax(0, 1.22fr);
+    align-items: center;
+    gap: 56px;
+    height: auto;
   }
 
-  .decor {
-    left: 22px;
-    width: min(440px, 48vw);
+  .warrior {
+    top: -12px;
+    left: -2%;
+    width: min(379px, 34vw);
+    height: auto;
+    opacity: 0.9;
   }
 
-  .layout {
-    grid-template-columns: minmax(0, 1fr) min(520px, 52vw);
+  .warriorImage {
+    width: 100%;
+    height: auto;
   }
 
   .details {
-    padding-top: 170px;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    padding-top: 280px;
   }
 
-  .direct a:first-child {
-    font-size: 29px;
-  }
-
-  .quote {
-    max-width: 290px;
-    font-size: 22px;
+  .title,
+  .eyebrow {
+    position: static;
   }
 
   .panel {
-    padding-inline: 32px;
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    min-height: 740px;
+    padding: 32px 42px 48px;
+  }
+
+  .title {
+    width: 100%;
+    margin-top: 20px;
+    font-size: clamp(54px, 6.2vw, 76px);
+    line-height: 1.02;
+  }
+
+  .panel :global(form) {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    margin-top: 40px;
   }
 }
 
 @include below($bp-tablet) {
+  .contact {
+    padding: 52px 24px 72px;
+  }
+
   .inner {
-    min-height: 0;
-    padding: 32px 24px 56px;
-  }
-
-  .decor {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: min(74vw, 440px);
-    margin: 0 auto;
-  }
-
-  .layout {
     grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .warrior {
+    top: 24px;
+    left: 4%;
+    width: min(48vw, 330px);
+    opacity: 0.78;
   }
 
   .details {
-    padding-top: 0;
-  }
-
-  .direct {
-    margin-top: -12px;
+    padding-top: 300px;
   }
 
   .panel {
-    width: 100%;
-    margin-top: 46px;
-    padding: 32px 34px 42px;
+    padding: 30px 26px 42px;
   }
 
-  .quote {
-    max-width: 430px;
+  .title {
+    font-size: clamp(44px, 8vw, 62px);
+  }
+
+  .details,
+  .note {
+    width: 100%;
+    max-width: 520px;
   }
 }
 
 @include below($bp-mobile) {
-  .inner {
-    padding: 24px 20px 48px;
+  .contact {
+    padding: 40px 16px 60px;
   }
 
-  .decor {
-    width: min(88vw, 390px);
+  .warrior {
+    top: 0;
+    left: -4%;
+    width: 58vw;
+    opacity: 0.62;
   }
 
-  .direct a:first-child {
-    font-size: 28px;
+  .details {
+    padding-top: 220px;
   }
 
-  .address {
-    margin-top: 26px;
+  .phone {
+    font-size: 27px;
   }
 
-  .quote {
-    width: 100%;
-    margin-top: 32px;
+  .note {
+    margin-top: 24px;
     font-size: 21px;
+    line-height: 1.6;
   }
 
   .panel {
-    margin-top: 36px;
-    padding: 28px 20px 32px;
+    padding: 26px 18px 34px;
+    border-radius: 14px;
   }
 
-  .panel h2 {
-    margin-top: 14px;
-    font-size: clamp(48px, 13vw, 64px);
-  }
-}
-
-@include below($bp-small) {
-  .panel h2 {
-    font-size: 47px;
+  .title {
+    font-size: clamp(37px, 11vw, 48px);
   }
 }

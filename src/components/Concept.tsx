@@ -1,109 +1,128 @@
 import Image from "next/image";
-import SectionMarker from "./SectionMarker";
+import SectionLabel from "./SectionLabel";
 import Reveal from "./motion/Reveal";
-import { StaggerGroup, StaggerItem } from "./motion/Stagger";
 import SplitText from "./motion/SplitText";
 import styles from "./Concept.module.scss";
 
 const principles = [
   {
     name: "Srishti",
-    label: "Creation",
-    copy: "The impulse to imagine, explore and bring something new into being.",
-    offset: "top",
+    meaning: "Creation",
+    description:
+      "The impulse to imagine, explore and bring something new into being.",
+    bead: "/assets/home/thread-bead.svg",
   },
   {
     name: "Sthiti",
-    label: "Preservation",
-    copy: "The care and continuity that keep a living tradition grounded.",
-    offset: "low",
+    meaning: "Preservation",
+    description:
+      "The care and continuity that keep a living tradition grounded.",
+    bead: "/assets/home/thread-bead-2.svg",
   },
   {
     name: "Laya",
-    label: "Dissolution",
-    copy: "The release of one form, making space for renewal and transformation.",
-    offset: "low",
+    meaning: "Dissolution",
+    description:
+      "The release of one form, making space for renewal and transformation.",
+    bead: "/assets/home/thread-bead.svg",
   },
-  {
-    name: "Bhava",
-    label: "Expression",
-    copy: "The feeling that gives movement, music and gesture their meaning.",
-    offset: "top",
-  },
-] as const;
+];
 
 export default function Concept() {
   return (
-    <section className={styles.concept} aria-labelledby="concept-title">
-      <div className={styles.inner}>
-        <SectionMarker tone="light" lineWidth={24}>
-          03 / Our Concept
-        </SectionMarker>
-
-        <div className={styles.introduction}>
-          <SplitText
-            as="p"
-            className={styles.rtam}
-            lines={["Rtam."]}
-            delay={0}
-            stagger={0.08}
-            duration={1.2}
+    <section
+      id="concept"
+      className={styles.concept}
+      aria-labelledby="concept-title"
+    >
+      <div className={styles.panel}>
+        <div className={styles.backgroundWrap} aria-hidden="true">
+          <Image
+            src="/assets/home/concept-bg-clean.png"
+            alt=""
+            fill
+            sizes="100vw"
+            className={styles.background}
           />
+        </div>
+
+        <Image
+          src="/assets/home/concept-corner.png"
+          alt=""
+          width={193}
+          height={123}
+          aria-hidden="true"
+          className={styles.corner}
+        />
+        <div className={styles.transition} aria-hidden="true" />
+
+        <div className={styles.inner}>
+          <SectionLabel
+            tone="gold"
+            lineWidth={24}
+            compact
+            className={styles.label}
+          >
+            02/ Our concept
+          </SectionLabel>
+
+          <Reveal className={styles.rtamWrap}>
+            <p className={styles.rtam}>Rtam.</p>
+          </Reveal>
 
           <div className={styles.narrative}>
             <SplitText
               id="concept-title"
               as="h2"
-              lines={[
-                "An underlying harmony.",
-                "A living cycle of art.",
-              ]}
-              delay={0.1}
+              className={styles.title}
+              delay={0.08}
+              stagger={0.05}
+              lines={["An underlying harmony.", "A living cycle of art."]}
             />
-            <Reveal as="p" delay={0.2} y={24}>
-              Our approach connects creation, preservation, dissolution and
-              expression — each part giving meaning to the whole.
+            <Reveal delay={0.16}>
+              <p className={styles.copy}>
+                Our approach connects creation, preservation, dissolution and
+                expression — each part giving meaning to the whole.
+              </p>
             </Reveal>
           </div>
-        </div>
 
-        <div className={styles.cycle}>
-          <div className={styles.thread} aria-hidden="true">
+          <div className={styles.cycle}>
             <Image
-              src="/assets/patterns/cycle-thread.svg"
+              src="/assets/home/cycle-thread.svg"
               alt=""
-              fill
-              sizes="1280px"
-              className={styles.threadImage}
+              width={1280}
+              height={101}
+              aria-hidden="true"
+              className={styles.thread}
             />
-          </div>
 
-          <StaggerGroup
-            className={styles.principles}
-            stagger={0.14}
-            amount={0.2}
-          >
-            {principles.map((principle) => (
-              <StaggerItem
-                key={principle.name}
-                as="article"
-                className={`${styles.principle} ${styles[principle.offset]}`}
-                y={40}
-              >
-                <span className={styles.bead} aria-hidden="true">
+            <div className={styles.principles}>
+              {principles.map((principle, index) => (
+                <Reveal
+                  key={principle.name}
+                  className={styles.principle}
+                  delay={0.1 + index * 0.1}
+                >
                   <Image
-                    src="/assets/patterns/thread-bead.svg"
+                    src={principle.bead}
                     alt=""
                     width={7}
                     height={7}
+                    aria-hidden="true"
+                    className={styles.bead}
                   />
-                </span>
-                <h3>{principle.name}</h3>
-                <p className={styles.label}>{principle.label}</p>
-                <p className={styles.copy}>{principle.copy}</p>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+                  <p className={styles.principleName}>{principle.name}</p>
+                  <p className={styles.principleMeaning}>
+                    {principle.meaning}
+                  </p>
+                  <p className={styles.principleCopy}>
+                    {principle.description}
+                  </p>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

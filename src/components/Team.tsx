@@ -1,70 +1,70 @@
 import Image from "next/image";
-import { team } from "@/data/home";
-import Parallax from "./motion/Parallax";
+import PillButton from "./PillButton";
+import SectionLabel from "./SectionLabel";
 import Reveal from "./motion/Reveal";
-import { StaggerGroup, StaggerItem } from "./motion/Stagger";
 import SplitText from "./motion/SplitText";
+import { team } from "@/data/home";
 import styles from "./Team.module.scss";
 
 export default function Team() {
   return (
     <section id="team" className={styles.team} aria-labelledby="team-title">
-      <Parallax className={styles.background} strength={70}>
+      <div className={styles.backgroundWrap} aria-hidden="true">
         <Image
-          src="/assets/images/team-temple-background.webp"
+          src="/assets/home/team-background.png"
           alt=""
           fill
           sizes="100vw"
-          className={styles.backgroundImage}
+          className={styles.background}
         />
-      </Parallax>
-      <div className={styles.fadeTop} aria-hidden="true" />
-      <div className={styles.fadeBottom} aria-hidden="true" />
+        <div className={styles.topFade} />
+      </div>
 
       <div className={styles.inner}>
-        <div className={styles.intro}>
-          <Reveal as="div" className={styles.cue} delay={0.1} y={26}>
-            <p className={styles.eyebrow}>08 / Our Team</p>
-            <p>
-              The people who guide the practice, the performance and the
-              academy&apos;s care for every learner.
-            </p>
-          </Reveal>
+        <SectionLabel tone="white" lineWidth={24} className={styles.label}>
+          07 / Our team
+        </SectionLabel>
 
-          <SplitText
-            id="team-title"
-            as="h2"
-            lines={[
-              "People who teach,",
-              "shape the practice.",
-            ]}
-            delay={0.15}
-          />
-        </div>
+        <SplitText
+          id="team-title"
+          as="h2"
+          className={styles.title}
+          delay={0.08}
+          stagger={0.045}
+          lines={[
+            { words: ["The", "hands", "that", "nurture", "the", "art,"], className: styles.whiteLine },
+            { words: ["the", "hearts", "that", "keep", "it", "alive."], className: styles.goldLine },
+          ]}
+        />
 
-        <StaggerGroup className={styles.members} stagger={0.13} amount={0.15}>
-          {team.map((member) => (
-            <StaggerItem
-              as="article"
-              className={styles.member}
+        <Reveal className={styles.exploreWrap} delay={0.18}>
+          <PillButton href="/about-us#team" variant="glass">
+            Explore
+          </PillButton>
+        </Reveal>
+
+        <div className={styles.portraits}>
+          {team.map((member, index) => (
+            <Reveal
               key={member.name}
-              y={44}
+              className={styles.member}
+              delay={0.12 + index * 0.1}
             >
               <div className={styles.portrait}>
                 <Image
                   src={member.image}
                   alt={member.alt}
                   fill
-                  sizes="(max-width: 760px) 86vw, 328px"
-                  className={styles.portraitImage}
+                  sizes="(max-width: 760px) 72vw, 270px"
+                  className={styles.image}
                   style={{ objectPosition: member.imagePosition }}
                 />
               </div>
-              <h3>{member.name}</h3>
-              <p>{member.role}</p>
-            </StaggerItem>
+              <h3 className={styles.name}>{member.name}</h3>
+              <p className={styles.role}>{member.role}</p>
+            </Reveal>
           ))}
-        </StaggerGroup>
+        </div>
       </div>
     </section>
   );

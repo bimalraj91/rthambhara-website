@@ -31,20 +31,20 @@ export default function ContactForm() {
             name="name"
             type="text"
             autoComplete="name"
-            placeholder="Enter your full name"
+            placeholder="Full name"
             required
           />
         </div>
 
         <div className={styles.field}>
-          <label htmlFor="contact-phone">Phone *</label>
+          <label htmlFor="contact-phone">Phone number *</label>
           <input
             id="contact-phone"
             name="phone"
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="+91 00000 00000"
+            placeholder="+91"
             required
           />
         </div>
@@ -52,7 +52,7 @@ export default function ContactForm() {
 
       <div className={styles.row}>
         <div className={styles.field}>
-          <label htmlFor="contact-email">Email</label>
+          <label htmlFor="contact-email">Email address</label>
           <input
             id="contact-email"
             name="email"
@@ -97,14 +97,14 @@ export default function ContactForm() {
         <textarea
           id="contact-message"
           name="message"
-          placeholder="Tell us a little about your interest"
+          placeholder="Tell us a little about your interests or experience…"
         />
       </div>
 
       <div className={styles.consent}>
         <input id="contact-consent" name="consent" type="checkbox" />
         <label htmlFor="contact-consent">
-          I agree to be contacted about classes, admissions and events.
+          I agree to be contacted by RTAMBHARA about this enquiry.
         </label>
       </div>
 
@@ -116,14 +116,15 @@ export default function ContactForm() {
           whileTap={shouldReduceMotion ? undefined : { scale: 0.98 }}
           transition={{ type: "spring", stiffness: 380, damping: 24 }}
         >
-          Contact us
-          <Image
-            src="/assets/icons/arrow-right-circle.svg"
-            alt=""
-            width={14}
-            height={14}
-            aria-hidden="true"
-          />
+          <span>Contact us</span>
+          <span className={styles.submitCircle} aria-hidden="true">
+            <Image
+              src="/assets/icons/slider-next-light.svg"
+              alt=""
+              width={16}
+              height={16}
+            />
+          </span>
         </motion.button>
         <span className={styles.required}>* Required fields</span>
       </div>

@@ -2,7 +2,7 @@
 
 .footer {
   border-top: 1px solid rgba(197, 157, 95, 0.15);
-  background: linear-gradient(111.29deg, #2e0a0f 0%, #681722 100%);
+  background: linear-gradient(111deg, #2e0a0f 0%, #4b0d12 100%);
   color: #9ca3af;
   overflow: clip;
 }
@@ -14,13 +14,32 @@
   margin: 0 auto;
 }
 
+.ornaments {
+  position: absolute;
+  top: -200px;
+  right: 0;
+  left: 0;
+  display: flex;
+  height: 253px;
+  overflow: hidden;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.ornament {
+  width: auto;
+  height: 253px;
+  max-width: none;
+  flex: 0 0 auto;
+}
+
 .motif {
   position: absolute;
   top: -1px;
   right: -2px;
   width: 552px;
   height: 432px;
-  opacity: 0.25;
+  opacity: 1;
   pointer-events: none;
 }
 
@@ -152,7 +171,8 @@
 
 .linkList a {
   position: relative;
-  display: inline-block;
+  display: block;
+  width: fit-content;
   font-family: var(--font-jakarta), "Helvetica Neue", Arial, sans-serif;
   font-weight: 400;
   font-size: 14px;
@@ -249,7 +269,7 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #6b7280;
+  color: #fff;
 }
 
 .bottomLinks {
@@ -263,11 +283,11 @@
   font-weight: 400;
   font-size: 12px;
   line-height: 16px;
-  color: #6b7280;
+  color: #fff;
   transition: color 0.25s var(--ease-out);
 
   &:hover {
-    color: #9ca3af;
+    color: #e4c489;
   }
 
   &:focus-visible {

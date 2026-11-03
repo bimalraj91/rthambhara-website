@@ -1,27 +1,29 @@
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
-import Vision from "@/components/Vision";
 import Concept from "@/components/Concept";
 import Specialties from "@/components/Specialties";
-import News from "@/components/News";
+import Experience from "@/components/Experience";
 import Journal from "@/components/Journal";
-import Community from "@/components/Community";
+import News from "@/components/News";
 import Team from "@/components/Team";
 import Contact from "@/components/Contact";
+import Stories from "@/components/Stories";
+import IntroCurtain from "@/components/IntroCurtain";
 
 export default function Home() {
   return (
     <main id="main">
+      <IntroCurtain />
       <Hero />
       <Intro />
-      <Vision />
       <Concept />
       <Specialties />
-      <News />
+      <Experience />
       <Journal />
-      <Community />
+      <News />
       <Team />
       <Contact />
+      <Stories />
     </main>
   );
 }

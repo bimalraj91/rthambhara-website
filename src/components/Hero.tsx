@@ -1,85 +1,53 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
-  type Variants,
+  useScroll,
+  useTransform,
 } from "framer-motion";
-import SectionMarker from "./SectionMarker";
-import Parallax from "./motion/Parallax";
+import SectionLabel from "./SectionLabel";
 import SplitText from "./motion/SplitText";
 import { heroSlides } from "@/data/home";
 import styles from "./Hero.module.scss";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-const AUTOPLAY_MS = 6500;
-
-const copyVariants: Variants = {
-  enter: (direction: number) => ({
-    opacity: 0,
-    y: direction > 0 ? 44 : -44,
-    rotateX: direction > 0 ? 10 : -10,
-    filter: "blur(10px)",
-  }),
-  center: {
-    opacity: 1,
-    y: 0,
-    rotateX: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.85, ease: EASE, delay: 0.12 },
-  },
-  exit: (direction: number) => ({
-    opacity: 0,
-    y: direction > 0 ? -30 : 30,
-    rotateX: direction > 0 ? -8 : 8,
-    filter: "blur(8px)",
-    transition: { duration: 0.4, ease: EASE },
-  }),
-};
 
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
-  const [direction, setDirection] = useState(1);
-  const [paused, setPaused] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const mediaY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  const dancerY = useTransform(scrollYProgress, [0, 1], [0, -90]);
+  const cardY = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const cardOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   const slide = heroSlides[index];
   const total = heroSlides.length;
 
-  useEffect(() => {
-    if (shouldReduceMotion || paused) return;
-
-    const timer = window.setInterval(() => {
-      setDirection(1);
-      setIndex((current) => (current + 1) % total);
-    }, AUTOPLAY_MS);
-
-    return () => window.clearInterval(timer);
-  }, [index, paused, shouldReduceMotion, total]);
-
   const paginate = (step: number) => {
-    setDirection(step);
     setIndex((current) => (current + step + total) % total);
   };
 
   return (
     <section
       id="top"
+      ref={sectionRef}
       className={styles.hero}
       aria-labelledby="hero-title"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocusCapture={() => setPaused(true)}
-      onBlurCapture={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-          setPaused(false);
-        }
-      }}
     >
-      <Parallax className={styles.backgroundLayer} strength={110}>
+      <motion.div
+        className={styles.media}
+        aria-hidden="true"
+        style={{ y: shouldReduceMotion ? 0 : mediaY }}
+      >
         {heroSlides.map((item, slideIndex) => {
           const active = slideIndex === index;
 
@@ -87,30 +55,19 @@ export default function Hero() {
             <motion.div
               key={item.image}
               className={styles.backgroundSlide}
-              aria-hidden={!active}
               initial={false}
-              animate={
-                active
-                  ? {
-                      opacity: 1,
-                      scale: 1,
-                      clipPath: "inset(0% 0% 0% 0%)",
-                    }
-                  : {
-                      opacity: 0,
-                      scale: 1.06,
-                      clipPath: "inset(0% 0% 0% 100%)",
-                    }
-              }
+              animate={{
+                opacity: active ? 1 : 0,
+                scale: active ? 1 : 1.04,
+              }}
               transition={{
-                duration: shouldReduceMotion ? 0 : 1.15,
+                duration: shouldReduceMotion ? 0 : 1.2,
                 ease: EASE,
               }}
-              style={{ zIndex: active ? 2 : 1 }}
             >
               <Image
                 src={item.image}
-                alt={item.alt}
+                alt={active ? item.alt : ""}
                 fill
                 priority={slideIndex === 0}
                 sizes="100vw"
@@ -120,109 +77,91 @@ export default function Hero() {
             </motion.div>
           );
         })}
-      </Parallax>
+      </motion.div>
 
-      <motion.div
-        className={styles.overlay}
-        aria-hidden="true"
-        initial={shouldReduceMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.4, ease: EASE, delay: 0.2 }}
-      />
-
-      {!shouldReduceMotion && (
-        <motion.div
-          key={index}
-          className={styles.sweep}
-          aria-hidden="true"
-          initial={{
-            x: direction > 0 ? "-120%" : "120%",
-            opacity: 0.55,
-          }}
-          animate={{ x: direction > 0 ? "120%" : "-120%", opacity: 0 }}
-          transition={{ duration: 1.1, ease: EASE }}
-        />
-      )}
+      <div className={styles.overlay} aria-hidden="true" />
 
       <div className={styles.frame}>
-        <SectionMarker tone="light" lineWidth={24} className={styles.marker}>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.span
-              key={slide.marker}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.35, ease: EASE }}
-              style={{ display: "inline-block" }}
-            >
-              {slide.marker}
-            </motion.span>
-          </AnimatePresence>
-        </SectionMarker>
+        <motion.div
+          className={styles.card}
+          style={
+            shouldReduceMotion ? undefined : { y: cardY, opacity: cardOpacity }
+          }
+        >
+          <SectionLabel
+            tone="gold"
+            lineWidth={28}
+            strong
+            className={styles.marker}
+          >
+            {slide.marker}
+          </SectionLabel>
 
-        <div className={styles.titleWrap}>
-          <AnimatePresence mode="wait" custom={direction}>
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
-              key={slide.label}
-              custom={direction}
-              variants={shouldReduceMotion ? undefined : copyVariants}
-              initial={shouldReduceMotion ? false : "enter"}
-              animate={shouldReduceMotion ? { opacity: 1 } : "center"}
+              key={index}
+              className={styles.titleWrap}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 26 }}
+              animate={{ opacity: 1, y: 0 }}
               exit={
                 shouldReduceMotion
                   ? { opacity: 0, transition: { duration: 0 } }
-                  : "exit"
+                  : { opacity: 0, y: -18, transition: { duration: 0.35 } }
               }
-              style={{ transformPerspective: 900 }}
+              transition={{ duration: 0.7, ease: EASE }}
             >
               <SplitText
                 id="hero-title"
                 as="h1"
                 className={styles.title}
-                lines={[...slide.lines]}
+                lines={[
+                  "Every movement holds",
+                  "a memory.",
+                  "Every expression,",
+                  {
+                    words: ["a", "world", "of", "its", "own."],
+                    className: styles.lastLine,
+                  },
+                ]}
                 mount
-                delay={0.08}
-                stagger={0.06}
+                delay={2}
+                stagger={0.055}
                 duration={1}
               />
             </motion.div>
           </AnimatePresence>
-        </div>
+        </motion.div>
 
-        <div className={styles.aside}>
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={slide.label}
-              initial={{ opacity: 0, y: 22 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -16 }}
-              transition={{ duration: 0.55, ease: EASE, delay: 0.12 }}
-            >
-              <p>{slide.aside[0]}</p>
-              <p>{slide.aside[1]}</p>
-            </motion.div>
-          </AnimatePresence>
-        </div>
+        <motion.div
+          className={styles.dancer}
+          aria-hidden="true"
+          initial={
+            shouldReduceMotion ? false : { opacity: 0, x: 60, scale: 0.98 }
+          }
+          animate={{ opacity: 1, x: 0, scale: 1 }}
+          style={{ y: shouldReduceMotion ? 0 : dancerY }}
+          transition={{ duration: 1.3, ease: EASE, delay: 1.9 }}
+        >
+          <Image
+            src="/assets/home/hero-dancer.png"
+            alt=""
+            width={680}
+            height={790}
+            priority
+            sizes="(max-width: 900px) 70vw, 680px"
+            className={styles.dancerImage}
+          />
+        </motion.div>
 
         <motion.div
           className={styles.controls}
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 1.4 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 2.7 }}
         >
           <p className={styles.counter} aria-hidden="true">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.strong
-                key={index}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.3, ease: EASE }}
-              >
-                {String(index + 1).padStart(2, "0")}
-              </motion.strong>
-            </AnimatePresence>
-            <span className={styles.counterLine} aria-hidden="true" />
+            <strong>{String(index + 1).padStart(2, "0")}</strong>
+            <span className={styles.counterLine} />
             <span>{String(total).padStart(2, "0")}</span>
           </p>
 

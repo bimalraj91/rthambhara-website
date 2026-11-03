@@ -1,208 +1,126 @@
-"use client";
-
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { news } from "@/data/home";
-import SectionMarker from "./SectionMarker";
+import Link from "next/link";
+import PillButton from "./PillButton";
+import SectionLabel from "./SectionLabel";
+import Drift from "./motion/Drift";
+import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
+import { news } from "@/data/home";
 import styles from "./News.module.scss";
 
-const [feature, creamOne, creamTwo, narrowOne, narrowTwo] = news;
-
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
 export default function News() {
-  const railRef = useRef<HTMLDivElement>(null);
-  const [canScroll, setCanScroll] = useState({ prev: false, next: false });
-  const shouldReduceMotion = useReducedMotion();
-
-  const updateScrollState = useCallback(() => {
-    const rail = railRef.current;
-    if (!rail) return;
-
-    setCanScroll({
-      prev: rail.scrollLeft > 4,
-      next: rail.scrollLeft + rail.clientWidth < rail.scrollWidth - 4,
-    });
-  }, []);
-
-  useEffect(() => {
-    const rail = railRef.current;
-    if (!rail) return;
-
-    updateScrollState();
-    rail.addEventListener("scroll", updateScrollState, { passive: true });
-
-    const resizeObserver = new ResizeObserver(updateScrollState);
-    resizeObserver.observe(rail);
-
-    return () => {
-      rail.removeEventListener("scroll", updateScrollState);
-      resizeObserver.disconnect();
-    };
-  }, [updateScrollState]);
-
-  const scrollRail = (direction: -1 | 1) => {
-    const rail = railRef.current;
-    if (!rail) return;
-
-    rail.scrollBy({
-      left: direction * rail.clientWidth * 0.82,
-      behavior: "smooth",
-    });
-  };
-
   return (
     <section id="news" className={styles.news} aria-labelledby="news-title">
+      <Drift className={styles.mandala} from={60} to={-60}>
+          <Image
+        src="/assets/home/news-mandala.png"
+        alt=""
+        width={414}
+        height={582}
+        className={styles.fill}
+      />
+        </Drift>
+
       <div className={styles.inner}>
-        <div className={styles.header}>
-          <div className={styles.heading}>
-            <SectionMarker tone="red" lineWidth={24}>
-              05 / The Academy News
-            </SectionMarker>
-            <SplitText
-              id="news-title"
-              as="h2"
-              lines={["Art, beyond the classroom."]}
-              delay={0.1}
+        <SectionLabel tone="maroon" lineWidth={24} className={styles.label}>
+          05 / Academy News
+        </SectionLabel>
+
+        <SplitText
+          id="news-title"
+          as="h2"
+          className={styles.title}
+          delay={0.08}
+          stagger={0.05}
+          lines={[
+            {
+              words: [
+                { text: "Art,", className: styles.dark },
+                { text: "beyond", className: styles.dark },
+                { text: "the", className: styles.maroon },
+                { text: "classroom.", className: styles.maroon },
+              ],
+            },
+          ]}
+        />
+
+        <Reveal className={styles.viewAllWrap} delay={0.18}>
+          <PillButton href="/about-us#news">Explore</PillButton>
+        </Reveal>
+
+        <div className={styles.grid}>
+          <Reveal className={styles.feature} delay={0.1}>
+            <Image
+              src={news.feature.image}
+              alt={news.feature.alt}
+              fill
+              sizes="(max-width: 760px) 90vw, 529px"
+              className={styles.featureImage}
+              style={{ objectPosition: news.feature.imagePosition }}
             />
+            <div className={styles.featureOverlay} aria-hidden="true" />
+            <div className={styles.featurePanel}>
+              <p className={styles.featureCategory}>{news.feature.category}</p>
+              <h3 className={styles.featureTitle}>{news.feature.title}</h3>
+              <p className={styles.featureCopy}>{news.feature.excerpt}</p>
+              <Link href="/about-us#news" className={styles.featureLink}>
+                <span>Read full story</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
+          </Reveal>
+
+          <div className={styles.storyColumn}>
+            {news.stories.map((story, index) => (
+              <Reveal
+                key={`${story.image}-${index}`}
+                className={styles.story}
+                delay={0.12 + index * 0.08}
+              >
+                <div className={styles.storyImage}>
+                  <Image
+                    src={story.image}
+                    alt={story.alt}
+                    fill
+                    sizes="190px"
+                    className={styles.cover}
+                    style={{ objectPosition: story.imagePosition }}
+                  />
+                </div>
+                <div className={styles.storyBody}>
+                  <p className={styles.category}>{story.category}</p>
+                  <h3 className={styles.storyTitle}>{story.title}</h3>
+                  <p className={styles.storyCopy}>{story.excerpt}</p>
+                  <Link href="/about-us#news" className={styles.storyLink}>
+                    <span>Read full story</span>
+                <span aria-hidden="true">→</span>
+                  </Link>
+                </div>
+              </Reveal>
+            ))}
           </div>
 
-          <motion.div
-            className={styles.controls}
-            aria-label="News carousel controls"
-            initial={shouldReduceMotion ? false : { opacity: 0, x: 24 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: EASE, delay: 0.25 }}
-          >
-            <button
-              type="button"
-              onClick={() => scrollRail(-1)}
-              disabled={!canScroll.prev}
-              aria-label="Scroll news backwards"
-            >
-              <Image
-                src="/assets/icons/slider-prev-dark.svg"
-                alt=""
-                width={16}
-                height={16}
-              />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollRail(1)}
-              disabled={!canScroll.next}
-              className={styles.next}
-              aria-label="Scroll news forwards"
-            >
-              <Image
-                src="/assets/icons/slider-next-dark.svg"
-                alt=""
-                width={16}
-                height={16}
-              />
-            </button>
-          </motion.div>
-        </div>
-
-        <div className={styles.railWrap}>
-          <div
-            ref={railRef}
-            className={styles.rail}
-            tabIndex={0}
-            role="region"
-            aria-roledescription="carousel"
-            aria-label="Academy news"
-          >
-            <motion.article
-              className={styles.feature}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 46, scale: 0.98 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 0.9, ease: EASE }}
-            >
-              <Image
-                src={feature.image}
-                alt={feature.alt}
-                fill
-                sizes="(max-width: 760px) 88vw, 529px"
-                className={styles.featureImage}
-                style={{ objectPosition: feature.imagePosition }}
-              />
-              <div className={styles.featureShade} aria-hidden="true" />
-              <div className={styles.featurePanel}>
-                <p className={styles.featureCategory}>{feature.category}</p>
-                <h3>{feature.title}</h3>
-                <p className={styles.featureCopy}>{feature.excerpt}</p>
-                <a href="#journal" className={styles.featureLink}>
-                  Read full story
-                  <span aria-hidden="true">→</span>
-                </a>
-              </div>
-            </motion.article>
-
-            <div className={styles.middle}>
-              {[creamOne, creamTwo].map((item, index) => (
-                <motion.article
-                  className={styles.creamCard}
-                  key={`${item.image}-${index}`}
-                  initial={shouldReduceMotion ? false : { opacity: 0, x: 34 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.8, ease: EASE, delay: 0.12 + index * 0.12 }}
-                >
-                  <div className={styles.creamImage}>
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      sizes="190px"
-                      className={styles.cardImage}
-                      style={{ objectPosition: item.imagePosition }}
-                    />
-                  </div>
-                  <div className={styles.creamCopy}>
-                    <p className={styles.cardCategory}>{item.category}</p>
-                    <h3>{item.title}</h3>
-                    <p className={styles.cardExcerpt}>{item.excerpt}</p>
-                    <a href="#journal" className={styles.cardLink}>
-                      Read full story
-                      <span aria-hidden="true">→</span>
-                    </a>
-                  </div>
-                </motion.article>
-              ))}
-            </div>
-
-            <div className={styles.side}>
-              {[narrowOne, narrowTwo].map((item, index) => (
-                <motion.article
-                  className={styles.sideCard}
-                  key={`${item.image}-${index}`}
-                  initial={shouldReduceMotion ? false : { opacity: 0, x: 34 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.15 }}
-                  transition={{ duration: 0.8, ease: EASE, delay: 0.24 + index * 0.12 }}
-                >
-                  <div className={styles.sideImage}>
-                    <Image
-                      src={item.image}
-                      alt={item.alt}
-                      fill
-                      sizes="190px"
-                      className={styles.cardImage}
-                      style={{ objectPosition: item.imagePosition }}
-                    />
-                  </div>
-                </motion.article>
-              ))}
-            </div>
+          <div className={styles.galleryColumn}>
+            {news.gallery.map((item, index) => (
+              <Reveal
+                key={`${item.image}-${index}`}
+                className={styles.galleryCard}
+                delay={0.16 + index * 0.08}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  sizes="238px"
+                  className={styles.cover}
+                  style={{ objectPosition: item.imagePosition }}
+                />
+              </Reveal>
+            ))}
           </div>
-
-          <div className={styles.fade} aria-hidden="true" />
         </div>
+
+        <div className={styles.fade} aria-hidden="true" />
       </div>
     </section>
   );

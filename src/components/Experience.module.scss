@@ -1,0 +1,240 @@
+@use "../styles/mixins" as *;
+
+.experience {
+  position: relative;
+  height: 854px;
+  overflow: hidden;
+  background: var(--color-cream);
+  color: var(--color-ink-deep);
+}
+
+.ornament {
+  position: absolute;
+  z-index: 0;
+  top: 166px;
+  left: calc(50% + 215px);
+  width: 726px;
+  height: 734px;
+  opacity: 0.4;
+  filter: grayscale(1) brightness(1.3);
+  pointer-events: none;
+}
+
+.inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.visual {
+  position: absolute;
+  top: 9px;
+  left: -33px;
+  width: 689px;
+  height: 540px;
+}
+
+.imageWrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+  object-position: center 58%;
+}
+
+.torn {
+  position: absolute;
+  z-index: 2;
+  bottom: -110px;
+  left: 21px;
+  width: 665px;
+  height: 139px;
+  pointer-events: none;
+}
+
+.content {
+  position: absolute;
+  top: 0;
+  left: 716px;
+  width: 652px;
+}
+
+.title {
+  width: 650px;
+  margin-top: 2px;
+
+  @include serif(400);
+  font-size: 68px;
+  font-variation-settings: "opsz" 68;
+  line-height: 71.4px;
+  letter-spacing: -0.5px;
+}
+
+.titleDark {
+  color: var(--color-ink-deep);
+}
+
+.titleMaroon {
+  color: var(--color-maroon);
+}
+
+.copy {
+  width: 617px;
+  margin-top: 37px;
+  margin-left: 4px;
+  color: #6f6b61;
+
+  @include sans(400);
+  font-size: 18px;
+  font-variation-settings: "opsz" 14;
+  line-height: 1.8;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.rule {
+  width: 549px;
+  height: 1px;
+  margin-top: 21px;
+  margin-left: 4px;
+  background: #c9c1b3;
+}
+
+.quote {
+  width: 549px;
+  margin: 34px auto 0;
+  color: var(--color-maroon);
+
+  @include serif(500);
+  font-size: 36px;
+  font-style: italic;
+  font-variation-settings: "opsz" 36;
+  line-height: 1.25;
+  text-align: center;
+}
+
+@include below(1280px) {
+  .experience {
+    height: auto;
+    min-height: 0;
+    padding: 64px 48px 82px;
+  }
+
+  .inner {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: center;
+    gap: 48px;
+    height: auto;
+  }
+
+  .visual {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 689 / 540;
+  }
+
+  .content {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 100%;
+  }
+
+  .title,
+  .copy,
+  .rule,
+  .quote {
+    width: 100%;
+  }
+
+  .title {
+    font-size: clamp(50px, 5.4vw, 68px);
+    line-height: 1.05;
+  }
+}
+
+@include below($bp-tablet) {
+  .experience {
+    padding: 42px 24px 64px;
+  }
+
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .visual {
+    width: min(100%, 680px);
+    justify-self: center;
+  }
+
+  .content {
+    width: min(100%, 680px);
+    justify-self: center;
+  }
+
+  .title {
+    font-size: clamp(40px, 7.6vw, 58px);
+  }
+
+  .copy {
+    font-size: 17px;
+    line-height: 1.8;
+    text-align: left;
+  }
+
+  .rule,
+  .quote {
+    width: min(100%, 560px);
+  }
+
+  .quote {
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 30px;
+  }
+
+  .torn {
+    bottom: -85px;
+    left: 0;
+    width: 78%;
+    height: auto;
+  }
+}
+
+@include below($bp-mobile) {
+  .experience {
+    padding: 32px 18px 54px;
+  }
+
+  .title {
+    font-size: clamp(34px, 10vw, 44px);
+  }
+
+  .quote {
+    font-size: 26px;
+  }
+
+  .ornament {
+    right: -60%;
+    width: 110vw;
+    height: auto;
+    opacity: 0.08;
+  }
+}
+
+.fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+}

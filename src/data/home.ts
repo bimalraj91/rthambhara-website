@@ -2,48 +2,54 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about-us" },
   { label: "Programs", href: "/#programs" },
-  { label: "News", href: "/#news" },
-  { label: "Events", href: "/#journal" },
+  { label: "News & Events", href: "/#news" },
+  { label: "Gurus", href: "/#team" },
+  { label: "Blogs", href: "/#journal" },
   { label: "Gallery", href: "/#gallery" },
   { label: "Contact us", href: "/#contact" },
 ] as const;
 
+const heroMarker = "Tripunithura · Established 2012";
+
 export const heroSlides = [
   {
-    image: "/assets/images/hero-rhythm-of-creation.webp",
-    alt: "A Bharatanatyam dancer in a red-toned fresco setting, framed by a peacock and temple arches",
+    image: "/assets/home/hero-bg.png",
+    alt: "A Bharatanatyam dancer in a deep red fresco setting framed by temple arches",
     imagePosition: "center",
-    marker: "Tripunithura · Established 2012",
-    lines: ["Celebrating Tradition", "Inspiring Generations."],
-    aside: ["Ritambhara", "Academy for Performing & Visual Arts"],
-    label: "Celebrating tradition, inspiring generations",
+    marker: heroMarker,
+    lines: [
+      "Every movement holds",
+      "a memory.",
+      "Every expression,",
+      "a world of its own.",
+    ],
+    label: "Every movement holds a memory",
   },
   {
-    image: "/assets/about/hero-about.webp",
-    alt: "A dancer in a red-toned temple setting",
+    image: "/assets/home/stories-background.png",
+    alt: "A dancer framed by the golden arches of a temple",
     imagePosition: "center 42%",
-    marker: "Bharatanatyam · Kalakshetra Legacy",
-    lines: ["Rooted in Ritual", "Alive in Motion."],
-    aside: ["Classical technique,", "carried by a living voice"],
-    label: "Rooted in ritual, alive in motion",
+    marker: heroMarker,
+    lines: [
+      "Every movement holds",
+      "a memory.",
+      "Every expression,",
+      "a world of its own.",
+    ],
+    label: "Every expression, a world of its own",
   },
   {
-    image: "/assets/about/why-dancer.webp",
-    alt: "A dancer mid-movement in warm stage light",
+    image: "/assets/home/concept-background.png",
+    alt: "A dancer moving through a field of golden paisley motifs",
     imagePosition: "center 38%",
-    marker: "Bharatanatyam · Kalaripayattu · Yoga",
-    lines: ["Strength in Stillness", "Fire in Motion."],
-    aside: ["The body as archive,", "the breath as guide"],
-    label: "Strength in stillness, fire in motion",
-  },
-  {
-    image: "/assets/about/vision-dancer.webp",
-    alt: "A dancer framed by a golden circle",
-    imagePosition: "center 44%",
-    marker: "Performance · Community · Culture",
-    lines: ["A Home for the Arts", "A Place to Belong."],
-    aside: ["Learn. Practise. Perform.", "Belong."],
-    label: "A home for the arts, a place to belong",
+    marker: heroMarker,
+    lines: [
+      "Every movement holds",
+      "a memory.",
+      "Every expression,",
+      "a world of its own.",
+    ],
+    label: "A world of its own",
   },
 ] as const;
 
@@ -51,134 +57,120 @@ export const programs = [
   {
     title: "Bharatanatyam",
     description:
-      "Regular Bharatanatyam classes are being conducted for young students at the Ladies Club Hall, Tripunithura.",
-    image: "/assets/images/program-bharatanatyam.webp",
+      "The poetry of ancient traditions, preserved in every gesture, expression and measured step.",
+    image: "/assets/home/offering-bharatanatyam.png",
     alt: "A Bharatanatyam dancer holding a classical pose",
-    imagePosition: "center 50%",
   },
   {
-    title: "Contemporary Kalaripayattu",
+    title: "Contemporary dance",
     description:
-      "Rtambhara presents Contemporary Kalaripayattu designed for building strength and flexibility of traditional Kalari.",
-    image: "/assets/images/program-kalaripayattu.webp",
-    alt: "A Kalaripayattu practitioner in a wide stance",
-    imagePosition: "center 46%",
+      "The fierce spirit of Kalari, finding new meaning through the freedom of contemporary movement.",
+    image: "/assets/home/offering-contemporary.png",
+    alt: "A contemporary dancer in motion",
   },
   {
-    title: "Training Programs",
+    title: "Thiruvathira",
     description:
-      "Classes for Music, Violin and Yogas. Conducting regular classes for Art Lovers and young aspiring artists and beginners.",
-    image: "/assets/images/program-training-programs.webp",
-    alt: "A group of dancers moving together in a studio",
-    imagePosition: "center 38%",
+      "Familiar songs, graceful circles, and the beautiful togetherness of a tradition we grew up loving.",
+    image: "/assets/home/offering-thiruvathira.png",
+    alt: "Dancers moving together in a Thiruvathira circle",
+  },
+  {
+    title: "Yoga",
+    description:
+      "The gentle art of listening to your body, caring for its strength and growing gracefully with time.",
+    image: "/assets/home/offering-yoga.png",
+    alt: "A yoga practitioner in a calm seated pose",
   },
 ] as const;
 
-export const news = [
-  {
-    kind: "feature",
-    category: "Classical Heritage",
-    title: "Raghaveeyam",
+const newsStory = {
+  category: "Classical heritage",
+  title: "Raghaveeyam",
+  excerpt:
+    'rtambhara Academy for Performing and Visual Arts presents: "RAGHAVEEYAM –"',
+  href: "#journal",
+};
+
+export const news = {
+  feature: {
+    ...newsStory,
     excerpt:
-      'Rtambhara Academy for Performing and Visual Arts presents: "RAGHAVEEYAM – Observance of Ramayana Month, Bhagavatpadham Bharathanatyam" at Sreepoornathrayeesa Temple, Tripunithura on 13th August 2026.',
-    image: "/assets/images/news-kalari-performance.webp",
-    alt: "Two Kalaripayattu practitioners facing each other in a performance",
-    imagePosition: "center 45%",
+      'rtambhara Academy for Performing and Visual Arts presents: "RAGHAVEEYAM – Observance of Ramayana Month, Bhagavatpadham Bharathanatyam" at Sreepoornathrayeesa Temple, Tripunithura on 13th August 2026.',
+    image: "/assets/home/news-feature.jpg",
+    alt: "A dancer performing beneath warm temple lights",
+    imagePosition: "center 42%",
   },
-  {
-    kind: "cream",
-    category: "Classical Heritage",
-    title: "Raghaveeyam",
-    excerpt:
-      'Rtambhara Academy for Performing and Visual Arts presents: "RAGHAVEEYAM –',
-    image: "/assets/images/news-aritha-dhara-poster.webp",
-    alt: "Aritha Dhara event poster",
-    imagePosition: "center 26%",
-  },
-  {
-    kind: "cream",
-    category: "Classical Heritage",
-    title: "Raghaveeyam",
-    excerpt:
-      'Rtambhara Academy for Performing and Visual Arts presents: "RAGHAVEEYAM –',
-    image: "/assets/images/news-raghaveeyam-poster.webp",
-    alt: "Raghaveeyam event poster",
-    imagePosition: "center 30%",
-  },
-  {
-    kind: "narrow",
-    category: "",
-    title: "",
-    excerpt: "",
-    image: "/assets/images/news-yoga-class.webp",
-    alt: "Students practicing yoga together in the studio",
-    imagePosition: "center 38%",
-  },
-  {
-    kind: "narrow",
-    category: "",
-    title: "",
-    excerpt: "",
-    image: "/assets/images/news-kalari-warrior.webp",
-    alt: "A Kalaripayattu practitioner mid-movement",
-    imagePosition: "center 28%",
-  },
-] as const;
+  stories: [
+    {
+      ...newsStory,
+      image: "/assets/home/news-small-1.png",
+      alt: "A classical dance performance on stage",
+      imagePosition: "center 30%",
+    },
+    {
+      ...newsStory,
+      image: "/assets/home/news-small-3.png",
+      alt: "A Bharatanatyam recital in progress",
+      imagePosition: "center 34%",
+    },
+  ],
+  gallery: [
+    {
+      image: "/assets/home/news-small-2.jpg",
+      alt: "Students practising yoga together",
+      imagePosition: "center 36%",
+    },
+    {
+      image: "/assets/home/news-small-4.jpg",
+      alt: "A Kalaripayattu practitioner mid-movement",
+      imagePosition: "center 28%",
+    },
+  ],
+} as const;
 
 export const team = [
   {
     name: "Girija Ravindranath",
     role: "Music & Dance",
-    image: "/assets/images/team-girija-ravindranath.webp",
+    image: "/assets/home/team-girija.png",
     alt: "Portrait of Girija Ravindranath",
     imagePosition: "center 24%",
   },
   {
     name: "Satyajit Ravindranath",
     role: "Contemporary Dance",
-    image: "/assets/images/team-satyajit-ravindranath.webp",
+    image: "/assets/home/team-satyajit.png",
     alt: "Portrait of Satyajit Ravindranath",
     imagePosition: "center 22%",
   },
-  {
-    name: "Geetha Varma",
-    role: "Kathakali & Dance",
-    image: "/assets/images/team-geetha-varma.webp",
-    alt: "Portrait of Geetha Varma",
-    imagePosition: "center 24%",
-  },
 ] as const;
 
-export const footerColumns = {
-  quickLinks: [
-    { label: "Home", href: "#top" },
-    { label: "About Academy", href: "#about" },
-    { label: "Training Programs", href: "#programs" },
-    { label: "News & Events", href: "#news" },
-    { label: "Photo Gallery", href: "#gallery" },
-  ],
-  disciplines: [
-    { label: "Bharatanatyam Masterclasses", href: "#programs" },
-    { label: "Contemporary Kalaripayattu", href: "#programs" },
-    { label: "Yoga Sadhana", href: "#programs" },
-  ],
-  bottomLinks: [
-    { label: "Privacy Policy", href: "#contact" },
-    { label: "Terms of Heritage", href: "#contact" },
-    { label: "Join Community", href: "#contact" },
-  ],
-  socials: [
+export const story = {
+  quote:
+    "A journey that began with curiosity transformed into a beautiful expression of discipline, dedication and artistic excellence.",
+  name: "Ananya Menon",
+  role: "Classical Dance Artist",
+  video: {
+    image: "/assets/home/story-video.png",
+    alt: "A Bharatanatyam recital on an ornate temple stage",
+  },
+  gallery: [
     {
-      label: "Facebook",
-      icon: "/assets/icons/social-facebook.svg",
+      image: "/assets/home/gallery-1.jpg",
+      alt: "An ensemble Bharatanatyam performance on stage",
     },
     {
-      label: "Instagram",
-      icon: "/assets/icons/social-instagram.svg",
+      image: "/assets/home/gallery-2.jpg",
+      alt: "Expressive footwork adorned with traditional ghungroo bells",
     },
     {
-      label: "YouTube",
-      icon: "/assets/icons/social-youtube.svg",
+      image: "/assets/home/gallery-3.png",
+      alt: "A dancer silhouetted against a full moon and sacred temples",
+    },
+    {
+      image: "/assets/home/gallery-4.jpg",
+      alt: "Kathakali artists in traditional costumes",
     },
   ],
 } as const;
