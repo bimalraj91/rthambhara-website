@@ -17,8 +17,7 @@ $top: 840;
 
 .canvas {
   position: relative;
-  // width: 1440px;
-  width: 100%;
+  width: 1440px;
   height: 100%;
   margin: 0 auto;
 }
@@ -29,6 +28,7 @@ $top: 840;
 
 .sheet {
   @include at(-87, 947 - $top, 726.178, 734.182);
+  left: calc(-87px - var(--bleed));
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,3 +1,4 @@
+import AmbientMusic from "@/components/AmbientMusic";
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import Concept from "@/components/Concept";
@@ -12,6 +13,7 @@ import Stories from "@/components/Stories";
 export default function Home() {
   return (
     <main id="main">
+      <AmbientMusic />
       <Hero />
       <Intro />
       <Concept />
