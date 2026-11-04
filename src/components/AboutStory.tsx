@@ -1,6 +1,7 @@
 import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
 import Crop from "./about/Crop";
+import { StaggerGroup, StaggerItem } from "./motion/Stagger";
 import styles from "./AboutStory.module.scss";
 
 const A = "/assets/about/figma";
@@ -15,6 +16,12 @@ const youngerLines = [
   " part of the arts. As a BSS-certified institution, ",
   "we remain committed to nurturing learning with ",
   "care, discipline, and artistic integrity.",
+];
+
+const stats = [
+  { value: "10", label: "years of Rtambhara" },
+  { value: "23", label: "years of teaching" },
+  { value: "BSS", label: "certified" },
 ];
 
 export default function AboutStory() {
@@ -72,6 +79,27 @@ export default function AboutStory() {
             { words: ["A way of belonging."], className: styles.accent },
           ]}
         />
+
+        <StaggerGroup as="ul" className={styles.stats} stagger={0.12}>
+          {stats.map((stat) => (
+            <StaggerItem key={stat.label} as="li" y={20} blur={6}>
+              <strong>{stat.value}</strong>
+              <span>{stat.label}</span>
+            </StaggerItem>
+          ))}
+        </StaggerGroup>
+
+        <Reveal as="div" className={styles.visualWrap} y={34} scale={0.96}>
+          <div className={styles.visual}>
+            <Crop
+              src="/assets/about/girija-young.webp"
+              alt="A Bharatanatyam dancer holding a graceful hand gesture"
+              sizes="340px"
+              cover
+              className={styles.visualImage}
+            />
+          </div>
+        </Reveal>
 
         <Reveal as="p" className={styles.copyLeft} delay={0.12} y={26}>
           Some traditions are too beautiful to be left in the past. They deserve

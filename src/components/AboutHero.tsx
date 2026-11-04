@@ -103,13 +103,20 @@ export default function AboutHero() {
           className={styles.title}
           lines={[
             "Every body has its own poetry. Sometimes,",
-            "all it needs is the freedom to discover.",
+            {
+              words: [
+                "all it needs is the",
+                { text: "freedom", className: styles.italic },
+                "to discover.",
+              ],
+            },
           ]}
           mount
           delay={0.75}
           stagger={0.07}
           duration={1}
         />
+
       </div>
 
       <motion.div
@@ -126,7 +133,11 @@ export default function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: EASE, delay: 1.35 + index * 0.08 }}
           >
-            <Link href={chapter.href}>{`${chapter.number}  ${chapter.label}`}</Link>
+            <Link href={chapter.href}>
+              <i className={styles.num}>{chapter.number}</i>
+              {"  "}
+              {chapter.label}
+            </Link>
           </motion.span>
         ))}
       </motion.div>

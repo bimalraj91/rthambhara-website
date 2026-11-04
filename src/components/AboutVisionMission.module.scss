@@ -666,3 +666,208 @@ $top: 2500;
     font-size: 14px;
   }
 }
+
+// ── Tablet & mobile: a clear three-part cycle and arch portraits ─────────
+@include below($bp-wide) {
+  .title {
+    &::after {
+      display: block;
+      width: 56px;
+      height: 2px;
+      margin-top: 14px;
+      background: linear-gradient(90deg, #c99a3b, rgba(201, 154, 59, 0));
+      content: "";
+    }
+  }
+
+  // Srishti, Sthiti and Laya stack as a cascade: nothing slides off-screen.
+  .cards {
+    flex-direction: column;
+    gap: 16px;
+    margin: 6px 0 12px;
+    padding: 0;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .srishti,
+  .sthiti,
+  .laya {
+    width: auto;
+    height: auto;
+    margin: 0;
+  }
+
+  .srishti,
+  .laya {
+    padding: 20px 24px;
+    border-radius: 30px;
+  }
+
+  .cardInner {
+    flex-direction: row;
+    gap: 18px;
+    padding: 0;
+  }
+
+  .sthiti {
+    flex-direction: row;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 24px;
+    border-radius: 30px;
+  }
+
+  .sthitiText {
+    width: auto;
+    padding: 0;
+    text-align: left;
+  }
+
+  .badge,
+  .sthitiBadge {
+    zoom: 0.62;
+  }
+
+  .cardName {
+    font-size: 28px;
+    text-align: left;
+  }
+
+  .cardMeaning {
+    text-align: left;
+  }
+
+  .sthitiName {
+    font-size: 32px;
+  }
+
+  .srishti {
+    margin-right: 28px;
+  }
+
+  .laya {
+    margin-left: 28px;
+  }
+
+  .visionOne,
+  .missionOne,
+  .narrativeOne {
+    color: #3b3a33;
+    font-size: 19px;
+  }
+
+  // Arch-shaped portraits, the second set lower than the first.
+  .figure {
+    gap: 12px;
+  }
+
+  .figure + .figure {
+    margin-top: 34px;
+  }
+
+  .portrait {
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 3 / 4;
+    border-radius: 999px 999px 24px 24px;
+  }
+
+  .captionSmall {
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .missionBelief {
+    padding: 26px 8px;
+    background: linear-gradient(90deg, rgba(201, 166, 105, 0.12), rgba(201, 166, 105, 0));
+    text-align: center;
+  }
+}
+
+// Tablets: the three principles sit in a row.
+@include below($bp-wide) {
+  @include above($bp-mobile) {
+    .cards {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .srishti,
+    .sthiti,
+    .laya {
+      flex: 1 1 0;
+      margin: 0;
+    }
+
+    .sthiti {
+      margin-top: -12px;
+    }
+
+    .cardInner,
+    .sthiti {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .cardInner {
+      align-items: center;
+    }
+
+    .sthiti {
+      align-items: center;
+    }
+
+    .sthitiText,
+    .cardName,
+    .cardMeaning {
+      text-align: center;
+    }
+  }
+}
+
+// Fix: name and meaning stack beside the badge, and nothing runs off-screen.
+@include below($bp-wide) {
+  .cardInner {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 18px;
+    align-items: center;
+  }
+
+  .badge {
+    grid-row: 1 / span 2;
+  }
+
+  .cardName {
+    align-self: end;
+  }
+
+  .cardMeaning {
+    align-self: start;
+    white-space: normal;
+    letter-spacing: 2.5px;
+  }
+
+  .srishti,
+  .laya {
+    margin: 0;
+  }
+
+  .sthiti .sthitiMeaning {
+    white-space: normal;
+  }
+
+  @include above($bp-mobile) {
+    .cardInner {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .badge {
+      grid-row: auto;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import AboutHero from "@/components/AboutHero";
 import AboutStory from "@/components/AboutStory";
 import AboutVisionMission from "@/components/AboutVisionMission";
 import AboutWhy from "@/components/AboutWhy";
+import ProgramsMarquee from "@/components/ProgramsMarquee";
 
 const title = "About Us";
 const description =
@@ -23,6 +24,7 @@ export default function AboutUsPage() {
   return (
     <main id="main">
       <AboutHero />
+      <ProgramsMarquee items={["Tradition", "Grace", "Discipline", "Devotion", "Joy"]} />
       <AboutStory />
       <AboutVisionMission />
       <AboutWhy />

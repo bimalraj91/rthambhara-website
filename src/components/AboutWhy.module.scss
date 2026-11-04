@@ -507,3 +507,149 @@ $top: 4920;
     }
   }
 }
+
+// ── Tablet & mobile: an open timeline instead of boxed cards ─────────────
+@include below($bp-wide) {
+  .canvas {
+    gap: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+
+  // The ritual word is a contained watermark behind the heading.
+  .word {
+    top: 40px;
+    left: 50%;
+    width: min(100%, 720px);
+    opacity: 0.8;
+  }
+
+  .header {
+    margin-bottom: 30px;
+  }
+
+  .card,
+  .clear,
+  .wide,
+  .plain,
+  .soft,
+  .photo {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 0 16px;
+    padding: 0 0 34px;
+    overflow: visible;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+  }
+
+  // The dashed thread links each badge to the next.
+  .card::before {
+    position: absolute;
+    top: 52px;
+    bottom: 6px;
+    left: 21px;
+    border-left: 2px dashed rgba(154, 120, 68, 0.45);
+    content: "";
+  }
+
+  .card:last-child::before {
+    display: none;
+  }
+
+  .badge {
+    grid-row: 1 / span 2;
+    width: 44px;
+    height: 44px;
+    border: 3px solid var(--color-cream);
+    box-shadow:
+      0 0 0 1px rgba(104, 23, 34, 0.35),
+      0 8px 18px -8px rgba(104, 23, 34, 0.7);
+  }
+
+  .text {
+    grid-column: 2;
+  }
+
+  .headline {
+    font-size: clamp(30px, 6vw, 38px);
+  }
+
+  .body {
+    color: #3b3a33;
+    font-size: 16.5px;
+    line-height: 1.7;
+  }
+
+  // The first pillar leads with a framed photograph.
+  .portrait {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 4.2;
+    margin: 18px 0 0;
+    border-radius: 28px;
+    box-shadow: 0 26px 46px -26px rgba(72, 14, 22, 0.55);
+    order: 3;
+  }
+
+  .stat {
+    padding: 12px 16px;
+    border: 1px solid rgba(140, 98, 39, 0.25);
+    border-radius: 18px;
+    background: rgba(104, 23, 34, 0.04);
+  }
+}
+
+@include below($bp-wide) {
+  @include above($bp-mobile) {
+    .canvas {
+      gap: 0 36px;
+    }
+
+    .card::before {
+      display: none;
+    }
+
+    .card {
+      padding-bottom: 30px;
+    }
+  }
+}
+
+@include below($bp-wide) {
+  .word img {
+    object-fit: contain;
+  }
+}
+
+// Tablets: the first pillar pairs its copy with a tall portrait.
+@include below($bp-wide) {
+  @include above($bp-mobile) {
+    .photo {
+      grid-template-columns: 44px minmax(0, 1fr) minmax(0, 0.72fr);
+    }
+
+    .photo .portrait {
+      position: relative;
+      inset: auto;
+      grid-column: 3;
+      grid-row: 1 / span 3;
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      aspect-ratio: auto;
+      margin: 0;
+      order: 0;
+    }
+
+    .photo .text {
+      grid-column: 2;
+      padding-right: 0;
+    }
+  }
+}
