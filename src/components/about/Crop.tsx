@@ -10,6 +10,7 @@ type Box = {
 
 type CropProps = {
   src: string;
+  alt?: string;
   sizes?: string;
   // Percent box the picture is stretched to inside its clipping parent,
   // taken straight from the Figma crop. Omit to fill the parent.
@@ -23,6 +24,7 @@ type CropProps = {
 // A picture that fills (or is cropped inside) a positioned, overflow-hidden parent.
 export default function Crop({
   src,
+  alt = "",
   sizes = "50vw",
   box,
   cover = false,
@@ -45,7 +47,7 @@ export default function Crop({
     return (
       <Image
         src={src}
-        alt=""
+        alt={alt}
         width={1000}
         height={1000}
         sizes={sizes}
@@ -60,7 +62,7 @@ export default function Crop({
   return (
     <Image
       src={src}
-      alt=""
+      alt={alt}
       fill
       sizes={sizes}
       unoptimized={unoptimized}

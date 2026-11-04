@@ -14,9 +14,11 @@ export default function Header() {
   const pathname = usePathname();
   const activeHref = pathname.startsWith("/about-us")
     ? "/about-us"
-    : pathname === "/"
-      ? "/"
-      : "";
+    : pathname.startsWith("/programs")
+      ? "/programs"
+      : pathname === "/"
+        ? "/"
+        : "";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);

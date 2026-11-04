@@ -1,0 +1,373 @@
+@use "../styles/mixins" as *;
+@use "../styles/canvas" as *;
+
+// Figma page y of this section's top edge.
+$top: 840;
+
+.section {
+  position: relative;
+  z-index: 2;
+  height: 1410px;
+  overflow-x: clip;
+  // Lets the edge pictures measure the real viewport width (no scrollbar).
+  container-type: inline-size;
+}
+
+.canvas {
+  position: relative;
+  width: var(--page-max);
+  max-width: none;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+}
+
+.deco {
+  pointer-events: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.texture {
+  @include at(328, 840 - $top, 1112, 946);
+  opacity: 0.83;
+}
+
+.sheetLeft {
+  @include at(-265, 1231 - $top, 797, 876);
+  opacity: 0.38;
+}
+
+.sheetStage {
+  @include at(785, 1720 - $top, 726.178, 734.182);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheetTile {
+  position: relative;
+  width: 616.874px;
+  height: 627.025px;
+  overflow: hidden;
+  border-radius: 53px;
+  opacity: 0.1;
+  transform: rotate(11.11deg);
+}
+
+.portrait {
+  @include at(816, 927 - $top, 525, 699);
+  overflow: hidden;
+  border-radius: 216.5px;
+}
+
+.swoosh {
+  @include at(808.43, 1354.68 - $top, 657.447, 431.433);
+}
+
+.swooshTile {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 613px;
+  height: 238.234px;
+  transform: translate(-50%, -50%) rotate(19.76deg);
+}
+
+.hand {
+  @include at(-2, 1366 - $top, 408, 611);
+  transform: scaleX(-1);
+}
+
+// Desktop: the two pictures hug the viewport edges instead of the 1440px canvas.
+@include above($bp-wide) {
+  .canvas {
+    // Space between the viewport's left edge and the centred canvas.
+    --cl: max(0px, calc((100cqw - 1440px) / 2));
+    // Canvas x at which the 525px portrait touches the viewport's right edge.
+    --pl: calc(100cqw - var(--cl) - 525px);
+  }
+
+  .portrait {
+    left: var(--pl);
+  }
+
+  .swoosh {
+    left: calc(var(--pl) - 7.57px);
+  }
+
+  .hand {
+    left: calc(-2px - var(--cl));
+  }
+}
+
+.cue {
+  @include at(134, 973 - $top);
+  z-index: 2;
+}
+
+.titleArt {
+  @include at(126, 999 - $top, 737, 142);
+  z-index: 2;
+}
+
+.titleInner {
+  position: absolute;
+  inset: 5.85% 1.12%;
+  display: block;
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.intro,
+.body p {
+  @include copy;
+  text-align: justify;
+}
+
+.intro {
+  @include at(133, 1159 - $top, 715);
+  z-index: 2;
+}
+
+.rule {
+  @include at(133, 1345 - $top, 715, 3);
+  z-index: 2;
+  background: #d5cabb;
+}
+
+.quote {
+  @include at(220, 1385 - $top, 549);
+  z-index: 2;
+  margin: 0;
+  color: #681722;
+  text-align: center;
+
+  @include serif(500);
+  font-size: 36px;
+  font-style: italic;
+  line-height: 1.25;
+}
+
+.body {
+  @include at(426, 1689 - $top, 874);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// Tablet and mobile: the canvas becomes a fluid editorial column.
+@include below($bp-wide) {
+  .section {
+    height: auto;
+    --gutter: clamp(20px, 5.5vw, 56px);
+  }
+
+  .canvas {
+    display: flex;
+    width: auto;
+    max-width: 760px;
+    flex-direction: column;
+    gap: 26px;
+    padding: 84px var(--gutter) 56px;
+  }
+
+  .deco,
+  .swoosh,
+  .hand {
+    display: none;
+  }
+
+  .cue,
+  .titleArt,
+  .intro,
+  .rule,
+  .quote,
+  .portrait,
+  .body {
+    position: relative;
+    inset: auto;
+    width: auto;
+  }
+
+  .cue {
+    order: 1;
+  }
+
+  .titleArt {
+    order: 2;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 737 / 142;
+    height: auto;
+  }
+
+  .intro {
+    order: 3;
+  }
+
+  .portrait {
+    order: 4;
+    width: min(100%, 360px);
+    height: auto;
+    aspect-ratio: 525 / 699;
+    margin: 6px auto;
+  }
+
+  .quote {
+    order: 5;
+    font-size: clamp(28px, 5.4vw, 36px);
+  }
+
+  .rule {
+    display: none;
+  }
+
+  .body {
+    order: 6;
+  }
+
+  .intro,
+  .body p {
+    font-size: 17px;
+    line-height: 1.75;
+    text-align: left;
+  }
+}
+
+@include below($bp-mobile) {
+  .canvas {
+    padding-top: 72px;
+  }
+
+  .intro,
+  .body p {
+    font-size: 16px;
+  }
+}
+
+// ── Tablet & mobile polish ───────────────────────────────────────────────
+@keyframes glowDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(-10%, 12%) scale(1.2);
+  }
+}
+
+@keyframes floaty {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-8px);
+  }
+}
+
+@include below($bp-wide) {
+  .canvas {
+    isolation: isolate;
+
+    // A slow gold lamp-glow drifting behind the copy.
+    &::before {
+      position: absolute;
+      z-index: -1;
+      top: 6%;
+      right: -30%;
+      width: min(80vw, 520px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(201, 154, 59, 0.22), transparent 65%);
+      content: "";
+      animation: glowDrift 16s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+  }
+
+  // Keep the faint lotus sheet as a backdrop.
+  .sheetLeft {
+    z-index: -1;
+    top: 36%;
+    left: -30%;
+    display: block;
+    width: 120%;
+    height: 46%;
+    opacity: 0.45;
+  }
+
+  .portrait {
+    margin: 24px auto;
+    box-shadow:
+      0 0 0 8px rgba(154, 120, 68, 0.14),
+      0 0 0 18px rgba(154, 120, 68, 0.07),
+      0 30px 50px -28px rgba(104, 23, 34, 0.5);
+    animation: floaty 8s ease-in-out infinite alternate;
+  }
+
+  .quote {
+    padding-top: 30px;
+
+    &::before {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      color: rgba(154, 120, 68, 0.5);
+      content: "\201C";
+      font-size: 84px;
+      line-height: 1;
+      transform: translateX(-50%);
+    }
+  }
+
+  // Editorial drop cap on the opening paragraph.
+  .body p:first-child::first-letter {
+    float: left;
+    padding: 4px 10px 0 0;
+    color: var(--color-maroon);
+    font-family: var(--font-cormorant), Georgia, serif;
+    font-size: 3.2em;
+    font-weight: 500;
+    line-height: 0.8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas::before,
+  .portrait {
+    animation: none;
+  }
+}
+
+// Desktop: backdrop artwork follows the nearest viewport edge too.
+@include above($bp-wide) {
+  .texture {
+    left: calc(328px + var(--cl));
+  }
+
+  .sheetLeft {
+    left: calc(-265px - var(--cl));
+  }
+
+  .sheetStage {
+    left: calc(785px + var(--cl));
+  }
+}

@@ -1,0 +1,388 @@
+@use "../styles/mixins" as *;
+@use "../styles/canvas" as *;
+
+// Figma page y of this section's top edge.
+$top: 2250;
+
+.section {
+  position: relative;
+  z-index: 1;
+  height: 1090px;
+  overflow-x: clip;
+  container-type: inline-size;
+}
+
+.canvas {
+  position: relative;
+  width: var(--page-max);
+  max-width: none;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.fill {
+  position: absolute;
+  inset: 0;
+}
+
+.deco {
+  pointer-events: none;
+}
+
+.ghost {
+  @include at(1028, 2333 - $top, 388, 821);
+  opacity: 0.14;
+}
+
+.ghostFrame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.dancer {
+  @include at(-64, 1988 - $top, 736, 1308);
+  pointer-events: none;
+}
+
+.cue {
+  @include at(325, 2274 - $top);
+  z-index: 2;
+}
+
+.title {
+  @include at(322, 2302 - $top, 706, 71);
+  z-index: 2;
+  color: #681722;
+  text-transform: capitalize;
+  white-space: nowrap;
+
+  @include display;
+  font-size: 70px;
+  line-height: 1.05;
+}
+
+.flow {
+  @include at(466, 2417 - $top, 800);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  p {
+    @include copy;
+    text-align: justify;
+  }
+
+  .wide {
+    width: 852px;
+    max-width: none;
+    text-align: left;
+  }
+
+  .afterPillars {
+    margin-top: 56px;
+  }
+}
+
+.pillars {
+  display: flex;
+  gap: 18px;
+  margin: 28px 0 0 150px;
+  padding: 0;
+  list-style: none;
+}
+
+.pillar {
+  display: flex;
+  width: 210px;
+  height: 77px;
+  align-items: center;
+  gap: 12px;
+  padding-left: 14px;
+  border: 1px solid rgba(140, 98, 39, 0.25);
+  border-radius: 24px;
+  background: rgba(104, 23, 34, 0.02);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #681722;
+  cursor: default;
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    background-color 0.5s var(--ease-out),
+    border-color 0.5s var(--ease-out);
+
+  &:hover {
+    border-color: rgba(140, 98, 39, 0.5);
+    background: rgba(104, 23, 34, 0.05);
+    box-shadow: 0 14px 28px -14px rgba(104, 23, 34, 0.35);
+    transform: translateY(-4px);
+
+    .badge {
+      transform: rotate(-8deg) scale(1.08);
+    }
+
+    .arrow {
+      width: 30px;
+
+      &::after {
+        transform: translate(0, -50%) rotate(45deg);
+      }
+    }
+  }
+}
+
+.badge {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  place-items: center;
+  border-radius: 22px;
+  background: #681722;
+  color: #fff;
+  transition: transform 0.5s var(--ease-out);
+
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.pillarLabel {
+  @include serif(500);
+  font-size: 28px;
+  font-style: italic;
+  line-height: 0.98;
+}
+
+// The "->" cue after each pillar: a thin line that lengthens on hover.
+.arrow {
+  position: relative;
+  width: 20px;
+  height: 1px;
+  flex: none;
+  background: currentColor;
+  transition: width 0.5s var(--ease-out);
+
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 7px;
+    height: 7px;
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+    content: "";
+    transform: translate(0, -50%) rotate(45deg);
+    transition: transform 0.5s var(--ease-out);
+  }
+}
+
+// Tablet and mobile: the canvas becomes a fluid editorial column.
+@include below($bp-wide) {
+  .section {
+    height: auto;
+    --gutter: clamp(20px, 5.5vw, 56px);
+  }
+
+  .canvas {
+    display: flex;
+    width: auto;
+    max-width: 760px;
+    flex-direction: column;
+    gap: 22px;
+    padding: 24px var(--gutter) 64px;
+  }
+
+  .ghost {
+    display: none;
+  }
+
+  .cue,
+  .title,
+  .flow,
+  .dancer {
+    position: relative;
+    inset: auto;
+    width: auto;
+    height: auto;
+  }
+
+  .title {
+    white-space: normal;
+    font-size: clamp(40px, 8.4vw, 64px);
+  }
+
+  .dancer {
+    order: 3;
+    width: min(100%, 300px);
+    aspect-ratio: 736 / 1000;
+    margin: 0 auto;
+  }
+
+  .flow {
+    order: 4;
+
+    .wide,
+    .afterPillars {
+      width: auto;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.75;
+      text-align: left;
+    }
+  }
+
+  .pillars {
+    flex-wrap: wrap;
+    margin: 10px 0;
+  }
+}
+
+@include below($bp-mobile) {
+  .flow p {
+    font-size: 16px;
+  }
+
+  .pillar {
+    width: calc(50% - 9px);
+    min-width: 170px;
+    height: 68px;
+  }
+
+  .pillarLabel {
+    font-size: 24px;
+  }
+}
+
+// ── Tablet & mobile polish ───────────────────────────────────────────────
+@keyframes glowDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(10%, 10%) scale(1.2);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(104, 23, 34, 0.18);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(104, 23, 34, 0);
+  }
+}
+
+@include below($bp-wide) {
+  .canvas {
+    isolation: isolate;
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      top: 14%;
+      left: -30%;
+      width: min(80vw, 520px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(104, 23, 34, 0.14), transparent 65%);
+      content: "";
+      animation: glowDrift 18s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+  }
+
+  // A pale echo of the dancer drifting beside the figure.
+  .ghost {
+    top: 150px;
+    right: -6%;
+    left: auto;
+    z-index: -1;
+    display: block;
+    width: 46%;
+    height: auto;
+    aspect-ratio: 388 / 821;
+    opacity: 0.16;
+  }
+
+  .dancer {
+    width: min(78%, 380px);
+    filter: drop-shadow(0 24px 24px rgba(0, 0, 0, 0.18));
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      inset: 12% -8% 8%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 40%, rgba(104, 23, 34, 0.16), transparent 68%);
+      content: "";
+    }
+  }
+
+  // The three pillars sit side by side as compact, tappable tiles.
+  .pillars {
+    flex-wrap: nowrap;
+    gap: 10px;
+    margin: 14px 0 20px;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .pillar {
+    width: auto;
+    min-width: 0;
+    height: auto;
+    flex: 1 1 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 6px 16px;
+    text-align: center;
+
+    &:active {
+      transform: scale(0.97);
+    }
+  }
+
+  .pillarLabel {
+    font-size: clamp(19px, 5.4vw, 28px);
+  }
+
+  .arrow {
+    width: 18px;
+  }
+
+  .badge {
+    animation: pulse 3.2s ease-in-out infinite;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .canvas::before,
+  .badge {
+    animation: none;
+  }
+}
+
+// Desktop: left picture hugs the left edge, right one the right edge.
+@include above($bp-wide) {
+  .canvas {
+    --cl: max(0px, calc((100cqw - 1440px) / 2));
+  }
+
+  .dancer {
+    left: calc(-64px - var(--cl));
+  }
+
+  .ghost {
+    left: calc(1028px + var(--cl));
+  }
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  Amita,
   Cinzel,
   Cormorant_Garamond,
   DM_Sans,
@@ -32,7 +33,14 @@ const dmSans = DM_Sans({
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "700"],
+  display: "swap",
+});
+
+const amita = Amita({
+  variable: "--font-amita",
+  subsets: ["latin"],
+  weight: "700",
   display: "swap",
 });
 
@@ -154,7 +162,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} ${cinzel.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${liberationMono.variable}`}
+      className={`${cormorant.variable} ${dmSans.variable} ${cinzel.variable} ${amita.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${liberationMono.variable}`}
     >
       <body>
         <IntroCurtain />

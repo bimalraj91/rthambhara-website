@@ -34,6 +34,12 @@ $bp-small: 560px;
   font-variation-settings: "opsz" 14;
 }
 
+// Calligraphic display face used for the programme titles.
+@mixin display {
+  font-family: var(--font-amita), var(--font-cormorant), Georgia, serif;
+  font-weight: 700;
+}
+
 @mixin eyebrow($size: 13px, $tracking: 0) {
   @include sans(600);
   font-size: $size;
