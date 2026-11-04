@@ -48,7 +48,7 @@ $top: 840;
 // the canvas; the text stays where it is.
 .handTop {
   @include at(1152, 802 - $top, 289, 564);
-  left: calc(1152px + var(--bleed));
+  left: calc(1172px + var(--bleed));
   z-index: 3;
   overflow: hidden;
 }
@@ -71,8 +71,8 @@ $top: 840;
 }
 
 .handFlip {
-  @include at(979, 1614 - $top, 463, 538);
-  left: calc(979px + var(--bleed));
+  @include at(999, 1614 - $top, 463, 538);
+  left: calc(999px + var(--bleed));
   transform: scaleX(-1);
 }
 
