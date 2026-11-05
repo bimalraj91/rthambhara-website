@@ -1,0 +1,349 @@
+@use "../styles/mixins" as *;
+@use "../styles/canvas" as *;
+
+// Figma page y of this section's top edge.
+$top: 908;
+
+.section {
+  position: relative;
+  z-index: 1;
+  height: 1638px;
+  overflow: clip;
+  container-type: inline-size;
+  background: #f5f0e7;
+}
+
+.canvas {
+  position: relative;
+  width: var(--page-max);
+  max-width: none;
+  height: 100%;
+  margin: 0 auto;
+  // Extra room beside the 1440px canvas: pictures on the left edge move out to
+  // the left, those on the right edge to the right.
+  --cl: max(0px, calc((100cqw - 1440px) / 2));
+}
+
+.deco {
+  pointer-events: none;
+}
+
+.washRight {
+  @include at(340, 1778 - $top, 1097, 960);
+  left: calc(340px + var(--cl));
+  opacity: 0.43;
+}
+
+.washLeft {
+  @include at(-5, 904 - $top, 970, 946);
+  left: calc(-5px - var(--cl));
+  opacity: 0.27;
+}
+
+.washLeftFlip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  transform: scaleX(-1);
+}
+
+.emblem {
+  @include at(930, 951 - $top, 505, 354);
+  left: calc(930px + var(--cl));
+  overflow: hidden;
+  opacity: 0.08;
+}
+
+// Each guru is laid over the whole canvas; the pieces sit at Figma coordinates.
+.guru {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.photoWrap {
+  position: absolute;
+  z-index: 2;
+  width: 464px;
+  height: 557px;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 2px solid #c99a3b;
+  border-radius: 200px 200px 30px 30px;
+}
+
+.heading {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  width: 492px;
+  flex-direction: column;
+  gap: 27px;
+}
+
+.name {
+  margin: 0;
+  color: #230307;
+  white-space: nowrap;
+
+  @include serif(400);
+  font-size: 64px;
+  line-height: 40px;
+}
+
+.role {
+  margin: 0;
+  color: #64101a;
+
+  @include serif(400);
+  font-size: 32px;
+  line-height: 32px;
+}
+
+.bio {
+  position: absolute;
+  z-index: 2;
+  margin: 0;
+  color: #57534e;
+  text-align: justify;
+
+  @include sans(300);
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.pillars {
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pillar {
+  display: flex;
+  min-width: 118px;
+  height: 77px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 28px;
+  border: 1px solid rgba(140, 98, 39, 0.25);
+  border-radius: 24px;
+  background: rgba(104, 23, 34, 0.02);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #681722;
+  cursor: default;
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out),
+    background-color 0.5s var(--ease-out),
+    border-color 0.5s var(--ease-out);
+
+  @include serif(500);
+  font-size: 28px;
+  font-style: italic;
+  line-height: 0.98;
+
+  &:hover {
+    border-color: rgba(140, 98, 39, 0.5);
+    background: rgba(104, 23, 34, 0.05);
+    box-shadow: 0 14px 28px -14px rgba(104, 23, 34, 0.35);
+    transform: translateY(-4px);
+  }
+}
+
+// Girija: picture left, text right.
+.girija {
+  .photoWrap {
+    left: 134px;
+    top: #{1058 - $top}px;
+  }
+
+  .heading {
+    left: 691px;
+    top: #{1163 - $top}px;
+  }
+
+  .bio {
+    left: 691px;
+    top: #{1275 - $top}px;
+    width: 614px;
+  }
+
+  .pillars {
+    left: 691px;
+    top: #{1468 - $top}px;
+  }
+}
+
+// Satyajit: text left, picture right (flush with the screen edge's canvas).
+.satyajit {
+  .photoWrap {
+    left: 791px;
+    top: #{1800 - $top}px;
+  }
+
+  .heading {
+    left: 133px;
+    top: #{1885 - $top}px;
+  }
+
+  .bio {
+    left: 136px;
+    top: #{1996 - $top}px;
+    width: 580px;
+  }
+
+  .pillars {
+    left: 133px;
+    top: #{2168 - $top}px;
+  }
+}
+
+// Tablet and mobile: the canvas becomes two stacked profile cards.
+@include below($bp-wide) {
+  .section {
+    height: auto;
+    --gutter: clamp(20px, 5.5vw, 56px);
+  }
+
+  .canvas {
+    display: flex;
+    width: auto;
+    max-width: 920px;
+    flex-direction: column;
+    gap: 72px;
+    padding: 72px var(--gutter) 88px;
+  }
+
+  .washRight,
+  .washLeft,
+  .emblem {
+    left: auto;
+    right: -20%;
+    top: 4%;
+    width: min(90vw, 520px);
+    height: auto;
+    aspect-ratio: 505 / 354;
+  }
+
+  .washLeft {
+    right: auto;
+    left: -30%;
+    top: 46%;
+    aspect-ratio: 970 / 946;
+  }
+
+  .washRight {
+    top: 60%;
+    aspect-ratio: 1097 / 960;
+  }
+
+  .guru {
+    position: relative;
+    inset: auto;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+
+    .heading,
+    .bio,
+    .pillars {
+      position: static;
+      width: auto;
+    }
+
+    .photoWrap {
+      position: relative;
+      top: auto;
+      left: auto;
+      width: min(78vw, 340px);
+      height: auto;
+      aspect-ratio: 464 / 557;
+      align-self: center;
+    }
+  }
+
+  .photo {
+    border-radius: 170px 170px 26px 26px;
+    box-shadow:
+      0 0 0 8px rgba(201, 154, 59, 0.12),
+      0 30px 50px -28px rgba(104, 23, 34, 0.5);
+  }
+
+  .heading {
+    gap: 12px;
+  }
+
+  .name {
+    font-size: clamp(38px, 9vw, 56px);
+    line-height: 1.05;
+    white-space: normal;
+  }
+
+  .role {
+    font-size: clamp(24px, 5.4vw, 30px);
+    line-height: 1.2;
+  }
+
+  .bio {
+    max-width: 640px;
+    font-size: 17px;
+    line-height: 1.75;
+    text-align: left;
+  }
+
+  .pillars {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .pillar {
+    min-width: 0;
+    height: 56px;
+    padding: 0 22px;
+    font-size: 22px;
+  }
+
+  // Tablet: picture beside the words, alternating sides.
+  @include above($bp-mobile) {
+    .guru {
+      display: grid;
+      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+      gap: 20px 48px;
+      align-items: start;
+
+      .photoWrap {
+        grid-row: 1 / span 3;
+        align-self: start;
+        width: 100%;
+      }
+    }
+
+    .satyajit {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 300px);
+
+      .photoWrap {
+        grid-column: 2;
+      }
+
+      .heading,
+      .bio,
+      .pillars {
+        grid-column: 1;
+      }
+    }
+  }
+}
