@@ -39,7 +39,7 @@ export const heroSlides = [
     label: "Every expression, a world of its own",
   },
   {
-    image: "/assets/home/concept-background.png",
+    image: "/assets/home/stories-background.png",
     alt: "A dancer moving through a field of golden paisley motifs",
     imagePosition: "center 38%",
     marker: heroMarker,
