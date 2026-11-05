@@ -2,11 +2,11 @@ export const navLinks = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about-us" },
   { label: "Programs", href: "/programs" },
-  { label: "News & Events", href: "/#news" },
+  { label: "News & Events", href: "/news-events" },
   { label: "Gurus", href: "/gurus" },
-  { label: "Blogs", href: "/#journal" },
-  { label: "Gallery", href: "/#gallery" },
-  { label: "Contact us", href: "/#contact" },
+  { label: "Blogs", href: "/blogs" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Contact us", href: "/contact-us" },
 ] as const;
 
 const heroMarker = "Tripunithura · Established 2012";

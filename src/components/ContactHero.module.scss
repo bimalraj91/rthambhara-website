@@ -1,0 +1,194 @@
+@use "../styles/mixins" as *;
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 840px;
+  overflow: hidden;
+  container-type: inline-size;
+  background: #1b090a;
+  color: var(--color-cream);
+}
+
+.backgroundWrap {
+  position: absolute;
+  inset: 0;
+}
+
+.background {
+  object-fit: cover;
+  object-position: center;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    179deg,
+    rgba(0, 0, 0, 0.21) 1%,
+    rgba(23, 41, 57, 0.21) 94%
+  );
+}
+
+.frame {
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: var(--page-max);
+  height: 100%;
+  transform: translateX(-50%);
+  // Extra room beside the 1440px canvas, so the dancer follows the screen edge.
+  --cl: max(0px, calc((100cqw - 1440px) / 2));
+}
+
+.dancer {
+  position: absolute;
+  top: 176px;
+  left: calc(998px + var(--cl));
+  width: 443.151px;
+  height: 664.726px;
+  pointer-events: none;
+}
+
+.dancerSway {
+  position: absolute;
+  inset: 0;
+  transform-origin: 50% 100%;
+  animation: sway 9s ease-in-out infinite alternate;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.dancerImage {
+  object-fit: cover;
+}
+
+@keyframes sway {
+  from {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  to {
+    transform: translateY(-8px) rotate(0.6deg);
+  }
+}
+
+.card {
+  position: absolute;
+  top: 231px;
+  left: 248px;
+  width: 944px;
+  height: 402px;
+  border: 1px solid rgba(140, 98, 39, 0.25);
+  border-radius: 24px;
+  background: rgba(104, 23, 34, 0.02);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.cue {
+  position: absolute;
+  top: 269px;
+  left: 324px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: #c99a3b;
+  white-space: nowrap;
+
+  @include sans(500);
+  font-size: 14px;
+  line-height: normal;
+
+  &::before {
+    width: 28px;
+    height: 1px;
+    flex: none;
+    background: #dcb158;
+    content: "";
+  }
+}
+
+.title {
+  position: absolute;
+  top: 311px;
+  left: 320px;
+  width: 844px;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  @include serif(500);
+  font-size: 80px;
+  line-height: 0.93;
+
+  span {
+    display: block;
+  }
+}
+
+.italic {
+  font-style: italic;
+}
+
+// Below the design width the hero stacks inside a bordered frame.
+@include below($bp-wide) {
+  .hero {
+    height: auto;
+    min-height: 640px;
+  }
+
+  .frame {
+    position: relative;
+    left: auto;
+    display: flex;
+    max-width: none;
+    height: auto;
+    flex-direction: column;
+    padding: 140px clamp(22px, 5vw, 56px) 0;
+    transform: none;
+  }
+
+  .card {
+    position: absolute;
+    inset: 112px clamp(18px, 4vw, 40px) 40px;
+    width: auto;
+    height: auto;
+    background: rgba(20, 4, 7, 0.45);
+  }
+
+  .cue,
+  .title {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: 2;
+    width: auto;
+    padding: 0 clamp(14px, 4vw, 40px);
+  }
+
+  .cue {
+    margin-top: 26px;
+  }
+
+  .title {
+    margin-top: 18px;
+    font-size: clamp(38px, 9vw, 72px);
+  }
+
+  .dancer {
+    position: relative;
+    top: auto;
+    left: auto;
+    z-index: 2;
+    order: 9;
+    width: min(70%, 380px);
+    height: auto;
+    aspect-ratio: 443 / 665;
+    margin: 12px 0 0 auto;
+  }
+}

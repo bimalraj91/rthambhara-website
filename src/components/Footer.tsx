@@ -9,8 +9,8 @@ const quickLinks = [
   { label: "Home", href: "/" },
   { label: "About Academy", href: "/about-us" },
   { label: "Training Programs", href: "/programs" },
-  { label: "News & Events", href: "/#news" },
-  { label: "Photo Gallery", href: "/#gallery" },
+  { label: "News & Events", href: "/news-events" },
+  { label: "Photo Gallery", href: "/gallery" },
 ];
 
 const disciplines = [

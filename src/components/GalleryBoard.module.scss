@@ -1,0 +1,757 @@
+@use "../styles/mixins" as *;
+
+$gold: #9a7844;
+
+.page {
+  position: relative;
+  z-index: 1;
+  overflow: clip;
+  background: #1b0508;
+  color: #fff;
+}
+
+// The temple-stage backdrop behind the whole gallery ------------------------
+.stage {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+}
+
+.stageImage {
+  object-fit: cover;
+  object-position: center top;
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.3),
+      rgba(27, 5, 8, 0.78) 70%,
+      #1b0508
+    ),
+    rgba(0, 0, 0, 0.2);
+}
+
+.lamp {
+  position: absolute;
+  top: 6%;
+  left: 8%;
+  width: min(46vw, 560px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(236, 160, 70, 0.22),
+    transparent 65%
+  );
+  filter: blur(18px);
+  animation: lampDrift 16s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.lampAlt {
+  top: 30%;
+  right: 6%;
+  left: auto;
+  background: radial-gradient(circle, rgba(183, 53, 34, 0.3), transparent 65%);
+  animation-duration: 21s;
+  animation-direction: alternate-reverse;
+}
+
+@keyframes lampDrift {
+  from {
+    transform: translate(0, 0) scale(1);
+  }
+
+  to {
+    transform: translate(8%, 10%) scale(1.18);
+  }
+}
+
+// Hero ------------------------------------------------------------------------
+.hero {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  height: 740px;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 275px;
+}
+
+.ghost {
+  position: absolute;
+  top: 226px;
+  left: 50%;
+  max-width: none;
+  opacity: 0.4;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.card {
+  position: relative;
+  width: 629px;
+  height: 303px;
+  padding: 37px 0 0 180px;
+  border: 1px solid rgba(140, 98, 39, 0.35);
+  border-radius: 24px;
+  background: rgba(104, 23, 34, 0.04);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(2px);
+}
+
+.cue {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: #c99a3b;
+
+  @include sans(500);
+  font-size: 14px;
+  line-height: 15px;
+
+  &::before {
+    width: 28px;
+    height: 1px;
+    flex: none;
+    background: #dcb158;
+    content: "";
+  }
+}
+
+.title {
+  width: 563px;
+  margin: 8px 0 0;
+  color: #fff;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+
+  @include serif(500);
+  font-size: 100px;
+  line-height: 0.9;
+
+  span {
+    display: block;
+  }
+}
+
+// Filter bar ------------------------------------------------------------------
+.filters {
+  position: relative;
+  display: flex;
+  max-width: calc(100% - 32px);
+  align-items: center;
+  gap: 8px;
+  margin-top: 75px;
+  padding: 16px 38px 16px 61px;
+  overflow-x: auto;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.chip {
+  flex: none;
+  padding: 6px 16px;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    background-color 0.35s var(--ease-out),
+    transform 0.35s var(--ease-out);
+
+  @include sans(500);
+  font-size: 16px;
+  letter-spacing: 0.3px;
+  line-height: 16px;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  @include focus-ring(#ecd08e);
+}
+
+.chipActive {
+  padding: 7px 17px;
+  border-color: #4a0b15;
+  background: #681722;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+
+  &:hover {
+    background: #681722;
+  }
+}
+
+// Gallery ---------------------------------------------------------------------
+.gallery {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding-bottom: 150px;
+}
+
+.block {
+  position: relative;
+  width: 1440px;
+  height: 1201px;
+  margin: 0 auto;
+
+  & + .block {
+    margin-top: 70px;
+  }
+}
+
+// One picture. On desktop each cell is placed on the 1440px canvas.
+.cell {
+  position: absolute;
+}
+
+.slot0 {
+  top: 86px;
+  left: 140px;
+  width: 320px;
+  height: 429px;
+}
+
+.slot1 {
+  top: 0;
+  left: 479px;
+  width: 384px;
+  height: 515px;
+}
+
+.slot2 {
+  top: 185px;
+  left: 882px;
+  width: 403px;
+  height: 330px;
+}
+
+.slot3 {
+  top: 528px;
+  left: 134px;
+  width: 411px;
+  height: 330px;
+}
+
+.slot4 {
+  top: 528px;
+  left: 563px;
+  width: 275px;
+  height: 330px;
+}
+
+.slot5 {
+  top: 528px;
+  left: 856px;
+  width: 429px;
+  height: 240px;
+}
+
+.slot6 {
+  top: 781px;
+  left: 853px;
+  width: 432px;
+  height: 420px;
+}
+
+.slot7 {
+  top: 871px;
+  left: 140px;
+  width: 280px;
+  height: 330px;
+}
+
+.slot8 {
+  top: 871px;
+  left: 435px;
+  width: 403px;
+  height: 330px;
+}
+
+.slot9 {
+  position: relative;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid $gold;
+  border-radius: 20px;
+  background: #230307;
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+  cursor: zoom-in;
+  transition:
+    box-shadow 0.5s var(--ease-out),
+    border-color 0.5s var(--ease-out),
+    transform 0.6s var(--ease-out);
+
+  &:hover {
+    border-color: #ecd08e;
+    box-shadow:
+      0 0 0 4px rgba(236, 208, 142, 0.12),
+      0 28px 50px -20px rgba(236, 160, 70, 0.4);
+    transform: translateY(-6px);
+
+    .photo {
+      transform: scale(1.07);
+    }
+
+    .veil {
+      opacity: 1;
+
+      b,
+      em,
+      i {
+        transform: none;
+      }
+    }
+  }
+
+  @include focus-ring(#ecd08e);
+}
+
+.arch .tile {
+  border-radius: 200px 200px 30px 30px;
+}
+
+.round .tile {
+  border-radius: 30px;
+}
+
+.photo {
+  object-fit: cover;
+  transition: transform 1.1s var(--ease-out);
+}
+
+// Caption that rises on hover / focus
+.veil {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 56px 20px 18px;
+  background: linear-gradient(0deg, rgba(27, 5, 8, 0.92), rgba(27, 5, 8, 0));
+  opacity: 0;
+  text-align: left;
+  transition: opacity 0.5s var(--ease-out);
+
+  i,
+  b,
+  em {
+    transform: translateY(10px);
+    transition: transform 0.6s var(--ease-out);
+  }
+
+  i {
+    color: #ecd08e;
+    text-transform: uppercase;
+
+    @include sans(600);
+    font-size: 10.5px;
+    font-style: normal;
+    letter-spacing: 0.14em;
+  }
+
+  b {
+    color: #fff;
+
+    @include serif(600);
+    font-size: 22px;
+    line-height: 1.1;
+  }
+
+  em {
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+
+    @include sans(500);
+    font-size: 10.5px;
+    font-style: normal;
+    letter-spacing: 0.14em;
+  }
+}
+
+.arch .veil {
+  padding-bottom: 28px;
+}
+
+// Tagline tile ----------------------------------------------------------------
+.ctaCard {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 59px 22px 0;
+  overflow: hidden;
+  border: 2px solid $gold;
+  border-radius: 20px;
+  background: #eadfcb;
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.8);
+  text-align: center;
+
+  p {
+    position: relative;
+    margin: 0;
+    color: #681722;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.18);
+
+    @include serif(500);
+    font-size: 36px;
+    line-height: 0.93;
+  }
+}
+
+.paper {
+  object-fit: cover;
+}
+
+.explore {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  padding: 4px 6px 4px 20px;
+  border-radius: 100px;
+  background: #681722;
+  box-shadow:
+    0 0 2px rgba(0, 0, 0, 0.1),
+    0 1px 8px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+  color: #fff;
+  transition:
+    transform 0.4s var(--ease-out),
+    box-shadow 0.4s var(--ease-out);
+
+  @include sans(300);
+  font-size: 16px;
+  letter-spacing: -0.1px;
+  line-height: 20px;
+
+  i {
+    position: relative;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 50%;
+    transition: transform 0.4s var(--ease-out);
+
+    &::after {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      border-top: 1.5px solid #fff;
+      border-right: 1.5px solid #fff;
+      content: "";
+      transform: translate(-65%, -50%) rotate(45deg);
+    }
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+
+    i {
+      transform: translateX(3px);
+    }
+  }
+
+  @include focus-ring(#681722);
+}
+
+.back {
+  position: relative;
+  margin-top: 22px;
+  color: #681722;
+
+  @include sans(500);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+
+  @include focus-ring(#681722);
+}
+
+.more {
+  display: none;
+}
+
+.empty {
+  grid-column: 1 / -1;
+  margin: 40px 0;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+
+  @include serif(500);
+  font-size: 28px;
+  font-style: italic;
+}
+
+// Filtered view: a flowing, tidy masonry ------------------------------------------------
+.flow {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+  column-count: 3;
+  column-gap: 24px;
+}
+
+.flow .cell {
+  position: relative;
+  top: auto;
+  left: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 24px;
+  break-inside: avoid;
+}
+
+.flow .tile {
+  height: auto;
+  aspect-ratio: var(--ratio, 1);
+}
+
+// Tablet and mobile: a staggered, glowing mosaic -------------------------------------------
+@include below($bp-wide) {
+  .hero {
+    height: auto;
+    padding: 150px 20px 0;
+  }
+
+  .ghost {
+    top: 120px;
+    width: min(150vw, 905px);
+    height: auto;
+  }
+
+  .card {
+    width: min(100%, 640px);
+    height: auto;
+    padding: 34px clamp(24px, 6vw, 56px) 40px;
+  }
+
+  .title {
+    width: auto;
+    font-size: clamp(54px, 13vw, 100px);
+  }
+
+  .filters {
+    margin-top: 40px;
+    padding: 12px 18px;
+    border-radius: 24px;
+  }
+
+  .chip {
+    font-size: 15px;
+  }
+
+  .gallery {
+    padding: 56px clamp(14px, 4vw, 40px) 110px;
+  }
+
+  .block {
+    width: auto;
+    height: auto;
+    max-width: 920px;
+    column-count: 2;
+    column-gap: 16px;
+  }
+
+  .block .cell,
+  .flow .cell {
+    position: relative;
+    top: auto;
+    left: auto;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 16px;
+    break-inside: avoid;
+  }
+
+  .flow {
+    max-width: 920px;
+    padding: 0;
+    column-count: 2;
+    column-gap: 16px;
+  }
+
+  .tile {
+    height: auto;
+    aspect-ratio: var(--ratio, 1);
+    border-radius: 24px;
+  }
+
+  .arch .tile {
+    border-radius: 999px 999px 24px 24px;
+  }
+
+  // Alternate cells drop down a little, so the columns stagger.
+  .block .cell:nth-child(even),
+  .flow .cell:nth-child(even) {
+    margin-top: 30px;
+    margin-bottom: 0;
+    padding-bottom: 16px;
+  }
+
+  // Captions are always visible on touch screens.
+  .veil {
+    padding-top: 46px;
+    opacity: 1;
+
+    i,
+    b,
+    em {
+      transform: none;
+    }
+
+    em {
+      display: none;
+    }
+
+    b {
+      font-size: 19px;
+    }
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+
+  .ctaCard {
+    min-height: 0;
+    aspect-ratio: 275 / 330;
+    padding-top: 12%;
+
+    p {
+      font-size: clamp(26px, 5vw, 36px);
+    }
+  }
+
+  .more {
+    display: block;
+    margin: 34px 0 0;
+    text-align: center;
+
+    a {
+      color: #ecd08e;
+
+      @include serif(500);
+      font-size: 24px;
+      font-style: italic;
+    }
+  }
+}
+
+@include below($bp-mobile) {
+  .hero {
+    padding-top: 128px;
+  }
+
+  .card {
+    padding: 28px 24px 32px;
+    border-radius: 20px;
+  }
+
+  .title {
+    font-size: clamp(46px, 14vw, 64px);
+  }
+
+  .gallery {
+    padding-inline: 12px;
+  }
+
+  .block,
+  .flow {
+    column-gap: 12px;
+  }
+
+  .block .cell,
+  .flow .cell {
+    margin-bottom: 12px;
+  }
+
+  // The first picture is a full-width feature.
+  .block .cell:first-child,
+  .flow .cell:first-child {
+    column-span: all;
+  }
+
+  .block .cell:first-child .tile,
+  .flow .cell:first-child .tile {
+    aspect-ratio: 4 / 4.6;
+  }
+
+  .block .cell:nth-child(even),
+  .flow .cell:nth-child(even) {
+    margin-top: 22px;
+    padding-bottom: 12px;
+  }
+
+  .block .cell:nth-child(2) {
+    margin-top: 0;
+    padding-bottom: 0;
+  }
+
+  .veil {
+    padding: 36px 12px 12px;
+
+    b {
+      font-size: 16px;
+    }
+
+    i {
+      font-size: 9px;
+    }
+  }
+
+  .ctaCard p {
+    font-size: 26px;
+  }
+
+  .explore {
+    margin-top: 14px;
+    padding-left: 14px;
+    font-size: 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lamp {
+    animation: none;
+  }
+
+  .tile:hover {
+    transform: none;
+  }
+}
