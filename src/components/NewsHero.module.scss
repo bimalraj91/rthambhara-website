@@ -47,7 +47,7 @@
   left: 146px;
   width: 754px;
   height: 216px;
-  opacity: 0.22;
+  // The letters already carry the design's 6% gold fill.
   pointer-events: none;
 }
 
@@ -147,7 +147,8 @@
   left: 222.5px;
   width: 976px;
   height: 402px;
-  border: 1px solid rgba(140, 98, 39, 0.25);
+  // Matches the outline as the design renders it over the dark photograph.
+  border: 1px solid rgba(220, 185, 156, 0.4);
   border-radius: 24px;
   background: rgba(104, 23, 34, 0.02);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -196,6 +197,14 @@
 
 .italic {
   font-style: italic;
+}
+
+// The split-line masks add room for descenders; take it back so the three
+// lines sit at the design's 0.93 line height.
+@include above($bp-wide) {
+  .title .titleLine {
+    margin-bottom: -0.24em;
+  }
 }
 
 // Below the design width the card content stacks inside a bordered frame.

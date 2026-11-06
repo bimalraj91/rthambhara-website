@@ -333,7 +333,11 @@ export default function NewsEvents() {
             <StaggerGroup
               key={`events-${groupKey}`}
               as="ul"
-              className={view === "grid" ? styles.grid : styles.list}
+              className={
+                view === "grid"
+                  ? `${styles.grid} ${styles.eventsGrid}`
+                  : styles.list
+              }
               stagger={0.1}
             >
               {visibleEvents.map((item) => (
@@ -350,7 +354,7 @@ export default function NewsEvents() {
         )}
 
         {visibleNews.length > 0 && (
-          <div className={styles.group}>
+          <div className={`${styles.group} ${styles.newsGroup}`}>
             <Reveal className={`${styles.groupHead} ${styles.newsHead}`} y={24}>
               <h2>News &amp; Highlights</h2>
               {view === "grid" && (
@@ -365,7 +369,11 @@ export default function NewsEvents() {
             <StaggerGroup
               key={`news-${groupKey}`}
               as="ul"
-              className={view === "grid" ? styles.grid : styles.list}
+              className={
+                view === "grid"
+                  ? `${styles.grid} ${styles.newsGrid}`
+                  : styles.list
+              }
               stagger={0.1}
             >
               {visibleNews.map((item) => (

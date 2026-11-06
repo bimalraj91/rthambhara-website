@@ -45,7 +45,7 @@ export default function NewsHero() {
         transition={{ duration: 2.2, ease: EASE }}
       >
         <Image
-          src="/assets/contact/hero.webp"
+          src="/assets/programs/hero-bg.webp"
           alt="A Bharatanatyam dancer beside carved temple pillars"
           fill
           priority
@@ -127,6 +127,7 @@ export default function NewsHero() {
           id="news-hero-title"
           as="h1"
           className={styles.title}
+          lineClassName={styles.titleLine}
           lines={[
             "The earth has its rhythm.",
             "The heart has its own.",
