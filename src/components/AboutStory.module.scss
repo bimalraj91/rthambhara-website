@@ -621,3 +621,112 @@ $top: 840;
     animation: none;
   }
 }
+
+// ── Tablet & mobile: the desktop background arts, softly blended ─────────
+// Added behind the existing layout only; nothing in front of the text moves.
+// Sizes scale with the screen (capped at the desktop size) and every piece is
+// faded or masked so it melts into the cream page.
+@include below($bp-wide) {
+  .canvas {
+    isolation: isolate;
+  }
+
+  .sheet,
+  .handTop,
+  .ghungroo,
+  .handFlip,
+  .word {
+    z-index: -1;
+  }
+
+  // Lotus ornament sheet, drifting in from the top-left corner.
+  .sheet {
+    display: flex;
+    top: -20px;
+    left: -26vw;
+    width: min(96vw, 640px);
+    height: auto;
+    aspect-ratio: 726.178 / 734.182;
+  }
+
+  .sheetTile {
+    width: 84.95%;
+    height: 85.4%;
+    opacity: 0.13;
+  }
+
+  // The raised hand, fading out as it comes down the right edge.
+  .handTop {
+    display: block;
+    top: 10px;
+    right: -3vw;
+    left: auto;
+    width: min(32vw, 210px);
+    height: auto;
+    aspect-ratio: 289 / 564;
+    opacity: 0.45;
+    clip-path: none;
+    -webkit-mask-image: linear-gradient(180deg, #000 38%, transparent 92%);
+    mask-image: linear-gradient(180deg, #000 38%, transparent 92%);
+  }
+
+  // Ankle bells peeking out behind the dancer's arch.
+  .ghungroo {
+    display: flex;
+    top: 17%;
+    right: -26vw;
+    left: auto;
+    width: min(66vw, 400px);
+    height: auto;
+    aspect-ratio: 490.914 / 449.53;
+    opacity: 0.4;
+  }
+
+  .ghungrooTile {
+    width: 67.78%;
+    height: 89.35%;
+  }
+
+  // The seated dancer, lower on the right, fading in from above.
+  .handFlip {
+    display: block;
+    top: 64%;
+    right: -13vw;
+    left: auto;
+    width: min(56vw, 340px);
+    height: auto;
+    aspect-ratio: 463 / 538;
+    opacity: 0.34;
+    -webkit-mask-image: linear-gradient(
+      180deg,
+      transparent 0,
+      #000 30%,
+      #000 60%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      180deg,
+      transparent 0,
+      #000 30%,
+      #000 60%,
+      transparent 100%
+    );
+  }
+
+  // The vertical Devanagari word along the right edge.
+  .word {
+    display: block;
+    top: 33%;
+    right: -6vw;
+    left: auto;
+    width: min(21vw, 118px);
+    height: auto;
+    aspect-ratio: 263.648 / 847.457;
+    opacity: 0.55;
+  }
+
+  .wordTile {
+    width: 321.45%;
+    height: 31.11%;
+  }
+}

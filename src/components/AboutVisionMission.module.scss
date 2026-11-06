@@ -878,3 +878,126 @@ $top: 2500;
     }
   }
 }
+
+// ── Tablet & mobile: the desktop background arts, softly blended ─────────
+// Added behind the existing layout only; nothing in front of the text moves.
+// Sizes scale with the screen (capped at the desktop size) and every piece is
+// faded or masked so it melts into the cream page.
+@include below($bp-wide) {
+  .canvas {
+    isolation: isolate;
+  }
+
+  .circle,
+  .sheetLeft,
+  .sheetRight,
+  .emblem,
+  .moon,
+  .sheetNine,
+  .handLeft,
+  .glow,
+  .lotus {
+    display: block;
+    z-index: -1;
+    grid-column: auto;
+  }
+
+  // The dancer in the temple, a pale wash behind the three principles.
+  .circle {
+    top: 1%;
+    left: -52vw;
+    width: min(104vw, 720px);
+    height: auto;
+    aspect-ratio: 949.452 / 871.179;
+    opacity: 0.2;
+  }
+
+  .circleTile {
+    width: 91.76%;
+    height: 108.99%;
+  }
+
+  .sheetLeft {
+    top: -2%;
+    left: -60vw;
+    width: min(150vw, 900px);
+    height: auto;
+    aspect-ratio: 1080.406 / 1045.694;
+    opacity: 0.12;
+  }
+
+  .sheetRight {
+    display: flex;
+    top: 14%;
+    right: -52vw;
+    left: auto;
+    width: min(112vw, 640px);
+    height: auto;
+    aspect-ratio: 726.178 / 734.182;
+  }
+
+  .sheetRightTile {
+    width: 84.95%;
+    height: 85.4%;
+    opacity: 0.08;
+  }
+
+  .moon {
+    top: 36%;
+    left: 50%;
+    width: min(130vw, 760px);
+    height: auto;
+    aspect-ratio: 802 / 731;
+    border-radius: 50%;
+    opacity: 0.09;
+    transform: translateX(-50%);
+  }
+
+  .sheetNine {
+    top: 46%;
+    left: -38vw;
+    width: min(94vw, 500px);
+    height: auto;
+    aspect-ratio: 753 / 827;
+    opacity: 0.26;
+  }
+
+  .handLeft {
+    top: 61%;
+    left: -22vw;
+    width: min(54vw, 300px);
+    height: auto;
+    aspect-ratio: 481 / 641;
+    opacity: 0.2;
+    -webkit-mask-image: linear-gradient(90deg, #000 30%, transparent 96%);
+    mask-image: linear-gradient(90deg, #000 30%, transparent 96%);
+  }
+
+  .glow {
+    top: 66%;
+    right: -34vw;
+    left: auto;
+    width: min(100vw, 560px);
+    height: auto;
+    aspect-ratio: 800 / 600;
+    filter: blur(70px);
+  }
+
+  .lotus {
+    top: 80%;
+    right: -14vw;
+    left: auto;
+    width: min(46vw, 260px);
+    height: auto;
+    aspect-ratio: 381 / 655;
+    opacity: 0.18;
+  }
+
+  .emblem {
+    top: 72%;
+    left: -14vw;
+    width: min(84vw, 480px);
+    height: auto;
+    aspect-ratio: 529 / 371;
+  }
+}

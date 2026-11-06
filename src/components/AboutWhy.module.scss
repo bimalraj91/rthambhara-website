@@ -653,3 +653,95 @@ $top: 4920;
     }
   }
 }
+
+// ── Tablet & mobile: the desktop background arts, softly blended ─────────
+// Added behind the existing layout only; nothing in front of the text moves.
+// Sizes scale with the screen (capped at the desktop size) and every piece is
+// faded or masked so it melts into the cream page.
+@include below($bp-wide) {
+  .canvas {
+    isolation: isolate;
+  }
+
+  .dancer,
+  .sheet,
+  .traveler,
+  .natya,
+  .spotlight {
+    display: flex;
+    z-index: -1;
+  }
+
+  // Feet and lamp, pale and flipped, behind the lower cards.
+  .dancer {
+    top: 52%;
+    left: -36vw;
+    width: min(110vw, 720px);
+    height: auto;
+    aspect-ratio: 839 / 706;
+    opacity: 0.24;
+    // Dissolves into the page on every side instead of ending in an edge.
+    -webkit-mask-image: radial-gradient(
+      ellipse 60% 56% at 54% 50%,
+      #000 28%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 60% 56% at 54% 50%,
+      #000 28%,
+      transparent 100%
+    );
+  }
+
+  .sheet {
+    display: block;
+    top: 22%;
+    right: -34vw;
+    left: auto;
+    width: min(66vw, 360px);
+    height: auto;
+    aspect-ratio: 268 / 585;
+    opacity: 0.24;
+  }
+
+  .traveler {
+    display: block;
+    top: 33%;
+    right: -18vw;
+    left: auto;
+    width: min(50vw, 290px);
+    height: auto;
+    aspect-ratio: 367 / 486;
+    opacity: 0.17;
+    -webkit-mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 55%, transparent 100%);
+  }
+
+  // A huge, barely-there Devanagari word down the left edge.
+  .natya {
+    top: 5%;
+    left: -20vw;
+    width: 62vw;
+    height: 98vw;
+
+    span {
+      color: rgba(140, 98, 39, 0.07);
+      font-size: 58vw;
+      line-height: 58vw;
+    }
+  }
+
+  // The warm beam behind cards six and seven.
+  .spotlight {
+    top: 62%;
+    left: -12vw;
+    width: min(72vw, 400px);
+    height: auto;
+    aspect-ratio: 427.194 / 426.116;
+  }
+
+  .spotlightTile {
+    width: 66.57%;
+    height: 74.9%;
+  }
+}
