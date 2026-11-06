@@ -1,18 +1,7 @@
-"use client";
+import styles from "./template.module.scss";
 
-import { motion, useReducedMotion } from "framer-motion";
-
+// A soft fade-in for every page. It is pure CSS so the page paints straight
+// from the server HTML; it does not wait for JavaScript to load.
 export default function Template({ children }: { children: React.ReactNode }) {
-  const shouldReduceMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      initial={shouldReduceMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-      style={{ willChange: "opacity" }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <div className={styles.page}>{children}</div>;
 }

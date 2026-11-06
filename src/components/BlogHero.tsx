@@ -94,12 +94,16 @@ export default function BlogHero({
         </motion.div>
 
         {dancer && (
-          <motion.div
-            className={styles.dancer}
+          <div
+            className={`${styles.dancer} enter`}
             aria-hidden="true"
-            initial={shouldReduceMotion ? false : { opacity: 0, x: 60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.4, ease: EASE, delay: 0.4 }}
+            style={
+              {
+                "--enter-x": "60px",
+                "--enter-dur": "1.4s",
+                "--enter-delay": "0.4s",
+              } as React.CSSProperties
+            }
           >
             <div className={styles.dancerSway}>
               <Image
@@ -111,28 +115,35 @@ export default function BlogHero({
                 className={styles.dancerImage}
               />
             </div>
-          </motion.div>
+          </div>
         )}
 
-        <motion.div
-          className={styles.card}
+        <div
+          className={`${styles.card} enter`}
           aria-hidden="true"
-          initial={
-            shouldReduceMotion ? false : { opacity: 0, y: 44, scale: 0.98 }
+          style={
+            {
+              "--enter-y": "44px",
+              "--enter-scale": "0.98",
+              "--enter-dur": "1.1s",
+              "--enter-delay": "0.35s",
+            } as React.CSSProperties
           }
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
         />
 
         <div className={styles.copy}>
-          <motion.p
-            className={styles.cue}
-            initial={shouldReduceMotion ? false : { opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
+          <p
+            className={`${styles.cue} enter`}
+            style={
+              {
+                "--enter-x": "-20px",
+                "--enter-dur": "0.8s",
+                "--enter-delay": "0.6s",
+              } as React.CSSProperties
+            }
           >
             BLOGS
-          </motion.p>
+          </p>
 
           <SplitText
             id={titleId}
@@ -146,14 +157,18 @@ export default function BlogHero({
           />
 
           {meta && (
-            <motion.div
-              className={styles.meta}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: EASE, delay: 1.3 }}
+            <div
+              className={`${styles.meta} enter`}
+              style={
+                {
+                  "--enter-y": "14px",
+                  "--enter-dur": "0.8s",
+                  "--enter-delay": "1.3s",
+                } as React.CSSProperties
+              }
             >
               {meta}
-            </motion.div>
+            </div>
           )}
         </div>
       </div>

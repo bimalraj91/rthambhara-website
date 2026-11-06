@@ -1,34 +1,22 @@
 import type { Metadata } from "next";
 import GalleryBoard from "@/components/GalleryBoard";
 import { landingItems } from "@/data/gallery";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { absoluteUrl, siteName } from "@/lib/site";
 
 const title = "Gallery";
 const description =
   "Moments that move us: photographs of Bharatanatyam, contemporary dance, healthy ageing, events and workshops at Rtambhara Academy in Tripunithura.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title,
   description,
-  alternates: { canonical: absoluteUrl("/gallery") },
-  openGraph: {
-    title: `${title} | Rtambhara Academy`,
-    description,
-    type: "website",
-    locale: "en_IN",
-    url: absoluteUrl("/gallery"),
-    images: [
-      { url: absoluteUrl(landingItems[0].src), alt: landingItems[0].alt },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${title} | Rtambhara Academy`,
-    description,
-  },
-};
+  path: "/gallery",
+  image: { url: landingItems[0].src, alt: description },
+});
 
-const jsonLd = {
+const gallerySchema = {
   "@context": "https://schema.org",
   "@type": "ImageGallery",
   name: `${siteName} Gallery`,
@@ -43,13 +31,18 @@ const jsonLd = {
   })),
 };
 
+const jsonLd = [
+  gallerySchema,
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: title, path: "/gallery" },
+  ]),
+];
+
 export default function GalleryPage() {
   return (
     <main id="main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <GalleryBoard
         mode="landing"
         blocks={[landingItems]}

@@ -2,31 +2,22 @@ import type { Metadata } from "next";
 import BlogHero from "@/components/BlogHero";
 import BlogList from "@/components/BlogList";
 import { blogPosts } from "@/data/blogs";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { absoluteUrl, siteName } from "@/lib/site";
 
 const title = "Blogs";
 const description =
   "Stories, reflections and the art within: articles on Bharatanatyam, Carnatic music, yoga and life at Rtambhara Academy in Tripunithura.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title,
   description,
-  alternates: { canonical: absoluteUrl("/blogs") },
-  openGraph: {
-    title: `${title} | Rtambhara Academy`,
-    description,
-    type: "website",
-    locale: "en_IN",
-    url: absoluteUrl("/blogs"),
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${title} | Rtambhara Academy`,
-    description,
-  },
-};
+  path: "/blogs",
+  image: { url: "/assets/blogs/hero-landing.webp", alt: description },
+});
 
-const jsonLd = {
+const blogSchema = {
   "@context": "https://schema.org",
   "@type": "Blog",
   name: `${siteName} Blog`,
@@ -41,13 +32,18 @@ const jsonLd = {
   })),
 };
 
+const jsonLd = [
+  blogSchema,
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: title, path: "/blogs" },
+  ]),
+];
+
 export default function BlogsPage() {
   return (
     <main id="main">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={jsonLd} />
       <BlogHero
         titleId="blogs-hero-title"
         titleLines={["Stories, Reflections &", "The art within."]}

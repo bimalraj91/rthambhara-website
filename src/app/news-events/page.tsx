@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
+import { breadcrumbSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 import NewsEvents from "@/components/NewsEvents";
 import NewsHero from "@/components/NewsHero";
 
@@ -6,20 +8,31 @@ const title = "News & Events";
 const description =
   "Upcoming recitals, workshops and celebrations at Rtambhara Academy, plus news and highlights from our gurus and disciples in Tripunithura.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title,
   description,
-  openGraph: {
-    title: `${title} | Rtambhara Academy`,
+  path: "/news-events",
+  image: { url: "/assets/contact/hero.webp", alt: description },
+});
+
+const jsonLd = [
+  webPageSchema({
+    name: title,
     description,
-    type: "website",
-    locale: "en_IN",
-  },
-};
+    path: "/news-events",
+    type: "CollectionPage",
+    image: "/assets/contact/hero.webp",
+  }),
+  breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: title, path: "/news-events" },
+  ]),
+];
 
 export default function NewsEventsPage() {
   return (
     <main id="main">
+      <JsonLd data={jsonLd} />
       <NewsHero />
       <NewsEvents />
     </main>

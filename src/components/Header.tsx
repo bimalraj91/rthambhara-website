@@ -63,7 +63,7 @@ export default function Header() {
         className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
       >
         <div className={styles.inner}>
-          <Link href="/" className={styles.brand} aria-label="Rtambhara Academy home">
+          <Link href="/" className={styles.brand} aria-label="rtambhara Performing & Visual Arts, home">
             <span className={styles.emblem} aria-hidden="true">
               <Image
                 src="/assets/home/emblem.png"

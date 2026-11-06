@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Amita,
   Cinzel,
@@ -14,6 +14,9 @@ import Footer from "@/components/Footer";
 import IntroCurtain from "@/components/IntroCurtain";
 import Header from "@/components/Header";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import JsonLd from "@/components/JsonLd";
+import { organizationSchema, websiteSchema } from "@/lib/seo";
+import { defaultOgImage, siteDescription, siteName, siteUrl } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -83,19 +86,25 @@ const liberationMono = localFont({
   fallback: ["Courier New", "monospace"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
-const description =
-  "Rtambhara Academy for Performing and Visual Arts in Tripunithura preserves the depth of Kerala's classical traditions while making space for contemporary practice.";
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#681722",
+  colorScheme: "light",
+};
 
 export const metadata: Metadata = {
-  ...(siteUrl ? { metadataBase: new URL(siteUrl) } : {}),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Rtambhara Academy for Performing & Visual Arts",
+    default: siteName,
     template: "%s | Rtambhara Academy",
   },
-  description,
+  description: siteDescription,
   applicationName: "Rtambhara Academy",
+  authors: [{ name: siteName, url: siteUrl }],
+  creator: siteName,
+  publisher: siteName,
+  category: "education",
   keywords: [
     "Bharatanatyam",
     "Kalaripayattu",
@@ -103,26 +112,24 @@ export const metadata: Metadata = {
     "Kerala performing arts",
     "Tripunithura",
     "dance academy",
+    "classical dance classes Kochi",
   ],
+  formatDetection: { telephone: true, email: true, address: true },
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Rtambhara Academy for Performing & Visual Arts",
-    description,
+    title: siteName,
+    description: siteDescription,
     type: "website",
     locale: "en_IN",
-    images: [
-      {
-        url: "/assets/images/hero-rhythm-of-creation.webp",
-        width: 1672,
-        height: 941,
-        alt: "Dancers of Rtambhara Academy in motion",
-      },
-    ],
+    siteName,
+    url: "/",
+    images: [{ ...defaultOgImage }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rtambhara Academy for Performing & Visual Arts",
-    description,
-    images: ["/assets/images/hero-rhythm-of-creation.webp"],
+    title: siteName,
+    description: siteDescription,
+    images: [defaultOgImage.url],
   },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png", sizes: "96x96" }],
@@ -131,37 +138,26 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
-};
-
-const organizationSchema = {
-  "@context": "https://schema.org",
-  "@type": "EducationalOrganization",
-  name: "Rtambhara Academy for Performing & Visual Arts",
-  description,
-  logo: "/assets/brand/rtambhara-emblem.png",
-  telephone: "+91 99612 60009",
-  email: "mail@rtambhara.com",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "TRRA 66, Mahalakshmi, Thevarakkavu Road",
-    addressLocality: "Tripunithura",
-    addressRegion: "Kerala",
-    addressCountry: "IN",
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
   },
-  knowsAbout: [
-    "Bharatanatyam",
-    "Kalaripayattu",
-    "Contemporary dance",
-    "Yoga",
-    "Kathakali",
-  ],
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="en-IN"
       className={`${cormorant.variable} ${dmSans.variable} ${cinzel.variable} ${amita.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${liberationMono.variable}`}
     >
       <body>
@@ -173,10 +169,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         {children}
         <Footer />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        />
+        <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </body>
     </html>
   );

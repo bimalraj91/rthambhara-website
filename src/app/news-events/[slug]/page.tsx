@@ -3,7 +3,10 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import NewsDetail from "@/components/NewsDetail";
 import NewsHero from "@/components/NewsHero";
-import { getNewsItem, newsItems } from "@/data/news";
+import JsonLd from "@/components/JsonLd";
+import { getNewsItem, newsItems, type NewsItem } from "@/data/news";
+import { breadcrumbSchema, organizationId, pageMetadata } from "@/lib/seo";
+import { absoluteUrl, siteName } from "@/lib/site";
 
 type Params = Promise<{ slug: string }>;
 
@@ -20,16 +23,74 @@ export async function generateMetadata({
   const item = getNewsItem(slug);
   if (!item) return {};
 
-  return {
+  return pageMetadata({
     title: item.title,
     description: item.excerpt,
-    openGraph: {
-      title: `${item.title} | Rtambhara Academy`,
+    path: `/news-events/${item.slug}`,
+    image: { url: item.image, alt: item.imageAlt },
+    type: "article",
+    publishedTime: item.date,
+    section: item.category,
+  });
+}
+
+// "6:30 PM — 8:30 PM IST" -> ISO date-time in India time.
+function startDateTime(item: NewsItem) {
+  const match = item.time?.match(/(\d{1,2}):(\d{2})\s*(AM|PM)/i);
+  if (!match) return item.date;
+  let hours = Number(match[1]) % 12;
+  if (match[3].toUpperCase() === "PM") hours += 12;
+  return `${item.date}T${String(hours).padStart(2, "0")}:${match[2]}:00+05:30`;
+}
+
+function structuredData(item: NewsItem) {
+  const url = absoluteUrl(`/news-events/${item.slug}`);
+  const breadcrumbs = breadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "News & Events", path: "/news-events" },
+    { name: item.title, path: `/news-events/${item.slug}` },
+  ]);
+
+  if (item.kind === "event") {
+    return [
+      {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        name: item.title,
+        description: item.excerpt,
+        image: [absoluteUrl(item.image)],
+        startDate: startDateTime(item),
+        eventStatus: "https://schema.org/EventScheduled",
+        eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+        location: {
+          "@type": "Place",
+          name: item.venue,
+          address: item.venue,
+        },
+        organizer: { "@id": organizationId },
+        url,
+      },
+      breadcrumbs,
+    ];
+  }
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "NewsArticle",
+      headline: item.title,
       description: item.excerpt,
-      type: "article",
-      locale: "en_IN",
+      image: [absoluteUrl(item.image)],
+      datePublished: item.date,
+      dateModified: item.date,
+      articleSection: item.category,
+      inLanguage: "en-IN",
+      mainEntityOfPage: { "@type": "WebPage", "@id": url },
+      author: { "@type": "Organization", name: siteName },
+      publisher: { "@id": organizationId },
     },
-  };
+    breadcrumbs,
+  ];
 }
 
 async function Article({ params }: { params: Params }) {
@@ -37,7 +98,12 @@ async function Article({ params }: { params: Params }) {
   const item = getNewsItem(slug);
   if (!item) notFound();
 
-  return <NewsDetail item={item} />;
+  return (
+    <>
+      <JsonLd data={structuredData(item)} />
+      <NewsDetail item={item} />
+    </>
+  );
 }
 
 export default function NewsEventPage({ params }: { params: Params }) {

@@ -93,12 +93,16 @@ export default function ProgramsHero() {
           ))}
         </motion.div>
 
-        <motion.div
-          className={styles.dancer}
+        <div
+          className={`${styles.dancer} enter`}
           aria-hidden="true"
-          initial={shouldReduceMotion ? false : { opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.4, ease: EASE, delay: 0.4 }}
+          style={
+            {
+              "--enter-x": "60px",
+              "--enter-dur": "1.4s",
+              "--enter-delay": "0.4s",
+            } as React.CSSProperties
+          }
         >
           <div className={styles.dancerSway}>
             <Image
@@ -110,24 +114,33 @@ export default function ProgramsHero() {
               className={styles.dancerImage}
             />
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          className={styles.card}
+        <div
+          className={`${styles.card} enter`}
           aria-hidden="true"
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 44, scale: 0.98 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.1, ease: EASE, delay: 0.35 }}
+          style={
+            {
+              "--enter-y": "44px",
+              "--enter-scale": "0.98",
+              "--enter-dur": "1.1s",
+              "--enter-delay": "0.35s",
+            } as React.CSSProperties
+          }
         />
 
-        <motion.p
-          className={styles.cue}
-          initial={shouldReduceMotion ? false : { opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: EASE, delay: 0.6 }}
+        <p
+          className={`${styles.cue} enter`}
+          style={
+            {
+              "--enter-x": "-20px",
+              "--enter-dur": "0.8s",
+              "--enter-delay": "0.6s",
+            } as React.CSSProperties
+          }
         >
           TRIPUNITHURA · ESTABLISHED 2012
-        </motion.p>
+        </p>
 
         <SplitText
           id="programs-hero-title"
@@ -150,11 +163,15 @@ export default function ProgramsHero() {
         />
       </div>
 
-      <motion.div
-        className={styles.chapter}
-        initial={shouldReduceMotion ? false : { y: 88, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: EASE, delay: 1.15 }}
+      <div
+        className={`${styles.chapter} enter`}
+        style={
+          {
+            "--enter-y": "88px",
+            "--enter-dur": "0.9s",
+            "--enter-delay": "1.15s",
+          } as React.CSSProperties
+        }
       >
         <p className={styles.chapterIntro}>An introduction to our world</p>
         {chapters.map((chapter, index) => (
@@ -162,7 +179,11 @@ export default function ProgramsHero() {
             key={chapter.number}
             initial={shouldReduceMotion ? false : { opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: EASE, delay: 1.35 + index * 0.08 }}
+            transition={{
+              duration: 0.6,
+              ease: EASE,
+              delay: 1.35 + index * 0.08,
+            }}
           >
             <Link href={chapter.href}>
               <i className={styles.num}>{chapter.number}</i>
@@ -171,7 +192,7 @@ export default function ProgramsHero() {
             </Link>
           </motion.span>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

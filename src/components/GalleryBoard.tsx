@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
 import { galleryCategories, type GalleryItem } from "@/data/gallery";
 import GalleryLightbox from "./GalleryLightbox";
 import Reveal from "./motion/Reveal";
@@ -16,12 +15,9 @@ type Props = {
   titleId: string;
 };
 
-const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
-
 export default function GalleryBoard({ mode, blocks, titleId }: Props) {
   const [category, setCategory] = useState<string>("All");
   const [active, setActive] = useState<number | null>(null);
-  const shouldReduceMotion = useReducedMotion();
 
   const all = useMemo(() => blocks.flat(), [blocks]);
   const filtered = useMemo(
@@ -104,22 +100,29 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
           aria-hidden="true"
           className={styles.ghost}
         />
-        <motion.div
-          className={styles.card}
-          initial={
-            shouldReduceMotion ? false : { opacity: 0, y: 44, scale: 0.98 }
+        <div
+          className={`${styles.card} enter`}
+          style={
+            {
+              "--enter-y": "44px",
+              "--enter-scale": "0.98",
+              "--enter-dur": "1.1s",
+              "--enter-delay": "0.2s",
+            } as React.CSSProperties
           }
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ duration: 1.1, ease: EASE, delay: 0.2 }}
         >
-          <motion.p
-            className={styles.cue}
-            initial={shouldReduceMotion ? false : { opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: EASE, delay: 0.5 }}
+          <p
+            className={`${styles.cue} enter`}
+            style={
+              {
+                "--enter-x": "-20px",
+                "--enter-dur": "0.8s",
+                "--enter-delay": "0.5s",
+              } as React.CSSProperties
+            }
           >
             rtambhara
-          </motion.p>
+          </p>
           <SplitText
             id={titleId}
             as="h1"
@@ -130,15 +133,19 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
             stagger={0.07}
             duration={1}
           />
-        </motion.div>
+        </div>
 
-        <motion.div
-          className={styles.filters}
+        <div
+          className={`${styles.filters} enter`}
           role="group"
           aria-label="Filter the gallery"
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: EASE, delay: 0.9 }}
+          style={
+            {
+              "--enter-y": "24px",
+              "--enter-dur": "0.9s",
+              "--enter-delay": "0.9s",
+            } as React.CSSProperties
+          }
         >
           {galleryCategories.map((name) => (
             <button
@@ -154,7 +161,7 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
               {name}
             </button>
           ))}
-        </motion.div>
+        </div>
       </section>
 
       <section className={styles.gallery} aria-label="Photographs">

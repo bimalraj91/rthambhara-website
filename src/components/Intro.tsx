@@ -36,6 +36,7 @@ export default function Intro() {
           alt=""
           width={726}
           height={734}
+          sizes="(max-width: 900px) 80vw, 730px"
           aria-hidden="true"
           className={styles.ornamentLeft}
         />
@@ -45,6 +46,7 @@ export default function Intro() {
             alt=""
             width={753}
             height={827}
+            sizes="(max-width: 900px) 80vw, 760px"
             className={styles.fill}
           />
         </Drift>
@@ -107,7 +109,7 @@ export default function Intro() {
           </Reveal>
 
           <Reveal delay={0.22} className={styles.action}>
-            <PillButton href="/about-us">Read More</PillButton>
+            <PillButton href="/about-us">Read our story</PillButton>
           </Reveal>
         </div>
       </div>

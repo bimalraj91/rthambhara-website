@@ -102,6 +102,54 @@ export default function SplitText({
         },
       };
 
+  // Headings that animate on load use plain CSS keyframes, so the text is in
+  // the server HTML and paints without waiting for JavaScript.
+  if (mount) {
+    let wordNumber = 0;
+    const Tag = as;
+
+    return (
+      <Tag
+        id={id}
+        className={className}
+        aria-label={label}
+        style={
+          {
+            "--delay": `${delay}s`,
+            "--stagger": `${stagger}s`,
+            "--dur": `${duration}s`,
+          } as React.CSSProperties
+        }
+      >
+        {normalized.map((line, lineIndex) => (
+          <span
+            key={lineIndex}
+            className={[styles.line, lineClassName, line.className]
+              .filter(Boolean)
+              .join(" ")}
+            aria-hidden="true"
+          >
+            {line.words.map((wordItem, wordIndex) => (
+              <Fragment key={`${wordItem.text}-${wordIndex}`}>
+                {wordIndex > 0 ? " " : null}
+                <span className={styles.mask}>
+                  <span
+                    className={[styles.word, styles.wordCss, wordItem.className]
+                      .filter(Boolean)
+                      .join(" ")}
+                    style={{ "--i": wordNumber++ } as React.CSSProperties}
+                  >
+                    {wordItem.text}
+                  </span>
+                </span>
+              </Fragment>
+            ))}
+          </span>
+        ))}
+      </Tag>
+    );
+  }
+
   const trigger = mount
     ? { animate: "visible" as const }
     : {

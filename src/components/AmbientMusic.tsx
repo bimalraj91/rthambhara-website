@@ -59,11 +59,10 @@ export default function AmbientMusic() {
       mutedByUser.current = localStorage.getItem(STORE_KEY) === "1";
     } catch {}
     if (mutedByUser.current) return;
-    const el = audio.current;
 
-    // Browsers only allow sound after a gesture. Try straight away; if that is
-    // refused, play silently so the track is already running, and bring the
-    // sound in on the visitor's first tap, key press or scroll.
+    // Browsers only allow sound after a gesture, so the music starts on the
+    // visitor's first tap, key press or scroll. The 3MB track is not fetched
+    // until then (preload="none"), which keeps the first paint fast.
     const events = ["pointerdown", "keydown", "wheel", "touchstart"] as const;
     const cleanup = () =>
       events.forEach((ev) => window.removeEventListener(ev, onGesture));
@@ -74,13 +73,7 @@ export default function AmbientMusic() {
     events.forEach((ev) =>
       window.addEventListener(ev, onGesture, { passive: true }),
     );
-    start().then((ok) => {
-      if (ok) return cleanup();
-      if (el) {
-        el.muted = true;
-        el.play().catch(() => {});
-      }
-    });
+    const el = audio.current;
 
     return () => {
       cleanup();
@@ -119,7 +112,7 @@ export default function AmbientMusic() {
 
   return (
     <>
-      <audio ref={audio} src={SRC} loop preload="auto" />
+      <audio ref={audio} src={SRC} loop preload="none" />
       <button
         type="button"
         className={`${styles.toggle} ${playing ? styles.on : ""}`}

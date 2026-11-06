@@ -112,3 +112,30 @@ section {
     transition-duration: 0.01ms !important;
   }
 }
+
+// Entrance used by hero elements. It is plain CSS, so the element is in the
+// server HTML and paints immediately instead of waiting for JavaScript.
+// Offsets and timing come from CSS variables set inline on the element.
+.enter {
+  animation: enterIn var(--enter-dur, 1s) cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--enter-delay, 0s);
+}
+
+@keyframes enterIn {
+  from {
+    opacity: 0;
+    transform: translate3d(var(--enter-x, 0), var(--enter-y, 0), 0)
+      scale(var(--enter-scale, 1));
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enter {
+    animation: none;
+  }
+}

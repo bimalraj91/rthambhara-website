@@ -1,0 +1,71 @@
+@use "../styles/mixins" as *;
+
+.page {
+  display: flex;
+  min-height: 70vh;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 160px 24px 100px;
+  background: var(--color-cream);
+  color: #2a0006;
+  text-align: center;
+
+  h1 {
+    margin: 8px 0 0;
+
+    @include serif(500);
+    font-size: clamp(40px, 7vw, 72px);
+    line-height: 1.05;
+  }
+}
+
+.code {
+  margin: 0;
+  color: #7d5c2c;
+
+  font-family: var(--font-cinzel), Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 0.3em;
+}
+
+.copy {
+  max-width: 460px;
+  margin: 18px 0 0;
+  color: #544343;
+
+  @include sans(400);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: block;
+    padding: 10px 22px;
+    border: 1px solid rgba(140, 98, 39, 0.4);
+    border-radius: 9999px;
+    color: #681722;
+    transition:
+      background-color 0.3s var(--ease-out),
+      color 0.3s var(--ease-out);
+
+    @include sans(500);
+    font-size: 15px;
+
+    &:hover {
+      background: #681722;
+      color: #fff;
+    }
+
+    @include focus-ring(var(--color-maroon));
+  }
+}
