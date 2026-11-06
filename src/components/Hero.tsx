@@ -19,6 +19,8 @@ const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 // How long each slide stays before the next one arrives.
 const AUTOPLAY_MS = 7000;
+// Phones advance faster.
+const AUTOPLAY_MOBILE_MS = 3500;
 
 // The way a slide arrives and leaves. A different one is picked at random for
 // every change, so the hero never feels repetitive.
@@ -73,6 +75,8 @@ export default function Hero() {
   const [hovered, setHovered] = useState(false);
   const [tabHidden, setTabHidden] = useState(false);
   const [preloadOthers, setPreloadOthers] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -95,13 +99,34 @@ export default function Hero() {
     [total],
   );
 
-  // Autoplay: moves on every few seconds, and waits while the visitor is
+  // Phone-sized screens use a shorter autoplay interval, and touch screens
+  // never pause on "hover" (a tap would otherwise leave the slides stuck).
+  useEffect(() => {
+    const phone = window.matchMedia("(max-width: 759px)");
+    const touch = window.matchMedia("(hover: none)");
+    const sync = () => {
+      setIsMobile(phone.matches);
+      setIsTouch(touch.matches);
+    };
+    sync();
+    phone.addEventListener("change", sync);
+    touch.addEventListener("change", sync);
+    return () => {
+      phone.removeEventListener("change", sync);
+      touch.removeEventListener("change", sync);
+    };
+  }, []);
+
+  // Autoplay: moves on every few seconds, and waits while a mouse visitor is
   // hovering or focused on the hero, the tab is hidden, or reduced motion is on.
   useEffect(() => {
-    if (shouldReduceMotion || hovered || tabHidden) return;
-    const timer = window.setTimeout(() => paginate(1), AUTOPLAY_MS);
+    if (shouldReduceMotion || tabHidden || (hovered && !isTouch)) return;
+    const timer = window.setTimeout(
+      () => paginate(1),
+      isMobile ? AUTOPLAY_MOBILE_MS : AUTOPLAY_MS,
+    );
     return () => window.clearTimeout(timer);
-  }, [index, hovered, tabHidden, shouldReduceMotion, paginate]);
+  }, [index, hovered, isTouch, isMobile, tabHidden, shouldReduceMotion, paginate]);
 
   useEffect(() => {
     const onVisibility = () => setTabHidden(document.hidden);
@@ -141,7 +166,7 @@ export default function Hero() {
             initial={shouldReduceMotion ? false : "enter"}
             animate={shouldReduceMotion ? undefined : "center"}
             exit={shouldReduceMotion ? undefined : "exit"}
-            transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: isMobile ? 1.1 : 1.6, ease: [0.22, 1, 0.36, 1] }}
           >
             <Image
               src={slide.image}
@@ -242,7 +267,6 @@ export default function Hero() {
             alt=""
             width={680}
             height={790}
-            priority
             sizes="(max-width: 900px) 70vw, 680px"
             className={styles.dancerImage}
           />

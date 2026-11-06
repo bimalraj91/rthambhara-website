@@ -122,11 +122,17 @@
   text-align: center;
 }
 
+// Smaller screens: the photo and its torn maroon strip form one group that
+// bleeds to the left screen edge. The artwork has a transparent margin on its
+// left (4.35% of its width), so the box is widened and shifted to put the
+// visible picture exactly on the edge; the strip is offset to line up with it.
 @include below(1280px) {
   .experience {
+    --pad: 48px;
+
     height: auto;
     min-height: 0;
-    padding: 64px 48px 82px;
+    padding: 64px var(--pad) 82px;
   }
 
   .inner {
@@ -141,9 +147,18 @@
     position: relative;
     top: auto;
     left: auto;
-    width: 100%;
+    width: calc((100% + var(--pad)) / 0.9565);
     height: auto;
+    margin-left: calc(-1 * var(--pad) - 0.0455 * (100% + var(--pad)));
+    margin-bottom: 17%;
     aspect-ratio: 689 / 540;
+  }
+
+  .torn {
+    bottom: -20.4%;
+    left: 3.05%;
+    width: 96.5%;
+    height: auto;
   }
 
   .content {
@@ -166,75 +181,88 @@
   }
 }
 
-@include below($bp-tablet) {
-  .experience {
-    padding: 42px 24px 64px;
-  }
+// Tablets: photo group and story side by side, desktop artwork behind.
+@include below($bp-desktop) {
+  @include above($bp-mobile) {
+    .experience {
+      --pad: 28px;
 
-  .inner {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
+      padding: 56px var(--pad) 64px;
+    }
 
-  // Leave room for the torn maroon strip that hangs below the photo.
-  .visual {
-    width: min(100%, 680px);
-    margin-bottom: 96px;
-    justify-self: center;
-  }
+    .inner {
+      gap: 30px;
+    }
 
-  .content {
-    width: min(100%, 680px);
-    justify-self: center;
-  }
+    .title {
+      font-size: clamp(34px, 5vw, 46px);
+    }
 
-  .title {
-    font-size: clamp(40px, 7.6vw, 58px);
-  }
+    .copy {
+      font-size: 16px;
+      line-height: 1.75;
+      text-align: left;
+    }
 
-  .copy {
-    font-size: 17px;
-    line-height: 1.8;
-    text-align: left;
-  }
+    .quote {
+      font-size: 26px;
+    }
 
-  .rule,
-  .quote {
-    width: min(100%, 560px);
-  }
-
-  .quote {
-    margin-right: auto;
-    margin-left: auto;
-    font-size: 30px;
-  }
-
-  .torn {
-    bottom: -85px;
-    left: 0;
-    width: 78%;
-    height: auto;
+    .ornament {
+      top: 6%;
+      right: -26vw;
+      left: auto;
+      width: 78vw;
+      height: auto;
+    }
   }
 }
 
+// Phones: stacked, the photo group leads at full width.
 @include below($bp-mobile) {
   .experience {
-    padding: 32px 18px 54px;
+    --pad: 18px;
+
+    padding: 28px var(--pad) 56px;
+  }
+
+  .inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
   }
 
   .title {
-    font-size: clamp(34px, 10vw, 44px);
+    font-size: clamp(32px, 9.4vw, 44px);
+  }
+
+  .copy {
+    padding-left: 14px;
+    border-left: 1px solid rgba(154, 120, 68, 0.4);
+    font-size: 16px;
+    line-height: 1.75;
+    text-align: left;
+
+    p + p {
+      margin-top: 14px;
+    }
+
+    p:first-child {
+      color: #4d493f;
+      font-size: 17px;
+    }
   }
 
   .quote {
-    font-size: 26px;
+    font-size: 25px;
   }
 
   .ornament {
-    right: -60%;
-    width: 110vw;
+    top: 108vw;
+    right: -52vw;
+    left: auto;
+    width: 124vw;
     height: auto;
-    opacity: 0.08;
+    opacity: 1;
   }
 }
 

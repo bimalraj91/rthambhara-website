@@ -93,10 +93,10 @@
 .lotus {
   position: absolute;
   z-index: 3;
-  top: 589px;
-  left: 331px;
-  width: 162px;
-  height: 125px;
+  top: 82.6%;
+  left: 70.4%;
+  width: 30.5%;
+  aspect-ratio: 162 / 125;
   pointer-events: none;
 }
 
@@ -145,6 +145,12 @@
   margin-top: 24px;
 }
 
+.fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 @include below(1280px) {
   .inner {
     padding-left: 20px;
@@ -189,19 +195,87 @@
     width: min(400px, 32vw);
     height: auto;
   }
+}
 
-  .lotus {
-    left: 31%;
-    width: 140px;
-    height: auto;
+// Tablets: dancer and story side by side, with the desktop artwork behind.
+@include below($bp-desktop) {
+  @include above($bp-mobile) {
+    .intro {
+      height: auto;
+      padding: 64px 36px 76px;
+    }
+
+    .inner {
+      display: grid;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+      column-gap: 30px;
+      align-items: center;
+      height: auto;
+      padding: 0;
+    }
+
+    .dancer {
+      position: relative;
+      top: auto;
+      // Starts past the screen edge, like the desktop dancer.
+      left: calc(-36px - 4%);
+      width: calc(100% + 36px + 4%);
+      height: auto;
+    }
+
+    .content {
+      position: relative;
+      top: auto;
+      right: auto;
+      left: auto;
+      width: auto;
+      margin: 0;
+    }
+
+    .title {
+      margin-top: 16px;
+      font-size: clamp(36px, 5.6vw, 52px);
+    }
+
+    .copy {
+      margin-top: 22px;
+      font-size: 16.5px;
+      line-height: 1.75;
+      text-align: left;
+      border-left: 1px solid rgba(154, 120, 68, 0.35);
+      padding-left: 18px;
+
+      p + p {
+        margin-top: 14px;
+      }
+    }
+
+    .ornamentLeft {
+      top: -2vw;
+      left: -16vw;
+      width: 66vw;
+      height: auto;
+      opacity: 0.8;
+    }
+
+    .ornamentRight {
+      top: 8%;
+      right: -22vw;
+      left: auto;
+      width: 72vw;
+      height: auto;
+      opacity: 0.38;
+    }
   }
 }
 
-@include below($bp-tablet) {
+// Phones: stacked. The dancer leads, the bloom and mandala from the desktop
+// artwork sit behind her and the story, and the copy gets a gold margin line.
+@include below($bp-mobile) {
   .intro {
     height: auto;
     min-height: 0;
-    padding: 28px 24px 76px;
+    padding: 14px 18px 66px;
   }
 
   .inner {
@@ -212,13 +286,8 @@
   .dancer {
     position: relative;
     top: auto;
-    left: -5%;
-    width: min(62vw, 440px);
-    height: auto;
-  }
-
-  .dancerImage {
-    width: 100%;
+    left: -10%;
+    width: 72vw;
     height: auto;
   }
 
@@ -228,97 +297,49 @@
     right: auto;
     left: auto;
     width: 100%;
-    max-width: 640px;
-    margin: -34px 0 0 auto;
+    margin-top: -6px;
   }
 
   .title {
-    margin-top: 20px;
-    font-size: clamp(45px, 8.2vw, 64px);
-    line-height: 1.02;
+    margin-top: 16px;
+    font-size: clamp(30px, 8.8vw, 52px);
+    line-height: 1.05;
   }
 
   .copy {
-    margin-top: 28px;
-    font-size: 17px;
-    line-height: 1.8;
+    margin-top: 22px;
+    padding-left: 14px;
+    border-left: 1px solid rgba(154, 120, 68, 0.4);
+    font-size: 16px;
+    line-height: 1.75;
     text-align: left;
+
+    p + p {
+      margin-top: 14px;
+    }
+
+    p:first-child {
+      color: #4d493f;
+      font-size: 17px;
+    }
   }
 
   .ornamentLeft {
-    top: -30px;
-    left: -40%;
-    width: 88vw;
+    top: -12vw;
+    left: -36vw;
+    width: 108vw;
     height: auto;
-    opacity: 0.08;
+    opacity: 0.8;
   }
 
   .ornamentRight {
-    top: 8%;
-    right: -34%;
-    width: 90vw;
+    top: 90vw;
+    right: -44vw;
     left: auto;
+    width: 116vw;
     height: auto;
-    opacity: 0.22;
+    opacity: 0.38;
   }
-
-  .goldCollage {
-    top: 22%;
-    left: -16%;
-    width: 48vw;
-    height: auto;
-    opacity: 0.9;
-  }
-
-  .lotus {
-    top: auto;
-    bottom: 26px;
-    left: auto;
-    right: 7%;
-    width: 118px;
-    height: auto;
-  }
-}
-
-@include below($bp-mobile) {
-  .intro {
-    padding: 18px 18px 66px;
-  }
-
-  .dancer {
-    left: -10%;
-    width: 72vw;
-  }
-
-  .content {
-    margin-top: -10px;
-  }
-
-  .title {
-    font-size: clamp(30px, 8.8vw, 52px);
-  }
-
-  .copy {
-    font-size: 16px;
-    line-height: 1.75;
-  }
-
-  .goldCollage {
-    top: 30%;
-    left: -28%;
-    width: 64vw;
-    opacity: 0.55;
-  }
-
-  .lotus {
-    display: none;
-  }
-}
-
-.fill {
-  display: block;
-  width: 100%;
-  height: 100%;
 }
 
 // Wide screens: the dancer (with her lotus and the soft artwork behind her)
@@ -334,10 +355,6 @@
 
   .ornamentLeft {
     left: calc(-86px - var(--cl));
-  }
-
-  .lotus {
-    left: calc(331px - var(--cl));
   }
 
   .emblem {

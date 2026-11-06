@@ -281,6 +281,18 @@
   }
 }
 
+// Tablets: the warrior sits beside the contact details rather than above
+// them, which removes the large empty area on the right.
+@include below($bp-tablet) {
+  @include above($bp-small) {
+    .details {
+      max-width: none;
+      padding-top: 28px;
+      padding-left: calc(min(34vw, 260px) + 28px);
+    }
+  }
+}
+
 @include below($bp-mobile) {
   .contact {
     padding: 40px 16px 60px;

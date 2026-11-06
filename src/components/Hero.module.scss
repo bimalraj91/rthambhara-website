@@ -285,21 +285,64 @@
   }
 }
 
+// Phones: the slide picture takes the top of the screen on its own (the
+// cut-out dancer is dropped), and the headline sits on a glass card that
+// overlaps the picture's lower edge, with the slide controls underneath.
 @include below($bp-mobile) {
   .hero {
-    min-height: 780px;
-    padding-top: 122px;
+    --media-h: max(440px, 46svh);
+
+    height: auto;
+    min-height: 0;
+    padding: calc(var(--media-h) - 236px) 0 0;
+  }
+
+  .media {
+    inset: 0 0 auto;
+    height: var(--media-h);
+    // The picture melts into the section colour where the card begins.
+    mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
+    -webkit-mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
+  }
+
+  .overlay {
+    inset: 0 0 auto;
+    height: var(--media-h);
+    background:
+      linear-gradient(180deg, rgba(10, 3, 4, 0.5) 0%, rgba(10, 3, 4, 0) 18%),
+      linear-gradient(
+        180deg,
+        rgba(23, 6, 8, 0) 62%,
+        rgba(23, 6, 8, 0.65) 90%,
+        #170608 100%
+      );
+  }
+
+  .dancer {
+    display: none;
+  }
+
+  .frame {
+    height: auto;
   }
 
   .card {
-    width: calc(100% - 36px);
-    padding: 28px 24px 38px;
-    border-radius: 18px;
-  }
-
-  .title {
-    font-size: clamp(37px, 11vw, 52px);
-    letter-spacing: 0.4px;
+    width: calc(100% - 32px);
+    // Fits the longest slide, so the section doesn't change height on autoplay.
+    min-height: 338px;
+    padding: 24px 22px 28px;
+    border: 1px solid rgba(228, 196, 137, 0.35);
+    border-radius: 22px;
+    background: linear-gradient(
+      160deg,
+      rgba(58, 12, 20, 0.62),
+      rgba(23, 6, 8, 0.78)
+    );
+    box-shadow:
+      0 18px 40px -18px rgba(0, 0, 0, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
 
   .marker {
@@ -308,21 +351,33 @@
     }
   }
 
-  .dancer {
-    right: -26vw;
-    width: 90vw;
-    opacity: 0.5;
+  .titleWrap {
+    margin-top: 16px;
+  }
+
+  .title {
+    font-size: clamp(30px, 9vw, 42px);
+    line-height: 1.04;
+    letter-spacing: 0.2px;
   }
 
   .controls {
-    margin-top: 38px;
+    justify-content: space-between;
+    margin: 0;
+    padding: 20px 26px 34px;
   }
 
   .counterLine {
-    width: 24px;
+    width: 40px;
   }
 
   .arrows {
-    margin-left: 18px;
+    margin-left: 0;
+  }
+
+  .arrows button {
+    width: 42px;
+    height: 42px;
+    border-color: rgba(228, 196, 137, 0.5);
   }
 }

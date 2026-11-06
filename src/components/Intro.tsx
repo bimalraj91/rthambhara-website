@@ -19,6 +19,17 @@ export default function Intro() {
             sizes="(max-width: 900px) 62vw, 531px"
             className={styles.dancerImage}
           />
+          {/* Sits at the dancer's feet; positioned in % of her picture so it
+              follows her at every screen size. */}
+          <Drift className={styles.lotus} from={-14} to={14}>
+            <Image
+              src="/assets/home/lotus.png"
+              alt=""
+              width={162}
+              height={125}
+              className={styles.fill}
+            />
+          </Drift>
         </div>
 
         <div className={styles.emblem} aria-hidden="true">
@@ -58,16 +69,6 @@ export default function Intro() {
           aria-hidden="true"
           className={styles.goldCollage}
         /> */}
-        <Drift className={styles.lotus} from={-14} to={14}>
-          <Image
-            src="/assets/home/lotus.png"
-            alt=""
-            width={162}
-            height={125}
-            className={styles.fill}
-          />
-        </Drift>
-
         <div className={styles.content}>
           <SectionLabel tone="maroon" lineWidth={24}>
             01 / Our story
