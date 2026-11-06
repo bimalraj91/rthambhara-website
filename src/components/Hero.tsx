@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   AnimatePresence,
   motion,
   useReducedMotion,
   useScroll,
   useTransform,
+  type Variants,
 } from "framer-motion";
 import SectionLabel from "./SectionLabel";
 import SplitText from "./motion/SplitText";
@@ -16,9 +17,62 @@ import styles from "./Hero.module.scss";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
+// How long each slide stays before the next one arrives.
+const AUTOPLAY_MS = 7000;
+
+// The way a slide arrives and leaves. A different one is picked at random for
+// every change, so the hero never feels repetitive.
+const effects = {
+  zoomIn: {
+    enter: { opacity: 0, scale: 1.14 },
+    exit: { opacity: 0, scale: 1.05 },
+  },
+  driftLeft: {
+    enter: { opacity: 0, x: "5%", scale: 1.06 },
+    exit: { opacity: 0, x: "-5%", scale: 1.06 },
+  },
+  driftRight: {
+    enter: { opacity: 0, x: "-5%", scale: 1.06 },
+    exit: { opacity: 0, x: "5%", scale: 1.06 },
+  },
+  riseUp: {
+    enter: { opacity: 0, y: "4%", scale: 1.06 },
+    exit: { opacity: 0, y: "-4%", scale: 1.06 },
+  },
+  settleDown: {
+    enter: { opacity: 0, y: "-4%", scale: 1.06 },
+    exit: { opacity: 0, y: "4%", scale: 1.06 },
+  },
+  dissolve: {
+    enter: { opacity: 0, scale: 1.02 },
+    exit: { opacity: 0, scale: 1 },
+  },
+} as const;
+
+type EffectName = keyof typeof effects;
+const effectNames = Object.keys(effects) as EffectName[];
+
+const slideVariants: Variants = {
+  enter: (name: EffectName) => effects[name].enter,
+  center: { opacity: 1, x: "0%", y: "0%", scale: 1 },
+  exit: (name: EffectName) => effects[name].exit,
+};
+
+function pickEffect(previous: EffectName): EffectName {
+  const options = effectNames.filter((name) => name !== previous);
+  return options[Math.floor(Math.random() * options.length)];
+}
+
 export default function Hero() {
   const shouldReduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [effect, setEffect] = useState<EffectName>("dissolve");
+  // False until the slides first change. The opening title waits for the
+  // curtain; every later title follows the picture almost immediately.
+  const [played, setPlayed] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const [tabHidden, setTabHidden] = useState(false);
+  const [preloadOthers, setPreloadOthers] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -32,9 +86,35 @@ export default function Hero() {
   const slide = heroSlides[index];
   const total = heroSlides.length;
 
-  const paginate = (step: number) => {
-    setIndex((current) => (current + step + total) % total);
-  };
+  const paginate = useCallback(
+    (step: number) => {
+      setPlayed(true);
+      setEffect((previous) => pickEffect(previous));
+      setIndex((current) => (current + step + total) % total);
+    },
+    [total],
+  );
+
+  // Autoplay: moves on every few seconds, and waits while the visitor is
+  // hovering or focused on the hero, the tab is hidden, or reduced motion is on.
+  useEffect(() => {
+    if (shouldReduceMotion || hovered || tabHidden) return;
+    const timer = window.setTimeout(() => paginate(1), AUTOPLAY_MS);
+    return () => window.clearTimeout(timer);
+  }, [index, hovered, tabHidden, shouldReduceMotion, paginate]);
+
+  useEffect(() => {
+    const onVisibility = () => setTabHidden(document.hidden);
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  // Fetch the other slides' pictures once the first one has had time to paint,
+  // so later transitions never wait on a download.
+  useEffect(() => {
+    const timer = window.setTimeout(() => setPreloadOthers(true), 2500);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   return (
     <section
@@ -42,41 +122,56 @@ export default function Hero() {
       ref={sectionRef}
       className={styles.hero}
       aria-labelledby="hero-title"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={() => setHovered(false)}
     >
       <motion.div
         className={styles.media}
         aria-hidden="true"
         style={{ y: shouldReduceMotion ? 0 : mediaY }}
       >
-        {heroSlides.map((item, slideIndex) => {
-          const active = slideIndex === index;
+        <AnimatePresence initial={false} custom={effect}>
+          <motion.div
+            key={index}
+            className={styles.backgroundSlide}
+            custom={effect}
+            variants={shouldReduceMotion ? undefined : slideVariants}
+            initial={shouldReduceMotion ? false : "enter"}
+            animate={shouldReduceMotion ? undefined : "center"}
+            exit={shouldReduceMotion ? undefined : "exit"}
+            transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <Image
+              src={slide.image}
+              alt={slide.alt}
+              fill
+              priority={index === 0}
+              sizes="100vw"
+              className={styles.background}
+              style={{ objectPosition: slide.imagePosition }}
+            />
+          </motion.div>
+        </AnimatePresence>
 
-          return (
-            <motion.div
-              key={`${slideIndex}-${item.image}`}
-              className={styles.backgroundSlide}
-              initial={false}
-              animate={{
-                opacity: active ? 1 : 0,
-                scale: active ? 1 : 1.04,
-              }}
-              transition={{
-                duration: shouldReduceMotion ? 0 : 1.2,
-                ease: EASE,
-              }}
-            >
-              <Image
-                src={item.image}
-                alt={active ? item.alt : ""}
-                fill
-                priority={slideIndex === 0}
-                sizes="100vw"
-                className={styles.background}
-                style={{ objectPosition: item.imagePosition }}
-              />
-            </motion.div>
-          );
-        })}
+        {preloadOthers && (
+          <div className={styles.preload}>
+            {heroSlides.map((item, slideIndex) =>
+              slideIndex === index ? null : (
+                <Image
+                  key={`${slideIndex}-${item.image}`}
+                  src={item.image}
+                  alt=""
+                  fill
+                  loading="eager"
+                  fetchPriority="low"
+                  sizes="100vw"
+                />
+              ),
+            )}
+          </div>
+        )}
       </motion.div>
 
       <div className={styles.overlay} aria-hidden="true" />
@@ -106,7 +201,11 @@ export default function Hero() {
               exit={
                 shouldReduceMotion
                   ? { opacity: 0, transition: { duration: 0 } }
-                  : { opacity: 0, y: -18, transition: { duration: 0.35 } }
+                  : {
+                      opacity: 0,
+                      y: -14,
+                      transition: { duration: 0.3, ease: "easeIn" },
+                    }
               }
               transition={{ duration: 0.7, ease: EASE }}
             >
@@ -124,7 +223,7 @@ export default function Hero() {
                   },
                 ]}
                 mount
-                delay={2}
+                delay={played ? 0.2 : 2}
                 stagger={0.055}
                 duration={1}
               />

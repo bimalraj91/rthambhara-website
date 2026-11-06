@@ -9,10 +9,26 @@
   color: #fff;
 }
 
-.media,
-.backgroundSlide {
+.media {
   position: absolute;
   inset: 0;
+}
+
+// A little larger than the hero, so the slides can drift without showing edges.
+.backgroundSlide {
+  position: absolute;
+  inset: -6%;
+  will-change: transform, opacity;
+}
+
+// Off-screen copies that only exist to warm the browser cache.
+.preload {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
 }
 
 .background {
