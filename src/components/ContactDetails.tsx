@@ -26,7 +26,10 @@ const socials = [
 ];
 
 const DIRECTIONS =
-  "https://www.google.com/maps/search/?api=1&query=Mahalakshmi%2C+Thevarakkavu+Road%2C+Tripunithura";
+  "https://www.google.com/maps/dir/?api=1&destination=9.956475%2C76.338272";
+
+const MAP_EMBED =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.7291890600395!2d76.33827244594984!3d9.956474964818337!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0873c12b0f0929%3A0xd460479ac9136784!2sRtambhara%20Academy!5e0!3m2!1sen!2sin!4v1793961740335!5m2!1sen!2sin";
 
 export default function ContactDetails() {
   return (
@@ -155,28 +158,16 @@ export default function ContactDetails() {
 
         <ImageReveal className={`${styles.frame} ${styles.map}`} from="left">
           <div className={styles.frameInner}>
-            <Crop
-              src="/assets/contact/map.webp"
-              alt="Map showing the studio location in Tripunithura"
-              sizes="360px"
-              box={{
-                height: "118.69%",
-                left: "-51.49%",
-                top: "-14.09%",
-                width: "155.5%",
-              }}
+            <iframe
+              title="Map showing Rtambhara Academy in Tripunithura"
+              src={MAP_EMBED}
+              className={styles.mapEmbed}
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="strict-origin-when-cross-origin"
             />
           </div>
         </ImageReveal>
-        <span className={styles.pin} aria-hidden="true">
-          <Image
-            src="/assets/contact/pin.svg"
-            alt=""
-            width={28}
-            height={34}
-            unoptimized
-          />
-        </span>
 
         <ImageReveal
           className={`${styles.frame} ${styles.photo}`}

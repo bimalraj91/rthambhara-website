@@ -1,13 +1,15 @@
 .line {
   display: block;
   overflow: hidden;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
 }
 
 .line .mask {
   display: inline-block;
   overflow: hidden;
-  padding-bottom: 0.12em;
-  // margin-bottom: -0.12em;
+  padding-bottom: 0.2em;
+  margin-bottom: -0.08em;
   vertical-align: top;
 }
 

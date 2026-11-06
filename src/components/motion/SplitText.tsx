@@ -2,6 +2,7 @@
 
 import { Fragment } from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { dottedText } from "../RtambharaWord";
 import styles from "./SplitText.module.scss";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -139,7 +140,7 @@ export default function SplitText({
                       .join(" ")}
                     style={{ "--i": wordNumber++ } as React.CSSProperties}
                   >
-                    {wordItem.text}
+                    {dottedText(wordItem.text)}
                   </span>
                 </span>
               </Fragment>
@@ -184,7 +185,7 @@ export default function SplitText({
                     .join(" ")}
                   variants={word}
                 >
-                  {wordItem.text}
+                  {dottedText(wordItem.text)}
                 </motion.span>
               </span>
             </Fragment>

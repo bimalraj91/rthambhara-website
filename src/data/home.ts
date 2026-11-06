@@ -18,38 +18,35 @@ export const heroSlides = [
     imagePosition: "center 42%",
     marker: heroMarker,
     lines: [
-      "Every movement holds",
-      "a memory.",
+      "Every body has its own poetry.",
+      "Sometimes, all it needs is",
+      "the freedom to discover.",
+    ],
+    label: "Every body has its own poetry",
+  },
+  {
+    image: "/assets/home/hero-fresco-2.webp",
+    alt: "A Bharatanatyam dancer with a raised arm against a deep red fresco wall",
+    imagePosition: "center",
+    marker: heroMarker,
+    lines: [
+      "The earth has its rhythm.",
+      "The heart has its own.",
+      "Rtambhara is where they meet.",
+    ],
+    label: "The earth has its rhythm",
+  },
+  {
+    image: "/assets/home/hero-fresco-3.webp",
+    alt: "A dancer in a graceful hand gesture against a deep red fresco wall",
+    imagePosition: "center",
+    marker: heroMarker,
+    lines: [
+      "Every movement holds a memory.",
       "Every expression,",
       "a world of its own.",
     ],
     label: "Every movement holds a memory",
-  },
-  {
-    image: "/assets/home/stories-background.png",
-    alt: "A dancer framed by the golden arches of a temple",
-    imagePosition: "center 42%",
-    marker: heroMarker,
-    lines: [
-      "Every movement holds",
-      "a memory.",
-      "Every expression,",
-      "a world of its own.",
-    ],
-    label: "Every expression, a world of its own",
-  },
-  {
-    image: "/assets/home/stories-background.png",
-    alt: "A dancer moving through a field of golden paisley motifs",
-    imagePosition: "center 38%",
-    marker: heroMarker,
-    lines: [
-      "Every movement holds",
-      "a memory.",
-      "Every expression,",
-      "a world of its own.",
-    ],
-    label: "A world of its own",
   },
 ] as const;
 

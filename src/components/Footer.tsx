@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "./motion/Reveal";
 import styles from "./Footer.module.scss";
 
@@ -13,9 +14,9 @@ const quickLinks = [
 ];
 
 const disciplines = [
-  { label: "Bharatanatyam Masterclasses", href: "/programs" },
-  { label: "Contemporary Kalaripayattu", href: "/programs" },
-  { label: "Yoga Sadhana", href: "/programs" },
+  { label: "Bharatanatyam Masterclasses", href: "/programs#language-of-grace" },
+  { label: "Contemporary Dance", href: "/programs#beyond-boundaries" },
+  { label: "Yoga Sadhana", href: "/programs#growing-joyfully" },
 ];
 
 const bottomLinks = [
@@ -112,7 +113,7 @@ export default function Footer() {
                 <ul className={styles.linkList}>
                   {disciplines.map((link) => (
                     <li key={link.label}>
-                      <a href={link.href}>{link.label}</a>
+                      <Link href={link.href}>{link.label}</Link>
                     </li>
                   ))}
                 </ul>

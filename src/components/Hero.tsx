@@ -213,15 +213,11 @@ export default function Hero() {
                 id="hero-title"
                 as="h1"
                 className={styles.title}
-                lines={[
-                  "Every movement holds",
-                  "a memory.",
-                  "Every expression,",
-                  {
-                    words: ["a", "world", "of", "its", "own."],
-                    className: styles.lastLine,
-                  },
-                ]}
+                lines={slide.lines.map((line, lineIndex, all) =>
+                  lineIndex === all.length - 1
+                    ? { words: [line], className: styles.lastLine }
+                    : line,
+                )}
                 mount
                 delay={played ? 0.2 : 2}
                 stagger={0.055}

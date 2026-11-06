@@ -63,6 +63,31 @@
   margin: 0 auto;
 }
 
+// Large gold emblem watermark bleeding off the left edge, behind the content.
+.emblem {
+  position: absolute;
+  z-index: 0;
+  top: 150px;
+  left: -70px;
+  width: 505px;
+  height: 354px;
+  overflow: hidden;
+  opacity: 0.16;
+  pointer-events: none;
+  // The artwork is dark; lift it to the section's gold.
+  filter: brightness(0) invert(80%) sepia(35%) saturate(520%) hue-rotate(2deg);
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 127.73%;
+    max-width: none;
+    object-fit: cover;
+  }
+}
+
 .label {
   position: absolute;
   top: 229px;
@@ -76,12 +101,9 @@
 }
 
 .rtam {
-  @include serif(400);
-  font-size: 126px;
-  font-style: italic;
-  font-variation-settings: "opsz" 126;
-  line-height: 1;
-  color: #d8be8d;
+  display: block;
+  width: 220px;
+  height: auto;
 }
 
 .narrative {
@@ -213,13 +235,21 @@
     position: static;
   }
 
+  .emblem {
+    top: 40px;
+    left: -60px;
+    width: min(70vw, 400px);
+    height: auto;
+    aspect-ratio: 505 / 354;
+  }
+
   .rtamWrap {
     position: static;
     margin-top: 24px;
   }
 
   .rtam {
-    font-size: clamp(90px, 10vw, 126px);
+    width: clamp(157px, 17.5vw, 220px);
   }
 
   .narrative {
@@ -328,7 +358,7 @@
   }
 
   .rtam {
-    font-size: 82px;
+    width: 143px;
   }
 
   .title {

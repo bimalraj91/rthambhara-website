@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import RtambharaWord from "./RtambharaWord";
 import styles from "./IntroCurtain.module.scss";
 
 // Plays once per visit, on the home page only. Mounted in the root layout so
@@ -52,7 +53,9 @@ export default function IntroCurtain() {
             className={styles.emblem}
           />
         </span>
-        <span className={styles.name}>rtambhara</span>
+        <span className={styles.name}>
+          <RtambharaWord />
+        </span>
         <span className={styles.rule} />
         <span className={styles.tagline}>Performing &amp; Visual Arts</span>
       </div>

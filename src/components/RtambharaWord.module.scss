@@ -1,0 +1,16 @@
+.dot {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    position: absolute;
+    top: 0.9em;
+    left: 50%;
+    width: 0.075em;
+    height: 0.075em;
+    border-radius: 50%;
+    background: currentColor;
+    content: "";
+    transform: translateX(-50%);
+  }
+}

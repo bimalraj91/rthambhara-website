@@ -14,6 +14,7 @@ import Footer from "@/components/Footer";
 import IntroCurtain from "@/components/IntroCurtain";
 import Header from "@/components/Header";
 import ScrollProgress from "@/components/motion/ScrollProgress";
+import SmoothAnchors from "@/components/SmoothAnchors";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { defaultOgImage, siteDescription, siteName, siteUrl } from "@/lib/site";
@@ -158,11 +159,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en-IN"
+      data-scroll-behavior="smooth"
       className={`${cormorant.variable} ${dmSans.variable} ${cinzel.variable} ${amita.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${liberationMono.variable}`}
     >
       <body>
         <IntroCurtain />
         <ScrollProgress />
+        <SmoothAnchors />
         <a className="skip-link" href="#main">
           Skip to content
         </a>

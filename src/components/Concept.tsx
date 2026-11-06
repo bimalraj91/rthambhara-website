@@ -57,6 +57,16 @@ export default function Concept() {
         <div className={styles.transition} aria-hidden="true" />
 
         <div className={styles.inner}>
+          <div className={styles.emblem} aria-hidden="true">
+            <Image
+              src="/assets/gurus/logo.webp"
+              alt=""
+              width={325}
+              height={291}
+              sizes="(max-width: 900px) 60vw, 505px"
+            />
+          </div>
+
           <SectionLabel
             tone="gold"
             lineWidth={24}
@@ -67,7 +77,14 @@ export default function Concept() {
           </SectionLabel>
 
           <Reveal className={styles.rtamWrap}>
-            <p className={styles.rtam}>Rtam.</p>
+            <Image
+              src="/assets/home/rtam.svg"
+              alt="Rtam"
+              width={220}
+              height={126}
+              unoptimized
+              className={styles.rtam}
+            />
           </Reveal>
 
           <div className={styles.narrative}>
