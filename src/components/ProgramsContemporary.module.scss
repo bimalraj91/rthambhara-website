@@ -67,7 +67,7 @@ $top: 2250;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 0;
 
   p {
     @include copy;
@@ -80,15 +80,24 @@ $top: 2250;
     text-align: left;
   }
 
+  // Spacing exactly as placed in the design.
+  .wide {
+    margin-top: 5px;
+  }
+
   .afterPillars {
     margin-top: 56px;
+  }
+
+  .afterPillars + p {
+    margin-top: 9px;
   }
 }
 
 .pillars {
   display: flex;
   gap: 18px;
-  margin: 28px 0 0 150px;
+  margin: 36px 0 0 150px;
   padding: 0;
   list-style: none;
 }
@@ -96,6 +105,7 @@ $top: 2250;
 .pillar {
   display: flex;
   width: 210px;
+  flex: none;
   height: 77px;
   align-items: center;
   gap: 12px;
@@ -222,9 +232,11 @@ $top: 2250;
 
   .flow {
     order: 4;
+    gap: 8px;
 
     .wide,
-    .afterPillars {
+    .afterPillars,
+    .afterPillars + p {
       width: auto;
       margin-top: 0;
     }

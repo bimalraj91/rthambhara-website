@@ -39,9 +39,18 @@ $top: 840;
   white-space: nowrap;
 }
 
+// The temple scene. Its cream backdrop is keyed out to transparency and its
+// open edges are feathered, so it melts into the page with no visible frame.
 .texture {
   @include at(328, 840 - $top, 1112, 946);
   opacity: 0.83;
+}
+
+// The faint academy emblem behind the title.
+.emblem {
+  @include at(174, 850 - $top, 529, 371);
+  overflow: hidden;
+  opacity: 0.08;
 }
 
 .sheetLeft {
@@ -95,12 +104,34 @@ $top: 840;
   .canvas {
     // Space between the viewport's left edge and the centred canvas.
     --cl: max(0px, calc((100cqw - 1440px) / 2));
-    // Canvas x at which the 525px portrait touches the viewport's right edge.
-    --pl: calc(100cqw - var(--cl) - 525px);
+    // Canvas x of the viewport's right edge.
+    --vr: calc(100cqw - var(--cl));
+    // The portrait keeps the design's 99px from the right edge (x 816 at
+    // 1440px) and follows that edge on wider screens.
+    --pl: calc(var(--vr) - 624px);
+  }
+
+  // The temple scene stays anchored to the right edge, so wide screens never
+  // show where it ends.
+  .texture {
+    left: calc(var(--vr) - 1112px);
   }
 
   .portrait {
     left: var(--pl);
+  }
+
+  // Paragraph spacing exactly as placed in the design.
+  .canvas .body {
+    gap: 0;
+
+    p:nth-child(2) {
+      margin-top: 7px;
+    }
+
+    p:nth-child(3) {
+      margin-top: 2px;
+    }
   }
 
   .swoosh {

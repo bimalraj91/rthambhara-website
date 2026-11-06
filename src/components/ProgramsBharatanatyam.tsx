@@ -7,7 +7,7 @@ import styles from "./ProgramsBharatanatyam.module.scss";
 
 const P = "/assets/programs";
 
-export default function   ProgramsBharatanatyam() {
+export default function ProgramsBharatanatyam() {
   return (
     <section
       id="language-of-grace"
@@ -16,7 +16,15 @@ export default function   ProgramsBharatanatyam() {
     >
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.texture}`} aria-hidden="true">
-          <Crop src={`${P}/texture-gemini.webp`} sizes="1112px" cover />
+          <Crop src={`${P}/texture-gemini-soft.webp`} sizes="1112px" cover />
+        </div>
+
+        <div className={`${styles.deco} ${styles.emblem}`} aria-hidden="true">
+          <Crop
+            src="/assets/gurus/logo.webp"
+            sizes="529px"
+            box={{ height: "127.73%", left: "0", top: "-0.02%", width: "100%" }}
+          />
         </div>
 
         <div className={`${styles.deco} ${styles.sheetLeft}`} aria-hidden="true">

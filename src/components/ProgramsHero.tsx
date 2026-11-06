@@ -146,6 +146,7 @@ export default function ProgramsHero() {
           id="programs-hero-title"
           as="h1"
           className={styles.title}
+          lineClassName={styles.titleLine}
           lines={[
             "The earth has its rhythm.",
             "The heart has its own.",
