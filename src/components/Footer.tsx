@@ -64,19 +64,14 @@ export default function Footer() {
             <div className={styles.columns}>
               <div className={styles.brandCol}>
                 <div className={styles.brand}>
-                  <span className={styles.emblem}>
-                    <Image
-                      src="/assets/home/emblem.png"
-                      alt=""
-                      width={50}
-                      height={50}
-                      className={styles.emblemImage}
-                    />
-                  </span>
-                  <span className={styles.wordmark}>
-                    <span className={styles.name}>rtambhara</span>
-                    <span className={styles.tagline}>Academy of Arts</span>
-                  </span>
+                  <Image
+                    src="/assets/home/rtambhara-logo.svg"
+                    alt="rtambhara Performing & Visual Arts"
+                    width={205}
+                    height={70}
+                    unoptimized
+                    className={styles.logo}
+                  />
                 </div>
                 <p className={styles.brandDesc}>
                   Preserving classical Indian dance, ancient martial arts of

@@ -1,8 +1,22 @@
 import Image from "next/image";
 import SectionLabel from "./SectionLabel";
-import Reveal from "./motion/Reveal";
+import JournalFeed, { type JournalEntry } from "./JournalFeed";
 import SplitText from "./motion/SplitText";
+import { formatDate, newsItems } from "@/data/news";
 import styles from "./Journal.module.scss";
+
+// The latest entries from the News & Events data, newest first.
+const entries: JournalEntry[] = [...newsItems]
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 5)
+  .map((item) => ({
+    slug: item.slug,
+    kind: item.kind,
+    category: item.category,
+    ...formatDate(item.date),
+    title: item.title,
+    excerpt: item.excerpt,
+  }));
 
 export default function Journal() {
   return (
@@ -36,26 +50,7 @@ export default function Journal() {
           />
         </div>
 
-        <Reveal className={styles.event} delay={0.18}>
-          <div className={styles.rule} aria-hidden="true" />
-
-          <div className={styles.eventGrid}>
-            <div className={styles.date}>
-              <p className={styles.day}>13</p>
-              <p className={styles.month}>AUG 2026</p>
-            </div>
-
-            <div className={styles.narrative}>
-              <p className={styles.category}>PERFORMANCE · PAST EVENT</p>
-              <h3 className={styles.eventTitle}>Raghaveeyam</h3>
-              <p className={styles.copy}>
-                An observance of Ramayana Month. Bhagavatpadham Bharathanatyam
-                at Sreepoornathrayeesa Temple, Tripunithura.
-              </p>
-
-            </div>
-          </div>
-        </Reveal>
+        <JournalFeed entries={entries} />
       </div>
     </section>
   );

@@ -80,7 +80,10 @@ export default function Intro() {
             delay={0.08}
             stagger={0.04}
             lines={[
-              { words: ["rtambhara."], className: styles.titleDark },
+              {
+                words: [{ text: "rtambhara.", dotted: true }],
+                className: styles.titleDark,
+              },
               {
                 words: ["A", "rhythm", "centuries", "in"],
                 className: styles.titleMaroon,

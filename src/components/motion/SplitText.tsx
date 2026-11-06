@@ -18,7 +18,9 @@ const TAGS = {
 
 type TagName = keyof typeof TAGS;
 
-export type SplitWord = string | { text: string; className?: string };
+export type SplitWord =
+  | string
+  | { text: string; className?: string; dotted?: boolean };
 export type SplitLine = string | { words: SplitWord[]; className?: string };
 
 type SplitTextProps = {
@@ -43,18 +45,26 @@ function normalize(lines: SplitLine[]) {
         words: line
           .split(/\s+/)
           .filter(Boolean)
-          .map((text) => ({ text }) as { text: string; className?: string }),
+          .map(
+            (text) =>
+              ({ text }) as {
+                text: string;
+                className?: string;
+                dotted?: boolean;
+              },
+          ),
       };
     }
 
     const words = line.words.flatMap((word) => {
       const text = typeof word === "string" ? word : word.text;
       const className = typeof word === "string" ? undefined : word.className;
+      const dotted = typeof word === "string" ? undefined : word.dotted;
 
       return text
         .split(/\s+/)
         .filter(Boolean)
-        .map((part) => ({ text: part, className }));
+        .map((part) => ({ text: part, className, dotted }));
     });
 
     return { className: line.className, words };
@@ -140,7 +150,7 @@ export default function SplitText({
                       .join(" ")}
                     style={{ "--i": wordNumber++ } as React.CSSProperties}
                   >
-                    {dottedText(wordItem.text)}
+                    {wordItem.dotted ? dottedText(wordItem.text) : wordItem.text}
                   </span>
                 </span>
               </Fragment>
@@ -185,7 +195,7 @@ export default function SplitText({
                     .join(" ")}
                   variants={word}
                 >
-                  {dottedText(wordItem.text)}
+                  {wordItem.dotted ? dottedText(wordItem.text) : wordItem.text}
                 </motion.span>
               </span>
             </Fragment>

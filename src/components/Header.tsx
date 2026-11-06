@@ -64,29 +64,24 @@ export default function Header() {
       >
         <div className={styles.inner}>
           <Link href="/" className={styles.brand} aria-label="rtambhara Performing & Visual Arts, home">
-            <span className={styles.emblem} aria-hidden="true">
-              <Image
-                src="/assets/home/emblem.png"
-                alt=""
-                width={44}
-                height={44}
-                priority
-                sizes="44px"
-                className={styles.emblemImage}
-              />
-              <Image
-                src="/assets/home/emblem-white.jpg"
-                alt=""
-                width={44}
-                height={44}
-                sizes="44px"
-                className={styles.emblemMark}
-              />
-            </span>
-            <span className={styles.wordmark}>
-              <span className={styles.name}>rtambhara</span>
-              <span className={styles.tagline}>Performing &amp; Visual Arts</span>
-            </span>
+            <Image
+              src="/assets/home/rtambhara-logo.svg"
+              alt=""
+              width={205}
+              height={70}
+              priority
+              unoptimized
+              className={`${styles.logo} ${styles.logoLight}`}
+            />
+            <Image
+              src="/assets/home/rtambhara-black.svg"
+              alt=""
+              width={203}
+              height={70}
+              unoptimized
+              aria-hidden="true"
+              className={`${styles.logo} ${styles.logoDark}`}
+            />
           </Link>
 
           <nav className={styles.nav} aria-label="Primary navigation">

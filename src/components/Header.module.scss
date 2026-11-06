@@ -30,9 +30,18 @@
   transform: translateZ(0);
   will-change: backdrop-filter;
 
-  .name {
-    color: var(--color-ink);
-    font-size: 25px;
+  .logo {
+    height: 60px;
+  }
+
+  .logoLight {
+    opacity: 0;
+    transform: scale(1.06);
+  }
+
+  .logoDark {
+    opacity: 1;
+    transform: translateY(-50%) scale(1);
   }
 
   .tagline {
@@ -136,6 +145,34 @@
   margin-right: clamp(40px, 8.4vw, 121px);
 
   @include focus-ring(var(--color-gold-light));
+}
+
+.logo {
+  display: block;
+  width: auto;
+  height: 82px;
+  transform-origin: left center;
+  transition:
+    opacity 0.7s cubic-bezier(0.45, 0, 0.2, 1),
+    transform 0.7s var(--ease-out),
+    height 0.55s var(--ease-out);
+}
+
+.logoLight {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logoDark {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  opacity: 0;
+  transform: translateY(-50%) scale(0.94);
+}
+
+.brand {
+  position: relative;
 }
 
 .emblem {
@@ -448,8 +485,8 @@
   .header.scrolled {
     height: 64px;
 
-    .name {
-      font-size: 21px;
+    .logo {
+      height: 38px;
     }
 
     .emblem {
@@ -465,6 +502,10 @@
   .brand {
     gap: 9px;
     margin-right: 0;
+  }
+
+  .logo {
+    height: 44px;
   }
 
   .emblem {
