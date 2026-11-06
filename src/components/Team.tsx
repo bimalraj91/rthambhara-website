@@ -20,6 +20,16 @@ export default function Team() {
         <div className={styles.topFade} />
       </div>
 
+      <div className={styles.emblem} aria-hidden="true">
+        <Image
+          src="/assets/gurus/logo.webp"
+          alt=""
+          width={325}
+          height={291}
+          sizes="(max-width: 900px) 60vw, 505px"
+        />
+      </div>
+
       <div className={styles.inner}>
         <SectionLabel tone="white" lineWidth={24} className={styles.label}>
           07 / Our team
@@ -32,13 +42,19 @@ export default function Team() {
           delay={0.08}
           stagger={0.045}
           lines={[
-            { words: ["The", "hands", "that", "nurture", "the", "art,"], className: styles.whiteLine },
-            { words: ["the", "hearts", "that", "keep", "it", "alive."], className: styles.goldLine },
+            {
+              words: ["The", "hands", "that", "nurture", "the", "art,"],
+              className: styles.whiteLine,
+            },
+            {
+              words: ["the", "hearts", "that", "keep", "it", "alive."],
+              className: styles.goldLine,
+            },
           ]}
         />
 
         <Reveal className={styles.exploreWrap} delay={0.18}>
-          <PillButton href="/about-us#team" variant="glass">
+          <PillButton href="/gurus" variant="glass">
             Explore
           </PillButton>
         </Reveal>
@@ -62,6 +78,7 @@ export default function Team() {
               </div>
               <h3 className={styles.name}>{member.name}</h3>
               <p className={styles.role}>{member.role}</p>
+              <p className={styles.description}>{member.description}</p>
             </Reveal>
           ))}
         </div>

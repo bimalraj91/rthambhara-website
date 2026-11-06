@@ -159,6 +159,39 @@
   color: #e2daca;
 }
 
+.description {
+  max-width: 270px;
+  margin: 12px auto 0;
+
+  @include sans(300);
+  font-size: 14px;
+  line-height: 1.65;
+  color: #d9d0bf;
+}
+
+// The faint emblem, tucked into the lower-right corner.
+.emblem {
+  position: absolute;
+  z-index: 0;
+  right: 40%;
+  bottom: 20%;
+  width: 505px;
+  height: 354px;
+  overflow: hidden;
+  opacity: 0.12;
+  pointer-events: none;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 127.73%;
+    max-width: none;
+    filter: brightness(2.2) sepia(0.7);
+  }
+}
+
 @include below(1280px) {
   .team {
     height: auto;
@@ -251,5 +284,15 @@
 
   .name {
     font-size: 29px;
+  }
+}
+
+@include below(1280px) {
+  .emblem {
+    right: -8%;
+    bottom: 24px;
+    width: min(62vw, 400px);
+    height: auto;
+    aspect-ratio: 505 / 354;
   }
 }

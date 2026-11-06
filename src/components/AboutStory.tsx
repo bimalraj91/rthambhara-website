@@ -26,14 +26,23 @@ const stats = [
 
 export default function AboutStory() {
   return (
-    <section id="who-we-are" className={styles.story} aria-labelledby="story-title">
+    <section
+      id="who-we-are"
+      className={styles.story}
+      aria-labelledby="story-title"
+    >
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.sheet}`} aria-hidden="true">
           <div className={styles.sheetTile}>
             <Crop
               src={`${A}/sheet10.webp`}
               sizes="620px"
-              box={{ height: "314.1%", left: "-378.6%", top: "-24.53%", width: "478.6%" }}
+              box={{
+                height: "314.1%",
+                left: "-378.6%",
+                top: "-24.53%",
+                width: "478.6%",
+              }}
             />
           </div>
         </div>
@@ -42,7 +51,12 @@ export default function AboutStory() {
           <Crop
             src={`${A}/download2.webp`}
             sizes="380px"
-            box={{ height: "100%", left: "-30.05%", top: "0", width: "130.09%" }}
+            box={{
+              height: "100%",
+              left: "-30.05%",
+              top: "0",
+              width: "130.09%",
+            }}
           />
         </div>
 
@@ -51,7 +65,12 @@ export default function AboutStory() {
             <Crop
               src={`${A}/ghungroo.webp`}
               sizes="400px"
-              box={{ height: "100%", left: "-14.01%", top: "0", width: "121.71%" }}
+              box={{
+                height: "100%",
+                left: "-14.01%",
+                top: "0",
+                width: "121.71%",
+              }}
             />
           </div>
         </div>
@@ -154,6 +173,18 @@ export default function AboutStory() {
         <div className={styles.vision}>
           <span className={styles.visionTextile} aria-hidden="true" />
           <span className={styles.visionBleed} aria-hidden="true" />
+          <span className={styles.visionEmblem} aria-hidden="true">
+            <Crop
+              src="/assets/gurus/logo.webp"
+              sizes="529px"
+              box={{
+                height: "127.73%",
+                left: "0",
+                top: "-0.02%",
+                width: "100%",
+              }}
+            />
+          </span>
           <span className={styles.visionEdge} aria-hidden="true" />
           <Reveal as="p" className={styles.visionCopy} delay={0.1} y={26}>
             Rooted in the classical heritage of Bharatanatyam, our learning

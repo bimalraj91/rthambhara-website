@@ -4,6 +4,7 @@
   position: relative;
   height: 839px;
   overflow: hidden;
+  container-type: inline-size;
   background: var(--color-cream);
   color: var(--color-ink-deep);
 }
@@ -31,6 +32,27 @@
   height: 713px;
   object-fit: contain;
   object-position: top left;
+}
+
+.emblem {
+  position: absolute;
+  z-index: 0;
+  top: -6px;
+  left: 930px;
+  width: 505px;
+  height: 354px;
+  overflow: hidden;
+  opacity: 0.1;
+  pointer-events: none;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 127.73%;
+    max-width: none;
+  }
 }
 
 .ornamentLeft {
@@ -297,4 +319,40 @@
   display: block;
   width: 100%;
   height: 100%;
+}
+
+// Wide screens: the dancer (with her lotus and the soft artwork behind her)
+// stays flush with the left edge of the screen instead of the 1440px canvas.
+@include above($bp-wide) {
+  .inner {
+    --cl: max(0px, calc((100cqw - 1440px) / 2));
+  }
+
+  .dancer {
+    left: calc(-3% - var(--cl));
+  }
+
+  .ornamentLeft {
+    left: calc(-86px - var(--cl));
+  }
+
+  .lotus {
+    left: calc(331px - var(--cl));
+  }
+
+  .emblem {
+    left: calc(930px + var(--cl));
+  }
+}
+
+// Tablet and mobile: a smaller emblem tucked into the top-right corner.
+@include below($bp-wide) {
+  .emblem {
+    top: 0;
+    right: -6%;
+    left: auto;
+    width: min(62vw, 400px);
+    height: auto;
+    aspect-ratio: 505 / 354;
+  }
 }

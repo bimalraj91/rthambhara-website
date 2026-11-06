@@ -191,6 +191,11 @@
 }
 
 .featureCopy {
+  display: -webkit-box;
+  max-width: 467px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
   width: 467px;
   margin-top: 7px;
   color: #fff;
@@ -201,6 +206,14 @@
 }
 
 .featureLink {
+  // Stretches over the whole card so the card is one big link.
+  &::after {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    content: "";
+  }
+
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -218,10 +231,7 @@
 
 .storyColumn,
 .galleryColumn {
-  display: grid;
-  grid-template-rows: 210px 210px;
-  row-gap: 24px;
-  padding-top: 2px;
+  height: 444px;
 }
 
 .storyColumn {
@@ -229,6 +239,7 @@
 }
 
 .story {
+  position: relative;
   display: flex;
   width: 488px;
   height: 210px;
@@ -262,6 +273,10 @@
 }
 
 .storyTitle {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   margin-top: 3px;
   text-transform: uppercase;
 
@@ -272,6 +287,10 @@
 }
 
 .storyCopy {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   margin-top: 2px;
 
   @include sans(300);
@@ -281,6 +300,14 @@
 }
 
 .storyLink {
+  &::after {
+    position: absolute;
+    z-index: 2;
+    inset: 0;
+    border-radius: 14px;
+    content: "";
+  }
+
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -298,6 +325,21 @@
 
 .galleryColumn {
   width: 258px;
+}
+
+.galleryLink {
+  position: absolute;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+  border-radius: 14px;
+  transition: transform 0.6s var(--ease-out);
+
+  &:hover {
+    transform: scale(1.02);
+  }
+
+  @include focus-ring(var(--color-maroon));
 }
 
 .galleryCard {
@@ -384,15 +426,20 @@
     position: absolute;
   }
 
+  .feature {
+    height: 440px;
+    min-height: 0;
+  }
+
   .storyColumn {
     width: auto;
     min-width: 0;
-    grid-template-rows: repeat(2, minmax(180px, 1fr));
+    height: 440px;
   }
 
   .story {
     width: 100%;
-    height: 100%;
+    height: 190px;
   }
 
   .storyImage {
@@ -402,15 +449,13 @@
 
   .galleryColumn {
     grid-column: 1 / -1;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 260px;
-    column-gap: 20px;
     width: 100%;
+    height: 260px;
   }
 
   .galleryCard {
-    width: 100%;
-    height: 100%;
+    width: min(320px, 62vw);
+    height: 260px;
   }
 
   .fade,
@@ -446,17 +491,22 @@
     min-height: 400px;
   }
 
-  .storyColumn {
-    grid-template-rows: auto;
-    row-gap: 16px;
+  .feature {
+    height: auto;
+    min-height: 400px;
   }
 
-  .story {
-    min-height: 190px;
+  .storyColumn {
+    height: 410px;
   }
 
   .galleryColumn {
-    grid-template-rows: 210px;
+    height: 210px;
+  }
+
+  .galleryCard {
+    width: min(270px, 66vw);
+    height: 210px;
   }
 }
 
@@ -493,8 +543,13 @@
   }
 
   .story {
+    height: 176px;
     min-height: 0;
     padding: 8px;
+  }
+
+  .storyColumn {
+    height: 392px;
   }
 
   .storyImage {

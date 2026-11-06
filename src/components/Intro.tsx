@@ -21,6 +21,16 @@ export default function Intro() {
           />
         </div>
 
+        <div className={styles.emblem} aria-hidden="true">
+          <Image
+            src="/assets/gurus/logo.webp"
+            alt=""
+            width={325}
+            height={291}
+            sizes="(max-width: 900px) 60vw, 505px"
+          />
+        </div>
+
         <Image
           src="/assets/home/ornament-sheet-10.png"
           alt=""
@@ -31,12 +41,12 @@ export default function Intro() {
         />
         <Drift className={styles.ornamentRight} from={30} to={-30}>
           <Image
-          src="/assets/home/ornament-sheet-9.png"
-          alt=""
-          width={753}
-          height={827}
-          className={styles.fill}
-        />
+            src="/assets/home/ornament-sheet-9.png"
+            alt=""
+            width={753}
+            height={827}
+            className={styles.fill}
+          />
         </Drift>
         {/* <Image
           src="/assets/home/gold-collage-3.png"
@@ -48,12 +58,12 @@ export default function Intro() {
         /> */}
         <Drift className={styles.lotus} from={-14} to={14}>
           <Image
-          src="/assets/home/lotus.png"
-          alt=""
-          width={162}
-          height={125}
-          className={styles.fill}
-        />
+            src="/assets/home/lotus.png"
+            alt=""
+            width={162}
+            height={125}
+            className={styles.fill}
+          />
         </Drift>
 
         <div className={styles.content}>

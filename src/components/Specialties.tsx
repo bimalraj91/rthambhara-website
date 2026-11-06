@@ -50,7 +50,7 @@ export default function Specialties() {
         </Reveal>
 
         <Reveal className={styles.exploreWrap} delay={0.24}>
-          <PillButton href="/about-us">Explore</PillButton>
+          <PillButton href="/programs">Explore</PillButton>
         </Reveal>
 
         <div className={styles.cards}>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import SectionMarker from "./SectionMarker";
 import Reveal from "./motion/Reveal";
 import { StaggerGroup, StaggerItem } from "./motion/Stagger";
@@ -50,7 +51,7 @@ export default function Community() {
             collaborations and mentorship give students space to grow — and
             bring our community together.
           </p>
-          <a href="#gallery" className={styles.viewMore}>
+          <Link href="/gallery" className={styles.viewMore}>
             View more
             <Image
               src="/assets/icons/arrow-right-circle.svg"
@@ -58,7 +59,7 @@ export default function Community() {
               width={14}
               height={14}
             />
-          </a>
+          </Link>
         </Reveal>
       </div>
 

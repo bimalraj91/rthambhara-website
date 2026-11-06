@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import Reveal from "./motion/Reveal";
 import styles from "./Footer.module.scss";
 
@@ -14,15 +13,15 @@ const quickLinks = [
 ];
 
 const disciplines = [
-  { label: "Bharatanatyam Masterclasses", href: "/#programs" },
-  { label: "Contemporary Kalaripayattu", href: "/#programs" },
-  { label: "Yoga Sadhana", href: "/#programs" },
+  { label: "Bharatanatyam Masterclasses", href: "/programs" },
+  { label: "Contemporary Kalaripayattu", href: "/programs" },
+  { label: "Yoga Sadhana", href: "/programs" },
 ];
 
 const bottomLinks = [
-  { label: "Privacy Policy", href: "/#contact" },
-  { label: "Terms of Heritage", href: "/#contact" },
-  { label: "Join Community", href: "/#contact" },
+  { label: "Privacy Policy", href: "/contact-us" },
+  { label: "Terms of Heritage", href: "/contact-us" },
+  { label: "Join Community", href: "/contact-us" },
 ];
 
 const socials = [
@@ -32,27 +31,22 @@ const socials = [
 ];
 
 export default function Footer() {
-  // The About page uses a darker footer without the gold ornament strip.
-  const isAbout = usePathname().startsWith("/about-us");
-
   return (
-    <footer className={`${styles.footer} ${isAbout ? styles.about : ""}`}>
+    <footer className={styles.footer}>
       <div className={styles.frame}>
-        {!isAbout && (
-          <div className={styles.ornaments} aria-hidden="true">
-            {[1, 2, 3].map((n) => (
-              <Image
-                key={n}
-                src={`/assets/home/footer-ornament-${n}.png`}
-                alt=""
-                width={502}
-                height={253}
-                className={styles.ornament}
-                style={{ width: "auto" }}
-              />
-            ))}
-          </div>
-        )}
+        <div className={styles.ornaments} aria-hidden="true">
+          {[1, 2, 3].map((n) => (
+            <Image
+              key={n}
+              src={`/assets/home/footer-ornament-${n}.png`}
+              alt=""
+              width={502}
+              height={253}
+              className={styles.ornament}
+              style={{ width: "auto" }}
+            />
+          ))}
+        </div>
 
         <div className={styles.motif} aria-hidden="true">
           <Image
@@ -130,7 +124,9 @@ export default function Footer() {
                   TRRA 66, Mahalakshmi, Thevarakkavu Road, Tripunithura
                 </p>
                 <div className={styles.contacts}>
-                  <a href="mailto:mail@rtambhara.com">Email: mail@rtambhara.com</a>
+                  <a href="mailto:mail@rtambhara.com">
+                    Email: mail@rtambhara.com
+                  </a>
                   <a href="tel:+919961260009">Phone: +91 99612 60009</a>
                 </div>
               </div>
@@ -139,8 +135,8 @@ export default function Footer() {
 
           <Reveal as="div" className={styles.bottom} delay={0.14} y={20}>
             <p className={styles.copyright}>
-              © 2026 rtambhara Academy for Performing & Visual Arts. All
-              rights reserved.
+              © 2026 rtambhara Academy for Performing & Visual Arts. All rights
+              reserved.
             </p>
             <div className={styles.bottomLinks}>
               {bottomLinks.map((link) => (

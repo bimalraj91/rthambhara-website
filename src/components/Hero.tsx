@@ -53,7 +53,7 @@ export default function Hero() {
 
           return (
             <motion.div
-              key={item.image}
+              key={`${slideIndex}-${item.image}`}
               className={styles.backgroundSlide}
               initial={false}
               animate={{

@@ -33,6 +33,13 @@ $top: 2500;
 
 // Decorative layers ------------------------------------------------------
 
+// The soft emblem behind the lower-left of the section.
+.emblem {
+  @include at(154, 4521 - $top, 529, 371);
+  overflow: hidden;
+  opacity: 0.08;
+}
+
 .circle {
   @include at(-504, 2427.88 - $top, 949.452, 871.179);
   left: calc(-504px - var(--bleed));

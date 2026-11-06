@@ -194,6 +194,30 @@ $top: 840;
   bottom: 0;
   width: var(--bleed);
   background: #681722;
+
+  // The same woven textile, carried on to the edge of the screen. It is
+  // anchored at the seam so the pattern continues without a break.
+  &::before {
+    position: absolute;
+    inset: 0 0 5px;
+    background: url("/assets/about/figma/textile.webp") top right / 698.472px
+      386.082px repeat;
+    content: "";
+    opacity: 0.4;
+  }
+}
+
+// A light ghost of the emblem behind the vision text.
+.visionEmblem {
+  position: absolute;
+  top: 130px;
+  left: 78px;
+  width: 529px;
+  height: 371px;
+  overflow: hidden;
+  opacity: 0.07;
+  filter: brightness(0) invert(1);
+  pointer-events: none;
 }
 
 .visionEdge {
@@ -357,6 +381,16 @@ $top: 840;
   .visionBleed,
   .visionEdge {
     display: none;
+  }
+
+  .visionEmblem {
+    top: 50%;
+    right: -12%;
+    left: auto;
+    width: min(70%, 400px);
+    height: auto;
+    aspect-ratio: 529 / 371;
+    transform: translateY(-50%);
   }
 
   .visionCopy,

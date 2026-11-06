@@ -3,10 +3,21 @@ import Link from "next/link";
 import PillButton from "./PillButton";
 import SectionLabel from "./SectionLabel";
 import Drift from "./motion/Drift";
+import NewsMarquee from "./NewsMarquee";
 import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
-import { news } from "@/data/home";
+import { landingItems } from "@/data/gallery";
+import { events, formatDate, news as newsPosts } from "@/data/news";
 import styles from "./News.module.scss";
+
+const feature = events[0];
+// The first event stays pinned; everything else rolls past beside it.
+const stories = [...events.slice(1), ...newsPosts];
+
+function label(item: { category: string; date: string }) {
+  const date = formatDate(item.date);
+  return `${item.category} · ${date.day} ${date.month} ${date.year}`;
+}
 
 export default function News() {
   return (
@@ -55,79 +66,94 @@ export default function News() {
         />
 
         <Reveal className={styles.viewAllWrap} delay={0.18}>
-          <PillButton href="/about-us#news">Explore</PillButton>
+          <PillButton href="/news-events">Explore</PillButton>
         </Reveal>
 
         <div className={styles.grid}>
           <Reveal className={styles.feature} delay={0.1}>
             <Image
-              src={news.feature.image}
-              alt={news.feature.alt}
+              src={feature.homeImage ?? feature.image}
+              alt={feature.imageAlt}
               fill
               sizes="(max-width: 760px) 90vw, 529px"
               className={styles.featureImage}
-              style={{ objectPosition: news.feature.imagePosition }}
+              style={{ objectPosition: feature.homeImagePosition ?? "center" }}
             />
             <div className={styles.featureOverlay} aria-hidden="true" />
             <div className={styles.featurePanel}>
-              <p className={styles.featureCategory}>{news.feature.category}</p>
-              <h3 className={styles.featureTitle}>{news.feature.title}</h3>
-              <p className={styles.featureCopy}>{news.feature.excerpt}</p>
-              <Link href="/about-us#news" className={styles.featureLink}>
+              <p className={styles.featureCategory}>{label(feature)}</p>
+              <h3 className={styles.featureTitle}>{feature.title}</h3>
+              <p className={styles.featureCopy}>{feature.excerpt}</p>
+              <Link
+                href={`/news-events/${feature.slug}`}
+                className={styles.featureLink}
+              >
                 <span>Read full story</span>
                 <span aria-hidden="true">→</span>
               </Link>
             </div>
           </Reveal>
 
-          <div className={styles.storyColumn}>
-            {news.stories.map((story, index) => (
-              <Reveal
-                key={`${story.image}-${index}`}
-                className={styles.story}
-                delay={0.12 + index * 0.08}
-              >
+          <NewsMarquee
+            className={styles.storyColumn}
+            label="More news and events"
+            duration={stories.length * 7}
+          >
+            {stories.map((story) => (
+              <div key={story.slug} className={styles.story}>
                 <div className={styles.storyImage}>
                   <Image
-                    src={story.image}
-                    alt={story.alt}
+                    src={story.homeImage ?? story.image}
+                    alt={story.imageAlt}
                     fill
                     sizes="190px"
                     className={styles.cover}
-                    style={{ objectPosition: story.imagePosition }}
+                    style={{
+                      objectPosition: story.homeImagePosition ?? "center",
+                    }}
                   />
                 </div>
                 <div className={styles.storyBody}>
-                  <p className={styles.category}>{story.category}</p>
+                  <p className={styles.category}>{label(story)}</p>
                   <h3 className={styles.storyTitle}>{story.title}</h3>
                   <p className={styles.storyCopy}>{story.excerpt}</p>
-                  <Link href="/about-us#news" className={styles.storyLink}>
+                  <Link
+                    href={`/news-events/${story.slug}`}
+                    className={styles.storyLink}
+                  >
                     <span>Read full story</span>
-                <span aria-hidden="true">→</span>
+                    <span aria-hidden="true">→</span>
                   </Link>
                 </div>
-              </Reveal>
+              </div>
             ))}
-          </div>
+          </NewsMarquee>
 
-          <div className={styles.galleryColumn}>
-            {news.gallery.map((item, index) => (
-              <Reveal
-                key={`${item.image}-${index}`}
-                className={styles.galleryCard}
-                delay={0.16 + index * 0.08}
-              >
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  fill
-                  sizes="238px"
-                  className={styles.cover}
-                  style={{ objectPosition: item.imagePosition }}
-                />
-              </Reveal>
+          <NewsMarquee
+            className={styles.galleryColumn}
+            label="Photo highlights"
+            duration={landingItems.length * 6}
+            reverse
+            sidewaysOnTablet
+          >
+            {landingItems.map((item) => (
+              <div key={item.id} className={styles.galleryCard}>
+                <Link
+                  href="/gallery"
+                  className={styles.galleryLink}
+                  aria-label={`Open the gallery: ${item.title}`}
+                >
+                  <Image
+                    src={item.src}
+                    alt=""
+                    fill
+                    sizes="238px"
+                    className={styles.cover}
+                  />
+                </Link>
+              </div>
             ))}
-          </div>
+          </NewsMarquee>
         </div>
 
         <div className={styles.fade} aria-hidden="true" />

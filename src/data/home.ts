@@ -13,9 +13,9 @@ const heroMarker = "Tripunithura · Established 2012";
 
 export const heroSlides = [
   {
-    image: "/assets/home/hero-bg.png",
-    alt: "A Bharatanatyam dancer in a deep red fresco setting framed by temple arches",
-    imagePosition: "center",
+    image: "/assets/home/stories-background.png",
+    alt: "A dancer framed by the golden arches of a temple",
+    imagePosition: "center 42%",
     marker: heroMarker,
     lines: [
       "Every movement holds",
@@ -84,37 +84,7 @@ export const programs = [
   },
 ] as const;
 
-const newsStory = {
-  category: "Classical heritage",
-  title: "Raghaveeyam",
-  excerpt:
-    'rtambhara Academy for Performing and Visual Arts presents: "RAGHAVEEYAM –"',
-  href: "#journal",
-};
-
 export const news = {
-  feature: {
-    ...newsStory,
-    excerpt:
-      'rtambhara Academy for Performing and Visual Arts presents: "RAGHAVEEYAM – Observance of Ramayana Month, Bhagavatpadham Bharathanatyam" at Sreepoornathrayeesa Temple, Tripunithura on 13th August 2026.',
-    image: "/assets/home/news-feature.jpg",
-    alt: "A dancer performing beneath warm temple lights",
-    imagePosition: "center 42%",
-  },
-  stories: [
-    {
-      ...newsStory,
-      image: "/assets/home/news-small-1.png",
-      alt: "A classical dance performance on stage",
-      imagePosition: "center 30%",
-    },
-    {
-      ...newsStory,
-      image: "/assets/home/news-small-3.png",
-      alt: "A Bharatanatyam recital in progress",
-      imagePosition: "center 34%",
-    },
-  ],
   gallery: [
     {
       image: "/assets/home/news-small-2.jpg",
@@ -133,6 +103,8 @@ export const team = [
   {
     name: "Girija Ravindranath",
     role: "Music & Dance",
+    description:
+      "A disciple of the Kalakshetra tradition with 23 years of teaching, guiding students in Bharatanatyam with grace and devotion.",
     image: "/assets/home/team-girija.png",
     alt: "Portrait of Girija Ravindranath",
     imagePosition: "center 24%",
@@ -140,6 +112,8 @@ export const team = [
   {
     name: "Satyajit Ravindranath",
     role: "Contemporary Dance",
+    description:
+      "A choreographer and performer who blends classical roots with Kalaripayattu-inspired contemporary movement.",
     image: "/assets/home/team-satyajit.png",
     alt: "Portrait of Satyajit Ravindranath",
     imagePosition: "center 22%",

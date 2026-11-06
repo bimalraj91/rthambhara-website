@@ -18,6 +18,9 @@ export type NewsItem = {
   excerpt: string;
   image: string;
   imageAlt: string;
+  // Optional picture and focal point used by the homepage News widget.
+  homeImage?: string;
+  homeImagePosition?: string;
   body: string[];
   bannerCaptionTitle: string;
   bannerCaption: string;
@@ -62,6 +65,8 @@ export const newsItems: NewsItem[] = [
       "Presented by senior disciples of Rtambhara Gurukulam. Featuring a consecrated Varnam in Raga Shankarabharanam set to Adi Talam, followed by a closing Tillana.",
     image: EVENT_IMAGE,
     imageAlt: "Dancers performing on stage in warm lights",
+    homeImage: "/assets/home/news-feature.jpg",
+    homeImagePosition: "center 42%",
     body: margam,
     bannerCaptionTitle: "Sacred geometry",
     bannerCaption:

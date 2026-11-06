@@ -31,22 +31,46 @@ export default function AboutVisionMission() {
           </div>
         </div>
 
-        <div className={`${styles.deco} ${styles.sheetLeft}`} aria-hidden="true">
+        <div
+          className={`${styles.deco} ${styles.sheetLeft}`}
+          aria-hidden="true"
+        >
           <Crop
             src={`${A}/sheet1.webp`}
             sizes="1080px"
-            box={{ height: "267.96%", left: "-197.47%", top: "-94.17%", width: "388.86%" }}
+            box={{
+              height: "267.96%",
+              left: "-197.47%",
+              top: "-94.17%",
+              width: "388.86%",
+            }}
           />
         </div>
 
-        <div className={`${styles.deco} ${styles.sheetRight}`} aria-hidden="true">
+        <div
+          className={`${styles.deco} ${styles.sheetRight}`}
+          aria-hidden="true"
+        >
           <div className={styles.sheetRightTile}>
             <Crop
               src={`${A}/sheet10.webp`}
               sizes="620px"
-              box={{ height: "314.1%", left: "-378.6%", top: "-24.53%", width: "478.6%" }}
+              box={{
+                height: "314.1%",
+                left: "-378.6%",
+                top: "-24.53%",
+                width: "478.6%",
+              }}
             />
           </div>
+        </div>
+
+        <div className={`${styles.deco} ${styles.emblem}`} aria-hidden="true">
+          <Crop
+            src="/assets/gurus/logo.webp"
+            sizes="529px"
+            box={{ height: "127.73%", left: "0", top: "-0.02%", width: "100%" }}
+          />
         </div>
 
         <div className={styles.forum}>
@@ -56,16 +80,27 @@ export default function AboutVisionMission() {
             as="h2"
             className={styles.title}
             delay={0.1}
-            lines={[{ words: ["Our", { text: "Vision", className: styles.accent }] }]}
+            lines={[
+              { words: ["Our", { text: "Vision", className: styles.accent }] },
+            ]}
           />
         </div>
 
         <div className={styles.cards}>
-          <Reveal as="article" className={`${styles.card} ${styles.srishti}`} delay={0} y={30}>
+          <Reveal
+            as="article"
+            className={`${styles.card} ${styles.srishti}`}
+            delay={0}
+            y={30}
+          >
             <div className={styles.cardInner}>
               <span className={styles.badge}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`${A}/ellipse21.svg`} alt="" className={styles.badgeRing} />
+                <img
+                  src={`${A}/ellipse21.svg`}
+                  alt=""
+                  className={styles.badgeRing}
+                />
                 <span className={styles.badgeGold} aria-hidden="true">
                   <Crop src={`${A}/sheet5.webp`} sizes="100px" cover />
                 </span>
@@ -75,15 +110,29 @@ export default function AboutVisionMission() {
             </div>
           </Reveal>
 
-          <Reveal as="article" className={`${styles.card} ${styles.sthiti}`} delay={0.12} y={30}>
+          <Reveal
+            as="article"
+            className={`${styles.card} ${styles.sthiti}`}
+            delay={0.12}
+            y={30}
+          >
             <span className={styles.sthitiBadge}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${A}/ellipse22.svg`} alt="" className={styles.badgeRing} />
+              <img
+                src={`${A}/ellipse22.svg`}
+                alt=""
+                className={styles.badgeRing}
+              />
               <span className={styles.sthitiGold} aria-hidden="true">
                 <Crop
                   src={`${A}/sheet6.webp`}
                   sizes="100px"
-                  box={{ height: "151.72%", left: "-6.41%", top: "-33.09%", width: "249.72%" }}
+                  box={{
+                    height: "151.72%",
+                    left: "-6.41%",
+                    top: "-33.09%",
+                    width: "249.72%",
+                  }}
                 />
               </span>
             </span>
@@ -93,17 +142,28 @@ export default function AboutVisionMission() {
             </div>
           </Reveal>
 
-          <Reveal as="article" className={`${styles.card} ${styles.laya}`} delay={0.24} y={30}>
+          <Reveal
+            as="article"
+            className={`${styles.card} ${styles.laya}`}
+            delay={0.24}
+            y={30}
+          >
             <div className={styles.cardInner}>
               <span className={styles.badge}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={`${A}/ellipse21.svg`} alt="" className={styles.badgeRing} />
+                <img
+                  src={`${A}/ellipse21.svg`}
+                  alt=""
+                  className={styles.badgeRing}
+                />
                 <span className={styles.badgeGold} aria-hidden="true">
                   <Crop src={`${A}/sheet7.webp`} sizes="100px" cover />
                 </span>
               </span>
               <h3 className={styles.cardName}>laya</h3>
-              <p className={`${styles.cardMeaning} ${styles.cardMeaningSans}`}>Dissolution</p>
+              <p className={`${styles.cardMeaning} ${styles.cardMeaningSans}`}>
+                Dissolution
+              </p>
             </div>
           </Reveal>
         </div>
@@ -125,33 +185,61 @@ export default function AboutVisionMission() {
           <Crop
             src={`${A}/whatsapp.webp`}
             sizes="800px"
-            box={{ height: "164.61%", left: "0", top: "-48.46%", width: "100%" }}
+            box={{
+              height: "164.61%",
+              left: "0",
+              top: "-48.46%",
+              width: "100%",
+            }}
           />
         </div>
 
         <figure className={styles.figure}>
-          <div className={`${styles.frame} ${styles.frameLeft}`} aria-hidden="true" />
+          <div
+            className={`${styles.frame} ${styles.frameLeft}`}
+            aria-hidden="true"
+          />
           <div className={`${styles.portrait} ${styles.portraitLeft}`}>
             <Crop
               src={`${A}/tradition-left.webp`}
               sizes="324px"
-              box={{ height: "123.67%", left: "0", top: "-1.79%", width: "100%" }}
+              box={{
+                height: "123.67%",
+                left: "0",
+                top: "-1.79%",
+                width: "100%",
+              }}
             />
           </div>
           <figcaption className={styles.captionBlock}>
-            <span className={`${styles.caption} ${styles.captionLeft}`}>Rooted in Tradition</span>
-            <span className={`${styles.captionSmall} ${styles.captionSmallLeft}`}>Bharatanatyam</span>
+            <span className={`${styles.caption} ${styles.captionLeft}`}>
+              Rooted in Tradition
+            </span>
+            <span
+              className={`${styles.captionSmall} ${styles.captionSmallLeft}`}
+            >
+              Bharatanatyam
+            </span>
           </figcaption>
         </figure>
 
         <figure className={styles.figure}>
-          <div className={`${styles.frame} ${styles.frameRight}`} aria-hidden="true" />
+          <div
+            className={`${styles.frame} ${styles.frameRight}`}
+            aria-hidden="true"
+          />
           <div className={`${styles.portrait} ${styles.portraitRight}`}>
             <Crop src={`${A}/tradition-right.webp`} sizes="318px" cover />
           </div>
           <figcaption className={styles.captionBlock}>
-            <span className={`${styles.caption} ${styles.captionRight}`}>Inspired by Tomorrow</span>
-            <span className={`${styles.captionSmall} ${styles.captionSmallRight}`}>Contemporary</span>
+            <span className={`${styles.caption} ${styles.captionRight}`}>
+              Inspired by Tomorrow
+            </span>
+            <span
+              className={`${styles.captionSmall} ${styles.captionSmallRight}`}
+            >
+              Contemporary
+            </span>
           </figcaption>
         </figure>
 
@@ -169,8 +257,16 @@ export default function AboutVisionMission() {
           has found its meaning…
         </Reveal>
 
-        <div className={`${styles.deco} ${styles.sheetNine}`} aria-hidden="true">
-          <Crop src={`${A}/sheet9.webp`} sizes="760px" cover className={styles.bottomAligned} />
+        <div
+          className={`${styles.deco} ${styles.sheetNine}`}
+          aria-hidden="true"
+        >
+          <Crop
+            src={`${A}/sheet9.webp`}
+            sizes="760px"
+            cover
+            className={styles.bottomAligned}
+          />
         </div>
         <div className={`${styles.deco} ${styles.handLeft}`} aria-hidden="true">
           <Crop src={`${A}/download3.webp`} sizes="480px" cover />
@@ -182,7 +278,9 @@ export default function AboutVisionMission() {
             as="h2"
             className={styles.title}
             delay={0.05}
-            lines={[{ words: ["Our", { text: "Mission", className: styles.accent }] }]}
+            lines={[
+              { words: ["Our", { text: "Mission", className: styles.accent }] },
+            ]}
           />
         </div>
 
@@ -202,11 +300,19 @@ export default function AboutVisionMission() {
         <div className={`${styles.deco} ${styles.lotus}`} aria-hidden="true">
           <Crop src={`${A}/lotus-line.webp`} sizes="380px" cover />
         </div>
-        <div className={`${styles.deco} ${styles.handRight}`} aria-hidden="true">
+        <div
+          className={`${styles.deco} ${styles.handRight}`}
+          aria-hidden="true"
+        >
           <Crop
             src={`${A}/hand-right.webp`}
             sizes="480px"
-            box={{ height: "100%", left: "-39.83%", top: "0", width: "139.83%" }}
+            box={{
+              height: "100%",
+              left: "-39.83%",
+              top: "0",
+              width: "139.83%",
+            }}
           />
         </div>
 

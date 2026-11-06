@@ -1,0 +1,116 @@
+@use "../styles/mixins" as *;
+
+$gap: 24px;
+
+.viewport {
+  position: relative;
+  overflow: hidden;
+  // Soft fade where cards enter and leave.
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    transparent 0,
+    #000 26px,
+    #000 calc(100% - 26px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    transparent 0,
+    #000 26px,
+    #000 calc(100% - 26px),
+    transparent 100%
+  );
+
+  &:hover .lane,
+  &:focus-within .lane {
+    animation-play-state: paused;
+  }
+}
+
+.lane {
+  display: flex;
+  flex-direction: column;
+  animation: slideUp var(--duration, 48s) linear infinite;
+  will-change: transform;
+}
+
+.group {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: $gap;
+  padding-bottom: $gap;
+}
+
+.reverse .lane {
+  animation-direction: reverse;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+// Tablet and mobile: the photo strip runs sideways.
+@include below($bp-wide) {
+  .sideways {
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 26px,
+      #000 calc(100% - 26px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      90deg,
+      transparent 0,
+      #000 26px,
+      #000 calc(100% - 26px),
+      transparent 100%
+    );
+  }
+
+  .sideways .lane {
+    width: max-content;
+    flex-direction: row;
+    animation-name: slideLeft;
+  }
+
+  .sideways .group {
+    flex-direction: row;
+    padding-right: $gap;
+    padding-bottom: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .viewport {
+    overflow: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .lane {
+    animation: none;
+  }
+
+  // Only one copy is needed when nothing moves.
+  .group[inert] {
+    display: none;
+  }
+}
