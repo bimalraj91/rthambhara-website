@@ -194,3 +194,40 @@
     margin: 12px 0 0 auto;
   }
 }
+
+// ── Phones: exactly as tall as the home page hero ────────────────────────
+@include below($bp-mobile) {
+  .hero {
+    height: var(--hero-h-mobile);
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  .frame {
+    height: 100%;
+    padding-top: 92px;
+    overflow: hidden;
+  }
+
+  .card {
+    inset: 92px 16px 16px;
+  }
+
+  .cue {
+    margin-top: 22px;
+  }
+
+  .title {
+    margin-top: 12px;
+    font-size: clamp(29px, 8.4vw, 36px);
+    line-height: 1.04;
+  }
+
+  .dancer {
+    position: absolute;
+    right: 20px;
+    bottom: 16px;
+    width: min(44%, 180px);
+    margin: 0;
+  }
+}

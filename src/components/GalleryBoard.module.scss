@@ -744,6 +744,35 @@ $gold: #9a7844;
   }
 }
 
+// Phones: the hero is exactly as tall as the home page hero. The title card
+// fills the space under the header and the filters sit at its foot.
+@include below($bp-mobile) {
+  .hero {
+    height: var(--hero-h-mobile);
+    padding: 92px 16px 20px;
+    overflow: hidden;
+  }
+
+  .card {
+    min-height: 0;
+    flex: 1 1 auto;
+    padding: 24px 22px 0;
+  }
+
+  .title {
+    font-size: clamp(44px, 13vw, 56px);
+  }
+
+  .ghost {
+    top: 110px;
+  }
+
+  .filters {
+    flex: none;
+    margin-top: 14px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .lamp {
     animation: none;

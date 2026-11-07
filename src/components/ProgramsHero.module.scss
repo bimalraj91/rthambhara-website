@@ -553,3 +553,84 @@
     left: calc(998px + var(--cl));
   }
 }
+
+// ── Phones: exactly as tall as the home page hero ────────────────────────
+// The headline card fills the space under the header with the dancer tucked
+// into its lower corner, and the three chapters become a one-line chip row.
+@include below($bp-mobile) {
+  .hero {
+    display: flex;
+    height: var(--hero-h-mobile);
+    min-height: 0;
+    flex-direction: column;
+    padding: 92px 0 0;
+    overflow: hidden;
+  }
+
+  .frame {
+    min-height: 0;
+    flex: 1 1 auto;
+    margin: 0 16px;
+    padding: 22px 20px 0;
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .title {
+    font-size: clamp(29px, 8.4vw, 36px);
+    line-height: 1.04;
+  }
+
+  .dancer {
+    position: absolute;
+    right: -4px;
+    bottom: 0;
+    width: min(44%, 180px);
+    margin: 0;
+  }
+
+  .chapterIntro {
+    display: none;
+  }
+
+  .chapter {
+    flex: none;
+    flex-direction: row;
+    gap: 8px;
+    margin: 0;
+    padding: 12px 16px 14px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    span {
+      flex: none;
+      border-top: 0;
+      scroll-snap-align: start;
+    }
+
+    a {
+      gap: 8px;
+      padding: 6px 14px 6px 6px;
+      border: 1px solid rgba(216, 190, 141, 0.45);
+      border-radius: 9999px;
+      background: rgba(30, 5, 9, 0.5);
+      font-size: 13px;
+      white-space: nowrap;
+
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  .num {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+}

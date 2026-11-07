@@ -388,3 +388,39 @@
     left: calc(998px + var(--cl));
   }
 }
+
+// ── Phones: exactly as tall as the home page hero ────────────────────────
+// The headline card fills the space under the header, with the dancer tucked
+// into its lower corner.
+@include below($bp-mobile) {
+  .hero {
+    display: flex;
+    height: var(--hero-h-mobile);
+    min-height: 0;
+    flex-direction: column;
+    padding: 92px 0 16px;
+    overflow: hidden;
+  }
+
+  .frame {
+    min-height: 0;
+    flex: 1 1 auto;
+    margin: 0 16px;
+    padding: 22px 20px 0;
+    gap: 12px;
+    overflow: hidden;
+  }
+
+  .title {
+    font-size: clamp(29px, 8.4vw, 36px);
+    line-height: 1.04;
+  }
+
+  .dancer {
+    position: absolute;
+    right: -4px;
+    bottom: 0;
+    width: min(44%, 180px);
+    margin: 0;
+  }
+}

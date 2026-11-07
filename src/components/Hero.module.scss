@@ -293,7 +293,7 @@
     --media-h: max(440px, 46svh);
 
     height: auto;
-    min-height: 0;
+    min-height: var(--hero-h-mobile);
     padding: calc(var(--media-h) - 236px) 0 0;
   }
 

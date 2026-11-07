@@ -17,7 +17,10 @@ $line: #cfc4b1;
 $ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 $ease-soft: cubic-bezier(0.22, 0.61, 0.36, 1);
 
+// Height of every hero on phones: the home hero's picture area plus its card
+// and slide controls. The inner pages use the same value.
 :root {
+  --hero-h-mobile: calc(max(440px, 46svh) + 198px);
   --color-cream: #{$cream};
   --color-cream-light: #{$cream-light};
   --color-ink: #{$ink};
