@@ -1,0 +1,239 @@
+@use "../styles/mixins" as *;
+
+$size: 56px;
+
+@keyframes bob {
+  from {
+    transform: translateY(1.5px);
+  }
+
+  to {
+    transform: translateY(-1.5px);
+  }
+}
+
+@keyframes ripple {
+  from {
+    opacity: 0.55;
+    transform: scale(0.86);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.7);
+  }
+}
+
+@keyframes sheen {
+  from {
+    transform: translateX(-130%) skewX(-18deg);
+  }
+
+  to {
+    transform: translateX(230%) skewX(-18deg);
+  }
+}
+
+.button {
+  position: fixed;
+  z-index: 58;
+  right: 22px;
+  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  display: grid;
+  width: $size;
+  height: $size;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--color-gold-light);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-gold-light);
+    outline-offset: 5px;
+  }
+}
+
+// A soft ring that radiates outward while the page glides to the top.
+.pulse {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid #e4c489;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.launching .pulse {
+  animation: ripple 1s ease-out infinite;
+}
+
+// Gold progress ring: fills as you scroll down the page.
+.ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: rotate(-90deg);
+}
+
+.track,
+.bar {
+  fill: none;
+  stroke-width: 2;
+}
+
+.track {
+  stroke: rgba(216, 190, 141, 0.25);
+}
+
+.bar {
+  stroke: #e4c489;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 3px rgba(228, 196, 137, 0.65));
+}
+
+.disc {
+  position: relative;
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  overflow: hidden;
+  border: 1px solid rgba(216, 190, 141, 0.55);
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #5a1220, #2a060c 75%);
+  box-shadow:
+    0 12px 26px -10px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: box-shadow 0.4s var(--ease-out);
+
+  // A bright sheen sweeps across the disc on hover.
+  &::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 238, 200, 0.35),
+      transparent
+    );
+    content: "";
+    transform: translateX(-130%) skewX(-18deg);
+  }
+}
+
+// The arrow idles with a gentle float; on hover (or while gliding up) it
+// launches out of the top as a second one rises in from below.
+.arrows {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+  overflow: hidden;
+  animation: bob 1.8s ease-in-out infinite alternate;
+}
+
+.arrowA,
+.arrowB {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.45s var(--ease-out);
+}
+
+.arrowB {
+  transform: translateY(170%);
+}
+
+.button:hover,
+.button:focus-visible,
+.launching {
+  .arrowA {
+    transform: translateY(-170%);
+  }
+
+  .arrowB {
+    transform: translateY(0);
+  }
+
+  .disc {
+    box-shadow:
+      0 14px 30px -10px rgba(0, 0, 0, 0.65),
+      0 0 22px rgba(228, 196, 137, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.18);
+
+    &::after {
+      animation: sheen 0.9s var(--ease-out);
+    }
+  }
+}
+
+// The label slides out beside the button (mouse users only).
+.label {
+  position: absolute;
+  top: 50%;
+  right: calc(100% + 12px);
+  padding: 7px 14px;
+  border: 1px solid rgba(216, 190, 141, 0.5);
+  border-radius: 9999px;
+  background: rgba(42, 6, 12, 0.9);
+  color: var(--color-gold-light);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(14px, -50%);
+  transition:
+    opacity 0.35s var(--ease-out),
+    transform 0.45s var(--ease-out);
+  white-space: nowrap;
+
+  @include sans(500);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) {
+  .button:hover .label,
+  .button:focus-visible .label {
+    opacity: 1;
+    transform: translate(0, -50%);
+  }
+}
+
+@include below($bp-mobile) {
+  $size-s: 48px;
+
+  .button {
+    right: 16px;
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    width: $size-s;
+    height: $size-s;
+  }
+
+  .disc {
+    width: 38px;
+    height: 38px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arrows,
+  .launching .pulse,
+  .disc::after {
+    animation: none;
+  }
+
+  .arrowA,
+  .arrowB,
+  .label {
+    transition: none;
+  }
+}

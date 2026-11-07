@@ -10,6 +10,7 @@ import {
 } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.scss";
+import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
 import IntroCurtain from "@/components/IntroCurtain";
 import Header from "@/components/Header";
@@ -172,6 +173,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         {children}
         <Footer />
+        <BackToTop />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </body>
     </html>
