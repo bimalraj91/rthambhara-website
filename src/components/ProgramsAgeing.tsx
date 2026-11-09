@@ -10,11 +10,11 @@ const P = "/assets/programs";
 
 const disciplines = [
   {
-    title: "Mohiniyattam",
+    title: "Thiruvathira",
     image: `${P}/arch-mohiniyattam.webp`,
     box: { height: "127.76%", left: "-4.14%", top: "-4.73%", width: "127.57%" },
-    alt: "Two women in white and gold Kerala sarees practising Mohiniyattam",
-    copy: "With its gentle swaying movements, graceful expressions and lyrical rhythm, Mohiniyattam offers a beautiful way to remain active while embracing Kerala's rich cultural heritage. Our sessions encourage coordination, body awareness and the pleasure of learning an art in the company of others.",
+    alt: "Two women in white and gold Kerala sarees practising Thiruvathira",
+    copy: "With its gentle swaying movements, graceful expressions and lyrical rhythm, Thiruvathira offers a beautiful way to remain active while embracing Kerala's rich cultural heritage. Our sessions encourage coordination, body awareness and the pleasure of learning an art in the company of others.",
   },
   {
     title: "Yoga",
@@ -103,7 +103,7 @@ export default function ProgramsAgeing() {
           There is a beautiful grace in growing older, in finding new joys,
           nurturing old passions, and giving ourselves the time and care we
           deserve. At Rtambhara, our healthy ageing programme brings together
-          Mohiniyattam and yoga, encouraging a life enriched by movement,
+          Thiruvathira and yoga, encouraging a life enriched by movement,
           companionship and well-being.
         </Reveal>
 
