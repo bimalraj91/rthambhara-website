@@ -38,7 +38,8 @@ $size: 56px;
   position: fixed;
   z-index: 58;
   right: 22px;
-  bottom: calc(22px + env(safe-area-inset-bottom, 0px));
+  // Stacks above the WhatsApp button (56px tall, 22px from the edge).
+  bottom: calc(22px + 56px + 14px + env(safe-area-inset-bottom, 0px));
   display: grid;
   width: $size;
   height: $size;
@@ -213,7 +214,8 @@ $size: 56px;
 
   .button {
     right: 16px;
-    bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+    // Above the 48px WhatsApp button.
+    bottom: calc(16px + 48px + 12px + env(safe-area-inset-bottom, 0px));
     width: $size-s;
     height: $size-s;
   }

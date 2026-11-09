@@ -37,7 +37,7 @@ function Arrow({ className }: { className: string }) {
   );
 }
 
-/** A floating "back to top" button for every page except the home page: it
+/** A floating "back to top" button for every page: it
  *  springs in once you scroll, shows how far down the page you are as a gold
  *  ring, swaps its arrow on hover, and glides you up with an eased scroll. */
 export default function BackToTop() {
@@ -96,9 +96,6 @@ export default function BackToTop() {
     };
     frame.current = requestAnimationFrame(step);
   }, [reduce]);
-
-  // The home page has its own floating controls.
-  if (pathname === "/") return null;
 
   return (
     <AnimatePresence>

@@ -12,8 +12,9 @@
 .toggle {
   position: fixed;
   z-index: 60;
-  bottom: 22px;
-  right: 22px;
+  // Bottom-left, level with the centre of the WhatsApp button on the right.
+  bottom: calc(27px + env(safe-area-inset-bottom, 0px));
+  left: 22px;
   display: grid;
   width: 46px;
   height: 46px;
@@ -69,6 +70,14 @@
 
   &:nth-child(4) {
     animation-delay: -0.2s;
+  }
+}
+
+// The WhatsApp button is 48px and 16px from the edge on phones.
+@media (max-width: 760px) {
+  .toggle {
+    bottom: calc(17px + env(safe-area-inset-bottom, 0px));
+    left: 16px;
   }
 }
 

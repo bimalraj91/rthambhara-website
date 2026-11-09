@@ -16,6 +16,7 @@ import IntroCurtain from "@/components/IntroCurtain";
 import Header from "@/components/Header";
 import ScrollProgress from "@/components/motion/ScrollProgress";
 import SmoothAnchors from "@/components/SmoothAnchors";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 import JsonLd from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { defaultOgImage, siteDescription, siteName, siteUrl } from "@/lib/site";
@@ -174,6 +175,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Footer />
         <BackToTop />
+        <WhatsAppWidget />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
       </body>
     </html>
