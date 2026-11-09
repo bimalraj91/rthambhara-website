@@ -138,7 +138,7 @@
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   @include serif(500);
-  font-size: 80px;
+  font-size: 60px;
   letter-spacing: 1px;
   line-height: 0.93;
 
@@ -444,7 +444,7 @@
 
 // ── Phones: exactly as tall as the home page hero ────────────────────────
 // The headline card fills the space under the header and the three chapters
-// become a one-line chip row.
+// sit side by side in one row, each with its number above its name.
 @include below($bp-mobile) {
   .hero {
     display: flex;
@@ -453,15 +453,20 @@
     flex-direction: column;
     padding: 92px 0 0;
     overflow: hidden;
+    
   }
 
+  // The desktop frame is 100% wide; with side margins that pushed its right
+  // edge off the screen.
   .frame {
+    width: auto;
     min-height: 0;
     flex: 1 1 auto;
     margin: 0 16px;
     padding: 22px 20px 20px;
     gap: 12px;
     overflow: hidden;
+    justify-content: center;
   }
 
   .title {
@@ -474,33 +479,33 @@
   }
 
   .chapter {
+    display: grid;
     flex: none;
-    flex-direction: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 8px;
     margin: 0;
     padding: 12px 16px 14px;
-    overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    overflow: visible;
 
     span {
-      flex: none;
+      display: block;
+      min-width: 0;
       border-top: 0;
-      scroll-snap-align: start;
     }
 
     a {
-      gap: 8px;
-      padding: 6px 14px 6px 6px;
-      border: 1px solid rgba(216, 190, 141, 0.45);
-      border-radius: 9999px;
+      flex-direction: column;
+      justify-content: flex-start;
+      height: 100%;
+      gap: 6px;
+      padding: 9px 6px 10px;
+      border: 1px solid rgba(216, 190, 141, 0.4);
+      border-radius: 16px;
       background: rgba(30, 5, 9, 0.5);
-      font-size: 13px;
-      white-space: nowrap;
+      font-size: 12px;
+      line-height: 1.25;
+      text-align: center;
+      white-space: normal;
 
       &::after {
         display: none;

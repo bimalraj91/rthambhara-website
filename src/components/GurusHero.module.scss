@@ -80,7 +80,7 @@
 
 .card {
   position: absolute;
-  top: 125px;
+  top: 225px;
   left: 277px;
   width: 944px;
   height: 402px;
@@ -92,7 +92,7 @@
 
 .cue {
   position: absolute;
-  top: 163px;
+  top: 263px;
   left: 358px;
   display: flex;
   align-items: center;
@@ -116,7 +116,7 @@
 
 .title {
   position: absolute;
-  top: 205px;
+  top: 305px;
   left: 348px;
   width: 844px;
   margin: 0;
@@ -125,7 +125,7 @@
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   @include serif(500);
-  font-size: 80px;
+  font-size: 60px;
   line-height: 0.93;
 
   span {
