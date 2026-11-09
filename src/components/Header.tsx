@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { navLinks } from "@/data/home";
+import { contact, socialIcons } from "@/lib/site";
 import styles from "./Header.module.scss";
 
 export default function Header() {
@@ -157,9 +158,49 @@ export default function Header() {
         </nav>
 
         <div className={styles.dialogFoot}>
-          <a href="tel:+919961260009">+91 99612 60009</a>
-          <a href="mailto:mail@rtambhara.com">mail@rtambhara.com</a>
-          <p>Sree Poornathrayeesa Temple Road, Tripunithura</p>
+          <section className={styles.footItem} aria-label="Studio address">
+            <h2 className={styles.footLabel}>Visit us</h2>
+            <p className={styles.footAddress}>
+              {contact.address.streetAddress}, {contact.address.addressLocality}
+            </p>
+          </section>
+
+          <section className={styles.footItem} aria-label="Contact details">
+            <h2 className={styles.footLabel}>Get in touch</h2>
+            <a href="tel:+919961260009">+91 99612 60009</a>
+            <a href="mailto:mail@rtambhara.com">mail@rtambhara.com</a>
+          </section>
+
+          <section
+            className={`${styles.footItem} ${styles.footRow}`}
+            aria-label="Registration"
+          >
+            <h2 className={styles.footLabel}>Reg No</h2>
+            <p className={styles.footAddress}>{contact.regNo}</p>
+          </section>
+
+          <section
+            className={`${styles.footItem} ${styles.footRow}`}
+            aria-label="Social media"
+          >
+            <h2 className={styles.footLabel}>Follow us</h2>
+            <ul className={styles.dialogSocials}>
+              {socialIcons.map((social) => (
+                <li key={social.label}>
+                  <a
+                    href={social.href}
+                    className={styles.dialogSocial}
+                    style={{ ["--icon" as string]: `url(${social.icon})` }}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Rtambhara on ${social.label}`}
+                  >
+                    <i aria-hidden="true" />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </dialog>
     </>

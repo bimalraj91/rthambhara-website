@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Fragment } from "react";
 import { getRelatedPosts, type BlogPost } from "@/data/blogs";
-import { absoluteUrl } from "@/lib/site";
+import { absoluteUrl, socialLinks } from "@/lib/site";
 import BlogCard from "./BlogCard";
 import BlogToc from "./BlogToc";
 import Reveal from "./motion/Reveal";
@@ -18,12 +18,12 @@ const shareTargets = [
   {
     label: "Rtambhara on Instagram",
     icon: "/assets/blogs/icons/share-instagram.svg",
-    href: () => "https://www.instagram.com/",
+    href: () => socialLinks.instagram,
   },
   {
     label: "Rtambhara on YouTube",
     icon: "/assets/blogs/icons/share-youtube.svg",
-    href: () => "https://www.youtube.com/",
+    href: () => socialLinks.youtube,
   },
 ];
 

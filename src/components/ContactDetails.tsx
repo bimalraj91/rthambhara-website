@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { socialLinks } from "@/lib/site";
 import Crop from "./about/Crop";
 import ContactForm from "./ContactForm";
 import Reveal from "./motion/Reveal";
@@ -11,17 +12,17 @@ const socials = [
   {
     label: "Facebook",
     icon: "/assets/contact/social-facebook.svg",
-    href: "https://www.facebook.com/",
+    href: socialLinks.facebook,
   },
   {
     label: "Instagram",
     icon: "/assets/contact/social-instagram.svg",
-    href: "https://www.instagram.com/",
+    href: socialLinks.instagram,
   },
   {
     label: "YouTube",
     icon: "/assets/contact/social-youtube.svg",
-    href: "https://www.youtube.com/",
+    href: socialLinks.youtube,
   },
 ];
 

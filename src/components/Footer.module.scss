@@ -144,9 +144,134 @@
   gap: 6px;
 }
 
-.socialIcon {
-  width: 33px;
-  height: 33px;
+.social {
+  --social-size: 33px;
+
+  position: relative;
+  display: block;
+  width: var(--social-size);
+  height: var(--social-size);
+  border-radius: 50%;
+  isolation: isolate;
+  transition:
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s ease,
+    opacity 0.35s ease;
+
+  @include focus-ring(var(--color-gold-light));
+
+  // Gold disc that swells up from the bottom edge on hover.
+  &::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #ecd3a0 0%, #c59d5f 55%, #9a7844 100%);
+    transform: scale(0);
+    transform-origin: 50% 100%;
+    transition: transform 0.5s var(--ease-out);
+    content: "";
+  }
+
+  // A ring that ripples outwards once as the pointer arrives.
+  &::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid rgba(236, 211, 160, 0.7);
+    border-radius: 50%;
+    opacity: 0;
+    pointer-events: none;
+    content: "";
+  }
+}
+
+// The icon artwork, painted through a mask so it can change colour.
+.glyph {
+  position: absolute;
+  inset: 0;
+  background-color: #9a7844;
+  -webkit-mask: var(--icon) center / 100% 100% no-repeat;
+  mask: var(--icon) center / 100% 100% no-repeat;
+  transition:
+    background-color 0.35s ease,
+    transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes socialPing {
+  from {
+    opacity: 0.75;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1.75);
+  }
+}
+
+// Keyboard focus gets the same treatment as hover.
+.social:focus-visible {
+  transform: translateY(-5px) scale(1.08);
+  box-shadow:
+    0 12px 22px -8px rgba(236, 211, 160, 0.55),
+    0 0 0 5px rgba(197, 157, 95, 0.12);
+
+  &::before {
+    transform: scale(1.03);
+  }
+
+  .glyph {
+    background-color: #2e0a0f;
+    transform: rotate(-10deg) scale(0.9);
+  }
+}
+
+@media (hover: hover) {
+  .social:hover {
+    transform: translateY(-5px) scale(1.08);
+    box-shadow:
+      0 12px 22px -8px rgba(236, 211, 160, 0.55),
+      0 0 0 5px rgba(197, 157, 95, 0.12);
+
+    &::before {
+      transform: scale(1.03);
+    }
+
+    &::after {
+      animation: socialPing 0.9s var(--ease-out);
+    }
+
+    .glyph {
+      background-color: #2e0a0f;
+      transform: rotate(-10deg) scale(0.9);
+    }
+  }
+
+  // The icons beside the hovered one step back.
+  .socials:hover .social:not(:hover) {
+    opacity: 0.5;
+    transform: scale(0.94);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social,
+  .social::before,
+  .glyph {
+    transition-duration: 0.01ms;
+  }
+
+  .social:hover::after {
+    animation: none;
+  }
+
+  .social:hover,
+  .social:focus-visible,
+  .social:hover .glyph,
+  .social:focus-visible .glyph,
+  .socials:hover .social:not(:hover) {
+    transform: none;
+  }
 }
 
 /* Cols 2 & 3 — link columns */
@@ -258,6 +383,15 @@
     outline: 2px solid var(--color-gold-light);
     outline-offset: 3px;
   }
+}
+
+.regNo {
+  margin: 0;
+  font-family: var(--font-jakarta), "Helvetica Neue", Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #9ca3af;
 }
 
 /* Bottom row */
@@ -381,9 +515,8 @@
     gap: 8px;
   }
 
-  .socialIcon {
-    width: 30px;
-    height: 30px;
+  .social {
+    --social-size: 30px;
   }
 
   .linkCol {
@@ -446,6 +579,13 @@
     border-radius: 9999px;
     background: rgba(228, 196, 137, 0.06);
     font-size: 13px;
+  }
+
+  // The registration number takes its own line under the two pills.
+  .regNo {
+    flex-basis: 100%;
+    padding-top: 4px;
+    font-size: 12px;
   }
 
   .bottom {

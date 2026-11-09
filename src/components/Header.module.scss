@@ -426,10 +426,12 @@
   font-style: italic;
 }
 
+// Studio details at the foot of the menu, in a tidy two-by-two grid: address
+// and contact above, registration number and social icons below.
 .dialogFoot {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 18px;
   margin: auto 22px 30px;
   padding-top: 26px;
   border-top: 1px solid rgba(255, 255, 255, 0.14);
@@ -441,6 +443,8 @@
 
   a {
     width: fit-content;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 
     @include focus-ring(var(--color-gold-light));
 
@@ -448,10 +452,103 @@
       color: var(--color-gold-light);
     }
   }
+}
 
-  p {
-    color: #838d96;
-    font-size: 12px;
+.footItem {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 6px;
+}
+
+// The second row sits under a hairline.
+.footRow {
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footLabel {
+  margin: 0 0 2px;
+  color: var(--color-gold);
+
+  @include sans(500);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.footAddress {
+  margin: 0;
+  color: #b5bcc4;
+}
+
+.dialogSocials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+// Gold ring-and-glyph icons; on tap they fill with gold. (Scoped under
+// .dialogFoot so they outrank its plain link rules.)
+.dialogFoot .dialogSocial {
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border-radius: 50%;
+  transition:
+    background-color 0.3s ease,
+    transform 0.4s var(--ease-out);
+
+  i {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-gold-light);
+    -webkit-mask: var(--icon) center / 100% 100% no-repeat;
+    mask: var(--icon) center / 100% 100% no-repeat;
+    transition: background-color 0.3s ease;
+  }
+
+  &:hover,
+  &:focus-visible,
+  &:active {
+    background-color: var(--color-gold-light);
+    transform: translateY(-2px);
+
+    i {
+      background-color: var(--color-ink);
+    }
+  }
+}
+
+// On shorter phones, tighten the menu so the studio details stay in view.
+@media (max-height: 900px) {
+  .dialogTop {
+    height: 72px;
+  }
+
+  .mobileNav a {
+    padding-block: 9px;
+  }
+
+  .dialogFoot {
+    margin-bottom: 22px;
+  }
+}
+
+@media (max-height: 760px) {
+  .mobileNav {
+    padding-top: 10px;
+    padding-bottom: 22px;
+
+    a {
+      padding-block: 6px;
+    }
   }
 }
 

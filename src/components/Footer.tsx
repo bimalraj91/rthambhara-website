@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { contact, socialIcons } from "@/lib/site";
 import Reveal from "./motion/Reveal";
 import styles from "./Footer.module.scss";
 
@@ -23,12 +24,6 @@ const bottomLinks = [
   { label: "Privacy Policy", href: "/contact-us" },
   { label: "Terms of Heritage", href: "/contact-us" },
   { label: "Join Community", href: "/contact-us" },
-];
-
-const socials = [
-  { label: "Facebook", icon: "/assets/icons/social-facebook.svg" },
-  { label: "Instagram", icon: "/assets/icons/social-instagram.svg" },
-  { label: "YouTube", icon: "/assets/icons/social-youtube.svg" },
 ];
 
 export default function Footer() {
@@ -77,17 +72,21 @@ export default function Footer() {
                   Preserving classical Indian dance, ancient martial arts of
                   Kalaripayattu, and contemporary visual arts since 2012.
                 </p>
-                <div className={styles.socials} aria-hidden="true">
-                  {socials.map((social) => (
-                    <Image
+                <div className={styles.socials}>
+                  {socialIcons.map((social) => (
+                    // The artwork is used as a mask so its colour can change
+                    // on hover; the ring and glyph keep their exact shapes.
+                    <a
                       key={social.label}
-                      src={social.icon}
-                      alt=""
-                      width={33}
-                      height={33}
-                      unoptimized
-                      className={styles.socialIcon}
-                    />
+                      href={social.href}
+                      className={styles.social}
+                      style={{ ["--icon" as string]: `url(${social.icon})` }}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Rtambhara on ${social.label}`}
+                    >
+                      <i className={styles.glyph} aria-hidden="true" />
+                    </a>
                   ))}
                 </div>
               </div>
@@ -117,13 +116,15 @@ export default function Footer() {
               <div className={styles.locationCol}>
                 <h3 className={styles.heading}>Studio Location</h3>
                 <p className={styles.address}>
-                  TRRA 66, Mahalakshmi, Thevarakkavu Road, Tripunithura
+                  {contact.address.streetAddress},{" "}
+                  {contact.address.addressLocality}
                 </p>
                 <div className={styles.contacts}>
                   <a href="mailto:mail@rtambhara.com">
                     Email: mail@rtambhara.com
                   </a>
                   <a href="tel:+919961260009">Phone: +91 99612 60009</a>
+                  <p className={styles.regNo}>Reg No: {contact.regNo}</p>
                 </div>
               </div>
             </div>
