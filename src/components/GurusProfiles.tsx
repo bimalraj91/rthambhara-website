@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Crop from "./about/Crop";
 import Reveal from "./motion/Reveal";
 import ImageReveal from "./motion/ImageReveal";
 import { StaggerGroup, StaggerItem } from "./motion/Stagger";
@@ -6,17 +7,39 @@ import styles from "./GurusProfiles.module.scss";
 
 const A = "/assets/gurus";
 
-const gurus = [
+type Guru = {
+  id: string;
+  className: string;
+  name: string;
+  role: string;
+  photo: string;
+  alt: string;
+  // The opening paragraph beside the portrait.
+  bio: string;
+  pillars: string[];
+  // Longer biography set beneath the pillars, and a closing note that runs
+  // wider across the page.
+  story?: string[];
+  more?: string;
+  from: "left" | "right";
+};
+
+const gurus: Guru[] = [
   {
     id: "girija",
     className: styles.girija,
-    name: "Girija Ravindranath",
+    name: "Smt. Girija Ravindranath",
     role: "The Soul of Tradition",
     photo: `${A}/guru-girija.webp`,
-    alt: "Portrait of Guru Girija Ravindranath",
-    bio: "A distinguished disciple of Kalamandalam, with over five decades of experience, Guru Girija has dedicated her life to the art of Bharatanatyam, inspiring generations with grace, discipline and devotion. A distinguished disciple of Kalamandalam, with over five decades of experience, Guru Girija has dedicated her life to the art of Bharatanatyam, inspiring generations with grace, discipline and devotion.",
+    alt: "Portrait of Smt. Girija Ravindranath",
+    bio: "Smt. Girija Ravindranath, a postgraduate in Bharatanatyam from the renowned Kalakshetra, Chennai, is dedicated to Bharatanatyam and has been nurturing and kindling her passion for dance forms since her childhood.",
     pillars: ["Grace", "Tradition", "Expression"],
-    from: "left" as const,
+    story: [
+      "She deeply imbibed the values of the ancient Indian Culture, while on her journey through the path of dance, initiated in her childhood by well-known Gurus in Tripunithura. Close guru-shishya association for 11 years with honorable Smt. Rukmini Devi, the founder Director of Kalakshetra, has been an invaluable experience for Smt. Girija that changed her world view, especially towards art forms, for the rest of her life, apart from instilling a transcending relationship with the dance form she graduated in. She is an awardee of Govt. of India Scholarship for Advanced Studies in Bharatanatyam (1980 - 82).",
+      "She participated in many of the applauded dance dramas of Rukmini Devi during the latter 6 years of her student life at Kalakshetra and was an integral member of the Kalakshetra team that went around many cities of India and various other countries like China, Hong Kong, North Korea, Vietnam, Philippines, Sri Lanka etc presenting their dance dramas in packed auditoriums.",
+    ],
+    more: "She has been conducting a Bharatanatya Kalari at Tripunithura Ladies Club Hall for the past 20 years. Blending of her proficiency in Carnatic vocal and violin along with her creativity in choreography in Bharatanatyam, has culminated in the creation of a wide range of laudable Bharatanatyam items that were performed by her students during the past decades. As a teacher she has always vouched to preserve and nurture the traditional style of the art form in the pure Kalakshetra bani and still continues to do so with perseverance and dedication with no compromise whatsoever.",
+    from: "left",
   },
   {
     id: "satyajit",
@@ -27,7 +50,7 @@ const gurus = [
     alt: "Portrait of Guru Satyajit Ravindranath",
     bio: "A renowned choreographer and performer, Guru Satyajit brings a fresh perspective to dance, blending classical roots with contemporary expression. A renowned choreographer and performer, Guru Satyajit brings a fresh perspective to dance, blending classical roots with contemporary expression.",
     pillars: ["Expression", "Innovation", "Movement"],
-    from: "right" as const,
+    from: "right",
   },
 ];
 
@@ -133,8 +156,57 @@ export default function GurusProfiles() {
                 </StaggerItem>
               ))}
             </StaggerGroup>
+
+            {guru.story && (
+              <div className={styles.story}>
+                {guru.story.map((paragraph, index) => (
+                  <Reveal
+                    key={paragraph.slice(0, 24)}
+                    as="p"
+                    y={24}
+                    delay={0.05 + index * 0.1}
+                  >
+                    {paragraph}
+                  </Reveal>
+                ))}
+              </div>
+            )}
+
+            {guru.more && (
+              <Reveal as="p" y={24} delay={0.05} className={styles.more}>
+                {guru.more}
+              </Reveal>
+            )}
           </article>
         ))}
+
+        {/* Faint ornaments laid over the page, as the design stacks them. */}
+        <div className={`${styles.deco} ${styles.sheet}`} aria-hidden="true">
+          <div className={styles.sheetTile}>
+            <Crop
+              src="/assets/about/figma/sheet10.webp"
+              sizes="620px"
+              box={{
+                height: "314.1%",
+                left: "-378.6%",
+                top: "-24.53%",
+                width: "478.6%",
+              }}
+            />
+          </div>
+        </div>
+
+        <div
+          className={`${styles.deco} ${styles.silhouette}`}
+          aria-hidden="true"
+        >
+          <Image
+            src={`${A}/dancer-silhouette.webp`}
+            alt=""
+            fill
+            sizes="352px"
+          />
+        </div>
       </div>
     </section>
   );

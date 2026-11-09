@@ -7,7 +7,8 @@ $top: 908;
 .section {
   position: relative;
   z-index: 1;
-  height: 1638px;
+  // Down to the footer, which starts at y 3040 on the page.
+  height: #{3040 - $top}px;
   overflow: clip;
   container-type: inline-size;
   background: #f5f0e7;
@@ -29,14 +30,14 @@ $top: 908;
 }
 
 .washRight {
-  @include at(340, 1778 - $top, 1097, 960);
-  left: calc(340px + var(--cl));
+  @include at(339, 2287 - $top, 1097, 960);
+  left: calc(339px + var(--cl));
   opacity: 0.43;
 }
 
 .washLeft {
-  @include at(-5, 904 - $top, 970, 946);
-  left: calc(-5px - var(--cl));
+  @include at(-7, 856 - $top, 970, 946);
+  left: calc(-7px - var(--cl));
   opacity: 0.27;
 }
 
@@ -52,6 +53,32 @@ $top: 908;
   left: calc(930px + var(--cl));
   overflow: hidden;
   opacity: 0.08;
+}
+
+// The gold ornament sheet, tilted, and a faint dancer, both laid over the page.
+.sheet {
+  @include at(768, 1422 - $top, 726.178, 734.182);
+  left: calc(768px + var(--cl));
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sheetTile {
+  position: relative;
+  width: 616.874px;
+  height: 627.025px;
+  overflow: hidden;
+  border-radius: 53px;
+  opacity: 0.1;
+  transform: rotate(11.11deg);
+}
+
+// The artwork already carries the design's 12% opacity in its own alpha.
+.silhouette {
+  @include at(211, 1673 - $top, 351.291, 689);
+  z-index: 3;
 }
 
 // Each guru is laid over the whole canvas; the pieces sit at Figma coordinates.
@@ -108,7 +135,9 @@ $top: 908;
   line-height: 32px;
 }
 
-.bio {
+.bio,
+.story,
+.more {
   position: absolute;
   z-index: 2;
   margin: 0;
@@ -117,7 +146,24 @@ $top: 908;
 
   @include sans(300);
   font-size: 18px;
+}
+
+.bio {
   line-height: 24px;
+}
+
+// The longer biography: paragraphs 26px apart, with a blank line between.
+.story,
+.more {
+  line-height: 26px;
+}
+
+.story p {
+  margin: 0;
+
+  + p {
+    margin-top: 26px;
+  }
 }
 
 .pillars {
@@ -162,51 +208,92 @@ $top: 908;
   }
 }
 
-// Girija: picture left, text right.
+// Girija: picture left; name, opening note, pillars and the long biography to
+// its right; a wider closing note runs beneath the picture.
 .girija {
   .photoWrap {
     left: 134px;
-    top: #{1058 - $top}px;
+    top: #{1098 - $top}px;
   }
 
   .heading {
-    left: 691px;
-    top: #{1163 - $top}px;
+    left: 668px;
+    top: #{1128 - $top}px;
   }
 
   .bio {
-    left: 691px;
-    top: #{1275 - $top}px;
+    left: 673px;
+    top: #{1263 - $top}px;
     width: 614px;
   }
 
   .pillars {
-    left: 691px;
-    top: #{1468 - $top}px;
+    left: 727px;
+    top: #{1410 - $top}px;
+    gap: 27px;
+  }
+
+  .story {
+    left: 673px;
+    top: #{1533 - $top}px;
+    width: 614px;
+  }
+
+  .more {
+    left: 140px;
+    top: #{2018 - $top}px;
+    width: 762px;
   }
 }
 
-// Satyajit: text left, picture right (flush with the screen edge's canvas).
+// The design's pillar widths (the type renders a touch wider than Figma's).
+@include above($bp-wide) {
+  .girija .pillars > li {
+    &:nth-child(1) .pillar {
+      width: 118px;
+    }
+
+    &:nth-child(2) .pillar {
+      width: 148px;
+    }
+
+    &:nth-child(3) .pillar {
+      width: 156px;
+    }
+
+    .pillar {
+      padding: 0;
+    }
+  }
+}
+
+// Satyajit: text left, picture right.
 .satyajit {
   .photoWrap {
-    left: 791px;
-    top: #{1800 - $top}px;
+    left: 790px;
+    top: #{2309 - $top}px;
   }
 
   .heading {
-    left: 133px;
-    top: #{1885 - $top}px;
+    left: 132px;
+    top: #{2394 - $top}px;
   }
 
   .bio {
-    left: 136px;
-    top: #{1996 - $top}px;
+    left: 135px;
+    top: #{2517 - $top}px;
     width: 580px;
   }
 
   .pillars {
-    left: 133px;
-    top: #{2168 - $top}px;
+    left: 132px;
+    top: #{2677 - $top}px;
+    gap: 23px;
+  }
+
+  .pillar {
+    width: 157px;
+    padding: 0;
   }
 }
 
@@ -228,7 +315,9 @@ $top: 908;
 
   .washRight,
   .washLeft,
-  .emblem {
+  .emblem,
+  .sheet,
+  .silhouette {
     left: auto;
     right: -20%;
     top: 4%;
@@ -249,6 +338,20 @@ $top: 908;
     aspect-ratio: 1097 / 960;
   }
 
+  .sheet {
+    right: -34%;
+    top: 24%;
+    aspect-ratio: 726 / 734;
+  }
+
+  .silhouette {
+    right: auto;
+    left: -6%;
+    top: 14%;
+    width: min(54vw, 280px);
+    aspect-ratio: 351 / 689;
+  }
+
   .guru {
     position: relative;
     inset: auto;
@@ -260,6 +363,8 @@ $top: 908;
 
     .heading,
     .bio,
+    .story,
+    .more,
     .pillars {
       position: static;
       width: auto;
@@ -288,7 +393,7 @@ $top: 908;
   }
 
   .name {
-    font-size: clamp(38px, 9vw, 56px);
+    font-size: clamp(36px, 8.4vw, 56px);
     line-height: 1.05;
     white-space: normal;
   }
@@ -298,23 +403,65 @@ $top: 908;
     line-height: 1.2;
   }
 
-  .bio {
+  .bio,
+  .story,
+  .more {
     max-width: 640px;
     font-size: 17px;
     line-height: 1.75;
     text-align: left;
   }
 
-  .pillars {
+  .story p + p {
+    margin-top: 16px;
+  }
+
+  .pillars,
+  .girija .pillars,
+  .satyajit .pillars {
     flex-wrap: wrap;
     gap: 12px;
   }
 
-  .pillar {
+  .pillar,
+  .satyajit .pillar {
+    width: auto;
     min-width: 0;
     height: 56px;
     padding: 0 22px;
     font-size: 22px;
+  }
+
+  // Phones: the three pillars sit together on one row.
+  @include below($bp-small) {
+    .pillars,
+    .girija .pillars,
+    .satyajit .pillars {
+      gap: 10px;
+    }
+
+    .pillar,
+    .satyajit .pillar {
+      height: 50px;
+      padding: 0 17px;
+      font-size: 20px;
+    }
+  }
+
+  // The narrowest phones: a touch smaller still, so all three stay in line.
+  @include below(420px) {
+    .pillars,
+    .girija .pillars,
+    .satyajit .pillars {
+      gap: 8px;
+    }
+
+    .pillar,
+    .satyajit .pillar {
+      height: 46px;
+      padding: 0 13px;
+      font-size: 18px;
+    }
   }
 
   // Tablet: picture beside the words, alternating sides.
@@ -329,6 +476,13 @@ $top: 908;
         grid-row: 1 / span 3;
         align-self: start;
         width: 100%;
+      }
+
+      // The long biography runs the full width beneath the picture.
+      .story,
+      .more {
+        max-width: none;
+        grid-column: 1 / -1;
       }
     }
 
