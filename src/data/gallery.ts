@@ -17,6 +17,9 @@ export type GalleryItem = {
   ratio: number;
   // Position in the desktop mosaic (0-8).
   slot: number;
+  // True for the second mosaic arrangement used by the later blocks of the
+  // full gallery.
+  mosaic?: "alt";
 };
 
 export type GalleryCategory =
@@ -35,7 +38,7 @@ export const galleryCategories = [
   "Workshops",
 ] as const;
 
-type Photo = Omit<GalleryItem, "id" | "slot" | "shape" | "ratio">;
+type Photo = Omit<GalleryItem, "id" | "slot" | "shape" | "ratio" | "mosaic">;
 
 const A = "/assets/gallery";
 
@@ -139,6 +142,31 @@ const slots: {
   { photo: "spear", shape: "soft", ratio: 403 / 330 },
 ];
 
+// The second arrangement, used by the later blocks of the full gallery: three
+// tall pictures on top, then two rows that interlock around the mohiniyattam.
+const altSlots: typeof slots = [
+  { photo: "portrait", shape: "arch", ratio: 320 / 429 },
+  { photo: "light", shape: "arch", ratio: 384 / 429 },
+  { photo: "orange", shape: "round", ratio: 403 / 429 },
+  { photo: "fire", shape: "soft", ratio: 411 / 330 },
+  { photo: "shield", shape: "arch", ratio: 280 / 330 },
+  { photo: "yoga", shape: "soft", ratio: 429 / 240 },
+  { photo: "shield", shape: "arch", ratio: 280 / 330 },
+  { photo: "spear", shape: "soft", ratio: 403 / 330 },
+  { photo: "mohini", shape: "soft", ratio: 432 / 420 },
+];
+
+function buildAltBlock(block: number): GalleryItem[] {
+  return altSlots.map((slot, index) => ({
+    ...photos[slot.photo],
+    id: `${slot.photo}-${block}-${index}`,
+    shape: slot.shape,
+    ratio: slot.ratio,
+    slot: index,
+    mosaic: "alt",
+  }));
+}
+
 function buildBlock(block: number, withCta: boolean): GalleryItem[] {
   return slots
     .map((slot, index) => ({ slot, index }))
@@ -158,8 +186,8 @@ export const landingItems = buildBlock(1, true);
 // Expanded page: three mosaics, the first with the tagline tile.
 export const expandedBlocks: GalleryItem[][] = [
   buildBlock(1, true),
-  buildBlock(2, false),
-  buildBlock(3, false),
+  buildAltBlock(2),
+  buildAltBlock(3),
 ];
 
 export const expandedItems = expandedBlocks.flat();

@@ -79,7 +79,7 @@ $gold: #9a7844;
   height: 740px;
   flex-direction: column;
   align-items: center;
-  padding-top: 275px;
+  padding-top: 175px;
 }
 
 .ghost {
@@ -94,13 +94,13 @@ $gold: #9a7844;
 
 .card {
   position: relative;
-  width: 629px;
+  width: auto;
   height: 303px;
-  padding: 37px 0 0 180px;
-  border: 1px solid rgba(140, 98, 39, 0.35);
+  padding: 37px 60px;
   border-radius: 24px;
-  background: rgba(104, 23, 34, 0.04);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(140, 98, 39, 0.25);
+  background: rgba(104, 23, 34, 0.02);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
 }
 
 .cue {
@@ -130,7 +130,7 @@ $gold: #9a7844;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 
   @include serif(500);
-  font-size: 100px;
+  font-size: 60px;
   line-height: 0.9;
 
   span {
@@ -433,21 +433,23 @@ $gold: #9a7844;
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-top: 26px;
-  padding: 4px 6px 4px 20px;
+  gap: 9px;
+  margin-top: 32px;
+  padding: 4px 4px 4px 19px;
+  // A deep maroon pill with a fine, lighter red edge.
+  border: 1px solid #c4474a;
+  border-bottom-color: #c8706f;
   border-radius: 100px;
-  background: #681722;
+  background: #4d0007;
   box-shadow:
     0 0 2px rgba(0, 0, 0, 0.1),
-    0 1px 8px rgba(0, 0, 0, 0.1),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.28);
-  color: #fff;
+    0 1px 8px rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.72);
   transition:
     transform 0.4s var(--ease-out),
     box-shadow 0.4s var(--ease-out);
 
-  @include sans(300);
+  @include sans(400);
   font-size: 16px;
   letter-spacing: -0.1px;
   line-height: 20px;
@@ -455,9 +457,9 @@ $gold: #9a7844;
   i {
     position: relative;
     display: block;
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    width: 37px;
+    height: 37px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     transition: transform 0.4s var(--ease-out);
 
@@ -537,6 +539,199 @@ $gold: #9a7844;
 .flow .tile {
   height: auto;
   aspect-ratio: var(--ratio, 1);
+}
+
+// The full gallery (/gallery/all) ------------------------------------------------
+// Backdrop: three layers stacked as in the design, each dimmed by 45%.
+.backdrop {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+}
+
+.layer {
+  position: absolute;
+  right: 0;
+  left: 0;
+  overflow: hidden;
+
+  img {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    content: "";
+  }
+}
+
+// Each picture melts into the one beneath it over its last 320px, so no
+// horizontal edge shows where the layers meet.
+.stageLayer,
+.floorHigh {
+  -webkit-mask-image: linear-gradient(
+    180deg,
+    #000 calc(100% - 320px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    180deg,
+    #000 calc(100% - 320px),
+    transparent 100%
+  );
+}
+
+.stageLayer {
+  top: 0;
+  height: 1873px;
+}
+
+.floorHigh {
+  top: 931px;
+  height: 2315px;
+}
+
+.floorLow {
+  top: 3123px;
+  height: 1707px;
+
+  img {
+    object-position: center 69.6%;
+  }
+}
+
+// The second mosaic arrangement (blocks two and three), on the 1440px canvas.
+.alt0 {
+  top: 0;
+  left: 131px;
+  width: 320px;
+  height: 429px;
+}
+
+.alt1 {
+  top: 0;
+  left: 470px;
+  width: 384px;
+  height: 429px;
+}
+
+.alt2 {
+  top: 0;
+  left: 873px;
+  width: 403px;
+  height: 429px;
+}
+
+.alt3 {
+  top: 442px;
+  left: 125px;
+  width: 411px;
+  height: 330px;
+}
+
+.alt4 {
+  top: 442px;
+  left: 549px;
+  width: 280px;
+  height: 330px;
+}
+
+.alt5 {
+  top: 442px;
+  left: 847px;
+  width: 429px;
+  height: 240px;
+}
+
+.alt6 {
+  top: 785px;
+  left: 131px;
+  width: 280px;
+  height: 330px;
+}
+
+.alt7 {
+  top: 785px;
+  left: 426px;
+  width: 403px;
+  height: 330px;
+}
+
+.alt8 {
+  top: 695px;
+  left: 844px;
+  width: 432px;
+  height: 420px;
+}
+
+// Filter chips at the design's exact sizes: 28px tall, the active one 30px with
+// its outline drawn inside.
+.expanded .chip {
+  padding: 6px 16px;
+  border: 0;
+}
+
+.expanded .chipActive {
+  padding: 7px 17px;
+  box-shadow: inset 0 0 0 1px #4a0b15;
+}
+
+// Desktop: every block of the page sits exactly where the design puts it.
+@include above($bp-wide) {
+  .expanded .hero {
+    height: 822px;
+    padding-top: 275px;
+  }
+
+  // The word already carries the design's 6% gold fill; fading it again made
+  // it far too faint.
+  .expanded .ghost {
+    top: 220px;
+    opacity: 1;
+  }
+
+  // The split-line masks add room for descenders; take it back so the two
+  // title lines sit at the design's 0.9 line height.
+  .expanded .titleLine {
+    margin-bottom: -0.24em;
+  }
+
+  // The tagline sits lower in the card, clear of the lotus at its foot.
+  .expanded .ctaCard {
+    padding-top: 91px;
+  }
+
+  .expanded .card {
+    width: 629px;
+    padding: 37px 0 0 43px;
+  }
+
+  .expanded .filters {
+    width: 929px;
+    padding-right: 0;
+  }
+
+  .expanded .gallery {
+    padding-bottom: 498px;
+  }
+
+  .expanded .block + .block {
+    margin-top: 13px;
+  }
+
+  .expanded .blockAlt {
+    height: 1115px;
+  }
+
+  // The design's pictures carry only a thin gold edge, no drop shadow.
+  .expanded .tile:not(:hover),
+  .expanded .ctaCard {
+    box-shadow: none;
+  }
 }
 
 // Tablet and mobile: a staggered, glowing mosaic -------------------------------------------
@@ -737,10 +932,23 @@ $gold: #9a7844;
     font-size: 26px;
   }
 
+  // The mobile tile is narrow: a compact pill that stays on one line.
+  .ctaCard {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
   .explore {
+    gap: 6px;
     margin-top: 14px;
-    padding-left: 14px;
-    font-size: 14px;
+    padding: 3px 3px 3px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+
+    i {
+      width: 30px;
+      height: 30px;
+    }
   }
 }
 

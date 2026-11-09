@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 import { galleryCategories, type GalleryItem } from "@/data/gallery";
+import Crop from "./about/Crop";
 import GalleryLightbox from "./GalleryLightbox";
 import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
@@ -41,7 +42,13 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
     return (
       <Reveal
         key={item.id}
-        className={`${styles.cell} ${styles[`slot${item.slot}`]} ${styles[item.shape]}`}
+        className={`${styles.cell} ${
+          item.slot === 9
+            ? styles.slot9
+            : item.mosaic === "alt"
+              ? styles[`alt${item.slot}`]
+              : styles[`slot${item.slot}`]
+        } ${styles[item.shape]}`}
         y={26}
         scale={0.97}
         delay={(order % 3) * 0.07}
@@ -75,20 +82,54 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
   const showMosaic = category === "All";
 
   return (
-    <div className={styles.page}>
-      <div className={styles.stage} aria-hidden="true">
-        <Image
-          src="/assets/gallery/stage-bg.webp"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className={styles.stageImage}
-        />
-        <span className={styles.shade} />
-        <span className={styles.lamp} />
-        <span className={`${styles.lamp} ${styles.lampAlt}`} />
-      </div>
+    <div
+      className={`${styles.page} ${mode === "expanded" ? styles.expanded : ""}`}
+    >
+      {mode === "expanded" ? (
+        // The full gallery's backdrop: the temple stage over a petal-strewn
+        // floor, each dimmed by 45%, stacked as the design lays them out.
+        <div className={styles.backdrop} aria-hidden="true">
+          <div className={`${styles.layer} ${styles.floorLow}`}>
+            <Image
+              src="/assets/gallery/expanded-floor.webp"
+              alt=""
+              fill
+              sizes="100vw"
+            />
+          </div>
+          <div className={`${styles.layer} ${styles.floorHigh}`}>
+            <Image
+              src="/assets/gallery/expanded-floor.webp"
+              alt=""
+              fill
+              sizes="100vw"
+            />
+          </div>
+          <div className={`${styles.layer} ${styles.stageLayer}`}>
+            <Image
+              src="/assets/gallery/expanded-stage.webp"
+              alt=""
+              fill
+              priority
+              sizes="100vw"
+            />
+          </div>
+        </div>
+      ) : (
+        <div className={styles.stage} aria-hidden="true">
+          <Image
+            src="/assets/gallery/stage-bg.webp"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className={styles.stageImage}
+          />
+          <span className={styles.shade} />
+          <span className={styles.lamp} />
+          <span className={`${styles.lamp} ${styles.lampAlt}`} />
+        </div>
+      )}
 
       <section className={styles.hero} aria-labelledby={titleId}>
         <Image
@@ -127,6 +168,7 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
             id={titleId}
             as="h1"
             className={styles.title}
+            lineClassName={styles.titleLine}
             lines={["Moments that", "moves us"]}
             mount
             delay={0.6}
@@ -167,7 +209,10 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
       <section className={styles.gallery} aria-label="Photographs">
         {showMosaic ? (
           blocks.map((block, blockIndex) => (
-            <div key={blockIndex} className={styles.block}>
+            <div
+              key={blockIndex}
+              className={`${styles.block} ${block[0]?.mosaic === "alt" ? styles.blockAlt : ""}`}
+            >
               {block.slice(0, 4).map((item, i) => renderTile(item, i))}
 
               {blockIndex === 0 && (
@@ -177,12 +222,18 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
                   once
                 >
                   <div className={styles.ctaCard}>
-                    <Image
+                    {/* The sheet is cropped exactly as the design does, so no
+                        red margin shows around the paper. */}
+                    <Crop
                       src="/assets/gallery/paper.webp"
-                      alt=""
-                      fill
                       sizes="280px"
                       className={styles.paper}
+                      box={{
+                        left: "-15.96%",
+                        top: "-62.53%",
+                        width: "132.52%",
+                        height: "196.33%",
+                      }}
                     />
                     <p>Art lives in every moment</p>
                     {mode === "landing" && (
