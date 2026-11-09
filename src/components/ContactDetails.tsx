@@ -102,7 +102,7 @@ export default function ContactDetails() {
           <p>
             TRRA 66, Mahalakshmi, Thevarakkavu Road,
             <br />
-            Tripunithura, Kerala
+            Tripunithura, Kerala.
           </p>
           <p>
             Regular Bharatanatyam classes for young students:
