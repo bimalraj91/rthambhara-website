@@ -1,0 +1,68 @@
+@use "../styles/mixins" as *;
+
+// Larger screens: the wrapper adds nothing, so the cards keep their layout.
+.viewport {
+  display: contents;
+}
+
+.dots {
+  display: none;
+}
+
+@include below($bp-mobile) {
+  // The viewport bleeds to both screen edges and clips the sliding track, so
+  // the next card shows partway at the right edge.
+  .viewport {
+    display: block;
+    margin: 36px -18px 0;
+    overflow: hidden;
+    cursor: grab;
+    -webkit-tap-highlight-color: transparent;
+    // Vertical scrolling stays with the page; sideways moves go to the track.
+    touch-action: pan-y;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-maroon);
+      outline-offset: -2px;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-select: none;
+    }
+  }
+
+  .dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding-top: 4px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 9999px;
+    background: rgba(104, 23, 34, 0.25);
+    cursor: pointer;
+    transition:
+      width 0.45s var(--ease-out),
+      background-color 0.45s var(--ease-out);
+
+    &:focus-visible {
+      outline: 2px solid var(--color-maroon);
+      outline-offset: 3px;
+    }
+  }
+
+  .dotActive {
+    width: 26px;
+    background: var(--color-maroon);
+  }
+}

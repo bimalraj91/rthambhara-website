@@ -1,4 +1,5 @@
 import Image from "next/image";
+import CardsCarousel from "./CardsCarousel";
 import PillButton from "./PillButton";
 import SectionLabel from "./SectionLabel";
 import Drift from "./motion/Drift";
@@ -53,7 +54,7 @@ export default function Specialties() {
           <PillButton href="/programs">Explore</PillButton>
         </Reveal>
 
-        <div className={styles.cards}>
+        <CardsCarousel className={styles.cards} label="Our disciplines">
           {programs.map((program, index) => (
             <Reveal
               key={program.title}
@@ -75,7 +76,7 @@ export default function Specialties() {
               </div>
             </Reveal>
           ))}
-        </div>
+        </CardsCarousel>
 
         <Drift className={styles.watermark} from={50} to={-50}>
           <Image

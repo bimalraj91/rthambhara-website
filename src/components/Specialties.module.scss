@@ -294,27 +294,19 @@
     font-size: clamp(34px, 9.6vw, 44px);
   }
 
-  // Phones: the four disciplines become a swipeable, snapping strip instead
-  // of four full-height cards stacked one under another.
+  // Phones: the four disciplines form a carousel (see CardsCarousel): one
+  // full card with the next peeking in, dragged and settled with a spring.
   .cards {
     display: flex;
+    width: max-content;
     gap: 14px;
-    margin: 36px -18px 0;
+    margin: 0;
     padding: 4px 18px 22px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-padding-inline: 18px;
-    scrollbar-width: none;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
   }
 
   .card {
     flex: none;
-    width: min(76vw, 290px);
-    scroll-snap-align: start;
+    width: min(78vw, 300px);
   }
 
   .cardPanel {
