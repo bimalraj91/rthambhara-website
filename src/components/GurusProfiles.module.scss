@@ -107,6 +107,13 @@ $top: 908;
   border-radius: 200px 200px 30px 30px;
 }
 
+// The picture's box is 3% wider than the arch on each side. The arch clips it,
+// which hides the thin white border the photos carry.
+.photoFill {
+  position: absolute;
+  inset: 0 -3%;
+}
+
 .heading {
   position: absolute;
   z-index: 2;

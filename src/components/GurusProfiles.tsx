@@ -117,21 +117,20 @@ export default function GurusProfiles() {
           <article key={guru.id} className={`${styles.guru} ${guru.className}`}>
             <ImageReveal className={styles.photoWrap} from={guru.from}>
               <div className={styles.photo}>
-                <Image
-                  src={guru.photo}
-                  alt={guru.alt}
-                  width={268}
-                  height={342}
-                  sizes="464px"
-                  style={{
-                    position: "absolute",
-                    maxWidth: "none",
-                    height: "108.08%",
-                    left: "0.06%",
-                    top: "-0.01%",
-                    width: "100%",
-                  }}
-                />
+                {/* Fills the arch and stays centred. "cover" crops the edges
+                    a little if the picture's shape differs from the frame's,
+                    but never stretches it. The photos carry a thin white
+                    border of their own, so the picture runs 3% past the frame
+                    on each side to keep it out of sight. */}
+                <div className={styles.photoFill}>
+                  <Image
+                    src={guru.photo}
+                    alt={guru.alt}
+                    fill
+                    sizes="(max-width: 1279px) 360px, 492px"
+                    style={{ objectFit: "cover", objectPosition: "center" }}
+                  />
+                </div>
               </div>
             </ImageReveal>
 

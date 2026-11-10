@@ -12,7 +12,7 @@ import Experience from "@/components/Experience";
 import Journal from "@/components/Journal";
 import News from "@/components/News";
 import Team from "@/components/Team";
-import Contact from "@/components/Contact";
+import ContactUs from "@/components/ContactUs";
 import Stories from "@/components/Stories";
 
 export const metadata: Metadata = {
@@ -46,7 +46,7 @@ export default function Home() {
       <Journal />
       {/* <News /> */}
       <Team />
-      <Contact />
+      <ContactUs />
       <Stories />
     </main>
   );

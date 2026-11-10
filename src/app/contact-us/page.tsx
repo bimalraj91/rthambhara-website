@@ -3,6 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import { breadcrumbSchema, pageMetadata, webPageSchema } from "@/lib/seo";
 import ContactDetails from "@/components/ContactDetails";
 import ContactHero from "@/components/ContactHero";
+import ContactUs from "@/components/ContactUs";
 
 const title = "Contact us";
 const description =
@@ -34,6 +35,7 @@ export default function ContactUsPage() {
     <main id="main">
       <JsonLd data={jsonLd} />
       <ContactHero />
+      <ContactUs />
       <ContactDetails />
     </main>
   );

@@ -1,13 +1,14 @@
 @use "../styles/mixins" as *;
 @use "../styles/canvas" as *;
 
-// Figma page y of this section's top edge.
-$top: 840;
+// The studio block on the 1440px canvas: the map and the picture sit 110px
+// below the top, the heading block 17px lower, as in the design.
+$frame-top: 110;
 
 .section {
   position: relative;
   z-index: 1;
-  height: 1428px;
+  height: #{$frame-top + 257 + 110}px;
   overflow: clip;
   container-type: inline-size;
   background: var(--color-cream);
@@ -30,7 +31,7 @@ $top: 840;
 }
 
 .sheet {
-  @include at(-127, 1280 - $top, 726.178, 734.182);
+  @include at(-127, 60, 726.178, 734.182);
   left: calc(-127px - var(--cl));
   display: flex;
   align-items: center;
@@ -48,193 +49,15 @@ $top: 840;
 }
 
 .emblem {
-  @include at(963, 849 - $top, 505, 354);
+  @include at(963, 0, 505, 354);
   left: calc(963px + var(--cl));
   overflow: hidden;
   opacity: 0.08;
 }
 
-.nataraja {
-  @include at(276, 829 - $top, 379, 505);
-  z-index: 1;
-  pointer-events: none;
-}
-
-.natarajaImage {
-  width: 379px;
-  height: 505px;
-  object-fit: contain;
-  filter: drop-shadow(0 24px 32px rgba(53, 13, 12, 0.22));
-}
-
-// The enquiry panel -------------------------------------------------------
-.panel {
-  position: absolute;
-  z-index: 3;
-  top: #{894 - $top}px;
-  left: 650px;
-  width: 644px;
-  height: 828px;
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.52);
-  border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.44) 0%,
-    rgba(255, 255, 255, 0.13) 100%
-  );
-  box-shadow: 0 8px 30px rgba(59, 31, 18, 0.05);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-}
-
-.panel :global(form) {
-  position: absolute;
-  top: 281px;
-  left: 55px;
-  width: 545px;
-  margin-top: 0;
-}
-
-.eyebrow {
-  position: absolute;
-  top: 32px;
-  left: 52px;
-  margin: 0;
-  color: var(--color-maroon);
-  text-transform: uppercase;
-
-  @include sans(400);
-  font-size: 14px;
-  line-height: 17px;
-}
-
-.title {
-  position: absolute;
-  top: 63px;
-  left: 49px;
-  width: 545px;
-  margin: 0;
-  color: #25251f;
-
-  @include serif(400);
-  font-size: 76px;
-  line-height: 1;
-}
-
-// Direct contact -----------------------------------------------------------
-.direct {
-  @include at(157, 1259 - $top);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding-top: 6px;
-}
-
-.phone {
-  color: #b73522;
-  white-space: nowrap;
-  transition: color 0.3s var(--ease-out);
-
-  font-family: var(--font-cinzel), Georgia, serif;
-  font-size: 32px;
-  line-height: normal;
-
-  &:hover {
-    color: var(--color-maroon);
-  }
-
-  @include focus-ring(var(--color-maroon));
-}
-
-.email {
-  width: fit-content;
-  color: #25251f;
-
-  @include sans(400);
-  font-size: 14px;
-  line-height: normal;
-
-  &:hover {
-    color: var(--color-maroon);
-  }
-
-  @include focus-ring(var(--color-maroon));
-}
-
-.address {
-  @include at(157, 1365 - $top);
-  z-index: 2;
-  display: flex;
-  width: 390px;
-  flex-direction: column;
-  gap: 12px;
-
-  @include sans(400);
-  font-size: 15px;
-
-  p {
-    margin: 0;
-    color: #6f6b61;
-    line-height: 1.75;
-  }
-}
-
-.addressLabel {
-  color: #b73522 !important;
-  line-height: normal !important;
-}
-
-// Follow ---------------------------------------------------------------------
-.follow {
-  @include at(153, 1560 - $top);
-  z-index: 2;
-}
-
-.followTitle {
-  margin: 0;
-  color: #25251f;
-  white-space: nowrap;
-
-  @include serif(400);
-  font-size: 30px;
-  line-height: 1;
-}
-
-.socials {
-  display: flex;
-  gap: 35px;
-  margin: 28px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.social {
-  display: block;
-  width: 48px;
-  height: 48px;
-  transition:
-    transform 0.4s var(--ease-out),
-    opacity 0.3s var(--ease-out);
-
-  img {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
-  &:hover {
-    opacity: 0.8;
-    transform: translateY(-4px) scale(1.06);
-  }
-
-  @include focus-ring(var(--color-maroon));
-}
-
 // Visit ----------------------------------------------------------------------
 .visit {
-  @include at(117, 1806 - $top, 400);
+  @include at(117, $frame-top + 17, 400);
   z-index: 2;
 }
 
@@ -336,7 +159,7 @@ $top: 840;
 .frame {
   position: absolute;
   z-index: 2;
-  top: #{1789 - $top}px;
+  top: #{$frame-top}px;
   width: 360px;
   height: 257px;
 }
@@ -366,29 +189,6 @@ $top: 840;
   left: 934px;
 }
 
-.pin {
-  position: absolute;
-  z-index: 3;
-  top: #{1886 - $top}px;
-  left: 728px;
-  width: 28px;
-  height: 34px;
-  pointer-events: none;
-}
-
-.note {
-  @include at(562, 2071 - $top, 707);
-  z-index: 2;
-  margin: 0;
-  color: #681722;
-
-  font-family: var(--font-playfair), Georgia, serif;
-  font-size: 24px;
-  font-style: italic;
-  font-weight: 500;
-  line-height: 1.8;
-}
-
 // Tablet and mobile: the canvas becomes a single column. -----------------------
 @include below($bp-wide) {
   .section {
@@ -409,7 +209,7 @@ $top: 840;
   .emblem {
     left: auto;
     right: -30%;
-    top: 30%;
+    top: 4%;
     width: min(90vw, 520px);
     height: auto;
     aspect-ratio: 505 / 354;
@@ -418,67 +218,14 @@ $top: 840;
   .sheet {
     right: auto;
     left: -35%;
-    top: 55%;
+    top: 30%;
     aspect-ratio: 726 / 734;
   }
 
-  .nataraja,
-  .direct,
-  .address,
-  .follow,
   .visit,
-  .note,
-  .panel,
-  .frame,
-  .pin {
+  .frame {
     position: relative;
     inset: auto;
-  }
-
-  .nataraja {
-    align-self: center;
-    width: min(60vw, 300px);
-    height: auto;
-    aspect-ratio: 379 / 505;
-    margin-bottom: -8px;
-  }
-
-  .natarajaImage {
-    width: 100%;
-    height: auto;
-  }
-
-  .direct {
-    padding: 0;
-  }
-
-  .address {
-    width: auto;
-  }
-
-  .panel {
-    width: auto;
-    height: auto;
-    padding: 30px clamp(20px, 5vw, 42px) 42px;
-  }
-
-  .panel :global(form) {
-    position: relative;
-    top: auto;
-    left: auto;
-    width: 100%;
-    margin-top: 36px;
-  }
-
-  .eyebrow,
-  .title {
-    position: static;
-    width: auto;
-  }
-
-  .title {
-    margin-top: 16px;
-    font-size: clamp(46px, 11vw, 72px);
   }
 
   .visit {
@@ -502,16 +249,7 @@ $top: 840;
     aspect-ratio: 360 / 257;
   }
 
-  .pin {
-    display: none;
-  }
-
-  .note {
-    width: auto;
-    font-size: clamp(20px, 5vw, 24px);
-  }
-
-  // Tablet: the two pictures sit side by side.
+  // Tablet: the heading runs across the top and the two pictures sit side by side.
   @include above($bp-mobile) {
     .canvas {
       display: grid;
@@ -519,21 +257,8 @@ $top: 840;
       gap: 36px 28px;
     }
 
-    .nataraja,
-    .panel,
-    .visit,
-    .note,
-    .follow {
+    .visit {
       grid-column: 1 / -1;
-    }
-
-    .nataraja {
-      justify-self: center;
-    }
-
-    .direct,
-    .address {
-      grid-column: span 1;
     }
   }
 }
