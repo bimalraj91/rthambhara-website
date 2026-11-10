@@ -1,0 +1,454 @@
+@use "../styles/mixins" as *;
+
+$gold: #9a7844;
+$gold-bright: #c99a3b;
+$ink: #2a0006;
+
+.section {
+  position: relative;
+  z-index: 1;
+  overflow: clip;
+  padding: clamp(48px, 7vw, 96px) 24px clamp(96px, 12vw, 150px);
+  background: var(--color-cream);
+}
+
+// The same quiet backdrop as the blog listing, so the page looks the same once
+// posts arrive.
+.wash {
+  position: absolute;
+  z-index: 0;
+  width: 797px;
+  height: 876px;
+  opacity: 0.4;
+  pointer-events: none;
+
+  img {
+    object-fit: contain;
+    object-position: bottom;
+  }
+}
+
+.washLeft {
+  top: -120px;
+  left: -78px;
+}
+
+.washRight {
+  top: 120px;
+  right: -40px;
+}
+
+.emblem {
+  position: absolute;
+  z-index: 0;
+  top: -10px;
+  right: -20px;
+  width: 505px;
+  height: 354px;
+  overflow: hidden;
+  opacity: 0.08;
+  pointer-events: none;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 127.73%;
+    max-width: none;
+  }
+}
+
+.shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-width: 760px;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(8px, 2vw, 20px);
+  margin: 0 auto;
+  text-align: center;
+}
+
+// The illustration ---------------------------------------------------------------
+.art {
+  position: relative;
+  width: clamp(230px, 46vw, 380px);
+  aspect-ratio: 320 / 230;
+}
+
+// A soft gold light behind the flower that slowly swells.
+.glow {
+  position: absolute;
+  top: 14%;
+  right: 8%;
+  bottom: 8%;
+  left: 8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    closest-side,
+    rgba($gold-bright, 0.34),
+    rgba($gold-bright, 0.1) 60%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: scale(0.7);
+  transition:
+    opacity 1.6s var(--ease-out) 0.2s,
+    transform 1.6s var(--ease-out) 0.2s;
+}
+
+.live .glow {
+  opacity: 1;
+  transform: none;
+  animation: glow 4.4s ease-in-out 1.8s infinite alternate;
+}
+
+.lotus {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+// Ripples: rings that spread out from the water line and fade.
+.ripple {
+  fill: none;
+  stroke: $gold;
+  stroke-width: 1.2;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.live .ripple {
+  animation: ripple 4.8s ease-out infinite;
+  animation-delay: calc(1.1s + var(--r));
+}
+
+.waterline {
+  fill: none;
+  stroke: $gold;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.live .waterline {
+  animation: draw 1.2s var(--ease-out) 0.1s forwards;
+}
+
+// The lotus opens from the centre outwards, each petal drawing its outline as
+// it grows from the base.
+.petal {
+  fill: url(#blogs-empty-petal);
+  fill-opacity: 0;
+  stroke: $gold;
+  stroke-width: 1.7;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transform: scale(0.18);
+  transform-box: view-box;
+  transform-origin: 160px 170px;
+}
+
+.live .petal {
+  animation: open 1.5s var(--ease-out) forwards;
+  animation-delay: var(--d);
+}
+
+.vein {
+  fill: none;
+  stroke: $gold;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0.55;
+}
+
+.live .vein {
+  animation: draw 1.4s var(--ease-out) 1.7s forwards;
+}
+
+// Once open, the whole flower breathes.
+.breathe {
+  transform-box: view-box;
+  transform-origin: 160px 176px;
+}
+
+.live .breathe {
+  animation: breathe 5.2s ease-in-out 3.2s infinite alternate;
+}
+
+// Petals that drift up from the water ----------------------------------------
+.petalsAir {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+
+  i {
+    position: absolute;
+    bottom: 22%;
+    left: var(--x);
+    width: var(--size);
+    height: calc(var(--size) * 1.7);
+    border-radius: 100% 0 100% 0;
+    background: linear-gradient(160deg, $gold-bright, #8c1d2b);
+    opacity: 0;
+  }
+}
+
+.live .petalsAir i {
+  animation: drift var(--dur) ease-in-out infinite;
+  animation-delay: calc(2.4s + var(--delay));
+}
+
+// The words -----------------------------------------------------------------------
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(10px, 1.6vw, 16px);
+}
+
+.title {
+  margin: clamp(2px, 1vw, 8px) 0 0;
+  color: $ink;
+
+  @include serif(500);
+  font-size: clamp(2.5rem, 1.4rem + 4.6vw, 4.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.5px;
+  text-wrap: balance;
+}
+
+// A hairline with a small gold diamond, drawn in after the heading.
+.ornament {
+  position: relative;
+  display: block;
+  width: min(9rem, 46%);
+  height: 9px;
+
+  &::before,
+  &::after {
+    position: absolute;
+    top: 50%;
+    content: "";
+  }
+
+  &::before {
+    right: 0;
+    left: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, $gold-bright, transparent);
+    transform: scaleX(0);
+    transform-origin: center;
+  }
+
+  &::after {
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    background: $gold-bright;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(45deg) scale(0);
+  }
+}
+
+.live .ornament {
+  &::before {
+    animation: line 1.1s var(--ease-out) 0.9s forwards;
+  }
+
+  &::after {
+    animation: diamond 0.8s var(--ease-out) 1.2s forwards;
+  }
+}
+
+.lead {
+  max-width: 34rem;
+  margin: 4px 0 0;
+  color: #544343;
+
+  @include sans(400);
+  font-size: clamp(1rem, 0.94rem + 0.3vw, 1.125rem);
+  line-height: 1.75;
+}
+
+.note {
+  margin: 0;
+  color: var(--color-maroon);
+
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.6rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px 28px;
+  margin-top: clamp(8px, 1.6vw, 18px);
+}
+
+.more {
+  min-height: 2.75rem;
+  display: inline-flex;
+  align-items: center;
+  color: var(--color-maroon);
+  text-decoration: underline;
+  text-decoration-color: rgba($gold-bright, 0.9);
+  text-underline-offset: 0.35em;
+  transition: color 0.3s var(--ease-out);
+
+  @include sans(500);
+  font-size: 0.9375rem;
+
+  &:hover {
+    color: #8c1d2b;
+  }
+
+  @include focus-ring(var(--color-maroon));
+}
+
+// Keyframes ---------------------------------------------------------------------
+@keyframes open {
+  0% {
+    opacity: 0;
+    stroke-dashoffset: 1;
+    fill-opacity: 0;
+    transform: scale(0.18);
+  }
+
+  30% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    stroke-dashoffset: 0;
+    fill-opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes breathe {
+  to {
+    transform: scale(1.028);
+  }
+}
+
+@keyframes glow {
+  to {
+    opacity: 0.6;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+
+  18% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+@keyframes drift {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  12% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--sway), calc(-1 * clamp(110px, 24vw, 210px)))
+      rotate(200deg);
+  }
+}
+
+@keyframes line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes diamond {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(45deg) scale(1);
+  }
+}
+
+// People who prefer less motion get the finished flower, standing still. ---------
+@media (prefers-reduced-motion: reduce) {
+  .glow {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .petal {
+    opacity: 1;
+    fill-opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
+  }
+
+  .vein,
+  .waterline {
+    stroke-dashoffset: 0;
+  }
+
+  .ripple,
+  .petalsAir {
+    display: none;
+  }
+
+  .ornament::before {
+    transform: none;
+  }
+
+  .ornament::after {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .live .glow,
+  .live .petal,
+  .live .vein,
+  .live .waterline,
+  .live .breathe,
+  .live .ornament::before,
+  .live .ornament::after {
+    animation: none;
+  }
+}

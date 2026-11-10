@@ -18,7 +18,8 @@ Then add the academy's real profile links to `socialProfiles` in `src/lib/site.t
 `src/app/sitemap.ts` runs **when the site is built** (`next build`). It reads the
 same data files the pages use:
 
-- `src/data/blogs.ts` → every blog post
+- `src/data/blogs.ts` → every published blog post (`blogPosts`, empty for now; the
+  posts in `sampleBlogPosts` are reference only and are not published)
 - `src/data/news.ts` → every news item and event
 - `src/data/gallery.ts` → the gallery photos (listed as image entries)
 

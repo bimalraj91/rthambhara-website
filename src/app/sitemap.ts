@@ -25,7 +25,10 @@ const staticPages: {
   { path: "/programs", priority: 0.9, changeFrequency: "monthly" },
   { path: "/gurus", priority: 0.7, changeFrequency: "monthly" },
   { path: "/news-events", priority: 0.8, changeFrequency: "weekly" },
-  { path: "/blogs", priority: 0.8, changeFrequency: "weekly" },
+  // Listed only once there are published posts: with none, /blogs is just a note.
+  ...(blogPosts.length > 0
+    ? [{ path: "/blogs", priority: 0.8, changeFrequency: "weekly" as const }]
+    : []),
   {
     path: "/gallery",
     priority: 0.6,
@@ -57,7 +60,10 @@ function newest(dates: string[]) {
 export default function sitemap(): MetadataRoute.Sitemap {
   const listings: Record<string, Date> = {
     "/news-events": newest(newsItems.map((item) => item.date)),
-    "/blogs": newest(blogPosts.map((post) => post.date)),
+    // Math.max() of nothing is -Infinity, so only work this out when there are posts.
+    ...(blogPosts.length > 0
+      ? { "/blogs": newest(blogPosts.map((post) => post.date)) }
+      : {}),
   };
 
   const pages: MetadataRoute.Sitemap = staticPages.map((page) => ({

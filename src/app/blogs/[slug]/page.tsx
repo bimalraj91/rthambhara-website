@@ -15,7 +15,11 @@ import { absoluteUrl, siteName } from "@/lib/site";
 type Params = Promise<{ slug: string }>;
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  const params = blogPosts.map((post) => ({ slug: post.slug }));
+  // With Cache Components the build needs at least one sample path. While there
+  // are no posts it is a placeholder that resolves to the not-found page below;
+  // as soon as there are posts, every real post is prerendered instead.
+  return params.length > 0 ? params : [{ slug: "__no-posts-yet__" }];
 }
 
 export async function generateMetadata({

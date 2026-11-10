@@ -1,4 +1,4 @@
-export const navLinks = [
+const allNavLinks = [
   { label: "Home", href: "/" },
   { label: "About us", href: "/about-us" },
   { label: "Programs", href: "/programs" },
@@ -8,6 +8,14 @@ export const navLinks = [
   { label: "Gallery", href: "/gallery" },
   { label: "Contact us", href: "/contact-us" },
 ] as const;
+
+// Pages that exist but are kept out of the menu (desktop and phone) until they
+// have real content. Delete a path from this list to put its link back.
+const hiddenFromMenu: string[] = ["/gallery"];
+
+export const navLinks = allNavLinks.filter(
+  (link) => !hiddenFromMenu.includes(link.href),
+);
 
 const heroMarker = "Tripunithura · Established 2012";
 

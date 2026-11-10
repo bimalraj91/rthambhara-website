@@ -1,5 +1,14 @@
-// Sample blog content. Replace with real articles later: every post needs a
-// unique `slug`, which becomes its own page at /blogs/<slug>.
+// Blog content.
+//
+// There are no published posts yet, so the site shows a "no stories yet" page at
+// /blogs and hides every link to the blog. The posts in `sampleBlogPosts` are a
+// REFERENCE ONLY: they show the shape of a post (sections, quote, keywords,
+// images) and are not published anywhere.
+//
+// To publish, add a post to `blogPosts` (further down). Every post needs a unique
+// `slug`, which becomes its own page at /blogs/<slug>. As soon as `blogPosts` is
+// not empty, the listing, the post pages, the "Blogs" link in the menu and the
+// sitemap entries all switch on by themselves.
 
 export type BlogSection = {
   id: string;
@@ -45,7 +54,9 @@ function section(id: string, heading: string, ...paragraphs: string[]) {
   return { id, heading, paragraphs };
 }
 
-export const blogPosts: BlogPost[] = [
+// REFERENCE ONLY: not published. Copy a post from here into `blogPosts` to try
+// the listing and a post page, or use one as the template for a real article.
+export const sampleBlogPosts: BlogPost[] = [
   {
     slug: "the-timeless-beauty-of-bharatanatyam",
     title: "The Timeless Beauty of Bharatanatyam",
@@ -344,6 +355,9 @@ export const blogPosts: BlogPost[] = [
     ],
   },
 ];
+
+// The posts the site publishes. Empty for now (see the note at the top).
+export const blogPosts: BlogPost[] = [];
 
 export function getBlogPost(slug: string) {
   return blogPosts.find((post) => post.slug === slug);

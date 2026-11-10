@@ -30,8 +30,10 @@ const pages = [
   ["Gurus", "/gurus"],
   ["News & Events", "/news-events"],
   ["Event detail", "/news-events/dasabdi-mahothsavam-day-1"],
-  ["Blogs", "/blogs"],
-  ["Blog detail", "/blogs/the-timeless-beauty-of-bharatanatyam"],
+  // No blog posts are published yet, so there is nothing to test. Add these back
+  // (with a real post's slug) once src/data/blogs.ts has posts:
+  //   ["Blogs", "/blogs"],
+  //   ["Blog detail", "/blogs/<slug>"],
   ["Gallery", "/gallery"],
   ["Contact us", "/contact-us"],
 ];

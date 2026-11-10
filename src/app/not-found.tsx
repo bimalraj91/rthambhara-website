@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { blogPosts } from "@/data/blogs";
 import styles from "./not-found.module.scss";
 
 export const metadata: Metadata = {
@@ -26,9 +27,11 @@ export default function NotFound() {
         <li>
           <Link href="/news-events">News &amp; Events</Link>
         </li>
-        <li>
-          <Link href="/blogs">Blogs</Link>
-        </li>
+        {blogPosts.length > 0 && (
+          <li>
+            <Link href="/blogs">Blogs</Link>
+          </li>
+        )}
         <li>
           <Link href="/contact-us">Contact us</Link>
         </li>

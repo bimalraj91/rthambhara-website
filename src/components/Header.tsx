@@ -92,7 +92,7 @@ export default function Header() {
         <div className={styles.inner}>
           <Link href="/" className={styles.brand} aria-label="rtambhara Performing & Visual Arts, home">
             <Image
-              src="/assets/home/rtambhara-logo.svg"
+              src="/assets/home/rtambhara-logo-v1.svg"
               alt=""
               width={205}
               height={70}

@@ -56,7 +56,7 @@ export default function AboutHero() {
         transition={{ duration: 2.2, ease: EASE }}
       >
         <Image
-          src="/assets/about/hero-about.webp"
+          src="/assets/blogs/hero-detail.webp"
           alt="Four Bharatanatyam dancers in a dimly lit temple hall, framed by carved stone and brass lamps"
           fill
           priority

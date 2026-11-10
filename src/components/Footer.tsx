@@ -60,7 +60,7 @@ export default function Footer() {
               <div className={styles.brandCol}>
                 <div className={styles.brand}>
                   <Image
-                    src="/assets/home/rtambhara-logo.svg"
+                    src="/assets/home/rtambhara-logo-v1.svg"
                     alt="rtambhara Performing & Visual Arts"
                     width={205}
                     height={70}
