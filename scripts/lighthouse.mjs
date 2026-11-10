@@ -29,7 +29,7 @@ const pages = [
   ["Programs", "/programs"],
   ["Gurus", "/gurus"],
   ["News & Events", "/news-events"],
-  ["Event detail", "/news-events/nritya-sandhya"],
+  ["Event detail", "/news-events/dasabdi-mahothsavam-day-1"],
   ["Blogs", "/blogs"],
   ["Blog detail", "/blogs/the-timeless-beauty-of-bharatanatyam"],
   ["Gallery", "/gallery"],

@@ -7,7 +7,12 @@ import NewsMarquee from "./NewsMarquee";
 import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
 import { landingItems } from "@/data/gallery";
-import { events, formatDate, news as newsPosts } from "@/data/news";
+import {
+  events,
+  formatDate,
+  news as newsPosts,
+  shortTitle,
+} from "@/data/news";
 import styles from "./News.module.scss";
 
 const feature = events[0];
@@ -117,7 +122,7 @@ export default function News() {
                 </div>
                 <div className={styles.storyBody}>
                   <p className={styles.category}>{label(story)}</p>
-                  <h3 className={styles.storyTitle}>{story.title}</h3>
+                  <h3 className={styles.storyTitle}>{shortTitle(story)}</h3>
                   <p className={styles.storyCopy}>{story.excerpt}</p>
                   <Link
                     href={`/news-events/${story.slug}`}

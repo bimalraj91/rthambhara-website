@@ -2,8 +2,16 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 import Crop from "./about/Crop";
 import Reveal from "./motion/Reveal";
+import Breadcrumbs from "./Breadcrumbs";
 import { Row } from "./NewsEvents";
-import { formatDate, newsItems, type NewsItem } from "@/data/news";
+import UpcomingTag from "./UpcomingTag";
+import {
+  events,
+  formatDate,
+  news,
+  shortTitle,
+  type NewsItem,
+} from "@/data/news";
 import listStyles from "./NewsEvents.module.scss";
 import styles from "./NewsDetail.module.scss";
 
@@ -24,7 +32,9 @@ function inline(text: string): ReactNode[] {
 
 export default function NewsDetail({ item }: { item: NewsItem }) {
   const date = formatDate(item.date);
-  const more = newsItems
+  const isEvent = item.kind === "event";
+  // Two more of the same kind: the other days of a festival, other news.
+  const more = (isEvent ? events : news)
     .filter((other) => other.slug !== item.slug)
     .slice(0, 2);
 
@@ -57,17 +67,30 @@ export default function NewsDetail({ item }: { item: NewsItem }) {
       </div>
 
       <div className={styles.canvas}>
+        <Reveal y={12}>
+          <Breadcrumbs
+            className={styles.crumbs}
+            items={[
+              { label: "Home", href: "/" },
+              { label: "News & Events", href: "/news-events" },
+              { label: shortTitle(item) },
+            ]}
+          />
+        </Reveal>
+
         <Reveal className={styles.tags} y={16}>
           <span className={styles.tag}>{item.discipline ?? item.category}</span>
           <span className={styles.dot} aria-hidden="true">
             •
           </span>
           <span className={styles.tagKind}>
-            {item.kind === "event" ? item.category : "News"}
+            {isEvent ? item.category : "News"}
           </span>
+          <UpcomingTag item={item} />
         </Reveal>
 
-        <Reveal as="h2" id="news-detail-title" className={styles.title} y={30}>
+        {/* The page's main heading: the hero that used to carry the h1 is gone. */}
+        <Reveal as="h1" id="news-detail-title" className={styles.title} y={30}>
           {item.title}
         </Reveal>
 
@@ -126,11 +149,66 @@ export default function NewsDetail({ item }: { item: NewsItem }) {
           </Reveal>
         </div>
 
+        {item.schedule && item.schedule.length > 0 && (
+          <div className={styles.programme}>
+            <Reveal
+              as="h2"
+              id="news-programme-title"
+              className={styles.programmeTitle}
+              y={24}
+            >
+              Programme
+            </Reveal>
+
+            <div className={styles.halls}>
+              {item.schedule.map((block) => (
+                <Reveal
+                  as="div"
+                  key={block.hall}
+                  className={styles.hall}
+                  y={26}
+                >
+                  <h3 className={styles.hallName}>
+                    <span>{block.hall}</span>
+                    {item.venue && <small>{item.venue}</small>}
+                  </h3>
+
+                  <ol className={styles.sessions}>
+                    {block.items.map((session) => (
+                      <li
+                        key={`${session.time}-${session.title}`}
+                        className={styles.session}
+                      >
+                        <span className={styles.sessionTime}>
+                          {session.time}
+                        </span>
+                        <div className={styles.sessionInfo}>
+                          <h4 className={styles.sessionTitle}>
+                            {session.title}
+                          </h4>
+                          {session.by && (
+                            <p className={styles.sessionBy}>{session.by}</p>
+                          )}
+                          {session.notes?.map((note) => (
+                            <p key={note} className={styles.sessionNote}>
+                              {note}
+                            </p>
+                          ))}
+                        </div>
+                      </li>
+                    ))}
+                  </ol>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        )}
+
         <Reveal as="figure" className={styles.banner} y={36} scale={0.98}>
           <div className={styles.bannerFrame}>
             <Crop
               src="/assets/news/banner.webp"
-              alt={item.bannerCaption}
+              alt="A Bharatanatyam dancer in a red and gold costume, mid-pose on stage"
               sizes="(max-width: 1280px) 100vw, 1160px"
               box={{
                 height: "171.56%",
@@ -146,26 +224,30 @@ export default function NewsDetail({ item }: { item: NewsItem }) {
           </figcaption>
         </Reveal>
 
-        <div className={`${styles.copy} ${styles.after}`}>
-          {item.bodyAfter.map((paragraph) => (
-            <Reveal as="p" key={paragraph} y={22}>
-              {inline(paragraph)}
-            </Reveal>
-          ))}
-        </div>
-
-        <div className={styles.more}>
-          <Reveal as="h2" className={styles.moreTitle} y={24}>
-            News &amp; Highlights
-          </Reveal>
-          <ul className={listStyles.list}>
-            {more.map((other) => (
-              <li key={other.slug}>
-                <Row item={other} />
-              </li>
+        {item.bodyAfter.length > 0 && (
+          <div className={`${styles.copy} ${styles.after}`}>
+            {item.bodyAfter.map((paragraph) => (
+              <Reveal as="p" key={paragraph} y={22}>
+                {inline(paragraph)}
+              </Reveal>
             ))}
-          </ul>
-        </div>
+          </div>
+        )}
+
+        {more.length > 0 && (
+          <div className={styles.more}>
+            <Reveal as="h2" className={styles.moreTitle} y={24}>
+              {isEvent ? "More events" : "News & Highlights"}
+            </Reveal>
+            <ul className={listStyles.list}>
+              {more.map((other) => (
+                <li key={other.slug}>
+                  <Row item={other} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );

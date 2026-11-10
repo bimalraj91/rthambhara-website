@@ -14,6 +14,10 @@ export default function Header() {
   const [darkLogo, setDarkLogo] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const pathname = usePathname();
+  // An event's own page has no picture behind the header, so the header would
+  // be white on cream. It starts in its light style instead of waiting for a
+  // scroll. (The listing at /news-events has a hero and is unaffected.)
+  const lightFromTop = /^\/news-events\/[^/]+/.test(pathname);
   const activeHref = pathname.startsWith("/about-us")
     ? "/about-us"
     : pathname.startsWith("/programs")
@@ -83,7 +87,7 @@ export default function Header() {
   return (
     <>
       <header
-        className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}
+        className={`${styles.header} ${scrolled || lightFromTop ? styles.scrolled : ""}`}
       >
         <div className={styles.inner}>
           <Link href="/" className={styles.brand} aria-label="rtambhara Performing & Visual Arts, home">
@@ -96,7 +100,7 @@ export default function Header() {
               unoptimized
               className={`${styles.logo} ${styles.logoLight}`}
             />
-            {darkLogo && (
+            {(darkLogo || lightFromTop) && (
               <Image
                 src="/assets/home/rtambhara-black.svg"
                 alt=""

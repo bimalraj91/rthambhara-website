@@ -1,14 +1,34 @@
-// Sample content for the News & Events pages. Replace with real entries later:
-// every item needs a unique `slug`, which becomes /news-events/<slug>.
+// Content for the News & Events pages, the homepage Journal and News sections.
+// Every item needs a unique `slug`, which becomes /news-events/<slug>.
+//
+// To add an event or a news item, add an entry to `newsItems` below. The order
+// here does not matter: the pages sort by date themselves. For an event, fill
+// in `schedule` to list its sessions on the event's own page.
 
 export type NewsKind = "event" | "news";
+
+// One session in an event's programme.
+export type ScheduleItem = {
+  time: string;
+  title: string;
+  // Who presents it, e.g. "Workshop by Kum. Gopika S. Pai".
+  by?: string;
+  // Extra lines, e.g. "Chief Guest: Sri Kavalam Sreekumar".
+  notes?: string[];
+};
+
+// The sessions of one day that take place in the same hall.
+export type ScheduleHall = {
+  hall: string;
+  items: ScheduleItem[];
+};
 
 export type NewsItem = {
   slug: string;
   kind: NewsKind;
   title: string;
   category: string;
-  // Small label shown beside the category, e.g. the art form.
+  // Small label shown beside the category, e.g. "Day 1 of 3".
   discipline?: string;
   // ISO date (yyyy-mm-dd).
   date: string;
@@ -18,6 +38,9 @@ export type NewsItem = {
   excerpt: string;
   image: string;
   imageAlt: string;
+  // Which part of the picture stays in view where it is cropped to fit a card
+  // (a CSS object-position), e.g. "center top" to keep the top of a poster.
+  imagePosition?: string;
   // Optional picture and focal point used by the homepage News widget.
   homeImage?: string;
   homeImagePosition?: string;
@@ -25,194 +48,236 @@ export type NewsItem = {
   bannerCaptionTitle: string;
   bannerCaption: string;
   bodyAfter: string[];
+  // The programme for the day, hall by hall.
+  schedule?: ScheduleHall[];
 };
 
-export const categories = [
-  "All",
-  "Performances",
-  "Workshops",
-  "Celebrations",
-  "Achievements",
-  "Gurukulam",
-  "Community",
-] as const;
-
-const EVENT_IMAGE = "/assets/news/nritya.webp";
-const NEWS_IMAGE = "/assets/news/youth.webp";
-
-const margam = [
-  "In the classical lexicon of the Natya Shastra, a Margam is not merely a sequence of choreographed movements; it is a sacred pilgrimage traversing bodily geometry, emotional surrender, and spiritual dissolution. This recital anchors itself in the lineage of the Thanjavur Quartet, celebrated for its structural discipline, sculptural stability (*Araimandi*), and emotional depth (*Sattvika Abhinaya*).",
-  "Each item in the evening builds on the one before it, from the invocation to the closing tillana, so that the audience travels the full arc of the tradition within a single sitting.",
-];
-
-const margamAfter = [
-  "The senior disciples of Rtambhara Gurukulam present the evening under the guidance of their gurus, with live music accompanying every item.",
-  "Seating is limited, so we recommend arriving a little early. Light refreshments will be served after the performance.",
-];
+const POSTER = "/assets/news/dasabdi-mahothsavam.webp";
+const POSTER_ALT =
+  "Poster for Dasābdi Mahōthsavam, 13 to 15 November 2026 at TDM Hall, Ernakulam, listing the programme for Ganga Hall and Kaveri Hall.";
+const VENUE = "TDM Hall, Ernakulam";
+const FESTIVAL = "Dasābdi Mahōthsavam";
+const PRESENTER = "Rtambhara Academy for Performing & Visual Arts";
 
 export const newsItems: NewsItem[] = [
   {
-    slug: "nritya-sandhya",
+    slug: "dasabdi-mahothsavam-day-1",
     kind: "event",
-    title: "Nritya Sandhya — An Evening of Classical Margam",
-    category: "Performances",
-    discipline: "Bharatanatyam",
-    date: "2026-11-23",
-    time: "6:30 PM — 8:30 PM IST",
-    venue: "Kalakshetra Auditorium, Chennai",
-    access: "Ticketed / Open to All",
+    title: `Day 1 · ${FESTIVAL} — Inauguration & Music Concert`,
+    category: "Festival",
+    discipline: "Day 1 of 3",
+    date: "2026-11-13",
+    time: "6:00 PM onwards",
+    venue: VENUE,
     excerpt:
-      "Presented by senior disciples of Rtambhara Gurukulam. Featuring a consecrated Varnam in Raga Shankarabharanam set to Adi Talam, followed by a closing Tillana.",
-    image: EVENT_IMAGE,
-    imageAlt: "Dancers performing on stage in warm lights",
-    homeImage: "/assets/home/news-feature.jpg",
-    homeImagePosition: "center 42%",
-    body: margam,
-    bannerCaptionTitle: "Sacred geometry",
-    bannerCaption:
-      "A senior disciple holding the Natyarambha line during technical rehearsal at the Mandapam.",
-    bodyAfter: margamAfter,
-  },
-  {
-    slug: "abhinaya-workshop",
-    kind: "event",
-    title: "Abhinaya Workshop — The Grammar of Expression",
-    category: "Workshops",
-    discipline: "Bharatanatyam",
-    date: "2026-12-07",
-    time: "10:00 AM — 1:00 PM IST",
-    venue: "Rtambhara Studio, Tripunithura",
-    access: "Registration required",
-    excerpt:
-      "A hands-on morning exploring Sattvika Abhinaya, hastas and the nine rasas with our gurus. Open to students and enthusiasts of every level.",
-    image: EVENT_IMAGE,
-    imageAlt: "Dancers performing on stage in warm lights",
-    body: margam,
-    bannerCaptionTitle: "Hands and eyes",
-    bannerCaption:
-      "Students practising hasta mudras in the studio ahead of the workshop.",
-    bodyAfter: margamAfter,
-  },
-  {
-    slug: "thiruvathira-celebration",
-    kind: "event",
-    title: "Thiruvathira Celebration — A Night of Circle and Song",
-    category: "Celebrations",
-    discipline: "Mohiniyattam",
-    date: "2026-12-21",
-    time: "5:30 PM — 7:30 PM IST",
-    venue: "Ladies Club Hall, Tripunithura",
-    access: "Open to All",
-    excerpt:
-      "Join our healthy-ageing group for the traditional Thiruvathira circle dance, with songs, lamps and festive food.",
-    image: EVENT_IMAGE,
-    imageAlt: "Dancers performing on stage in warm lights",
-    body: margam,
-    bannerCaptionTitle: "Circle of grace",
-    bannerCaption:
-      "Members of the healthy-ageing programme rehearsing the Thiruvathira circle.",
-    bodyAfter: margamAfter,
-  },
-  {
-    slug: "kalaripayattu-contemporary-showcase",
-    kind: "event",
-    title: "Kalaripayattu Meets Contemporary — A Studio Showcase",
-    category: "Performances",
-    discipline: "Contemporary",
-    date: "2027-01-11",
-    time: "6:00 PM — 7:30 PM IST",
-    venue: "Rtambhara Studio, Tripunithura",
-    access: "Open to All",
-    excerpt:
-      "An evening of movement where the ancient martial art of Kalaripayattu meets contemporary dance, choreographed by Guru Satyajit.",
-    image: EVENT_IMAGE,
-    imageAlt: "Dancers performing on stage in warm lights",
-    body: margam,
-    bannerCaptionTitle: "Beyond limits",
-    bannerCaption:
-      "Rehearsal of the closing sequence, blending Kalaripayattu footwork with contemporary lines.",
-    bodyAfter: margamAfter,
-  },
-  {
-    slug: "disciples-shine-youth-festival-2024",
-    kind: "news",
-    title: "Our Disciples Shine at Youth Festival 2024",
-    category: "Achievements",
-    date: "2024-10-15",
-    excerpt:
-      "Rtambhara students bring home accolades with their dedication and artistry.",
-    image: NEWS_IMAGE,
-    imageAlt: "Young dancers in costume after a performance",
+      "Inauguration with Chief Guest Sri Kavalam Sreekumar, a recital by senior students of Rtambhara Academy and a music concert, all in Ganga Hall.",
+    image: POSTER,
+    imageAlt: POSTER_ALT,
+    imagePosition: "center top",
+    homeImagePosition: "center top",
     body: [
-      "Our young disciples returned from the Youth Festival with a string of awards in Bharatanatyam and group dance, the fruit of many months of patient practice.",
-      "The gurus thank every parent and student for the commitment that made this possible, and look forward to the next season.",
+      `${FESTIVAL} opens on 13 November 2026 at TDM Hall, Ernakulam, presented by ${PRESENTER}. The first evening takes place in Ganga Hall.`,
+      "It begins with the inauguration at 6:00 PM, with Sri Kavalam Sreekumar as Chief Guest and Smt. Kalakshetra Vilasini as Guest of Honour. Senior students of Rtambhara Academy then present a recital, and the evening closes with a music concert by Sri Kavalam Sreekumar.",
     ],
-    bannerCaptionTitle: "Moments from the stage",
-    bannerCaption: "Our disciples on stage at the Youth Festival 2024.",
+    bannerCaptionTitle: `${FESTIVAL} · Day 1`,
+    bannerCaption: `13 – 15 November 2026 at ${VENUE}, presented by ${PRESENTER}.`,
     bodyAfter: [
-      "Congratulations to every participant. The next batch of festival preparation classes begins soon.",
+      "The festival continues on 14 and 15 November with workshops, lecture-demonstrations and performances in Kaveri Hall and Ganga Hall.",
+    ],
+    schedule: [
+      {
+        hall: "Ganga Hall",
+        items: [
+          {
+            time: "6:00 PM – 6:30 PM",
+            title: "Inauguration",
+            notes: [
+              "Chief Guest: Sri Kavalam Sreekumar",
+              "Guest of Honour: Smt. Kalakshetra Vilasini",
+            ],
+          },
+          {
+            time: "6:30 PM – 7:30 PM",
+            title: "Recital by Senior Students",
+            by: "Rtambhara Academy",
+          },
+          {
+            time: "7:30 PM",
+            title: "Music Concert",
+            by: "Sri Kavalam Sreekumar",
+          },
+        ],
+      },
     ],
   },
   {
-    slug: "new-gurukulam-batch",
-    kind: "news",
-    title: "A New Gurukulam Batch Begins This Season",
-    category: "Gurukulam",
-    date: "2024-09-02",
+    slug: "dasabdi-mahothsavam-day-2",
+    kind: "event",
+    title: `Day 2 · ${FESTIVAL} — Workshops, Lec-Dems & “SATI”`,
+    category: "Festival",
+    discipline: "Day 2 of 3",
+    date: "2026-11-14",
+    time: "10:00 AM — 8:00 PM",
+    venue: VENUE,
     excerpt:
-      "Admissions are open for the new Bharatanatyam batch for young students, with classes at Ladies Club Hall.",
-    image: NEWS_IMAGE,
-    imageAlt: "Young dancers in costume after a performance",
+      "Workshops and lecture-demonstrations in Kaveri Hall, then “Anthara Sandhya” and Rtambhara's own production “SATI” in Ganga Hall.",
+    image: POSTER,
+    imageAlt: POSTER_ALT,
+    imagePosition: "center top",
+    homeImagePosition: "center top",
     body: [
-      "Rtambhara opens a new gurukulam batch this season, giving young students a gentle, disciplined introduction to Bharatanatyam.",
-      "Classes follow a steady rhythm of adavus, rhythm exercises and stories, taught by experienced gurus.",
+      `The second day of ${FESTIVAL}, 14 November 2026, begins in Kaveri Hall at 10:00 AM with a dance movement therapy workshop by Kum. Gopika S. Pai. Two lecture-demonstrations follow: gender in Kathakali practices by Smt. Geetha Varma, and sacred and secular music by Kum. Aditi Gopinath.`,
+      "In the evening the programme moves to Ganga Hall for “Anthara Sandhya”, a Bharatanatyam recital by Dr. Sreelatha Vinod and disciples, and “SATI”, a Rtambhara production by Sri Satyajit Ravindranath.",
     ],
-    bannerCaptionTitle: "First steps",
-    bannerCaption: "Beginners learning their first adavus.",
+    bannerCaptionTitle: `${FESTIVAL} · Day 2`,
+    bannerCaption: `13 – 15 November 2026 at ${VENUE}, presented by ${PRESENTER}.`,
     bodyAfter: [
-      "To enrol, leave us a note on the contact page and we will be in touch about trial classes.",
+      "The festival closes on 15 November with a theatre workshop, two more sessions in Kaveri Hall, the valedictory function and “Bhagawad Gita on Wheels”.",
+    ],
+    schedule: [
+      {
+        hall: "Kaveri Hall",
+        items: [
+          {
+            time: "10:00 AM – 1:00 PM",
+            title: "Dance Movement Therapy",
+            by: "Workshop by Kum. Gopika S. Pai",
+          },
+          {
+            time: "2:00 PM – 3:30 PM",
+            title: "Gender in Kathakali Practices",
+            by: "Lec-Dem by Smt. Geetha Varma",
+          },
+          {
+            time: "4:00 PM – 5:00 PM",
+            title: "Sacred & Secular Music",
+            by: "Lec-Dem by Kum. Aditi Gopinath",
+          },
+        ],
+      },
+      {
+        hall: "Ganga Hall",
+        items: [
+          {
+            time: "6:00 PM – 7:00 PM",
+            title: "“Anthara Sandhya”",
+            by: "Bharatanatyam by Dr. Sreelatha Vinod & Disciples",
+          },
+          {
+            time: "7:30 PM – 8:00 PM",
+            title: "“SATI”",
+            by: "A Rtambhara Production by Sri Satyajit Ravindranath",
+          },
+        ],
+      },
     ],
   },
   {
-    slug: "community-dance-day",
-    kind: "news",
-    title: "Community Dance Day Brings Tripunithura Together",
-    category: "Community",
-    date: "2024-08-18",
+    slug: "dasabdi-mahothsavam-day-3",
+    kind: "event",
+    title: `Day 3 · ${FESTIVAL} — Theatre, Yoga & Bhagawad Gita on Wheels`,
+    category: "Festival",
+    discipline: "Day 3 of 3",
+    date: "2026-11-15",
+    time: "10:00 AM onwards",
+    venue: VENUE,
     excerpt:
-      "Families, neighbours and friends joined an open afternoon of workshops and short performances.",
-    image: NEWS_IMAGE,
-    imageAlt: "Young dancers in costume after a performance",
+      "A theatre workshop, a lec-dem and a yoga, kalari and wellness session, then the valedictory function and “Bhagawad Gita on Wheels”.",
+    image: POSTER,
+    imageAlt: POSTER_ALT,
+    imagePosition: "center top",
+    homeImagePosition: "center top",
     body: [
-      "Our open afternoon welcomed families and neighbours for short workshops in Bharatanatyam, Kalaripayattu and yoga.",
-      "It was a joyful reminder that the arts belong to everyone in the community.",
+      `The final day of ${FESTIVAL}, 15 November 2026, spends the daytime in Kaveri Hall: a theatre workshop by Smt. Shirley Somasundaram, a lecture-demonstration by Sri Vinod Gopalakrishnan on nurturing an informed artist, and a yoga, kalari and wellness workshop by Sri Satyajit Ravindranath.`,
+      "In the evening, Ganga Hall hosts the valedictory function at 6:00 PM, followed at 6:30 PM by “Bhagawad Gita on Wheels”, a world-first divine dance production by extraordinary wheelchair dancers.",
     ],
-    bannerCaptionTitle: "Open to all",
-    bannerCaption: "Visitors trying a short movement workshop.",
-    bodyAfter: ["We look forward to hosting the next community day soon."],
-  },
-  {
-    slug: "annual-day-celebration",
-    kind: "news",
-    title: "Annual Day Celebrates Ten Years of Rtambhara",
-    category: "Celebrations",
-    date: "2024-07-06",
-    excerpt:
-      "A decade of dance was marked with performances by students of every age and a tribute to our gurus.",
-    image: NEWS_IMAGE,
-    imageAlt: "Young dancers in costume after a performance",
-    body: [
-      "Our annual day marked ten years of Rtambhara with performances by students of every age.",
-      "The evening closed with a tribute to the gurus whose teaching has shaped the academy.",
+    bannerCaptionTitle: `${FESTIVAL} · Day 3`,
+    bannerCaption: `13 – 15 November 2026 at ${VENUE}, presented by ${PRESENTER}.`,
+    bodyAfter: [],
+    schedule: [
+      {
+        hall: "Kaveri Hall",
+        items: [
+          {
+            time: "10:00 AM – 1:00 PM",
+            title: "Theatre Workshop",
+            by: "By Smt. Shirley Somasundaram",
+          },
+          {
+            time: "2:00 PM – 3:30 PM",
+            title: "Beyond Technique – Nurturing an Informed Artist",
+            by: "Lec-Dem by Sri Vinod Gopalakrishnan",
+          },
+          {
+            time: "4:00 PM – 5:00 PM",
+            title: "Yoga, Kalari & Wellness",
+            by: "Workshop by Sri Satyajit Ravindranath",
+          },
+        ],
+      },
+      {
+        hall: "Ganga Hall",
+        items: [
+          {
+            time: "6:00 PM",
+            title: "Valedictory Function",
+          },
+          {
+            time: "6:30 PM",
+            title: "Bhagawad Gita on Wheels",
+            by: "A World-First Divine Dance Production by Extraordinary Wheelchair Dancers",
+          },
+        ],
+      },
     ],
-    bannerCaptionTitle: "A decade of dance",
-    bannerCaption: "The finale of the annual day programme.",
-    bodyAfter: ["Thank you to everyone who joined us on this special evening."],
   },
 ];
 
-export const events = newsItems.filter((item) => item.kind === "event");
-export const news = newsItems.filter((item) => item.kind === "news");
+// The filter chips on the News & Events page: "All" plus every category in use.
+export const categories: string[] = [
+  "All",
+  ...new Set(newsItems.map((item) => item.category)),
+];
+
+const byDateAscending = (a: NewsItem, b: NewsItem) =>
+  a.date.localeCompare(b.date);
+const byDateDescending = (a: NewsItem, b: NewsItem) =>
+  b.date.localeCompare(a.date);
+
+// Events in date order, the soonest first. News, newest first.
+export const events = newsItems
+  .filter((item) => item.kind === "event")
+  .sort(byDateAscending);
+export const news = newsItems
+  .filter((item) => item.kind === "news")
+  .sort(byDateDescending);
+
+/** An event is upcoming until the day after it takes place. */
+export function isUpcoming(
+  item: Pick<NewsItem, "kind" | "date">,
+  today: string | null,
+) {
+  return item.kind === "event" && today !== null && item.date >= today;
+}
+
+/** Puts a list of events in date order: the upcoming ones first, soonest
+ *  first, then the ones already held, most recent first. Before `today` is
+ *  known (on the server) they are simply listed by date, soonest first. */
+export function sortEvents(list: NewsItem[], today: string | null) {
+  if (today === null) return [...list].sort(byDateAscending);
+
+  return [
+    ...list.filter((item) => item.date >= today).sort(byDateAscending),
+    ...list.filter((item) => item.date < today).sort(byDateDescending),
+  ];
+}
+
+/** The part of a title before the dash: "Day 1 · Dasābdi Mahōthsavam". Used
+ *  where there is room for only a short heading, so whatever tells entries
+ *  apart should come first in a title. */
+export function shortTitle(item: Pick<NewsItem, "title">) {
+  return item.title.split(" — ")[0];
+}
 
 export function getNewsItem(slug: string) {
   return newsItems.find((item) => item.slug === slug);

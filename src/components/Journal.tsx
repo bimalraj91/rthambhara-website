@@ -2,21 +2,22 @@ import Image from "next/image";
 import SectionLabel from "./SectionLabel";
 import JournalFeed, { type JournalEntry } from "./JournalFeed";
 import SplitText from "./motion/SplitText";
-import { formatDate, newsItems } from "@/data/news";
+import { formatDate, newsItems, shortTitle } from "@/data/news";
 import styles from "./Journal.module.scss";
 
-// The latest entries from the News & Events data, newest first.
-const entries: JournalEntry[] = [...newsItems]
-  .sort((a, b) => b.date.localeCompare(a.date))
-  .slice(0, 5)
-  .map((item) => ({
-    slug: item.slug,
-    kind: item.kind,
-    category: item.category,
-    ...formatDate(item.date),
-    title: item.title,
-    excerpt: item.excerpt,
-  }));
+// Everything from the News & Events data. Which entries are shown, and in what
+// order (upcoming events first), is decided in the browser by JournalFeed,
+// because only the browser knows today's date. The heading is the short form
+// of the title, so a long one is not cut off.
+const entries: JournalEntry[] = newsItems.map((item) => ({
+  slug: item.slug,
+  kind: item.kind,
+  category: item.category,
+  date: item.date,
+  ...formatDate(item.date),
+  title: shortTitle(item),
+  excerpt: item.excerpt,
+}));
 
 export default function Journal() {
   return (

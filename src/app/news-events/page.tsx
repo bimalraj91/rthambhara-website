@@ -6,7 +6,7 @@ import NewsHero from "@/components/NewsHero";
 
 const title = "News & Events";
 const description =
-  "Upcoming recitals, workshops and celebrations at Rtambhara Academy, plus news and highlights from our gurus and disciples in Tripunithura.";
+  "Recitals, workshops, lecture-demonstrations and celebrations at Rtambhara Academy for Performing & Visual Arts, with news and highlights from our gurus and disciples in Tripunithura.";
 
 export const metadata: Metadata = pageMetadata({
   title,

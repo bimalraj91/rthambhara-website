@@ -1,0 +1,61 @@
+@use "../styles/mixins" as *;
+
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  // Dark enough to read on the cream page (WCAG AA).
+  color: #705c5d;
+
+  @include sans(400);
+  font-size: 13px;
+  letter-spacing: 0.13px;
+  line-height: 20px;
+}
+
+.item {
+  display: inline-flex;
+  min-width: 0;
+  align-items: center;
+  gap: 10px;
+
+  // A small gold chevron between crumbs, drawn with borders so it is not text
+  // that a screen reader could announce.
+  & + &::before {
+    flex: none;
+    width: 6px;
+    height: 6px;
+    border-top: 1.5px solid #c59b48;
+    border-right: 1.5px solid #c59b48;
+    content: "";
+    transform: rotate(45deg);
+  }
+
+  // The links are small, so they get some height to be easy to tap.
+  a {
+    padding: 10px 0;
+    color: inherit;
+    transition: color 0.3s var(--ease-out);
+
+    &:hover {
+      color: var(--color-maroon);
+      text-decoration: underline;
+      text-decoration-color: #c59b48;
+      text-underline-offset: 4px;
+    }
+
+    @include focus-ring(var(--color-maroon));
+  }
+
+  // Where you are now.
+  span {
+    color: #2a0006;
+    overflow-wrap: anywhere;
+
+    @include sans(500);
+  }
+}

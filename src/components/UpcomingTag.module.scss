@@ -1,0 +1,42 @@
+@use "../styles/mixins" as *;
+
+// Gold on deep maroon, like the date chip it sits beside.
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 11px 4px 9px;
+  border-radius: 999px;
+  background: #fece57;
+  color: #3f0810;
+  white-space: nowrap;
+  text-transform: uppercase;
+  animation: appear 0.5s var(--ease-out) both;
+
+  @include sans(700);
+  font-size: 10px;
+  letter-spacing: 0.9px;
+  line-height: 14px;
+
+  // A small lit dot: it is happening soon.
+  &::before {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #8c1d2b;
+    content: "";
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag {
+    animation: none;
+  }
+}

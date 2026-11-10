@@ -3,6 +3,7 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata, webPageSchema } from "@/lib/seo";
 import { siteDescription, siteName } from "@/lib/site";
 import AmbientMusic from "@/components/AmbientMusic";
+import AnnouncementModal from "@/components/AnnouncementModal";
 import Hero from "@/components/Hero";
 import Intro from "@/components/Intro";
 import Concept from "@/components/Concept";
@@ -36,13 +37,14 @@ export default function Home() {
     <main id="main">
       <JsonLd data={jsonLd} />
       <AmbientMusic />
+      <AnnouncementModal />
       <Hero />
       <Intro />
       <Concept />
       <Specialties />
       <Experience />
       <Journal />
-      <News />
+      {/* <News /> */}
       <Team />
       <Contact />
       <Stories />

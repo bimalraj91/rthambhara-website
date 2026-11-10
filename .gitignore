@@ -43,3 +43,6 @@ next-env.d.ts
 # Lighthouse raw reports (the summary is kept)
 /lighthouse-reports/*.json
 /lighthouse-reports/run.log
+
+# Playwright CLI session logs and page snapshots
+/.playwright-cli/

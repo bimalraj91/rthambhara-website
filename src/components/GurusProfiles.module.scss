@@ -291,6 +291,13 @@ $top: 908;
     gap: 23px;
   }
 
+  // The longer biography, beneath the pillars as Girija's is.
+  .story {
+    left: 135px;
+    top: #{2800 - $top}px;
+    width: 580px;
+  }
+
   .pillar {
     width: 157px;
     padding: 0;

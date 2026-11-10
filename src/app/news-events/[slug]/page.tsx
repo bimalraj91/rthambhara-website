@@ -2,10 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import NewsDetail from "@/components/NewsDetail";
-import NewsHero from "@/components/NewsHero";
 import PageFallback from "@/components/PageFallback";
 import JsonLd from "@/components/JsonLd";
-import { getNewsItem, newsItems, type NewsItem } from "@/data/news";
+import {
+  getNewsItem,
+  newsItems,
+  shortTitle,
+  type NewsItem,
+} from "@/data/news";
 import { breadcrumbSchema, organizationId, pageMetadata } from "@/lib/seo";
 import { absoluteUrl, siteName } from "@/lib/site";
 
@@ -49,7 +53,7 @@ function structuredData(item: NewsItem) {
   const breadcrumbs = breadcrumbSchema([
     { name: "Home", path: "/" },
     { name: "News & Events", path: "/news-events" },
-    { name: item.title, path: `/news-events/${item.slug}` },
+    { name: shortTitle(item), path: `/news-events/${item.slug}` },
   ]);
 
   if (item.kind === "event") {
@@ -110,7 +114,6 @@ async function Article({ params }: { params: Params }) {
 export default function NewsEventPage({ params }: { params: Params }) {
   return (
     <main id="main">
-      <NewsHero />
       <Suspense fallback={<PageFallback />}>
         <Article params={params} />
       </Suspense>

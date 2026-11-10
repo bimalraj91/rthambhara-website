@@ -8,11 +8,15 @@ import {
   events,
   formatDate,
   news,
+  shortTitle,
+  sortEvents,
   type NewsItem,
 } from "@/data/news";
+import { useToday } from "@/hooks/useToday";
 import Reveal from "./motion/Reveal";
 import { StaggerGroup, StaggerItem } from "./motion/Stagger";
 import FontPreload from "./FontPreload";
+import UpcomingTag from "./UpcomingTag";
 import styles from "./NewsEvents.module.scss";
 
 type View = "grid" | "list";
@@ -81,18 +85,20 @@ function EventCard({ item }: { item: NewsItem }) {
           fill
           sizes="(max-width: 760px) 90vw, (max-width: 1280px) 45vw, 290px"
           className={styles.cover}
+          style={{ objectPosition: item.imagePosition ?? "center" }}
         />
         <span className={styles.dateChip}>
           <strong>{date.day}</strong>
           <span>{date.month}</span>
         </span>
+        <UpcomingTag item={item} className={styles.upcoming} />
       </span>
       <span className={styles.eventBody}>
         <span className={styles.knot}>
           <i aria-hidden="true" />
           {item.time?.replace(" IST", "").replace(" — ", " – ")}
         </span>
-        <h3>{item.title.split(" — ")[0]}</h3>
+        <h3>{shortTitle(item)}</h3>
         <p className={styles.eventDesc}>{item.excerpt}</p>
         <span className={styles.eventVenue}>
           <Icon name="pin-small" size={14} />
@@ -157,6 +163,7 @@ export function Row({ item }: { item: NewsItem }) {
           <span className={styles.tagKind}>
             {item.kind === "event" ? item.category : "News"}
           </span>
+          <UpcomingTag item={item} />
         </span>
         <h3>{item.title}</h3>
         {item.kind === "event" && (
@@ -169,10 +176,12 @@ export function Row({ item }: { item: NewsItem }) {
               <Icon name="pin" size={13} />
               {item.venue}
             </span>
-            <span>
-              <Icon name="ticket" size={13} />
-              {item.access}
-            </span>
+            {item.access && (
+              <span>
+                <Icon name="ticket" size={13} />
+                {item.access}
+              </span>
+            )}
           </span>
         )}
         <p>{item.excerpt}</p>
@@ -185,6 +194,7 @@ export function Row({ item }: { item: NewsItem }) {
           fill
           sizes="(max-width: 900px) 90vw, 288px"
           className={styles.cover}
+          style={{ objectPosition: item.imagePosition ?? "center" }}
         />
         <span className={styles.rowAction}>
           <KnowMore tone="dark" />
@@ -201,10 +211,17 @@ export default function NewsEvents() {
   const [searchOpen, setSearchOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
   const searchId = useId();
+  const today = useToday();
 
+  // All events in one list, in date order: the upcoming ones first (they carry
+  // an "Upcoming" label), then any already held.
   const visibleEvents = useMemo(
-    () => events.filter((item) => matches(item, category, query)),
-    [category, query],
+    () =>
+      sortEvents(
+        events.filter((item) => matches(item, category, query)),
+        today,
+      ),
+    [category, query, today],
   );
   const visibleNews = useMemo(
     () => news.filter((item) => matches(item, category, query)),
@@ -254,23 +271,32 @@ export default function NewsEvents() {
 
       <div className={styles.shell}>
         <div className={styles.toolbar}>
-          <div
-            className={styles.filters}
-            role="group"
-            aria-label="Filter by category"
-          >
-            {categories.map((name) => (
-              <button
-                key={name}
-                type="button"
-                className={`${styles.chip} ${category === name ? styles.chipActive : ""}`}
-                aria-pressed={category === name}
-                onClick={() => setCategory(name)}
-              >
-                {name}
-              </button>
-            ))}
-          </div>
+          {/* With a single category, "All" and that category are the same
+              list, so there is nothing to filter. */}
+          {categories.length > 2 ? (
+            <div
+              className={styles.filters}
+              role="group"
+              aria-label="Filter by category"
+            >
+              {categories.map((name) => (
+                <button
+                  key={name}
+                  type="button"
+                  className={`${styles.chip} ${category === name ? styles.chipActive : ""}`}
+                  aria-pressed={category === name}
+                  onClick={() => setCategory(name)}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <p className={styles.count} aria-live="polite">
+              {visibleEvents.length}{" "}
+              {visibleEvents.length === 1 ? "event" : "events"}
+            </p>
+          )}
 
           <div className={styles.controls}>
             <div className={styles.viewSwitch} role="group" aria-label="Layout">
@@ -334,11 +360,10 @@ export default function NewsEvents() {
         {visibleEvents.length > 0 && (
           <div className={styles.group}>
             <Reveal className={styles.groupHead} y={24}>
-              <h2>Upcoming Events</h2>
+              <h2>Events</h2>
               <p>
-                Explore our upcoming classical recitals, abhinaya workshops, and
-                cultural milestones curated within the sacred parampara
-                tradition.
+                Recitals, workshops, lecture-demonstrations and celebrations
+                from Rtambhara Academy, in date order.
               </p>
             </Reveal>
 

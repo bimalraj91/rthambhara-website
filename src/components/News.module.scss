@@ -165,9 +165,11 @@
   padding: 20px 26px 18px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 12px;
-  background: rgba(47, 26, 25, 0.48);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  background: rgba(47, 26, 25, 0.62);
+  // Unprefixed only: with the -webkit- twin written next to it, the CSS build
+  // drops both and the blur never appears. The blur is what keeps this text
+  // readable when the picture behind it carries writing, such as a poster.
+  backdrop-filter: blur(18px);
 }
 
 .featureCategory {
