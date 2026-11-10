@@ -121,12 +121,27 @@ export default function AmbientMusic() {
         aria-label={playing ? "Mute background music" : "Play background music"}
         title={playing ? "Mute music" : "Play music"}
       >
-        <span className={styles.bars} aria-hidden="true">
-          <i />
-          <i />
-          <i />
-          <i />
-        </span>
+        {/* Both icons sit in the same spot and cross-fade: the speaker with
+            sound waves while the music plays, the speaker with a cross when it
+            is muted. */}
+        <svg
+          className={`${styles.icon} ${styles.iconOn}`}
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z" />
+          <path className={styles.waveNear} d="M15.2 9.2a4 4 0 0 1 0 5.6" />
+          <path className={styles.waveFar} d="M18.2 6.4a8 8 0 0 1 0 11.2" />
+        </svg>
+        <svg
+          className={`${styles.icon} ${styles.iconOff}`}
+          viewBox="0 0 24 24"
+          aria-hidden="true"
+        >
+          <path d="M11 5 6.5 9H3v6h3.5L11 19V5Z" />
+          <path d="m16 9.5 5 5" />
+          <path d="m21 9.5-5 5" />
+        </svg>
       </button>
     </>
   );

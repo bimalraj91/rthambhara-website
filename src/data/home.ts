@@ -102,7 +102,7 @@ export const team = [
     role: "Music & Dance",
     description:
       "A disciple of the Kalakshetra tradition with 23 years of teaching, guiding students in Bharatanatyam with grace and devotion.",
-    image: "/assets/home/team-girija.png",
+    image: "/assets/gurus/guru_girija.webp",
     alt: "Portrait of Girija Ravindranath",
     imagePosition: "center 24%",
   },
@@ -111,7 +111,7 @@ export const team = [
     role: "Contemporary Dance",
     description:
       "A choreographer and performer who blends classical roots with Kalaripayattu-inspired contemporary movement.",
-    image: "/assets/home/team-satyajit.png",
+    image: "/assets/gurus/guru_satyajit.webp",
     alt: "Portrait of Satyajit Ravindranath",
     imagePosition: "center 22%",
   },
