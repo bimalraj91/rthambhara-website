@@ -34,7 +34,7 @@ export default function Stories() {
     >
       <div className={styles.backgroundWrap} aria-hidden="true">
         <Image
-          src="/assets/home/stories-background.png"
+          src="/assets/home/stories-background.webp"
           alt=""
           fill
           sizes="100vw"

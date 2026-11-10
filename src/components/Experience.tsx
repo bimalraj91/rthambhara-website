@@ -15,7 +15,7 @@ export default function Experience() {
     >
       <Drift className={styles.ornament} from={50} to={-50}>
           <Image
-        src="/assets/home/ornament-sheet-11.png"
+        src="/assets/home/ornament-sheet-11.webp"
         alt=""
         width={753}
         height={827}
@@ -28,7 +28,7 @@ export default function Experience() {
         <div className={styles.visual}>
           <ImageReveal className={styles.imageWrap}>
             <Image
-              src="/assets/home/experience-temple.png"
+              src="/assets/home/experience-temple.webp"
               alt="The candlelit interior of a Kerala temple, its wooden pillars carved with stories"
               fill
               sizes="(max-width: 900px) 92vw, 689px"
@@ -36,7 +36,7 @@ export default function Experience() {
             />
           </ImageReveal>
           <Image
-            src="/assets/home/experience-torn-top.png"
+            src="/assets/home/experience-torn-top.webp"
             alt=""
             width={665}
             height={139}

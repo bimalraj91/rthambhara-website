@@ -27,7 +27,7 @@ export default function Journal() {
       aria-labelledby="journal-title"
     >
       <Image
-        src="/assets/home/journal-background.png"
+        src="/assets/home/journal-background.webp"
         alt=""
         width={1456}
         height={637}

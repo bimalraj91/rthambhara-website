@@ -11,7 +11,7 @@ export default function Team() {
     <section id="team" className={styles.team} aria-labelledby="team-title">
       <div className={styles.backgroundWrap} aria-hidden="true">
         <Image
-          src="/assets/home/team-background.png"
+          src="/assets/home/team-background.webp"
           alt=""
           fill
           sizes="100vw"

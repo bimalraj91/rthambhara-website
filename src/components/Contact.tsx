@@ -16,7 +16,7 @@ export default function Contact() {
       <div className={styles.inner}>
         <Reveal className={styles.warrior} delay={0.05}>
           <Image
-            src="/assets/home/contact-warrior.png"
+            src="/assets/home/contact-warrior.webp"
             alt="A Kalaripayattu practitioner holding a urumi sword"
             width={379}
             height={505}

@@ -34,7 +34,7 @@ export default function Footer() {
           {[1, 2, 3].map((n) => (
             <Image
               key={n}
-              src={`/assets/home/footer-ornament-${n}.png`}
+              src={`/assets/home/footer-ornament-${n}.webp`}
               alt=""
               width={502}
               height={253}
@@ -46,7 +46,7 @@ export default function Footer() {
 
         <div className={styles.motif} aria-hidden="true">
           <Image
-            src="/assets/home/footer-lineart.png"
+            src="/assets/home/footer-lineart.webp"
             alt=""
             fill
             sizes="(max-width: 760px) 320px, 552px"

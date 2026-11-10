@@ -29,7 +29,7 @@ export default function News() {
     <section id="news" className={styles.news} aria-labelledby="news-title">
       <div className={styles.dancer} aria-hidden="true">
         <Image
-          src="/assets/home/news-dancer.png"
+          src="/assets/home/news-dancer.webp"
           alt=""
           width={1358}
           height={1358}
@@ -40,7 +40,7 @@ export default function News() {
 
       <Drift className={styles.mandala} from={60} to={-60}>
         <Image
-          src="/assets/home/news-mandala.png"
+          src="/assets/home/news-mandala.webp"
           alt=""
           width={414}
           height={582}

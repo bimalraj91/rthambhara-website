@@ -13,7 +13,7 @@ const heroMarker = "Tripunithura · Established 2012";
 
 export const heroSlides = [
   {
-    image: "/assets/home/stories-background.png",
+    image: "/assets/home/stories-background.webp",
     alt: "A dancer framed by the golden arches of a temple",
     imagePosition: "center 42%",
     marker: heroMarker,
@@ -55,28 +55,28 @@ export const programs = [
     title: "Bharatanatyam",
     description:
       "The poetry of ancient traditions, preserved in every gesture, expression and measured step.",
-    image: "/assets/home/offering-bharatanatyam.png",
+    image: "/assets/home/offering-bharatanatyam.webp",
     alt: "A Bharatanatyam dancer holding a classical pose",
   },
   {
     title: "Contemporary dance",
     description:
       "The fierce spirit of Kalari, finding new meaning through the freedom of contemporary movement.",
-    image: "/assets/home/offering-contemporary.png",
+    image: "/assets/home/offering-contemporary.webp",
     alt: "A contemporary dancer in motion",
   },
   {
     title: "Thiruvathira",
     description:
       "Familiar songs, graceful circles, and the beautiful togetherness of a tradition we grew up loving.",
-    image: "/assets/home/offering-thiruvathira.png",
+    image: "/assets/home/offering-thiruvathira.webp",
     alt: "Dancers moving together in a Thiruvathira circle",
   },
   {
     title: "Yoga",
     description:
       "The gentle art of listening to your body, caring for its strength and growing gracefully with time.",
-    image: "/assets/home/offering-yoga.png",
+    image: "/assets/home/offering-yoga.webp",
     alt: "A yoga practitioner in a calm seated pose",
   },
 ] as const;
@@ -84,12 +84,12 @@ export const programs = [
 export const news = {
   gallery: [
     {
-      image: "/assets/home/news-small-2.jpg",
+      image: "/assets/home/news-small-2.webp",
       alt: "Students practising yoga together",
       imagePosition: "center 36%",
     },
     {
-      image: "/assets/home/news-small-4.jpg",
+      image: "/assets/home/news-small-4.webp",
       alt: "A Kalaripayattu practitioner mid-movement",
       imagePosition: "center 28%",
     },
@@ -120,8 +120,8 @@ export const team = [
 export const story = {
   slides: [
     {
-      image: "/assets/home/gallery-1.jpg",
-      feature: "/assets/home/story-video.png",
+      image: "/assets/home/gallery-1.webp",
+      feature: "/assets/home/story-video.webp",
       alt: "An ensemble Bharatanatyam performance on stage",
       quote:
         "A journey that began with curiosity transformed into a beautiful expression of discipline, dedication and artistic excellence.",
@@ -129,8 +129,8 @@ export const story = {
       role: "Classical Dance Artist",
     },
     {
-      image: "/assets/home/gallery-2.jpg",
-      feature: "/assets/home/gallery-2.jpg",
+      image: "/assets/home/gallery-2.webp",
+      feature: "/assets/home/gallery-2.webp",
       alt: "Expressive footwork adorned with traditional ghungroo bells",
       quote:
         "Every rhythm I learned here taught me patience first, and then the joy of letting the body speak without hurry.",
@@ -138,8 +138,8 @@ export const story = {
       role: "Bharatanatyam Student",
     },
     {
-      image: "/assets/home/gallery-3.png",
-      feature: "/assets/home/gallery-3.png",
+      image: "/assets/home/gallery-3.webp",
+      feature: "/assets/home/gallery-3.webp",
       alt: "A dancer silhouetted against a full moon and sacred temples",
       quote:
         "The studio felt like a temple courtyard. I arrived as a spectator and left as a performer carrying a living tradition.",
@@ -147,8 +147,8 @@ export const story = {
       role: "Mohiniyattam Artist",
     },
     {
-      image: "/assets/home/gallery-4.jpg",
-      feature: "/assets/home/gallery-4.jpg",
+      image: "/assets/home/gallery-4.webp",
+      feature: "/assets/home/gallery-4.webp",
       alt: "Kathakali artists in traditional costumes",
       quote:
         "Watching the masters rehearse changed how I see stories. Art here is handed down with care, one gesture at a time.",

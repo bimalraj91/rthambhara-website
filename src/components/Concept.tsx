@@ -38,7 +38,7 @@ export default function Concept() {
       <div className={styles.panel}>
         <div className={styles.backgroundWrap} aria-hidden="true">
           <Image
-            src="/assets/home/concept-bg-clean.png"
+            src="/assets/home/concept-bg-clean.webp"
             alt=""
             fill
             sizes="100vw"
@@ -47,7 +47,7 @@ export default function Concept() {
         </div>
 
         <Image
-          src="/assets/home/concept-corner.png"
+          src="/assets/home/concept-corner.webp"
           alt=""
           width={193}
           height={123}

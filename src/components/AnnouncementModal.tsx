@@ -189,7 +189,7 @@ function Popup({ data }: { data: Announcement }) {
         </div>
 
         <Image
-          src="/assets/home/lotus.png"
+          src="/assets/home/lotus.webp"
           alt=""
           width={324}
           height={250}

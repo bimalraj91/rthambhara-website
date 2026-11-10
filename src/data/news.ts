@@ -71,7 +71,7 @@ export const newsItems: NewsItem[] = [
     venue: VENUE,
     excerpt:
       "Inauguration with Chief Guest Sri Kavalam Sreekumar, a recital by senior students of Rtambhara Academy and a music concert, all in Ganga Hall.",
-    image: POSTER,
+    image: "/assets/home/gallery-1.webp",
     imageAlt: POSTER_ALT,
     imagePosition: "center top",
     homeImagePosition: "center top",
@@ -121,7 +121,7 @@ export const newsItems: NewsItem[] = [
     venue: VENUE,
     excerpt:
       "Workshops and lecture-demonstrations in Kaveri Hall, then “Anthara Sandhya” and Rtambhara's own production “SATI” in Ganga Hall.",
-    image: POSTER,
+    image: "/assets/home/gallery-2.webp",
     imageAlt: POSTER_ALT,
     imagePosition: "center top",
     homeImagePosition: "center top",
@@ -183,7 +183,7 @@ export const newsItems: NewsItem[] = [
     venue: VENUE,
     excerpt:
       "A theatre workshop, a lec-dem and a yoga, kalari and wellness session, then the valedictory function and “Bhagawad Gita on Wheels”.",
-    image: POSTER,
+    image: "/assets/home/gallery-3.webp",
     imageAlt: POSTER_ALT,
     imagePosition: "center top",
     homeImagePosition: "center top",

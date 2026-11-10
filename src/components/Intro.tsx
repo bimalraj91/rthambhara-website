@@ -23,7 +23,7 @@ export default function Intro() {
               follows her at every screen size. */}
           <Drift className={styles.lotus} from={-14} to={14}>
             <Image
-              src="/assets/home/lotus.png"
+              src="/assets/home/lotus.webp"
               alt=""
               width={162}
               height={125}
@@ -43,7 +43,7 @@ export default function Intro() {
         </div>
 
         <Image
-          src="/assets/home/ornament-sheet-10.png"
+          src="/assets/home/ornament-sheet-10.webp"
           alt=""
           width={726}
           height={734}
@@ -53,7 +53,7 @@ export default function Intro() {
         />
         <Drift className={styles.ornamentRight} from={30} to={-30}>
           <Image
-            src="/assets/home/ornament-sheet-9.png"
+            src="/assets/home/ornament-sheet-9.webp"
             alt=""
             width={753}
             height={827}
@@ -62,7 +62,7 @@ export default function Intro() {
           />
         </Drift>
         {/* <Image
-          src="/assets/home/gold-collage-3.png"
+          src="/assets/home/gold-collage-3.webp"
           alt=""
           width={400}
           height={285}

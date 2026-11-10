@@ -266,7 +266,7 @@ export default function Hero() {
           transition={{ duration: 1.3, ease: EASE, delay: 1.9 }}
         >
           <Image
-            src="/assets/home/hero-dancer.png"
+            src="/assets/home/hero-dancer.webp"
             alt=""
             width={680}
             height={790}

@@ -16,7 +16,7 @@ export default function Specialties() {
       aria-labelledby="offerings-title"
     >
       <Image
-        src="/assets/home/offerings-background.png"
+        src="/assets/home/offerings-background.webp"
         alt=""
         fill
         sizes="100vw"
