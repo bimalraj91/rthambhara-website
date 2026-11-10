@@ -77,32 +77,46 @@
   transition-delay: 0.25s, 0.25s, 0s;
 }
 
+// Each dot sits inside a 24px button, so it is easy to tap; the negative
+// margins keep the first dot on the rule's left edge.
 .dots {
   display: flex;
-  gap: 12px;
-  margin-top: 14px;
+  margin: 6px 0 -8px -8px;
 }
 
 .dot {
-  width: 8px;
-  height: 8px;
+  position: relative;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: 0;
-  border-radius: 50%;
-  background: rgba(216, 190, 141, 0.3);
+  background: none;
   cursor: pointer;
-  transition:
-    background-color 0.5s ease,
-    transform 0.5s var(--ease-out);
 
-  &:hover {
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: rgba(216, 190, 141, 0.3);
+    content: "";
+    transition:
+      background-color 0.5s ease,
+      transform 0.5s var(--ease-out);
+  }
+
+  &:hover::before {
     background: rgba(216, 190, 141, 0.6);
   }
 
   @include focus-ring(var(--color-gold-light));
 }
 
-.dotActive {
+.dotActive::before,
+.dotActive:hover::before {
   background: #d8be8d;
   transform: scale(1.25);
 }
@@ -132,8 +146,7 @@
 
 .month {
   margin-top: 14px;
-  font-family: var(--font-inter), sans-serif;
-  font-weight: 400;
+  @include sans(400);
   font-size: 13px;
   line-height: normal;
   color: #d8be8d;
@@ -293,7 +306,7 @@
 @media (prefers-reduced-motion: reduce) {
   .slide,
   .slideActive,
-  .dot {
+  .dot::before {
     transition: none;
   }
 }

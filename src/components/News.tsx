@@ -28,6 +28,7 @@ export default function News() {
           alt=""
           width={1358}
           height={1358}
+          sizes="(max-width: 760px) 480px, 1358px"
           className={styles.dancerImage}
         />
       </div>
@@ -38,6 +39,7 @@ export default function News() {
           alt=""
           width={414}
           height={582}
+          sizes="(max-width: 760px) 219px, 414px"
           className={styles.fill}
         />
       </Drift>

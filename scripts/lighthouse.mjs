@@ -6,13 +6,22 @@
 // Options (environment variables):
 //   LH_BASE_URL   site to test            (default http://localhost:3100)
 //   LH_PRESET     mobile | desktop | both (default mobile)
+//   LH_RUNS       runs per page; the median run is kept (default 1). Scores
+//                 move a few points between runs, so use 3 for a fair reading.
 //   CHROME_PATH   Chrome/Chromium binary  (default: Lighthouse finds Chrome)
 import { spawnSync } from "node:child_process";
-import { mkdirSync, writeFileSync, readFileSync } from "node:fs";
+import {
+  copyFileSync,
+  mkdirSync,
+  readFileSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 
 const base = (process.env.LH_BASE_URL ?? "http://localhost:3100").replace(/\/$/, "");
 const preset = process.env.LH_PRESET ?? "mobile";
 const presets = preset === "both" ? ["mobile", "desktop"] : [preset];
+const runs = Math.max(1, Number(process.env.LH_RUNS ?? 1) || 1);
 
 const pages = [
   ["Home", "/"],
@@ -35,22 +44,40 @@ const rows = [];
 for (const mode of presets) {
   for (const [name, path] of pages) {
     const file = `${outDir}/${name.toLowerCase().replace(/[^a-z]+/g, "-")}-${mode}.json`;
-    const args = [
-      "--yes",
-      "lighthouse@12",
-      `${base}${path}`,
-      "--quiet",
-      "--output=json",
-      `--output-path=${file}`,
-      "--chrome-flags=--headless=new --no-sandbox",
-      "--only-categories=performance,accessibility,best-practices,seo",
-      ...(mode === "desktop" ? ["--preset=desktop"] : []),
-    ];
     console.log(`Testing ${name} (${mode})...`);
-    const result = spawnSync("npx", args, { stdio: "ignore", shell: true });
-    if (result.status !== 0) {
-      console.log(`  failed (exit ${result.status})`);
-      continue;
+
+    // Run it `runs` times and keep the run with the median performance score.
+    const attempts = [];
+    for (let run = 1; run <= runs; run++) {
+      const attempt = `${file}.run${run}`;
+      const args = [
+        "--yes",
+        "lighthouse@12",
+        `${base}${path}`,
+        "--quiet",
+        "--output=json",
+        `--output-path=${attempt}`,
+        "--chrome-flags=--headless=new --no-sandbox",
+        "--only-categories=performance,accessibility,best-practices,seo",
+        ...(mode === "desktop" ? ["--preset=desktop"] : []),
+      ];
+      const result = spawnSync("npx", args, { stdio: "ignore", shell: true });
+      if (result.status !== 0) {
+        console.log(`  run ${run} failed (exit ${result.status})`);
+        continue;
+      }
+      const score = JSON.parse(readFileSync(attempt, "utf8")).categories
+        .performance.score;
+      attempts.push({ attempt, score });
+    }
+    if (attempts.length === 0) continue;
+    attempts.sort((a, b) => a.score - b.score);
+    copyFileSync(attempts[Math.floor(attempts.length / 2)].attempt, file);
+    for (const { attempt } of attempts) rmSync(attempt, { force: true });
+    if (runs > 1) {
+      console.log(
+        `  performance: ${attempts.map((a) => Math.round(a.score * 100)).join(", ")}`,
+      );
     }
     const report = JSON.parse(readFileSync(file, "utf8"));
     const score = (id) => Math.round(report.categories[id].score * 100);
@@ -73,7 +100,7 @@ for (const mode of presets) {
 const lines = [
   "# Lighthouse scores",
   "",
-  `Tested ${new Date().toISOString().slice(0, 10)} against ${base}.`,
+  `Tested ${new Date().toISOString().slice(0, 10)} against ${base}${runs > 1 ? ` (median of ${runs} runs)` : ""}.`,
   "",
 ];
 

@@ -19,6 +19,7 @@ export default function Experience() {
         alt=""
         width={753}
         height={827}
+        sizes="(max-width: 760px) 300px, 753px"
         className={styles.fill}
       />
         </Drift>
@@ -39,6 +40,7 @@ export default function Experience() {
             alt=""
             width={665}
             height={139}
+            sizes="(max-width: 760px) 100vw, 665px"
             aria-hidden="true"
             className={styles.torn}
           />

@@ -66,7 +66,7 @@ export default function GurusProfiles() {
             src={`${A}/gemini1.webp`}
             alt=""
             fill
-            sizes="1100px"
+            sizes="(max-width: 760px) 380px, 1100px"
             style={{ objectFit: "cover" }}
           />
         </div>
@@ -78,7 +78,7 @@ export default function GurusProfiles() {
               alt=""
               width={1109}
               height={944}
-              sizes="1000px"
+              sizes="(max-width: 760px) 425px, 1000px"
               style={{
                 position: "absolute",
                 maxWidth: "none",
@@ -185,7 +185,7 @@ export default function GurusProfiles() {
           <div className={styles.sheetTile}>
             <Crop
               src="/assets/about/figma/sheet10.webp"
-              sizes="620px"
+              sizes="(max-width: 760px) 360px, 620px"
               box={{
                 height: "314.1%",
                 left: "-378.6%",
@@ -204,7 +204,7 @@ export default function GurusProfiles() {
             src={`${A}/dancer-silhouette.webp`}
             alt=""
             fill
-            sizes="352px"
+            sizes="(max-width: 760px) 219px, 352px"
           />
         </div>
       </div>

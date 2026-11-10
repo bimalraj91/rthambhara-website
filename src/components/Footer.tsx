@@ -49,7 +49,7 @@ export default function Footer() {
             src="/assets/home/footer-lineart.png"
             alt=""
             fill
-            sizes="552px"
+            sizes="(max-width: 760px) 320px, 552px"
             className={styles.motifImage}
           />
         </div>
@@ -92,7 +92,7 @@ export default function Footer() {
               </div>
 
               <nav className={styles.linkCol} aria-label="Footer quick links">
-                <h3 className={styles.heading}>Quick Links</h3>
+                <h2 className={styles.heading}>Quick Links</h2>
                 <ul className={styles.linkList}>
                   {quickLinks.map((link) => (
                     <li key={link.label}>
@@ -103,7 +103,7 @@ export default function Footer() {
               </nav>
 
               <nav className={styles.linkCol} aria-label="Footer disciplines">
-                <h3 className={styles.heading}>Disciplines</h3>
+                <h2 className={styles.heading}>Disciplines</h2>
                 <ul className={styles.linkList}>
                   {disciplines.map((link) => (
                     <li key={link.label}>
@@ -114,7 +114,7 @@ export default function Footer() {
               </nav>
 
               <div className={styles.locationCol}>
-                <h3 className={styles.heading}>Studio Location</h3>
+                <h2 className={styles.heading}>Studio Location</h2>
                 <p className={styles.address}>
                   {contact.address.streetAddress},{" "}
                   {contact.address.addressLocality}

@@ -423,7 +423,9 @@ $top: 3340;
       left: 50%;
       width: 74%;
       aspect-ratio: 744 / 727;
-      background: url("/assets/programs/collage-5.webp") center / 100% 100% no-repeat;
+      // A lighter copy of the ring: it is drawn much smaller here than on desktop.
+      background: url("/assets/programs/collage-5-sm.webp") center / 100% 100%
+        no-repeat;
       content: "";
       animation: spin 70s linear infinite;
     }

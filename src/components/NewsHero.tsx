@@ -49,6 +49,7 @@ export default function NewsHero() {
           alt="A Bharatanatyam dancer beside carved temple pillars"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className={styles.background}
         />
@@ -91,7 +92,7 @@ export default function NewsHero() {
               alt=""
               fill
               priority
-              sizes="443px"
+              sizes="(max-width: 760px) 190px, 443px"
               className={styles.dancerImage}
             />
           </div>

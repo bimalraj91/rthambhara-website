@@ -29,7 +29,10 @@ export default function ProgramsBharatanatyam() {
 
         <div className={`${styles.deco} ${styles.sheetLeft}`} aria-hidden="true">
           <Drift from={-30} to={30} className={styles.fill}>
-            <Crop src={`${P}/sheet-9.webp`} sizes="800px" />
+            <Crop
+              src={`${P}/sheet-9.webp`}
+              sizes="(max-width: 760px) 360px, 800px"
+            />
           </Drift>
         </div>
 
@@ -48,7 +51,7 @@ export default function ProgramsBharatanatyam() {
             <Crop
               src={`${P}/bharatanatyam-portrait.webp`}
               alt="A Bharatanatyam dancer in a deep blue and gold costume, holding a graceful pose"
-              sizes="525px"
+              sizes="(max-width: 760px) 360px, 525px"
               cover
             />
           </ImageReveal>

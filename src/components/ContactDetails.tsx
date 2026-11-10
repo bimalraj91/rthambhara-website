@@ -6,6 +6,7 @@ import Reveal from "./motion/Reveal";
 import ImageReveal from "./motion/ImageReveal";
 import SplitText from "./motion/SplitText";
 import { StaggerGroup, StaggerItem } from "./motion/Stagger";
+import FontPreload from "./FontPreload";
 import styles from "./ContactDetails.module.scss";
 
 const socials = [
@@ -35,12 +36,13 @@ const MAP_EMBED =
 export default function ContactDetails() {
   return (
     <section className={styles.section} aria-labelledby="contact-page-title">
+      <FontPreload fonts={["cinzel", "playfair"]} />
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.sheet}`} aria-hidden="true">
           <div className={styles.sheetTile}>
             <Crop
               src="/assets/about/figma/sheet10.webp"
-              sizes="620px"
+              sizes="(max-width: 760px) 360px, 620px"
               box={{
                 height: "314.1%",
                 left: "-378.6%",

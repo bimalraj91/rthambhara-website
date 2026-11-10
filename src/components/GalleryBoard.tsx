@@ -59,7 +59,6 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
           className={styles.tile}
           style={{ ["--ratio" as string]: item.ratio }}
           onClick={() => setActive(index)}
-          aria-label={`Open photo: ${item.title}`}
           aria-haspopup="dialog"
         >
           <Image
@@ -69,10 +68,10 @@ export default function GalleryBoard({ mode, blocks, titleId }: Props) {
             sizes="(max-width: 760px) 50vw, (max-width: 1280px) 46vw, 430px"
             className={styles.photo}
           />
-          <span className={styles.veil} aria-hidden="true">
-            <i>{item.category}</i>
-            <b>{item.title}</b>
-            <em>View</em>
+          {/* The caption is part of the button's name, after the picture's
+              description: "…, Category, Title, View". */}
+          <span className={styles.veil}>
+            <i>{item.category}</i> <b>{item.title}</b> <em>View</em>
           </span>
         </button>
       </Reveal>

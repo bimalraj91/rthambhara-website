@@ -71,7 +71,7 @@ export default function Team() {
                   src={member.image}
                   alt={member.alt}
                   fill
-                  sizes="(max-width: 760px) 72vw, 270px"
+                  sizes="(max-width: 760px) 200px, 270px"
                   className={styles.image}
                   style={{ objectPosition: member.imagePosition }}
                 />

@@ -4,6 +4,7 @@ import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
 import { StaggerGroup, StaggerItem } from "./motion/Stagger";
 import SectionLabel from "./SectionLabel";
+import FontPreload from "./FontPreload";
 import styles from "./ProgramsAgeing.module.scss";
 
 const P = "/assets/programs";
@@ -32,16 +33,23 @@ export default function ProgramsAgeing() {
       className={styles.section}
       aria-labelledby="ageing-title"
     >
+      <FontPreload fonts={["amita"]} />
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.sheetTop}`} aria-hidden="true">
           <Drift from={-30} to={30} className={styles.fill}>
-            <Crop src={`${P}/sheet-9.webp`} sizes="800px" />
+            <Crop
+              src={`${P}/sheet-9.webp`}
+              sizes="(max-width: 760px) 360px, 800px"
+            />
           </Drift>
         </div>
 
         <div className={`${styles.deco} ${styles.sheetBottom}`} aria-hidden="true">
           <Drift from={-30} to={30} className={styles.fill}>
-            <Crop src={`${P}/sheet-9.webp`} sizes="800px" />
+            <Crop
+              src={`${P}/sheet-9.webp`}
+              sizes="(max-width: 760px) 360px, 800px"
+            />
           </Drift>
         </div>
 
@@ -54,7 +62,7 @@ export default function ProgramsAgeing() {
             <Crop
               src={`${P}/bharatanatyam-dancer.webp`}
               alt="A Bharatanatyam dancer in a cream and gold costume, smiling gently"
-              sizes="874px"
+              sizes="(max-width: 760px) 375px, 874px"
               cover
             />
           </div>

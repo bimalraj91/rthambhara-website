@@ -1,14 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import {
-  Amita,
-  Cinzel,
   Cormorant_Garamond,
   DM_Sans,
-  Inter,
-  Playfair_Display,
   Plus_Jakarta_Sans,
 } from "next/font/google";
-import localFont from "next/font/local";
 import "./globals.scss";
 import BackToTop from "@/components/BackToTop";
 import Footer from "@/components/Footer";
@@ -21,45 +16,28 @@ import JsonLd from "@/components/JsonLd";
 import { organizationSchema, websiteSchema } from "@/lib/seo";
 import { defaultOgImage, siteDescription, siteName, siteUrl } from "@/lib/site";
 
+// Only the faces every page uses are declared (and so preloaded) here. The
+// display faces live in src/fonts and are imported by the sections that use
+// them, so a page only downloads the fonts it actually shows.
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  style: ["normal"],
+  display: "swap",
+});
+
+// The italic cut shares the family name, so italic text picks it up by itself.
+const cormorantItalic = Cormorant_Garamond({
+  variable: "--font-cormorant-italic",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  style: ["italic"],
   display: "swap",
 });
 
 const dmSans = DM_Sans({
   variable: "--font-dm-sans",
-  subsets: ["latin"],
-  axes: ["opsz"],
-  display: "swap",
-});
-
-const cinzel = Cinzel({
-  variable: "--font-cinzel",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const amita = Amita({
-  variable: "--font-amita",
-  subsets: ["latin"],
-  weight: "700",
-  display: "swap",
-});
-
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
-  subsets: ["latin"],
-  weight: ["500", "600"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const inter = Inter({
-  variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
 });
@@ -69,24 +47,6 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
   weight: ["300", "400"],
   display: "swap",
-});
-
-const liberationMono = localFont({
-  variable: "--font-liberation-mono",
-  src: [
-    {
-      path: "./fonts/LiberationMono-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "./fonts/LiberationMono-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  display: "swap",
-  fallback: ["Courier New", "monospace"],
 });
 
 export const viewport: Viewport = {
@@ -162,7 +122,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en-IN"
       data-scroll-behavior="smooth"
-      className={`${cormorant.variable} ${dmSans.variable} ${cinzel.variable} ${amita.variable} ${playfair.variable} ${inter.variable} ${jakarta.variable} ${liberationMono.variable}`}
+      className={`${cormorant.variable} ${cormorantItalic.variable} ${dmSans.variable} ${jakarta.variable}`}
     >
       <body>
         <IntroCurtain />

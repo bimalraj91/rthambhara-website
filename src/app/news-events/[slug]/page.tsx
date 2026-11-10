@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import NewsDetail from "@/components/NewsDetail";
 import NewsHero from "@/components/NewsHero";
+import PageFallback from "@/components/PageFallback";
 import JsonLd from "@/components/JsonLd";
 import { getNewsItem, newsItems, type NewsItem } from "@/data/news";
 import { breadcrumbSchema, organizationId, pageMetadata } from "@/lib/seo";
@@ -110,7 +111,7 @@ export default function NewsEventPage({ params }: { params: Params }) {
   return (
     <main id="main">
       <NewsHero />
-      <Suspense fallback={null}>
+      <Suspense fallback={<PageFallback />}>
         <Article params={params} />
       </Suspense>
     </main>

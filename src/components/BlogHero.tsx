@@ -68,6 +68,7 @@ export default function BlogHero({
           alt={bgAlt}
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className={styles.background}
         />
@@ -111,7 +112,7 @@ export default function BlogHero({
                 alt=""
                 fill
                 priority
-                sizes="680px"
+                sizes="(max-width: 760px) 190px, 680px"
                 className={styles.dancerImage}
               />
             </div>

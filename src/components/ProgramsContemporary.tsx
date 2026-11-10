@@ -4,6 +4,7 @@ import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
 import { StaggerGroup, StaggerItem } from "./motion/Stagger";
 import SectionLabel from "./SectionLabel";
+import FontPreload from "./FontPreload";
 import styles from "./ProgramsContemporary.module.scss";
 
 const P = "/assets/programs";
@@ -21,6 +22,7 @@ export default function ProgramsContemporary() {
       className={styles.section}
       aria-labelledby="contemporary-title"
     >
+      <FontPreload fonts={["cinzel", "amita"]} />
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.ghost}`} aria-hidden="true">
           <Drift from={-34} to={34} className={styles.fill}>
@@ -38,7 +40,7 @@ export default function ProgramsContemporary() {
           <Crop
             src={`${P}/contemporary-dancer.webp`}
             alt="A contemporary dancer caught mid-turn with arms raised"
-            sizes="736px"
+            sizes="(max-width: 760px) 290px, 736px"
             cover
           />
         </Reveal>

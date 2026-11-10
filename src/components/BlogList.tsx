@@ -48,10 +48,20 @@ export default function BlogList({ posts }: { posts: BlogPost[] }) {
   return (
     <section className={styles.section} aria-label="Blog articles">
       <div className={`${styles.wash} ${styles.washLeft}`} aria-hidden="true">
-        <Image src="/assets/news/sheet.webp" alt="" fill sizes="800px" />
+        <Image
+          src="/assets/news/sheet.webp"
+          alt=""
+          fill
+          sizes="(max-width: 760px) 360px, 800px"
+        />
       </div>
       <div className={`${styles.wash} ${styles.washRight}`} aria-hidden="true">
-        <Image src="/assets/news/sheet.webp" alt="" fill sizes="800px" />
+        <Image
+          src="/assets/news/sheet.webp"
+          alt=""
+          fill
+          sizes="(max-width: 760px) 360px, 800px"
+        />
       </div>
       <div className={styles.emblem} aria-hidden="true">
         <Image

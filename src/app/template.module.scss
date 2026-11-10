@@ -1,4 +1,10 @@
+// Always its own stacking context, so page layers stay below the fixed header
+// whether or not the fade is running.
 .page {
+  isolation: isolate;
+}
+
+.fade {
   animation: pageIn 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -13,7 +19,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page {
+  .fade {
     animation: none;
   }
 }

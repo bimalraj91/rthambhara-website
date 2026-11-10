@@ -13,6 +13,7 @@ import {
 import SectionLabel from "./SectionLabel";
 import SplitText from "./motion/SplitText";
 import { heroSlides } from "@/data/home";
+import FontPreload from "./FontPreload";
 import styles from "./Hero.module.scss";
 
 const EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
@@ -152,6 +153,7 @@ export default function Hero() {
       onFocus={() => setHovered(true)}
       onBlur={() => setHovered(false)}
     >
+      <FontPreload fonts={["mono"]} />
       <motion.div
         className={styles.media}
         aria-hidden="true"
@@ -173,6 +175,7 @@ export default function Hero() {
               alt={slide.alt}
               fill
               priority={index === 0}
+              fetchPriority={index === 0 ? "high" : undefined}
               sizes="100vw"
               className={styles.background}
               style={{ objectPosition: slide.imagePosition }}

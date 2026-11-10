@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import BlogArticle from "@/components/BlogArticle";
 import BlogHero from "@/components/BlogHero";
+import PageFallback from "@/components/PageFallback";
 import {
   blogPosts,
   formatBlogDateLong,
@@ -131,7 +132,7 @@ async function Article({ params }: { params: Params }) {
 export default function BlogPostPage({ params }: { params: Params }) {
   return (
     <main id="main">
-      <Suspense fallback={null}>
+      <Suspense fallback={<PageFallback hero />}>
         <Article params={params} />
       </Suspense>
     </main>

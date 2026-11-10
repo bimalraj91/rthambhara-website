@@ -3,6 +3,7 @@ import type { CSSProperties } from "react";
 import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
 import Crop from "./about/Crop";
+import FontPreload from "./FontPreload";
 import styles from "./AboutWhy.module.scss";
 
 const A = "/assets/about/figma";
@@ -127,13 +128,18 @@ const cards: Card[] = [
 
 export default function AboutWhy() {
   return (
-    <section id="why-rtambhara" className={styles.section} aria-labelledby="why-title">
+    <section
+      id="why-rtambhara"
+      className={styles.section}
+      aria-labelledby="why-title"
+    >
+      <FontPreload fonts={["cinzel"]} />
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.dancer}`} aria-hidden="true">
           <div className={styles.dancerTile}>
             <Crop
               src={`${A}/rect16.webp`}
-              sizes="840px"
+              sizes="(max-width: 760px) 680px, 840px"
               box={{ height: "100%", left: "-48.16%", top: "0.02%", width: "151.56%" }}
             />
           </div>
@@ -204,7 +210,11 @@ export default function AboutWhy() {
             >
               {card.tone === "photo" && (
                 <div className={styles.portrait}>
-                  <Crop src={`${A}/gemini.webp`} sizes="540px" cover />
+                  <Crop
+                    src={`${A}/gemini.webp`}
+                    sizes="(max-width: 760px) 370px, 540px"
+                    cover
+                  />
                 </div>
               )}
 

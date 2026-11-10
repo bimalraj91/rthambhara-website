@@ -11,6 +11,7 @@ import styles from "./Header.module.scss";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [darkLogo, setDarkLogo] = useState(false);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const pathname = usePathname();
   const activeHref = pathname.startsWith("/about-us")
@@ -32,12 +33,33 @@ export default function Header() {
                   : "";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const isScrolled = window.scrollY > 24;
+      setScrolled(isScrolled);
+      if (isScrolled) setDarkLogo(true);
+    };
 
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // The dark logo only shows once the header turns light on scroll, so it is
+  // fetched after the page has loaded instead of competing with the first paint.
+  useEffect(() => {
+    let timer = 0;
+    const arm = () => {
+      timer = window.setTimeout(() => setDarkLogo(true), 1500);
+    };
+
+    if (document.readyState === "complete") arm();
+    else window.addEventListener("load", arm, { once: true });
+
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("load", arm);
+    };
   }, []);
 
   useEffect(() => {
@@ -74,15 +96,17 @@ export default function Header() {
               unoptimized
               className={`${styles.logo} ${styles.logoLight}`}
             />
-            <Image
-              src="/assets/home/rtambhara-black.svg"
-              alt=""
-              width={203}
-              height={70}
-              unoptimized
-              aria-hidden="true"
-              className={`${styles.logo} ${styles.logoDark}`}
-            />
+            {darkLogo && (
+              <Image
+                src="/assets/home/rtambhara-black.svg"
+                alt=""
+                width={203}
+                height={70}
+                unoptimized
+                aria-hidden="true"
+                className={`${styles.logo} ${styles.logoDark}`}
+              />
+            )}
           </Link>
 
           <nav className={styles.nav} aria-label="Primary navigation">

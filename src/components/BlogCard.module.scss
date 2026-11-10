@@ -60,7 +60,8 @@
 }
 
 .date {
-  color: #8c7770;
+  // Dark enough to read on the cream card (WCAG AA).
+  color: #705c5d;
 }
 
 .title {

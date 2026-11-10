@@ -747,7 +747,8 @@
 }
 
 .tagKind {
-  color: #867273;
+  // Dark enough to read on the cream page (WCAG AA).
+  color: #705c5d;
   text-transform: uppercase;
 
   @include sans(500);

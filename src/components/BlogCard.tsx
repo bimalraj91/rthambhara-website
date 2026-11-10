@@ -14,11 +14,7 @@ export default function BlogCard({
 
   return (
     <article className={styles.card}>
-      <Link
-        href={`/blogs/${post.slug}`}
-        className={styles.link}
-        aria-label={`${post.title}, read the article`}
-      >
+      <Link href={`/blogs/${post.slug}`} className={styles.link}>
         <span className={styles.media}>
           <Image
             src={post.cover}

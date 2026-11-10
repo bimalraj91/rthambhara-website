@@ -57,7 +57,7 @@ export default function Intro() {
             alt=""
             width={753}
             height={827}
-            sizes="(max-width: 900px) 80vw, 760px"
+            sizes="(max-width: 760px) 219px, (max-width: 900px) 720px, 760px"
             className={styles.fill}
           />
         </Drift>

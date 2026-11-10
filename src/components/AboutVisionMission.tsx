@@ -1,6 +1,7 @@
 import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
 import Crop from "./about/Crop";
+import FontPreload from "./FontPreload";
 import styles from "./AboutVisionMission.module.scss";
 
 const A = "/assets/about/figma";
@@ -22,11 +23,15 @@ export default function AboutVisionMission() {
       className={styles.section}
       aria-labelledby="vision-title"
     >
+      <FontPreload fonts={["cinzel"]} />
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.circle}`} aria-hidden="true">
           <div className={styles.circleTile}>
             <div className={styles.circleHalf}>
-              <Crop src={`${A}/ellipse20.webp`} sizes="880px" />
+              <Crop
+                src={`${A}/ellipse20.webp`}
+                sizes="(max-width: 760px) 219px, 880px"
+              />
             </div>
           </div>
         </div>
@@ -37,7 +42,7 @@ export default function AboutVisionMission() {
         >
           <Crop
             src={`${A}/sheet1.webp`}
-            sizes="1080px"
+            sizes="(max-width: 760px) 420px, 1080px"
             box={{
               height: "267.96%",
               left: "-197.47%",
@@ -54,7 +59,7 @@ export default function AboutVisionMission() {
           <div className={styles.sheetRightTile}>
             <Crop
               src={`${A}/sheet10.webp`}
-              sizes="620px"
+              sizes="(max-width: 760px) 360px, 620px"
               box={{
                 height: "314.1%",
                 left: "-378.6%",
@@ -184,7 +189,7 @@ export default function AboutVisionMission() {
         <div className={`${styles.deco} ${styles.moon}`} aria-hidden="true">
           <Crop
             src={`${A}/whatsapp.webp`}
-            sizes="800px"
+            sizes="(max-width: 760px) 540px, 800px"
             box={{
               height: "164.61%",
               left: "0",
@@ -263,7 +268,7 @@ export default function AboutVisionMission() {
         >
           <Crop
             src={`${A}/sheet9.webp`}
-            sizes="760px"
+            sizes="(max-width: 760px) 400px, 760px"
             cover
             className={styles.bottomAligned}
           />
@@ -298,7 +303,11 @@ export default function AboutVisionMission() {
         </Reveal>
 
         <div className={`${styles.deco} ${styles.lotus}`} aria-hidden="true">
-          <Crop src={`${A}/lotus-line.webp`} sizes="380px" cover />
+          <Crop
+            src={`${A}/lotus-line.webp`}
+            sizes="(max-width: 760px) 200px, 380px"
+            cover
+          />
         </div>
         <div
           className={`${styles.deco} ${styles.handRight}`}

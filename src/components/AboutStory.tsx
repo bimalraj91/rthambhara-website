@@ -2,6 +2,7 @@ import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
 import Crop from "./about/Crop";
 import { StaggerGroup, StaggerItem } from "./motion/Stagger";
+import FontPreload from "./FontPreload";
 import styles from "./AboutStory.module.scss";
 
 const A = "/assets/about/figma";
@@ -31,12 +32,13 @@ export default function AboutStory() {
       className={styles.story}
       aria-labelledby="story-title"
     >
+      <FontPreload fonts={["cinzel"]} />
       <div className={styles.canvas}>
         <div className={`${styles.deco} ${styles.sheet}`} aria-hidden="true">
           <div className={styles.sheetTile}>
             <Crop
               src={`${A}/sheet10.webp`}
-              sizes="620px"
+              sizes="(max-width: 760px) 360px, 620px"
               box={{
                 height: "314.1%",
                 left: "-378.6%",

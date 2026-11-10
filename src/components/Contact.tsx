@@ -2,6 +2,7 @@ import Image from "next/image";
 import ContactForm from "./ContactForm";
 import Reveal from "./motion/Reveal";
 import SplitText from "./motion/SplitText";
+import FontPreload from "./FontPreload";
 import styles from "./Contact.module.scss";
 
 export default function Contact() {
@@ -11,6 +12,7 @@ export default function Contact() {
       className={styles.contact}
       aria-labelledby="contact-title"
     >
+      <FontPreload fonts={["cinzel", "playfair"]} />
       <div className={styles.inner}>
         <Reveal className={styles.warrior} delay={0.05}>
           <Image
@@ -18,7 +20,7 @@ export default function Contact() {
             alt="A Kalaripayattu practitioner holding a urumi sword"
             width={379}
             height={505}
-            sizes="(max-width: 900px) 60vw, 379px"
+            sizes="(max-width: 760px) 190px, (max-width: 900px) 540px, 379px"
             className={styles.warriorImage}
           />
         </Reveal>

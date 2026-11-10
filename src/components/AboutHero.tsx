@@ -60,6 +60,7 @@ export default function AboutHero() {
           alt="Four Bharatanatyam dancers in a dimly lit temple hall, framed by carved stone and brass lamps"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className={styles.background}
         />

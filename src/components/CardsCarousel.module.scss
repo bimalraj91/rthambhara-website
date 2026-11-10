@@ -36,33 +36,48 @@
     }
   }
 
+  // Each dot sits inside a 24px button, so it is easy to tap; the negative
+  // margins keep the row where the bare 8px dots used to be.
   .dots {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    padding-top: 4px;
+    margin: -4px 0 -8px;
   }
 
   .dot {
-    width: 8px;
-    height: 8px;
+    position: relative;
+    width: 24px;
+    height: 24px;
     padding: 0;
     border: 0;
-    border-radius: 9999px;
-    background: rgba(104, 23, 34, 0.25);
+    background: none;
     cursor: pointer;
-    transition:
-      width 0.45s var(--ease-out),
-      background-color 0.45s var(--ease-out);
+    transition: width 0.45s var(--ease-out);
+
+    &::before {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      left: 8px;
+      height: 8px;
+      border-radius: 9999px;
+      background: rgba(104, 23, 34, 0.25);
+      content: "";
+      transform: translateY(-50%);
+      transition: background-color 0.45s var(--ease-out);
+    }
 
     &:focus-visible {
       outline: 2px solid var(--color-maroon);
-      outline-offset: 3px;
+      outline-offset: -3px;
     }
   }
 
   .dotActive {
-    width: 26px;
-    background: var(--color-maroon);
+    width: 42px;
+
+    &::before {
+      background: var(--color-maroon);
+    }
   }
 }

@@ -1,0 +1,19 @@
+@use "../styles/mixins" as *;
+
+.fallback {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+// Same height and base colour as the page heroes.
+.hero {
+  height: 840px;
+  background: #1b090a;
+}
+
+@include below($bp-wide) {
+  .hero {
+    height: auto;
+    min-height: 640px;
+  }
+}

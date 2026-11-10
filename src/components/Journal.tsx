@@ -30,6 +30,7 @@ export default function Journal() {
         alt=""
         width={1456}
         height={637}
+        sizes="(max-width: 760px) 100vw, 1456px"
         aria-hidden="true"
         className={styles.background}
       />

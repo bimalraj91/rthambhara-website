@@ -23,6 +23,7 @@ export default function GurusHero() {
           alt="A Bharatanatyam dancer in a warmly lit hall"
           fill
           priority
+          fetchPriority="high"
           sizes="100vw"
           className={styles.background}
         />
@@ -47,7 +48,7 @@ export default function GurusHero() {
               alt=""
               fill
               priority
-              sizes="680px"
+              sizes="(max-width: 760px) 190px, 680px"
               className={styles.dancerImage}
             />
           </div>
